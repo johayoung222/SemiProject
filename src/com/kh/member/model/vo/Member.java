@@ -1,8 +1,14 @@
 package com.kh.member.model.vo;
 
-public class Member {
+import java.io.Serializable;
 
-	 private String memberId; //회원아이디
+public class Member implements Serializable{
+
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String memberId; //회원아이디
 	 private String memberPwd; //패스원드
 	 private String memberName;		//이름
 	 private String memberGender;		//성별

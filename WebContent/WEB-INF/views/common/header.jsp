@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
-  <script src="js/jquery-3.3.1.js"></script>
+  <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 </head>
 <body>
   <nav class="header">
@@ -20,3 +20,8 @@
       </span>
     </div>
   </nav>
+<script>
+$(".logo").click(function(){
+	location.href = "<%=request.getContextPath() %>";
+});
+</script>

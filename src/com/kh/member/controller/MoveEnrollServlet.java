@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberLoginServlet
+ * Servlet implementation class MoveEnrollServlet
  */
-@WebServlet("/member/login")
-public class MemberLoginServlet extends HttpServlet {
+@WebServlet("/member/moveEnroll")
+public class MoveEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -19,11 +19,7 @@ public class MemberLoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//filter로 인코딩
-		
-		//login business logic
-		
-		request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/memberEnroll.jsp").forward(request, response);
 	}
 
 	/**

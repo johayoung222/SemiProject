@@ -1,65 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//전달받은 데이터에서 현재일자를 꺼냄.
 	int year = 2019;
 	int month = 1;
 	int day = 4;
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+
+	<div id="sidebar">
+	
+	</div>
 
 
-<style>
-#schedule{
-    width: 80%;
-    height: 80%;
-    position: relative;
-    bottom: 0;
-    right: 0;
-    border: 1px solid black;
-}
-#main{
-    width: 250px;
-    height: 40px;
-    margin: 0 auto;
-    position: relative;
-}
-#main span{
-    display: inline-block;
-    position: relative;
-    margin-left: 20px;
-    font-size: 20px;
-    font-weight: bold;
-}
-#month{
-    width: 100%;
-    border-collapse: collapse;
-
-}
-#month tr{
-    height: 20px;
-}
-#month th{
-    border-top: 1px solid blue;
-}
-#month td{
-    height: 100px;
-    border: 1px solid blue;
-    padding: 0;
-    margin-top: 0;
-    position: relative;
-}
-#month td span{
-    position: absolute;
-    top: 0px;
-}
-</style>
-
+	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
             <span>&lt;</span>
-            <span>2019년</span>
-            <span>1월</span>
+            <span><%=year %>년</span>
+            <span><%=month %>월</span>
             <span>&gt;</span>
         </div>
 		<table id="month">

@@ -1,6 +1,12 @@
 package com.kh.schedule.model.vo;
 
-public class UploadedFile {
+import java.io.Serializable;
+
+public class UploadedFile implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int scheduleNo;
 	private String OriginalFilename;
 	private String RenameFilename;

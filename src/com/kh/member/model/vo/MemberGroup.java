@@ -1,6 +1,12 @@
 package com.kh.member.model.vo;
 
-public class MemberGroup {
+import java.io.Serializable;
+
+public class MemberGroup implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int groupNo;	//시퀀스 넘버링
 	private String memberId;//회원 아이디
 	

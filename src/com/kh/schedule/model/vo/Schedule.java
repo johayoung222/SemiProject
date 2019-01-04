@@ -1,8 +1,13 @@
 package com.kh.schedule.model.vo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Schedule {
+public class Schedule implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int scheduleNo;
 	private String scheduleTitle;
 	private String scheduleContent;

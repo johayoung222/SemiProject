@@ -39,7 +39,7 @@
          <span>비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
-         <span>계정이 있으신가요?<a href="">로그인</a></span>
+         <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
        </div>
      </form>
    </section>
