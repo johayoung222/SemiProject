@@ -1,30 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 경국이의 테스트 -->
-<!doctype html>
-<html>
+    
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-<head>
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
- <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
- <script src="js/jquery-3.3.1.js"></script>
- <title>7 Scheduler</title>
-
-</head>
-
-<body>
- <nav class="header">
-   <div class="logo">
-  <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >
-     <span class="logofont">
-       7' Scheduler
-     </span>
-   </div>
- </nav>
  <div class="content">
    <section>
      <div id="slideshow">
@@ -38,7 +17,7 @@
               <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
        </div>
      </div>
-     <form class="loginFrm" name="loginform" action="mypage.html" method="post" onsubmit="return CheckLogin();">
+     <form class="loginFrm" name="loginform" action="<%=request.getContextPath() %>/member/login" method="post" onsubmit="return CheckLogin();">
        <div class="login_box">
          <div class="input_login">
            <input type="text" name="memberid" id="memberid" placeholder="아이디를 입력하세요.">
@@ -65,7 +44,6 @@
      </form>
    </section>
  </div>
-
 <script>
 $("#slideshow > div:gt(0)").hide();
 setInterval(function(){
@@ -73,10 +51,5 @@ setInterval(function(){
 } , 3000);
 
 </script>
-
-
-
-
 </body>
-
 </html>

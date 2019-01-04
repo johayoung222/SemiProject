@@ -5,11 +5,10 @@
 	int month = 1;
 	int day = 4;
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+
 <style>
 #schedule{
     width: 80%;
@@ -55,8 +54,7 @@
     top: 0px;
 }
 </style>
-</head>
-<body>
+
 	<div id="schedule">
 		<div id="main">
             <span>&lt;</span>
