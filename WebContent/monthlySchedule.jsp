@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="header.jsp" %>
+    <%@ include file="side.jsp" %>
 <%
 	int year = 2019;
 	int month = 1;
@@ -14,9 +16,10 @@
 #schedule{
     width: 80%;
     height: 80%;
-    position: relative;
-    bottom: 0;
-    right: 0;
+    position: absolute;
+    left: 16%;
+    
+   
     border: 1px solid black;
 }
 #main{
