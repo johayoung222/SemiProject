@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!doctype html>
 <html>
 
@@ -107,7 +110,7 @@
       top: -17px;
     }
     .con{
-      width: 620px;
+      width: 520px;
       height: 500px;
       margin-left: 90px;
       display: inline-block;
@@ -116,7 +119,7 @@
       border-radius:50px; 
     }
     .conimg{
-      width:620px;
+      width:520px;
       height: 500px;
       position: absolute;
       border: red;
@@ -238,5 +241,3 @@ $(function(){
 </body>
 
 </html>
-
-<!--  충돌 수정 다시 ㄱㄱ -->
