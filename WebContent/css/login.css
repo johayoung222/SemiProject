@@ -1,0 +1,52 @@
+@charset "UTF-8";
+.loginFrm{
+  float:right;
+  margin: 0px 0px 0px 0px;
+  width:50%;
+
+}
+.logofont{
+  position: relative;
+  top: -17px;
+}
+
+.conimg{
+  width:45%;
+  height: 500px;
+  position: absolute;
+  border: red;
+  border-radius: 50px;
+
+}
+
+
+
+
+/* login */
+.login_box { width:450px; height:400px; padding: 50px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+border-radius:7px; border: 1px solid rgb(248, 248, 248); }
+.signup_box { width:450px; height:100px; padding: 35px 30px 30px 50px; margin:0 auto ; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+border-radius:7px; border: 1px solid rgb(248, 248, 248); text-align: center; font-size: 18px; }
+
+.login_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
+.login_box .input_login input { width: 100%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;}
+
+.login_box .check { color: #000; font-size: 14px; padding: 9px 0 15px 0; font-family: 'Noto Sans KR', sans-seri;}
+
+.login_box  .login input { width:100%; height:50px; background-color:rgb(156, 36, 167); color:rgb(248, 248, 248); font-size:16px; 
+      padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
+.login_box span{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
+.login_box span:last-of-type{font-size: 15px; padding: 0 108px;margin-bottom: 50px;}
+.login_box  .sns input {
+width:100%; height:50px; background-color:rgb(40, 77, 170); color:rgb(248, 248, 248); font-size:16px; 
+              padding:3px 17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri; transform: translateY(20px)}
+
+.login_box .last {float: right; width:100%; margin-top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
+.login_box .last .join {font-size: 30px;}
+.login_box .last .search { float:right;}
+.login_box .last .join a { color:#00a6de;}
+.login_box .last .search a { color:#626262;} 
+.login_box .last { width:100%; margin-top:10px; border-top:1px solid #ebebeb; padding-top:20px; font:bolder; font-size: 30px ;	 font-family: 'Abril Fatface', cursive;}
+.login_box .last .join { float:left;}
+.login_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;} 
+.login_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
