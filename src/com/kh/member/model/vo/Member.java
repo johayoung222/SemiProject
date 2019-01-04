@@ -20,7 +20,16 @@ public class Member {
 				+ ", " + age + ", " + email + ", " + login_log + ", " + status
 				+ ", " + sns_account;
 	}
+	public Member(String memberid, String password, String name, String gender, int age, String email) {
+		super();
+		this.memberid = memberid;
+		this.password = password;
+		this.name = name;
+		this.gender = gender;
+		this.age = age;
+		this.email = email;
 
+	}
 	public Member(String memberid, String password, String name, String gender, int age, String email, int login_log,
 			String status, String sns_account) {
 		super();
