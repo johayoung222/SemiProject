@@ -175,7 +175,7 @@
       </span>
     </div>
   </nav>
-  <div class="content">rrrrrrrr
+  <div class="content">
     <section>
       <div class="con">
         <img src="flower1.PNG" class="conimg" id="conimg1">
