@@ -14,12 +14,12 @@
 <title>Insert title here</title>
 <style>
 #schedule{
-    width: 80%;
-    height: 80%;
+	overflow:hidden;
+    width: 1000px;
+    height: 600px;
     position: absolute;
     left: 16%;
-    
-   
+    margin-top: 50px;
     border: 1px solid black;
 }
 #main{

@@ -7,9 +7,9 @@
 
 .side{
 	position: absolute;
-	width:100px;
+	width:150px;
 	height:100%;
-	top : 60px;
+	top : 0;
 	left:0;
 	background-color: rgb(206, 219, 186);
 }

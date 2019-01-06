@@ -1,18 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.*" %>
 <%@ include file="header.jsp" %>
+<%
+	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
+%>
 <!doctype html>
 <html>
-
 <head>
- <meta charset="utf-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
- <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
- <script src="js/jquery-3.3.1.js"></script>
- <title>7 Scheduler</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
+<script src="js/jquery-3.3.1.js"></script>
+<title>7 Scheduler</title>
+<script>
 
+<%-- index, img-slide --%>
+$("#slideshow > div:gt(0)").hide();
+setInterval(function(){
+ $("#slideshow > div:first").fadeOut(1000).next().fadeIn(1000).end().appendTo("#slideshow");
+} , 3000);
+
+
+<%--로그인 유효성 검사--%>
+function CheckLogin(){
+	if($("#memberId").val().trim().length == 0){
+		alert("아이디를 입력하세요.");
+		$("#memberId").focus();
+		return false;//폼 전송방지
+	}
+	if($("#memberPwd").val().trim().length == 0){
+		alert("비밀번호를 입력하세요.");
+		$("#memberPwd").focus();
+		return false;
+	}	
+	return true;
+}
+
+</script>
 </head>
 
 <body>
@@ -30,17 +57,20 @@
               <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
        </div>
      </div>
-     <form class="loginFrm" name="loginform" action="mypage.html" method="post" onsubmit="return CheckLogin();">
+     
+     <!-- login form -->
+     <form class="loginFrm" name="loginform" action="<%=request.getContextPath()%>/member/login" method="post" onsubmit="return CheckLogin();">
        <div class="login_box">
          <div class="input_login">
-           <input type="text" name="memberid" id="memberid" placeholder="아이디를 입력하세요.">
+           <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요." >
          </div>
          <div class="input_login">
-           <input type="password" name="memberpwd" id="memberpwd" placeholder="비밀번호를 입력하세요">
+           <input type="password" name="memberPwd" id="memberPwd" placeholder="비밀번호를 입력하세요">
          </div>
          <br>
          <br>
          <div class="login">
+         <!-- login 유효성 검사 -->
            <input type="submit" value="로그인">
          </div>
          <hr>
@@ -58,13 +88,8 @@
    </section>
  </div>
 
-<script>
-$("#slideshow > div:gt(0)").hide();
-setInterval(function(){
- $("#slideshow > div:first").fadeOut(1000).next().fadeIn(1000).end().appendTo("#slideshow");
-} , 3000);
 
-</script>
+
 
 
 
