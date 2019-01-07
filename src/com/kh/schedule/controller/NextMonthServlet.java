@@ -39,7 +39,6 @@ public class NextMonthServlet extends HttpServlet {
 		int nextMonth = c.get(Calendar.MONTH);
 		int[] date = {nextYear, nextMonth, start};
 		
-		
 		new Gson().toJson(date,response.getWriter());
 		
 		

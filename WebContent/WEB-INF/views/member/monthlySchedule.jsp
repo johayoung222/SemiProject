@@ -27,7 +27,7 @@
             <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-        
+		        
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -40,12 +40,12 @@
 			</tr>
 			<script>
 			var html = "";
-			var table = $("#month");
+			var start = <%=start %>;
 			for(var i=0; i<=34; i++){
 				html = "<td><span></span></td>";
-				if(i><%=start %>){
-				html = "<td><span>"+(i-<%=start %>)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span>"+(i-<%=start %>)+"</span></td>";
+				if(i>=start && i<=<%=map.get(month) %>){
+				html = "<td><span>"+(i-start+1)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+(i-start+1)+"</span></td>";
 				}
 				document.write(html);
 			}
@@ -63,8 +63,23 @@
         			console.log(data);
         			var nextYear = data[0];
         			var nextMonth = data[1];
+        			var start = data[2];
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
+        			
+        			var html = "<tr>";
+        			var table = $("#month");
+        			for(var i=0; i<34; i++){
+        				if(start <= i){
+	        				if(i%7 == 0){
+	        					html += "</tr><tr><td><span>"+(i-start+1)+"</span></td>";
+	        				}else{
+	        				html += "<td><span>"+(i-start+1)+"</span></td>";
+	        				}
+        				}
+        			}
+        				html += "</tr>";
+        				table.append(html);
         		}
         	});
         });
