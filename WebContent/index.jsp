@@ -11,16 +11,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
+
 <script src="js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
 <script>
 
-<%-- index, img-slide --%>
-$("#slideshow > div:gt(0)").hide();
-setInterval(function(){
- $("#slideshow > div:first").fadeOut(1000).next().fadeIn(1000).end().appendTo("#slideshow");
-} , 3000);
 
 
 <%--로그인 유효성 검사--%>
@@ -43,7 +38,6 @@ function CheckLogin(){
 
 <body>
  
->>>>>>> min
  <div class="content">
    <section>
      <div id="slideshow">

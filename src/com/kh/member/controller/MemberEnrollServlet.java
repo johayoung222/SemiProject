@@ -30,7 +30,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		String email = request.getParameter("memberEmail");
 		int ssn = Integer.parseInt(request.getParameter("memberDate"));
 		
-		
+
 		Member m = new Member();
 		m.setMemberId(memberId);
 		m.setMemberPwd(memberPwd);
@@ -39,7 +39,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		m.setMemberGender(gender);
 		m.setMemberEmail(email);
 		
-		System.out.println(m);
+		//System.out.println(m);
 		
 		int result = new MemberService().insertMember(m);
 		

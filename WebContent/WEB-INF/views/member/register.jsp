@@ -29,6 +29,7 @@
    <section>
      <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post"
           onsubmit="return validate()" >
+
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
