@@ -14,7 +14,7 @@
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/register.css">
 
  <!-- 파비콘 적용링크 -->
- <link rel="shortcut icon" href="logo(favicon).png" type="image/png" sizes="128x128">
+ <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
 
  <script src="js/jquery-3.3.1.js"></script>
  <title>7 Scheduler(signup)</title>
@@ -27,7 +27,8 @@
  
  <div class="content">
    <section>
-     <form class="singupFrm" name="signupform" action="" method="post">
+     <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post"
+          onsubmit="return validate()" >
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
@@ -43,7 +44,7 @@
              <input type="text" name="memberName" id="memberName" placeholder="이름을 입력하세요">
          </div>
          <div class="input_login">
-           <input type="email" name="email" id="email" placeholder="이메일을 입력하세요">
+           <input type="email" name="memberEmail" id="memberEmail" placeholder="이메일을 입력하세요">
            &nbsp;&nbsp;
            <input type="button" id="emailclear" value="인증하기">
          </div>
@@ -61,17 +62,28 @@
          </div>
          <br>
          <div class="login">
-           <input type="submit" value="회원가입">
+           <input type="submit" value="회원가입" >
          </div>
        </div>
        <div class="login_box">
-         <span>계정이 있으신가요?<a href="">로그인</a></span>
+         <span>계정이 있으신가요?<a href="<%=request.getContextPath() %>/index.jsp">로그인</a></span>
        </div>
      </form>
    </section>
  </div>
 
 <script>
+  function validate(){
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+  }
+
 
 </script>
 

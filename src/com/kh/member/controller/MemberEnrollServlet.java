@@ -27,11 +27,9 @@ public class MemberEnrollServlet extends HttpServlet {
 		String memberPwd = request.getParameter("memberPwd");
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
-		String email = request.getParameter("email");
-		int ssn = Integer.parseInt(request.getParameter("ssn"));
+		String email = request.getParameter("memberEmail");
+		int ssn = Integer.parseInt(request.getParameter("memberDate"));
 		
-		
-	
 		
 		Member m = new Member();
 		m.setMemberId(memberId);
@@ -50,6 +48,9 @@ public class MemberEnrollServlet extends HttpServlet {
 		
 	}
 
+	    
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
