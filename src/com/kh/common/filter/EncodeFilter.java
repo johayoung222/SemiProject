@@ -25,6 +25,7 @@ public class EncodeFilter implements Filter {
 			throws IOException, ServletException {
 		//1.encoding처리
 		request.setCharacterEncoding("utf-8");
+		response.setContentType("application/json; charset=utf-8");
 		//System.out.println("utf-8 인코딩 처리됨@EncodeFilter");
 		
 		//(중요)
