@@ -62,7 +62,7 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		//1.로그인 성공한 경우		
 			if(result == MemberService.LOGIN_OK) {
-				
+			/*	
 			//login business logic
 			//test code
 			Calendar c = Calendar.getInstance();
@@ -86,10 +86,10 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("month", month);
 			session.setAttribute("day", day);
 			session.setAttribute("map", map);
-			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
+			response.sendRedirect("http://localhost:9090/scheduler/monthlySchedule.jsp");
 			
+			*/
 			
-			/*
 			//경국 캘린더 가져오기
 			//filter로 인코딩
 			
@@ -113,7 +113,7 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-			*/
+			
 		}
 			
 		//2.로그인 실패한 경우
