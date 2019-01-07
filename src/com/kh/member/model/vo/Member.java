@@ -3,10 +3,7 @@ package com.kh.member.model.vo;
 import java.io.Serializable;
 
 public class Member implements Serializable{
-
-	 /**
-	 * 
-	 */
+	 
 	private static final long serialVersionUID = 1L;
 	private String memberId; //회원아이디
 	 private String memberPwd; //패스원드
