@@ -63,7 +63,7 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		//1.로그인 성공한 경우		
 			if(result == MemberService.LOGIN_OK) {
-				
+			
 			//login business logic
 			//test code
 			Calendar c = Calendar.getInstance();
@@ -101,7 +101,6 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-		
 		//2.로그인 실패한 경우
 			}else {
 			view = "/WEB-INF/views/common/msg.jsp";
