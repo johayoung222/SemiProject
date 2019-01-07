@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.member.model.vo.*" %>
 <%@ include file="header.jsp" %>
-<%
-	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");
-%>
+
 <!doctype html>
 <html>
 <head>

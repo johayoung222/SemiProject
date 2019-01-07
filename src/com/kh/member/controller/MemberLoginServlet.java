@@ -63,9 +63,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			Member memberLoggedIn = new MemberService().memberOne(memberId);			
 			HttpSession session = request.getSession(true);			
-			String ip = request.getRemoteAddr();
-			
-			session.setAttribute("ip", ip);										
+												
 			session.setAttribute("memberLoggedIn", memberLoggedIn);			
 			response.sendRedirect("http://localhost:9090/scheduler/monthlySchedule.jsp");
 			
