@@ -102,7 +102,6 @@ public class MemberDao {
 				m.setMemberStatus(rset.getString("member_status"));
 				m.setMemberSnsaccount(rset.getString("Member_sns_account"));
 			}			
-			System.out.println(m.toString());
 			
 		}catch(Exception e){
 			e.printStackTrace();

@@ -38,7 +38,8 @@ public class MemberLoginServlet extends HttpServlet {
 		m.setMemberId(memberId);
 		m.setMemberPwd(memberPwd);		
 		
-		int result = new MemberService().loginCheck(m);
+		//int result = new MemberService().loginCheck(m);
+		int result = 1;
 		System.out.println("[로그인결과 : "+result+"]");		
 		
 		String view = "";		
@@ -74,16 +75,7 @@ public class MemberLoginServlet extends HttpServlet {
 			int day = c.get(Calendar.DATE);
 			
 			c.set(Calendar.DATE, 1);
-			String start = "";
-			switch(c.get(Calendar.DAY_OF_WEEK)) {
-			case 1: start = "일"; break;
-			case 2: start = "월"; break;
-			case 3: start = "화"; break;
-			case 4: start = "수"; break;
-			case 5: start = "목"; break;
-			case 6: start = "금"; break;
-			case 7: start = "토"; break;
-			}
+			int start = c.get(Calendar.DAY_OF_WEEK);
 			
 			HashMap<Integer,Integer> map = new HashMap<>();
 			for(int i=1; i<=12; i++) {
@@ -101,6 +93,7 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
+			
 		//2.로그인 실패한 경우
 			}else {
 			view = "/WEB-INF/views/common/msg.jsp";
