@@ -47,11 +47,25 @@ section{
 .signup_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
 #man{padding-left: 110px;
 }
+/* 아이디 중복 검사 버튼 */
+.input_login #memberId_{
+  width: 75%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
+}
+.input_login #idCheck{
+  width: 20%;height: 25px ;
+}
+
 /*이메일 인증 버튼*/
 .signup_box #memberEmail{
   width: 75%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
 }
 .signup_box #emailclear{
+  width: 20%;height: 25px ;
+}
+.signup_box #memberId_{
+  width: 75%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
+}
+.signup_box #idCheck{
   width: 20%;height: 25px ;
 }
 

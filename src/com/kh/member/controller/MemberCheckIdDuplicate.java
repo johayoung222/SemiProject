@@ -11,48 +11,44 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
+
+
 /**
- * Servlet implementation class MemberEnrollServlet
+ * Servlet implementation class MemberCheckIdDuplicate
  */
-@WebServlet("/member/memberEnroll")
-public class MemberEnrollServlet extends HttpServlet {
+@WebServlet("/member/checkIdDuplicate")
+public class MemberCheckIdDuplicate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1.encoding
+				request.setCharacterEncoding("utf-8");
+				
+				//2.parameterHandling
+				String memberId = request.getParameter("memberId");
+				
+				//3.businessLogic
+				Member m = new MemberService().memberOne(memberId);
+				
+				//사용가능여부를 isUsable변수에 담기
+				boolean isUsable = m==null?true:false;
+				
+				//view단 jsp에서 사용할 데이터를 request의 속성값으로 보관
+				request.setAttribute("isUsable", isUsable);
+				request.setAttribute("memberId", memberId);
+				
+				//4.view
+				//checkIdDuplicate.jsp
+				request.getRequestDispatcher("/WEB-INF/views/member/checkIdDuplicate.jsp")
+					   .forward(request, response);
 		
-		String memberId = request.getParameter("memberId");
-		String memberPwd = request.getParameter("memberPwd");
-		String memberName = request.getParameter("memberName");
-		String gender = request.getParameter("gender");
-		String email = request.getParameter("memberEmail");
-		String memberDate = request.getParameter("memberDate");
-		int ssn = Integer.parseInt(memberDate.replaceAll("-", " "));
-
-
-
-		Member m = new Member();
-		m.setMemberId(memberId);
-		m.setMemberPwd(memberPwd);
-		m.setMemberName(memberName);
-		m.setMemberAge(ssn);
-		m.setMemberGender(gender);
-		m.setMemberEmail(email);
-		
-		
-		
-		int result = new MemberService().insertMember(m);
-		
-		System.out.println("result="+result);
 		
 		
 	}
 
-	    
-	
-	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
