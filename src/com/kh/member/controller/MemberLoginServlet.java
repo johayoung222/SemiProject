@@ -82,38 +82,12 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);				
 												
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
-			session.setAttribute("year", year);
-			session.setAttribute("month", month);
-			session.setAttribute("day", day);
-			session.setAttribute("map", map);
-			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-			
-			
-			/*
-			//경국 캘린더 가져오기
-			//filter로 인코딩
-			
-			//login business logic
-			//test code
-			Calendar c = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			
-			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH)+1;
-			int day = c.get(Calendar.DATE);
-			
-			HashMap<Integer,Integer> map = new HashMap<>();
-			for(int i=1; i<=12; i++) {
-				c.set(Calendar.MONTH, i-1);
-				map.put(i, c.getActualMaximum(Calendar.DATE));
-			}
-			
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-			*/
+			
 		}
 			
 		//2.로그인 실패한 경우

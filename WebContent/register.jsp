@@ -27,7 +27,7 @@
  
  <div class="content">
    <section>
-     <form class="singupFrm" name="signupform" action="" method="post">
+     <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post">
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
