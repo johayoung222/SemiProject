@@ -4,10 +4,6 @@ import java.io.Serializable;
 
 public class FriendGroup implements Serializable{
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int groupNo;		//시퀀스 넘버링
 	private String groupName;	//그룹이름

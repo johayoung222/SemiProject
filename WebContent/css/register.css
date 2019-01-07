@@ -1,0 +1,64 @@
+section{
+    padding: 0px;
+}
+.singupFrm{
+    margin: 0px 0px 0px 0px;
+   
+  
+  }
+  .logofont{
+    position: relative;
+    top: -17px;
+  }
+
+/* signup */
+.signup_box { width:450px; height:540px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+	border-radius:7px; border: 1px solid rgb(248, 248, 248); }
+.login_box { width:450px; height:70px; padding: 20px 30px 30px 50px; margin:0 auto ; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+	border-radius:7px; border: 1px solid rgb(248, 248, 248); text-align: center; font-size: 18px; }
+
+.signup_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
+.signup_box .input_login input { width: 100%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;}
+#gender{width:20px;}
+
+.signup_box .check { color: #000; font-size: 14px; padding: 9px 0 15px 0; font-family: 'Noto Sans KR', sans-seri;}
+
+.signup_box  .login input { width:100%; height:50px; background-color:rgb(156, 36, 167); color:rgb(248, 248, 248); font-size:16px; 
+          padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
+          
+/* 폼 상단 플젝명 */
+.signup_box span:first-of-type{font-family: 'Fredericka the Great', cursive;  font-size: 40px; padding: 0 60px;}
+
+.signup_box span{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
+.signup_box  .sns input {
+  width:100%; height:50px; background-color:rgb(40, 77, 170); color:rgb(248, 248, 248); font-size:16px; 
+				  padding:0px 17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri; transform: translateY(20px)}
+
+
+
+.signup_box .last {float: right; width:100%; margin-top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
+.signup_box .last .join {font-size: 30px;}
+.signup_box .last .search { float:right;}
+.signup_box .last .join a { color:#00a6de;}
+.signup_box .last .search a { color:#626262;} 
+.signup_box .last { width:100%; margin-top:10px; border-top:1px solid #ebebeb; padding-top:20px; font:bolder; font-size: 30px ;	 font-family: 'Abril Fatface', cursive;}
+.signup_box .last .join { float:left;}
+.signup_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;} 
+.signup_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
+#man{padding-left: 110px;
+}
+/*이메일 인증 버튼*/
+.signup_box #memberEmail{
+  width: 75%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
+}
+.signup_box #emailclear{
+  width: 20%;height: 25px ;
+}
+
+/* 생년월일 placeholder */
+input[type="date"]::before { 
+	content: attr(data-placeholder);
+	width: 100%;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before { display: none }

@@ -26,10 +26,10 @@ public class MemberEnrollServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		String memberName = request.getParameter("memberName");
-		int ssn = Integer.parseInt(request.getParameter("ssn"));
 		String gender = request.getParameter("gender");
 		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		int ssn = Integer.parseInt(request.getParameter("ssn"));
+		
 		
 		//System.out.printf("%s %s %s %s %s %s %s \n",memberId,memberPwd,memberName,ssn,gender,email,phone);
 		
