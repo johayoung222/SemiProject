@@ -45,6 +45,7 @@ public class MemberLoginServlet extends HttpServlet {
 		String msg = "";
 		String loc = "/";
 		
+			
 		String referer = request.getHeader("Referer");
 		String origin = request.getHeader("Origin");
 		String url = request.getRequestURL().toString();
@@ -67,31 +68,42 @@ public class MemberLoginServlet extends HttpServlet {
 			//test code
 			Calendar c = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		
+			
 			int year = c.get(Calendar.YEAR);
 			int month = c.get(Calendar.MONTH)+1;
 			int day = c.get(Calendar.DATE);
-		
+			
+			c.set(Calendar.DATE, 1);
+			String start = "";
+			switch(c.get(Calendar.DAY_OF_WEEK)) {
+			case 1: start = "일"; break;
+			case 2: start = "월"; break;
+			case 3: start = "화"; break;
+			case 4: start = "수"; break;
+			case 5: start = "목"; break;
+			case 6: start = "금"; break;
+			case 7: start = "토"; break;
+			}
+			
 			HashMap<Integer,Integer> map = new HashMap<>();
 			for(int i=1; i<=12; i++) {
 				c.set(Calendar.MONTH, i-1);
 				map.put(i, c.getActualMaximum(Calendar.DATE));
 			}
-			
+		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);			
 			HttpSession session = request.getSession(true);				
 												
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
+			request.setAttribute("start", start);
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-			
-		}
-			
+		
 		//2.로그인 실패한 경우
-		else {
+			}else {
 			view = "/WEB-INF/views/common/msg.jsp";
 			
 			if(result == MemberService.WRONG_PASSWORD) {
@@ -110,9 +122,10 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		
 	}	
-	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		doGet(request, response);
 	}
 
