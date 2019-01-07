@@ -15,8 +15,7 @@
   <nav class="header">
     <div class="logo">
       <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >
-      <span class="logofont">
-        7' Scheduler
+      <span class="logofont">7' Scheduler
       </span>
     </div>
   </nav>
