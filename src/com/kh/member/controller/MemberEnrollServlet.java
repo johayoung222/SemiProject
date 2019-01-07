@@ -31,7 +31,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		
-		System.out.printf("%s %s %s %s %s %s %s \n",memberId,memberPwd,memberName,ssn,gender,email,phone);
+		//System.out.printf("%s %s %s %s %s %s %s \n",memberId,memberPwd,memberName,ssn,gender,email,phone);
 		
 		Member m = new Member();
 		m.setMemberId(memberId);
@@ -41,7 +41,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		m.setMemberGender(gender);
 		m.setMemberEmail(email);
 		
-		System.out.println(m);
+		//System.out.println(m);
 		
 		int result = new MemberService().insertMember(m);
 		

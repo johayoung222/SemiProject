@@ -34,12 +34,25 @@ public class MemberLoginServlet extends HttpServlet {
 		int month = c.get(Calendar.MONTH)+1;
 		int day = c.get(Calendar.DATE);
 		
+		c.set(Calendar.DATE, 1);
+		String start = "";
+		switch(c.get(Calendar.DAY_OF_WEEK)) {
+		case 1: start = "일"; break;
+		case 2: start = "월"; break;
+		case 3: start = "화"; break;
+		case 4: start = "수"; break;
+		case 5: start = "목"; break;
+		case 6: start = "금"; break;
+		case 7: start = "토"; break;
+		}
+		
 		HashMap<Integer,Integer> map = new HashMap<>();
 		for(int i=1; i<=12; i++) {
 			c.set(Calendar.MONTH, i-1);
 			map.put(i, c.getActualMaximum(Calendar.DATE));
 		}
 		
+		request.setAttribute("start", start);
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);

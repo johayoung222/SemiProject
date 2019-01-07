@@ -7,6 +7,7 @@
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
+	String start = (String)request.getAttribute("start");
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -15,7 +16,6 @@
 	<div id="sidebar">
 	
 	</div>
-
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -35,15 +35,17 @@
 				<th>금</th>
 				<th>토</th>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<script>
+			var html = "";
+			var tr = $("<tr></tr>");
+			var table = $("#month");
+			for(var i=0; i<=34; i++){
+				html = "<td><span>"+<%=day %>+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+<%=day %>+"</span></td>";
+				document.write(html);
+			}
+			
+			</script>
 		</table>
 	</div>
 </body>
