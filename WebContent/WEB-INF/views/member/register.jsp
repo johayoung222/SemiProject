@@ -28,7 +28,7 @@ function saveMember(){
     var email = document.getElementById('memberEmail');
     
     //
-    if(!chk(/^[a-z][a-z\d]{3,11}$/, memberId, "영대소문자, 4~12자 입력할것!"))
+    if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "영대소문자, 4~12자 입력할것!"))
         return false;
 
  	if(!chk(/[0-9]/, memberId, "숫자 하나이상포함해주세요."))
@@ -47,6 +47,7 @@ function saveMember(){
  	if(password.value!=password1.value){ 
 
         alert("비밀번호가 일치하지 않습니다.");
+        return false;
  	}
  
     	function chk(re, e, msg) {
@@ -59,10 +60,7 @@ function saveMember(){
         return false;
 
  }
-    
-
-
-
+   return true; 
 }
 
 </script>

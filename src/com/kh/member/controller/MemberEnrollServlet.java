@@ -28,8 +28,8 @@ public class MemberEnrollServlet extends HttpServlet {
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
 		String email = request.getParameter("memberEmail");
-		int ssn = Integer.parseInt(request.getParameter("memberDate"));
-		
+		String memberDate = request.getParameter("memberDate");
+		int ssn = Integer.parseInt(memberDate.replaceAll("-", " "));
 
 		Member m = new Member();
 		m.setMemberId(memberId);
