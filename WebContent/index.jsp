@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
 
-<script src="js/jquery-3.3.1.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
 <script>
 
