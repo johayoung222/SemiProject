@@ -11,8 +11,10 @@
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+
+
 	<div id="sidebar">
 	
 	</div>
