@@ -43,7 +43,6 @@ function CheckLogin(){
 
 <body>
  
->>>>>>> min
  <div class="content">
    <section>
      <div id="slideshow">

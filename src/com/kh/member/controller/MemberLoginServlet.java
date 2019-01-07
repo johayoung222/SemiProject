@@ -86,7 +86,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("month", month);
 			session.setAttribute("day", day);
 			session.setAttribute("map", map);
-			response.sendRedirect("http://localhost:9090/scheduler/monthlySchedule.jsp");
+			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
 			
 			
 			/*
