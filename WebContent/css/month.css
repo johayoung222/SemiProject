@@ -7,10 +7,10 @@
 }
 
 #schedule{
-    width: 80%;
+    width: 83%;
     height: 80%;
     position: absolute;
-    top: 60px;
+    top: 120px;
     right: 0px;
     border: 1px solid black;
 }

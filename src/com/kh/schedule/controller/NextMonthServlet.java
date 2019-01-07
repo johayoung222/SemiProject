@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.schedule.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MoveEnrollServlet
+ * Servlet implementation class NextMonthServlet
  */
-@WebServlet("/member/moveEnroll")
-public class MoveEnrollServlet extends HttpServlet {
+@WebServlet("/schedule/nextMonth.do")
+public class NextMonthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -19,7 +19,8 @@ public class MoveEnrollServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/register.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

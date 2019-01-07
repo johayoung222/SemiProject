@@ -7,15 +7,15 @@
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
+	int start = (int)request.getAttribute("start");
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
-
+<%-- <%@ include file="/WEB-INF/views/common/side.jsp" %> --%>
 	<div id="sidebar">
 	
 	</div>
-
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -23,8 +23,21 @@
             <span>&lt;</span>
             <span><%=year %>년</span>
             <span><%=month %>월</span>
-            <span>&gt;</span>
+            <span id="nextMonth">&gt;</span>
         </div>
+        <script>
+        $("#nextMonth").click(function(){
+        	$.ajax({
+        		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
+        		dataType: "json",
+        		data: {"cYear":<%=year %>, "cMonth":<%=month %>},
+        		success: function(data){
+        			console.log(data);
+        		}
+        	});
+        });
+        
+        </script>
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -35,15 +48,20 @@
 				<th>금</th>
 				<th>토</th>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
+			<script>
+			var html = "";
+			var tr = $("<tr></tr>");
+			var table = $("#month");
+			for(var i=0; i<=34; i++){
+				html = "<td><span></span></td>";
+				if(i><%=start %>){
+				html = "<td><span>"+(i-<%=start %>)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+(i-<%=start %>)+"</span></td>";
+				}
+				document.write(html);
+			}
+			
+			</script>
 		</table>
 	</div>
 </body>
