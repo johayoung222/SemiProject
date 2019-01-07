@@ -38,7 +38,8 @@ public class MemberLoginServlet extends HttpServlet {
 		m.setMemberId(memberId);
 		m.setMemberPwd(memberPwd);		
 		
-		int result = new MemberService().loginCheck(m);
+		//int result = new MemberService().loginCheck(m);
+		int result = 1;
 		System.out.println("[로그인결과 : "+result+"]");		
 		
 		String view = "";		
@@ -70,20 +71,11 @@ public class MemberLoginServlet extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH)+1;
+			int month = c.get(Calendar.MONTH);
 			int day = c.get(Calendar.DATE);
 			
 			c.set(Calendar.DATE, 1);
-			String start = "";
-			switch(c.get(Calendar.DAY_OF_WEEK)) {
-			case 1: start = "일"; break;
-			case 2: start = "월"; break;
-			case 3: start = "화"; break;
-			case 4: start = "수"; break;
-			case 5: start = "목"; break;
-			case 6: start = "금"; break;
-			case 7: start = "토"; break;
-			}
+			int start = c.get(Calendar.DAY_OF_WEEK);
 			
 			HashMap<Integer,Integer> map = new HashMap<>();
 			for(int i=1; i<=12; i++) {
