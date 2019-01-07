@@ -7,7 +7,7 @@
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
-	String start = (String)request.getAttribute("start");
+	int start = (int)request.getAttribute("start");
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -23,8 +23,21 @@
             <span>&lt;</span>
             <span><%=year %>년</span>
             <span><%=month %>월</span>
-            <span>&gt;</span>
+            <span id="nextMonth">&gt;</span>
         </div>
+        <script>
+        $("#nextMonth").click(function(){
+        	$.ajax({
+        		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
+        		dataType: "json",
+        		data: {"cYear":<%=year %>, "cMonth":<%=month %>},
+        		success: function(data){
+        			console.log(data);
+        		}
+        	});
+        });
+        
+        </script>
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -40,8 +53,11 @@
 			var tr = $("<tr></tr>");
 			var table = $("#month");
 			for(var i=0; i<=34; i++){
-				html = "<td><span>"+<%=day %>+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span>"+<%=day %>+"</span></td>";
+				html = "<td><span></span></td>";
+				if(i><%=start %>){
+				html = "<td><span>"+(i-<%=start %>)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+(i-<%=start %>)+"</span></td>";
+				}
 				document.write(html);
 			}
 			
