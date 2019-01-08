@@ -1,9 +1,13 @@
 @charset "UTF-8";
+body{
+	text-align: center;
+}
 #oneday-container{
     width: 80%;
     height: 600px;
     display: flex;
     justify-content: space-around;
+    margin: 0 auto;
 }
 #todolist{
     border: 1px solid black;
@@ -22,4 +26,15 @@
     margin: 0px;
     border-width: 2px;
     border-color: coral;
+}
+#insertBoard{
+	border: 1px solid black;
+	width: 30px;
+	height: 30px;
+	float: right;
+	margin-right: 30px;
+	font-size: 30px;
+	text-align: center;
+	padding: 0px;
+	padding-bottom: 15px;
 }

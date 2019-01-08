@@ -15,13 +15,14 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 <script>
 function addClickEvent(){
-	console.log("동적 생성...");
 	var tag = $("#add").find("td");
 	tag.each(function(idx, item){
 		$(item).click(function(){
-			var text = $(this).text();
-			if(text != ""){
-			location.href = "<%=request.getContextPath() %>/schedule/oneday?day="+text;
+			var year = $("#cYear").text();
+			var month = $("#cMonth").text();
+			var day = $(this).text();
+			if(day != ""){
+			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
 	});
