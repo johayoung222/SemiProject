@@ -47,3 +47,6 @@
     position: absolute;
     top: 0px;
 }
+#prevMonth, #nextMonth{
+	cursor: pointer;
+}

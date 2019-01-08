@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
-<script src="js/jquery-3.3.1.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
   <script>
   window.onload =function(){
@@ -21,7 +21,7 @@
 			var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png ";
 			
 			
-			var html = "<br><br>현재온도 : "+temp+"<br>";
+			var html = "<br><br>현재온도 : "+resp.temp+"<br>";
 			html += "상세날씨 설명 : "+resp.main.humidity+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
