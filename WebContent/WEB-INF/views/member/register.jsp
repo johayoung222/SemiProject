@@ -3,83 +3,30 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!doctype html>
 <html>
-
 <head>
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
-
  <!-- 폰트추가(폼상단) -->
  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great%7C Rochester| Alfa+Slab+One| Staatliches| Noto+Sans+KR| Abril+Fatface" rel="stylesheet">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/register.css">
-
  <!-- 파비콘 적용링크 -->
  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
  <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
  
  <title>7 Scheduler(signup)</title>
-<script>
-function saveMember(){
-	//아이디 유효성 검사
-   	var memberId = document.getElementById('memberId');
-    var password = document.getElementById('memberPwd');
-    var password1 = document.getElementById('memberpwdcheck');
-    var memberName = document.getElementById('memberName');
-    var email = document.getElementById('memberEmail');
-    
-    //
-    if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "영대소문자, 4~12자 입력할것!"))
-        return false;
-
- 	if(!chk(/[0-9]/, memberId, "숫자 하나이상포함해주세요."))
-        return false;
- 	
- 	if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,password,"숫자/문자/특수포함8~15자리"))
- 		
- 		return false;
- 	
- 	if(!chk( /^[가-힣]{2,4}$/,memberName,"한글 2글자 이상"))
- 		return false;
- 	
- 	if(!chk(/^[0-9a-zA-Z]([\-.\w]*[0-9a-zA-Z\-_+])*@([0-9a-zA-Z][\-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$/i,email,"이메일을 입력하세요." ))
- 		return false;
- 	
- 	if(password.value!=password1.value){ 
-
-        alert("비밀번호가 일치하지 않습니다.");
-        return false;
- 	}
- 
-    	function chk(re, e, msg) {
-        if (re.test(e.value)) {
-        return true;
-        }
-        alert(msg);
-        e.value = "";
-        e.focus();
-        return false;
-
- }
-   return true; 
-}
-
-</script>
-
-
 </head>
-
 <body>
  
  <div class="content">
    <section>
    <form action="<%=request.getContextPath()%>/member/checkIdDuplicate"
-	  method="post"
-	  name="checkIdDuplicateFrm">
-	<input type="hidden" name="memberId" />
+      method="post"
+      name="checkIdDuplicateFrm">
+    <input type="hidden" name="memberId" />
        </form>
      <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post"
-          onsubmit="return validate()" >
-
+          onsubmit="return saveMember();" >
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
@@ -116,7 +63,7 @@ function saveMember(){
          </div>
          <br>
          <div class="login">
-           <input type="submit" value="회원가입" onclick="saveMember();" >
+           <input type="submit" value="회원가입" >
          </div>
        </div>
        <div class="login_box">
@@ -125,40 +72,67 @@ function saveMember(){
      </form>
    </section>
  </div>
-
-
-
 <script>
-  function validate(){
-	  
-  }
+ 
   
   function checkIdDuplicate(){
-		//아이디중복검사폼을 전송.
-		var memberId = $("#memberId_").val().trim();
-		if(memberId.length < 4 && memberId.length<13){
-			alert("아이디는 4글자 이상  12자 이하 가능합니다.");
-			return;
-		}
-		
-		//팝업창을 target으로 폼전송
-		var target = "checkIdDuplicate";
-		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-		var popup = open("", target, "left=300px, top=100px, height=200px, width=500px");
-		
-		checkIdDuplicateFrm.memberId.value = memberId;
-		//폼의 대상을 작성한 popup을 가리키게 한다. 
-		checkIdDuplicateFrm.target = target;
-		checkIdDuplicateFrm.submit();
-		
-	}
-
-
+        //아이디중복검사폼을 전송.
+        var memberId = $("#memberId_").val().trim();
+        
+        
+        //팝업창을 target으로 폼전송
+        var target = "checkIdDuplicate";
+        //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+        var popup = open("", target, "left=300px, top=100px, height=200px, width=500px");
+        
+        checkIdDuplicateFrm.memberId.value = memberId;
+        //폼의 대상을 작성한 popup을 가리키게 한다. 
+        checkIdDuplicateFrm.target = target;
+        checkIdDuplicateFrm.submit();
+        
+        
+        
+    }
+  
+ 
+  function saveMember(){
+      //아이디 유효성 검사
+        var memberId = document.getElementById('memberId_');
+     var password = document.getElementById('memberPwd');
+     var password1 = document.getElementById('memberpwdcheck');
+     var memberName = document.getElementById('memberName');
+     var email = document.getElementById('memberEmail');
+     if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "영대소문자, 4~12자 입력할것!"))
+         return false;
+      if(!chk(/[0-9]/, memberId, "숫자 하나이상포함해주세요."))
+         return false;
+      
+      if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,password,"숫자/문자/특수포함8~15자리"))
+          
+          return false;
+      
+      if(!chk( /^[가-힣]{2,4}$/,memberName,"한글 2글자 이상"))
+          return false;
+      
+      if(!chk(/^[0-9a-zA-Z]([\-.\w]*[0-9a-zA-Z\-_+])*@([0-9a-zA-Z][\-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$/i,email,"이메일을 입력하세요." ))
+          return false;
+      
+      if(password.value!=password1.value){
+         alert("비밀번호가 일치하지 않습니다.");
+         return false;
+      }
+         function chk(re, e, msg) {
+         if (re.test(e.value)) {
+         return true;
+         }
+         alert(msg);
+         e.value = "";
+         e.focus();
+         return false;
+  }
+    return true;
+  }
+ 
 </script>
-
-
-
-
 </body>
-
 </html>

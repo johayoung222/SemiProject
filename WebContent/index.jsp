@@ -33,6 +33,17 @@ function CheckLogin(){
 	return true;
 }
 
+function searchIdPwd(){     
+     //팝업창을 target으로 폼전송
+     var target = "searchIdPwd";
+     //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+     var popup = open("", target, "left=300px, top=100px, height=200px, width=500px");
+     
+     checkIdDuplicateFrm.memberId.value = memberId;
+     //폼의 대상을 작성한 popup을 가리키게 한다. 
+     checkIdDuplicateFrm.target = target;
+     checkIdDuplicateFrm.submit();
+}
 </script>
 </head>
 
@@ -75,7 +86,7 @@ function CheckLogin(){
            <input type="submit" value="FaceBook으로 로그인">
          </div>
          <br>
-         <span>비밀번호를 잊으셨나요?</span>
+         <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
