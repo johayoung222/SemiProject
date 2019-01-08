@@ -75,11 +75,11 @@ public class MemberLoginServlet extends HttpServlet {
 			int day = c.get(Calendar.DATE);
 			
 			c.set(Calendar.DATE, 1);
-			int start = c.get(Calendar.DAY_OF_WEEK);
+			int start = c.get(Calendar.DAY_OF_WEEK)-1;
 			
 			HashMap<Integer,Integer> map = new HashMap<>();
-			for(int i=1; i<=12; i++) {
-				c.set(Calendar.MONTH, i-1);
+			for(int i=0; i<=11; i++) {
+				c.set(Calendar.MONTH, i);
 				map.put(i, c.getActualMaximum(Calendar.DATE));
 			}
 		

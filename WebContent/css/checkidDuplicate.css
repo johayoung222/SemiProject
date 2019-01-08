@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#checkid-container{
+	text-align: center;
+	padding-top: 30px;
+	font-family: 'Sunflower', sans-serif;
+}
+#duplicated{
+	color: black;
+	font-weight: bold;
+	font-family: 'Sunflower', sans-serif;
+}
+

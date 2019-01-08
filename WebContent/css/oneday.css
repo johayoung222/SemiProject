@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#oneday-container{
+    width: 80%;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+}
+#todolist{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+}
+#timeline{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+}
+#middleLine{
+    height: 500px;
+    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+    border-width: 2px;
+    border-color: coral;
+}

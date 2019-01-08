@@ -2,6 +2,7 @@ package com.kh.member.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,11 +42,22 @@ public class MemberEnrollServlet extends HttpServlet {
 		m.setMemberEmail(email);
 		
 		
-		
 		int result = new MemberService().insertMember(m);
 		
-		System.out.println("result="+result);
 		
+		String msg = "";
+		String loc = "/";
+		
+		if(result > 0) {
+			msg = "환영합니다."+m.getMemberName()+"님 가입되셨습니다!!";
+			loc = "/member/login";
+		}else {
+			msg = "회원등록에 실패했습니다.";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		
 	}
 

@@ -58,6 +58,4 @@ $(".logo").click(function(){
 	location.href = "<%=request.getContextPath() %>";
 });
 </script>
-  
-</body>
 

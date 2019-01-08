@@ -11,8 +11,24 @@
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+<%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
-<%-- <%@ include file="/WEB-INF/views/common/side.jsp" %> --%>
+<script>
+function addClickEvent(){
+	console.log("동적 생성...");
+	var tag = $("#add").find("td");
+	tag.each(function(idx, item){
+		$(item).click(function(){
+			var text = $(this).text();
+			if(text != ""){
+			location.href = "<%=request.getContextPath() %>/schedule/oneday?day="+text;
+			}
+		});
+	});
+}
+</script>
+
 	<div id="sidebar">
 	
 	</div>
@@ -25,7 +41,7 @@
             <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-        
+		        
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -36,17 +52,20 @@
 				<th>금</th>
 				<th>토</th>
 			</tr>
+		</table>
+		<table id="add">
 			<script>
 			var html = "";
-			var table = $("#month");
-			for(var i=0; i<=34; i++){
+			var start = <%=start %>;
+			for(var i=0; i<=<%=map.get(month) %>+1; i++){
 				html = "<td><span></span></td>";
-				if(i><%=start %>){
-				html = "<td><span>"+(i-<%=start %>)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span>"+(i-<%=start %>)+"</span></td>";
+				if(i>=start && i<=<%=map.get(month) %>+1){
+				html = "<td><span>"+(i-start+1)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+(i-start+1)+"</span></td>";
 				}
 				document.write(html);
 			}
+			addClickEvent();
 			</script>
 		</table>
 	</div>
@@ -61,8 +80,33 @@
         			console.log(data);
         			var nextYear = data[0];
         			var nextMonth = data[1];
+        			var start = data[2];
+        			var last = data[3]+start;
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
+        			
+        			var table = $("#add");
+        			table.html("");
+        			var html = "";
+        			for(var i=0; i<last-1; i++){
+
+        				if(i%7 != 0){
+        					if(i >= start-1){
+        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<td><span></span></td>";
+        					}
+        				}else{
+        					if(i >= start-1){
+        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<tr><td><span></span></td>";
+        					}
+        				}
+        			}
+        			table.append(html);
+        			$("#month").after(table);
+        			addClickEvent();
         		}
         	});
         });
@@ -77,11 +121,39 @@
         			console.log(data);
         			var prevYear = data[0];
         			var prevMonth = data[1];
+        			var start = data[2];
+        			var last = data[3]+start;
         			$("#cYear").text(prevYear);
         			$("#cMonth").text(prevMonth+1);
+        			
+        			var table = $("#add");
+        			table.html("");
+        			var html = "";
+        			for(var i=0; i<last-1; i++){
+
+        				if(i%7 != 0){
+        					if(i >= start-1){
+        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<td><span></span></td>";
+        					}
+        				}else{
+        					if(i >= start-1){
+        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<tr><td><span></span></td>";
+        					}
+        				}
+        			}
+        			table.append(html);
+        			$("#month").after(table);
+        			addClickEvent();
         		}
         	});
         });
+        
+        
+        
         </script>
 </body>
 </html>
