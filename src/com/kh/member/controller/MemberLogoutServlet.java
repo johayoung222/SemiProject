@@ -1,17 +1,19 @@
-package com.kh.schedule.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MoveOneDayServlet
+ * Servlet implementation class MemberLogoutServlet
  */
-@WebServlet("/schedule/oneday")
-public class MoveOneDayServlet extends HttpServlet {
+@WebServlet("/member/logout")
+public class MemberLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -19,14 +21,14 @@ public class MoveOneDayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int year = Integer.parseInt(request.getParameter("year"));
-		int month = Integer.parseInt(request.getParameter("month"));
-		int day = Integer.parseInt(request.getParameter("day"));
+		HttpSession session = request.getSession(false);
 		
-		request.setAttribute("year", year);
-		request.setAttribute("month", month);
-		request.setAttribute("day", day);
-		request.getRequestDispatcher("/WEB-INF/views/schedule/oneDay.jsp").forward(request, response);
+		if(session != null) {
+//			session.setMaxInactiveInterval(0);
+			session.invalidate();
+		}
+		
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

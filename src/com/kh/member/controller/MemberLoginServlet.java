@@ -38,8 +38,8 @@ public class MemberLoginServlet extends HttpServlet {
 		m.setMemberId(memberId);
 		m.setMemberPwd(memberPwd);		
 		
-		//int result = new MemberService().loginCheck(m);
-		int result = 1;
+		int result = new MemberService().loginCheck(m);
+//		int result = 1;
 		System.out.println("[로그인결과 : "+result+"]");		
 		
 		String view = "";		

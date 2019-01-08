@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MoveOneDayServlet
+ * Servlet implementation class MoveBoardFormServlet
  */
-@WebServlet("/schedule/oneday")
-public class MoveOneDayServlet extends HttpServlet {
+@WebServlet("/schedule/insertSchedule")
+public class MoveBoardFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -19,14 +19,19 @@ public class MoveOneDayServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//year, month, day, userId 값 받아오기
 		int year = Integer.parseInt(request.getParameter("year"));
 		int month = Integer.parseInt(request.getParameter("month"));
 		int day = Integer.parseInt(request.getParameter("day"));
+		String user = request.getParameter("user");
+		
+		//System.out.printf("MBF:%d %d %d %s",year,month,day,user);
 		
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
-		request.getRequestDispatcher("/WEB-INF/views/schedule/oneDay.jsp").forward(request, response);
+		request.setAttribute("user", user);
+		request.getRequestDispatcher("/WEB-INF/views/schedule/insertForm.jsp").forward(request, response);
 		
 	}
 

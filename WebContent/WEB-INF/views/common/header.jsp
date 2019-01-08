@@ -41,7 +41,7 @@
 		<td>
 			<input type="button" value="정보수정" onclick=/>
 			&nbsp;
-			<input type="button" value="로그아웃" onclick=/>
+			<input type="button" value="로그아웃" onclick="logout();"/>
 		</td>
 	</tr>
 	</table>	
@@ -57,5 +57,9 @@
 $(".logo").click(function(){
 	location.href = "<%=request.getContextPath() %>";
 });
+
+function logout(){
+	location.href = "<%=request.getContextPath() %>/member/logout";
+}
 </script>
 
