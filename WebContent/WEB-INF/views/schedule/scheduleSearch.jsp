@@ -10,9 +10,22 @@
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
 	String pageBar = (String)request.getAttribute("pageBar");
+	String searchType = request.getParameter("searchType");
+	String searchKeyword = request.getParameter("searchKeyword");
 	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
+<style>
+div#search-scheduleTitle{
+	display: <%="scheduleTitle".equals(searchType)?"inline-block":"none"%>;
+}
+div#search-scheduleContent{
+	display: <%="scheduleContent".equals(searchType)?"inline-block":"none"%>;
+}
+div#search-scheduleIcon{
+	display: <%="scheduleIcon".equals(searchType)?"inline-block":"none"%>;
+}
+</style>
 <script>
 $(function(){
 	var scheduleTitle = $("#search-scheduleTitle");	
@@ -42,9 +55,9 @@ $(function(){
 <h2>스케줄 찾기</h2>	
 		검색 &nbsp;&nbsp;
 		<select id="searchType">
-			<option value="scheduleTitle">제목</option>
-			<option value="scheduleContent">내용</option>
-			<option value="scheduleIcon">아이콘</option>
+			<option value="scheduleTitle" <%="scheduleTitle".equals(searchType)?"selected":"" %>>제목</option>
+			<option value="scheduleContent" <%="scheduleContent".equals(searchType)?"selected":"" %>>내용</option>
+			<option value="scheduleIcon" <%="scheduleIcon".equals(searchType)?"selected":"" %>>아이콘</option>
 		</select>
 		&nbsp;
 		<div id="search-scheduleTitle">			
@@ -58,7 +71,8 @@ $(function(){
 				<input type="search" 
 					   name="searchKeyword"
 					   size="25"
-					   placeholder="검색할 제목을 입력하세요."/>&nbsp;
+					   placeholder="검색할 제목을 입력하세요."
+					   value="<%="scheduleTitle".equals(searchType)?searchKeyword:""%>"/>&nbsp;
 				<button type="submit">검색</button>
 			</form>
 		</div>
@@ -73,7 +87,8 @@ $(function(){
 				<input type="search" 
 					   name="searchKeyword"
 					   size="25"
-					   placeholder="검색할 내용을 입력하세요."/>&nbsp;
+					   placeholder="검색할 내용을 입력하세요."
+					   value="<%="scheduleContent".equals(searchType)?searchKeyword:""%>"/>&nbsp;
 				<button type="submit">검색</button>
 			</form>
 		</div>
@@ -89,7 +104,8 @@ $(function(){
 					   name="searchKeyword"
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
-					   readonly/>
+					   readonly
+					   value="<%="scheduleIcon".equals(searchType)?searchKeyword:""%>"/>
 				<div id="divicon">
 				<table id="tableicon">
 				<tr>
@@ -130,7 +146,7 @@ $(function(){
 			index++;			
 	%>			
 		<tr>					
-			<td><%=(cPage-1)*7+index%></td>						
+			<td><%=(cPage-1)*7+index%></td>				
 			<td><%=s.getScheduleStartday() %></td>
 			<td><%=s.getScheduleEndday() %></td>			
 			<td>

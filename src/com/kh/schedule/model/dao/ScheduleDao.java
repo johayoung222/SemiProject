@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.member.model.vo.Member;
 import com.kh.schedule.model.vo.Schedule;
 
 
@@ -118,12 +120,204 @@ public class ScheduleDao {
 		int totalContent = 0;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectScheduleCount");
-
-		
+				
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, memberId);
 
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalContent = rset.getInt("cnt");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContent;
+	}
+
+	public List<Schedule> selectScheduleByTitle(Connection conn, String searchKeyword, int cPage, int numPerPage, 
+			String memberId) {
+		List<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		String query = prop.getProperty("selectScheduleByTitleByPaging");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			pstmt.setInt(3, (cPage-1)*numPerPage+1);
+			pstmt.setInt(4, cPage*numPerPage);			
+			
+			rset = pstmt.executeQuery();	
+			list = new ArrayList<>();	
+			while(rset.next()){
+				Schedule s = new Schedule();
+				s.setScheduleNo(rset.getInt("schedule_no"));
+				s.setScheduleTitle(rset.getString("schedule_title"));
+				s.setScheduleContent(rset.getString("schedule_content"));
+				s.setScheduleOriginalfilename(rset.getString("schedule_original_filename"));
+				s.setScheduleRenamefilename(rset.getString("schedule_renamed_filename"));
+				s.setScheduleDate(rset.getDate("schedule_date"));
+				s.setScheduleDdaycheck(rset.getString("schedule_repeat_check"));
+				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
+				s.setScheduleStartday(rset.getDate("schedule_start_day"));
+				s.setScheduleEndday(rset.getDate("schedule_end_day"));
+				s.setMemberId(rset.getString("member_id"));				
+				list.add(s);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+	}
+	
+
+	public List<Schedule> selectScheduleByContent(Connection conn, String searchKeyword, int cPage,	int numPerPage,
+			String memberId) {
+		List<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		String query = prop.getProperty("selectScheduleByContentByPaging");
+	
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			pstmt.setInt(3, (cPage-1)*numPerPage+1);
+			pstmt.setInt(4, cPage*numPerPage);			
+			
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();		
+			while(rset.next()){
+				Schedule s = new Schedule();
+				s.setScheduleNo(rset.getInt("schedule_no"));
+				s.setScheduleTitle(rset.getString("schedule_title"));
+				s.setScheduleContent(rset.getString("schedule_content"));
+				s.setScheduleOriginalfilename(rset.getString("schedule_original_filename"));
+				s.setScheduleRenamefilename(rset.getString("schedule_renamed_filename"));
+				s.setScheduleDate(rset.getDate("schedule_date"));
+				s.setScheduleDdaycheck(rset.getString("schedule_repeat_check"));
+				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
+				s.setScheduleStartday(rset.getDate("schedule_start_day"));
+				s.setScheduleEndday(rset.getDate("schedule_end_day"));
+				s.setMemberId(rset.getString("member_id"));				
+				list.add(s);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return list;			
+	}
+
+	public List<Schedule> selectScheduleByIcon(Connection conn, String searchKeyword, int cPage, int numPerPage,
+			String memberId) {
+		List<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;		
+		String query = prop.getProperty("selectScheduleByIconByPaging");
+		
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, searchKeyword);
+			pstmt.setInt(3, (cPage-1)*numPerPage+1);
+			pstmt.setInt(4, cPage*numPerPage);		
+	
+			rset = pstmt.executeQuery();
+			list = new ArrayList<>();	
+			while(rset.next()){
+				Schedule s = new Schedule();
+				s.setScheduleNo(rset.getInt("schedule_no"));
+				s.setScheduleTitle(rset.getString("schedule_title"));
+				s.setScheduleContent(rset.getString("schedule_content"));
+				s.setScheduleOriginalfilename(rset.getString("schedule_original_filename"));
+				s.setScheduleRenamefilename(rset.getString("schedule_renamed_filename"));
+				s.setScheduleDate(rset.getDate("schedule_date"));
+				s.setScheduleDdaycheck(rset.getString("schedule_repeat_check"));
+				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
+				s.setScheduleStartday(rset.getDate("schedule_start_day"));
+				s.setScheduleEndday(rset.getDate("schedule_end_day"));
+				s.setMemberId(rset.getString("member_id"));				
+				list.add(s);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return list;
+	}
+
+	public int selectScheduleCountByTitle(Connection conn, String searchKeyword, String memberId) {
+		PreparedStatement pstmt = null;
+		int totalContent = 0;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectScheduleCountByTitle");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalContent = rset.getInt("cnt");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContent;
+	}
+
+	public int selectScheduleCountByContent(Connection conn, String searchKeyword, String memberId) {
+		PreparedStatement pstmt = null;
+		int totalContent = 0;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectScheduleCountByContent");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, "%"+searchKeyword+"%");
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				totalContent = rset.getInt("cnt");
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return totalContent;
+	}
+
+	public int selectScheduleCountByIcon(Connection conn, String searchKeyword, String memberId) {
+		PreparedStatement pstmt = null;
+		int totalContent = 0;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectScheduleCountByIcon");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, searchKeyword);
+			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				totalContent = rset.getInt("cnt");
