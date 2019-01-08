@@ -1,41 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
-<%
-	
+    <%@ page import="java.util.*" %>
+    <%@ page import="com.kh.schedule.model.vo.*" %>
+    
+<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/side.jsp" %>
+<%	
+	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
+	//System.out.println("list@BoardList.jsp="+list);
+	int cPage = (int)request.getAttribute("cPage");
+	int numPerPage = (int)request.getAttribute("numPerPage");
+	String pageBar = (String)request.getAttribute("pageBar");	
 %>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
-<%@ include file="/WEB-INF/views/common/side.jsp"%>
-<style>
-#scheduleList-container {
-	margin: 0 0 10px 0;
-	padding: 3px;
-	background-color: lightblue;
-	height:100px;
-}
-div#search-scheduleTitle {
-	display: inline-block;
-}
-div#search-scheduleContent, div#search-scheduleIcon{
-	display: none;
-}
-div#divicon{	
-	width: 290px;
-	height: 247px;
-	background-color: yellow;	
-	position:absolute;
-	margin-top:5px;
-}
-#icon{
-	width:50px;
-	height:50px;
-}
-#tableicon{
-	border-spacing : 5px;
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
+<script>
+
+function goToBoardForm(){
+	location.href="<%=request.getContextPath()%>/schedule/scheduleList"
 }
 
-</style>
-<script>
 $(function(){
 	var scheduleTitle = $("#search-scheduleTitle");	
 	var scheduleContent = $("#search-scheduleContent");
@@ -58,9 +41,9 @@ $(function(){
 });
 
 </script>
-
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
-<section id="scheduleList-container">		
+<section id="schedulesearch-container">	
+<h2>스케줄 찾기</h2>	
 		검색 :&nbsp;
 		<select id="searchType">
 			<option value="scheduleTitle">제목</option>
@@ -70,6 +53,9 @@ $(function(){
 		&nbsp;
 		<div id="search-scheduleTitle">			
 			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
+				<input type="hidden" 
+					   name="numPerPage" 
+					   value="<%=numPerPage%>"/>
 				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleTitle" />
@@ -83,6 +69,9 @@ $(function(){
 		<div id="search-scheduleContent">			
 			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
 				<input type="hidden" 
+					   name="numPerPage" 
+					   value="<%=numPerPage%>"/>
+				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleContent" />
 				<input type="search" 
@@ -94,6 +83,9 @@ $(function(){
 		</div>
 		<div id="search-scheduleIcon">			
 			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
+				<input type="hidden" 
+					   name="numPerPage" 
+					   value="<%=numPerPage%>"/>
 				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleIcon" />				
@@ -111,19 +103,44 @@ $(function(){
 					<td><img src="<%=request.getContextPath() %>/images/birthday.PNG" id="icon" alt="hospital"></td>
 				</tr>
 				<div id="text"></div>
-				</table>
-					
+				</table>					
 				
 				</div>				
 				<button type="submit" id="btn">검색</button>				
 			</form>
 		</div>
 </section>
-
-
-
-
-
-
-
-
+<section id="schedulelist-container">		
+	<table id="tbl-schedulelist">
+	<tr>
+		<th>스케줄 시작일</th>
+		<th>스케줄 종료일</th>
+		<th>제목</th>
+		<th>작성일</th>		
+	</tr>
+	<!-- 스크립틀릿 처리요망 -->
+	<% if(list == null || list.isEmpty()){ %>
+		<tr>
+			<td colspan="6" align="center">
+					검색결과가 없습니다.
+			</td>
+		</tr>
+	<%} 
+	else {
+		for(Schedule s : list){
+	%>			
+		<tr>				
+			<td><%=s.getScheduleStartday() %></td>
+			<td><%=s.getScheduleEndday() %></td>			
+			<td>
+			<a href="<%=request.getContextPath()%>/schedule/scheduleView?ScheduleNo=<%=s.getScheduleNo()%>">
+			<%=s.getScheduleTitle() %></a></td>
+			<td><%=s.getScheduleDate() %></td>					
+		</tr>
+	<% }
+	} %>		
+	</table>
+	<div id="pageBar">
+	<%=pageBar %>
+	</div>
+</section>

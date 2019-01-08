@@ -15,7 +15,7 @@
 		<br />
 		<br />
 		<br />
-		<a href="<%=request.getContextPath()%>/schdule/searchSchedule">찾기</a><br />
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist">스케줄 찾기</a><br />
 		<a href="##">년간 달력5</a><br />
 		<a href="##">년간 달력6</a><br />
 		<a href="##">년간 달력7</a><br />
