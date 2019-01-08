@@ -12,9 +12,9 @@ section{
   }
 
 /* signup */
-.signup_box { width:450px; height:540px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
-	border-radius:7px; border: 1px solid rgb(248, 248, 248); }
-.login_box { width:450px; height:70px; padding: 20px 30px 30px 50px; margin:0 auto ; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+.signup_box { width:450px; height:580px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+	border-radius:7px; border: 1px solid rgb(248, 248, 248); z-index: 10; }
+.login_box { width:450px; height:70px; padding: 20px 30px 30px 50px; margin:0 auto ; background-color:rgba(255, 255, 255, 0.993); 
 	border-radius:7px; border: 1px solid rgb(248, 248, 248); text-align: center; font-size: 18px; }
 
 .signup_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
@@ -76,3 +76,12 @@ input[type="date"]::before {
 }
 input[type="date"]:focus::before,
 input[type="date"]:valid::before { display: none }
+
+/*password 검사 */
+#result_true{
+	
+	color: blue; 
+}
+#result_false{
+	color: red;
+}
