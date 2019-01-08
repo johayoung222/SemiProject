@@ -38,3 +38,17 @@ body{
 	padding: 0px;
 	padding-bottom: 15px;
 }
+#scroll-box{
+	width: 100%;
+	height: 80%;
+	overflow: scroll;
+}
+#scroll-box div{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid black;
+    text-align: left;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
