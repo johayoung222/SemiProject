@@ -13,6 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
+  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
   <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 </head>
 <style>
@@ -41,7 +42,7 @@
 		<td>
 			<input type="button" value="정보수정" onclick=/>
 			&nbsp;
-			<input type="button" value="로그아웃" onclick=/>
+			<input type="button" value="로그아웃" onclick="logout();"/>
 		</td>
 	</tr>
 	</table>	
@@ -57,5 +58,9 @@
 $(".logo").click(function(){
 	location.href = "<%=request.getContextPath() %>";
 });
+
+function logout(){
+	location.href = "<%=request.getContextPath() %>/member/logout";
+}
 </script>
 
