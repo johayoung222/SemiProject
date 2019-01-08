@@ -13,7 +13,7 @@ public class Schedule implements Serializable{
 	private String scheduleRenamefilename;
 	private Date scheduleDate;
 	private String scheduleDdaycheck;
-	private String scheduleReqeatcheck;
+	private String scheduleRepeatcheck;
 	private int scheduleTimeline;
 	private Date scheduleStartday;
 	private Date scheduleEndday;
@@ -78,11 +78,11 @@ public class Schedule implements Serializable{
 	}
 
 	public String getScheduleReqeatcheck() {
-		return scheduleReqeatcheck;
+		return scheduleRepeatcheck;
 	}
 
-	public void setScheduleReqeatcheck(String scheduleReqeatcheck) {
-		this.scheduleReqeatcheck = scheduleReqeatcheck;
+	public void setScheduleRepeatcheck(String scheduleRepeatcheck) {
+		this.scheduleRepeatcheck = scheduleRepeatcheck;
 	}
 
 	public int getScheduleTimeline() {
@@ -118,7 +118,7 @@ public class Schedule implements Serializable{
 	}
 
 	public Schedule(int scheduleNo, String scheduleTitle, String scheduleContent, String scheduleOriginalfilename,
-			String scheduleRenamefilename, Date scheduleDate, String scheduleDdaycheck, String scheduleReqeatcheck,
+			String scheduleRenamefilename, Date scheduleDate, String scheduleDdaycheck, String scheduleRepeatcheck,
 			int scheduleTimeline, Date scheduleStartday, Date scheduleEndday, String memberId) {
 		super();
 		this.scheduleNo = scheduleNo;
@@ -128,7 +128,7 @@ public class Schedule implements Serializable{
 		this.scheduleRenamefilename = scheduleRenamefilename;
 		this.scheduleDate = scheduleDate;
 		this.scheduleDdaycheck = scheduleDdaycheck;
-		this.scheduleReqeatcheck = scheduleReqeatcheck;
+		this.scheduleRepeatcheck = scheduleRepeatcheck;
 		this.scheduleTimeline = scheduleTimeline;
 		this.scheduleStartday = scheduleStartday;
 		this.scheduleEndday = scheduleEndday;
@@ -140,7 +140,7 @@ public class Schedule implements Serializable{
 		return scheduleNo + ", " + scheduleTitle + ", "
 				+ scheduleContent + ", " + scheduleOriginalfilename
 				+ ", " + scheduleRenamefilename + ", " + scheduleDate
-				+ ", " + scheduleDdaycheck + ", " + scheduleReqeatcheck
+				+ ", " + scheduleDdaycheck + ", " + scheduleRepeatcheck
 				+ ", " + scheduleTimeline + ", " + scheduleStartday
 				+ ", " + scheduleEndday + ", " + memberId;
 	}

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*" %>
+<%@ page import="java.util.*,
+				com.kh.member.model.vo.*,
+				com.kh.schedule.model.vo.*" %>
 <%
 	//전달받은 데이터에서 현재일자를 꺼냄.
 	Map<Integer,Integer> map = (HashMap<Integer,Integer>)request.getAttribute("map");
@@ -8,6 +10,14 @@
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
+	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
+	
+	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
+	
+	if(m != null){
+				
+	}
+	
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -16,6 +26,7 @@
 
 <script>
 function addClickEvent(){
+	insertData();
 	var tag = $("#add").find("td");
 	tag.each(function(idx, item){
 		$(item).click(function(){
@@ -27,6 +38,17 @@ function addClickEvent(){
 			}
 		});
 	});
+}
+
+function insertData(){
+	var span = $("#add").find("span");
+	console.log(span);
+	<% for(int i=0; i<list.size(); i++){
+		
+	} %>
+	for(var i=0; i< span.length; i++){
+		if(span[i].id == 3) span[i].innerText += "schedule";
+	}
 }
 </script>
 
@@ -60,12 +82,14 @@ function addClickEvent(){
 			for(var i=0; i<=<%=map.get(month) %>+1; i++){
 				html = "<td><span></span></td>";
 				if(i>=start && i<=<%=map.get(month) %>+1){
-				html = "<td><span>"+(i-start+1)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span>"+(i-start+1)+"</span></td>";
+				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
 				}
 				document.write(html);
 			}
+			insertData();
 			addClickEvent();
+			
 			</script>
 		</table>
 	</div>
@@ -109,13 +133,13 @@ function addClickEvent(){
 
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<td><span></span></td>";
         					}
         				}else{
         					if(i >= start-1){
-        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<tr><td><span></span></td>";
         					}
@@ -168,6 +192,7 @@ function addClickEvent(){
         		}
         	});
         });
+        
         
         
         
