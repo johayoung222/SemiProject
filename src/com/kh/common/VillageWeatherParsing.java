@@ -20,10 +20,10 @@ public class VillageWeatherParsing {
 	            //자신이 조회를 원하는 지역의 경도와 위도를 입력해주세요
 	            String nx = "92";  //경도
 	            String ny = "131";   //위도
-	            String baseDate = "20180502"; // 자신이 조회하고싶은 날짜를 입력해주세요
+	            String baseDate = "20190108"; // 자신이 조회하고싶은 날짜를 입력해주세요
 	            String baseTime = "0500"; //자신이 조회하고싶은 시간대를 입력해주세요
 	            // 서비스 인증키입니다. 공공데이터포털에서 제공해준 인증키를 넣어주시면 됩니다.
-	            String serviceKey = "개인별로 받은 인증키를 넣어주세요";
+	            String serviceKey = "oUf3aVLm2NBqcaC81ewNogplxmyyutJ6PVlQJ6ReGcJYAQDF%2BgJZsdfmFULOo3%2FXAXTMxaCN46ECovjdLgnCWA%3D%3D";
 	             
 	            // 정보를 모아서 URL정보를 만들면됩니다. 맨 마지막 "&_type=json"에 따라 반환 데이터의 형태가 정해집니다.
 	            String urlStr = "http://newsky2.kma.go.kr/service/SecndSrtpdFrcstInfoService2/ForecastSpaceData?"
@@ -36,7 +36,7 @@ public class VillageWeatherParsing {
 	 
 	            //날씨 정보를 받아옵니다.
 	            bf = new BufferedReader(new InputStreamReader(url.openStream()));
-	 
+	            
 	            //버퍼에 있는 정보를 하나의 문자열로 변환.
 	            while((line=bf.readLine())!=null){
 	                result=result.concat(line);
@@ -51,8 +51,13 @@ public class VillageWeatherParsing {
 	        JSONObject parse_response = (JSONObject) obj.get("response");
 	        // response 로 부터 body 찾아옵니다.
 	        JSONObject parse_body = (JSONObject) parse_response.get("body");
+	        System.out.println(parse_body);
 	        // body 로 부터 items 받아옵니다.
+	        System.out.println("여기까지오니?0");
 	        JSONObject parse_items = (JSONObject) parse_body.get("items");
+	        
+	        
+	        System.out.println("여기까지오니?1");
 	         
 	        // items로 부터 itemlist 를 받아오기 itemlist : 뒤에 [ 로 시작하므로 jsonarray이다
 	        JSONArray parse_item = (JSONArray) parse_items.get("item");
