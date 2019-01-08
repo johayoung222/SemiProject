@@ -1,7 +1,5 @@
 package com.kh.schedule.model.dao;
 
-import static com.kh.common.JDBCTemplate.close;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,22 +11,66 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import static com.kh.common.JDBCTemplate.*;
 import com.kh.schedule.model.vo.Schedule;
 
+
 public class ScheduleDao {
-	Properties prop = new Properties();
-	
-	public ScheduleDao() {
-		String fileName = ScheduleDao.class.getResource("/sql/schedule/schedule-query.properties")
-										 .getPath();
-		try {
-			prop.load(new FileReader(fileName));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}	
+    private Properties prop = new Properties();
+    
+    public ScheduleDao() {
+        String fileName = ScheduleDao.class.getResource("/sql/schedule/schedule-query.properties").getPath();
+        
+        try {
+            prop.load(new FileReader(fileName));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Schedule> selectScheduleByMonth(Connection conn, String memberId) {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Schedule> list = null;
+        
+        String query = prop.getProperty("selectScheduleByMonth");
+        
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, memberId);
+            
+            rset = pstmt.executeQuery();
+            
+            list = new ArrayList<>();
+            while(rset.next()) {
+                Schedule s = new Schedule();
+                s.setScheduleNo(rset.getInt("SCHEDULE_NO"));
+                s.setScheduleTitle(rset.getString("SCHEDULE_TITLE"));
+                s.setScheduleContent(rset.getString("SCHEDULE_CONTENT"));
+                s.setScheduleOriginalfilename(rset.getString("SCHEDULE_ORIGINAL_FILENAME"));
+                s.setScheduleRenamefilename(rset.getString("SCHEDULE_RENAMED_FILENAME"));
+                s.setScheduleDate(rset.getDate("SCHEDULE_DATE"));
+                s.setScheduleDdaycheck(rset.getString("SCHEDULE_DDAY_CHECK"));
+                s.setScheduleRepeatcheck(rset.getString("SCHEDULE_REPEAT_CHECK"));
+                s.setScheduleTimeline(rset.getInt("SCHEDULE_TIMELINE"));
+                s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
+                s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
+                s.setMemberId(rset.getString("MEMBER_ID"));
+                
+                list.add(s);
+            }
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(rset);
+            close(pstmt);
+        }
+        return list;
+    }
 
 	public List<Schedule> selectScheduleList(Connection conn, int cPage, int numPerPage, String memberId) {
 		List<Schedule> list = null;
@@ -55,8 +97,7 @@ public class ScheduleDao {
 				s.setScheduleOriginalfilename(rset.getString("schedule_original_filename"));
 				s.setScheduleRenamefilename(rset.getString("schedule_renamed_filename"));
 				s.setScheduleDate(rset.getDate("schedule_date"));
-				s.setScheduleDdaycheck(rset.getString("schedule_dday_check"));
-				s.setScheduleReqeatcheck(rset.getString("schedule_repeat_check"));
+				s.setScheduleDdaycheck(rset.getString("schedule_repeat_check"));
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
@@ -77,10 +118,12 @@ public class ScheduleDao {
 		int totalContent = 0;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectScheduleCount");
+
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, memberId);
+
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				totalContent = rset.getInt("cnt");
@@ -93,8 +136,6 @@ public class ScheduleDao {
 		}
 		return totalContent;
 	}
-	
-	
-	
 
+			
 }

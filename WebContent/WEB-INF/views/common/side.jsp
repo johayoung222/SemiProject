@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
-<script src="js/jquery-3.3.1.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
   <script>
   window.onload =function(){
