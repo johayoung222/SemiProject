@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class NextMonthServlet
+ * Servlet implementation class PrevMonthServlet
  */
-@WebServlet("/schedule/nextMonth.do")
-public class NextMonthServlet extends HttpServlet {
+@WebServlet("/schedule/prevMonth.do")
+public class PrevMonthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -28,20 +28,18 @@ public class NextMonthServlet extends HttpServlet {
 		
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.MONTH, cMonth);
-		c.add(Calendar.MONTH, 1);
+		c.roll(Calendar.MONTH, -1);
 		c.set(Calendar.YEAR, cYear);
-		if(cMonth == 11) {
-			c.add(Calendar.YEAR, 1);
+		if(cMonth == 0) {
+			c.roll(Calendar.YEAR, -1);
 		}
 		
 		int start = c.get(Calendar.DAY_OF_WEEK);
-		int nextYear = c.get(Calendar.YEAR);
-		int nextMonth = c.get(Calendar.MONTH);
-		int[] date = {nextYear, nextMonth, start};
-		
+		int prevYear = c.get(Calendar.YEAR);
+		int prevMonth = c.get(Calendar.MONTH);
+		int[] date = {prevYear, prevMonth, start};
 		
 		new Gson().toJson(date,response.getWriter());
-		
 		
 	}
 

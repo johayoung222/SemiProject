@@ -73,7 +73,7 @@ public class MemberLoginServlet extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			int year = c.get(Calendar.YEAR);
-			int month = c.get(Calendar.MONTH)+1;
+			int month = c.get(Calendar.MONTH);
 			int day = c.get(Calendar.DATE);
 			
 			c.set(Calendar.DATE, 1);

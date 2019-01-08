@@ -15,8 +15,8 @@
 
  <!-- 파비콘 적용링크 -->
  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
-
- <script src="js/jquery-3.3.1.js"></script>
+ <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
+ 
  <title>7 Scheduler(signup)</title>
 
 
@@ -27,13 +27,21 @@
  
  <div class="content">
    <section>
+   <form action="<%=request.getContextPath()%>/member/checkIdDuplicate"
+	  method="post"
+	  name="checkIdDuplicateFrm">
+	<input type="hidden" name="memberId" />
+       </form>
      <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post"
-          onsubmit="return validate()" >
+          onsubmit="return validate();" >
 
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
-           <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요">
+           <input type="text" name="memberId" id="memberId_" placeholder="아이디를 입력하세요">
+           &nbsp;&nbsp;
+           <input type="button" id="idCheck" value="중복검사" onclick="checkIdDuplicate();"/>
+           <input type="hidden" name="idValid" id="idValid"   value="0" />
          </div>
          <div class="input_login">
            <input type="password" name="memberPwd" id="memberPwd" placeholder="비밀번호를 입력하세요">
@@ -55,11 +63,11 @@
          <div class="input_login">
             <label for="male" id="man">남자</label>
             <input type="radio" name="gender" id="gender"
-                   value="m" checked>
+                   value="M" checked>
             &nbsp;&nbsp;
             <label for="female">여자</label>
             <input type="radio" name="gender" id="gender"
-                   value="f">
+                   value="F">
          </div>
          <br>
          <div class="login">
@@ -84,6 +92,25 @@
 	  
 	  
   }
+  
+  function checkIdDuplicate(){
+		//아이디중복검사폼을 전송.
+		var memberId = $("#memberId_").val().trim();
+		if(memberId.length < 4){
+			return;
+		}
+		
+		//팝업창을 target으로 폼전송
+		var target = "checkIdDuplicate";
+		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+		var popup = open("", target, "left=300px, top=100px, height=200px, width=500px");
+		
+		checkIdDuplicateFrm.memberId.value = memberId;
+		//폼의 대상을 작성한 popup을 가리키게 한다. 
+		checkIdDuplicateFrm.target = target;
+		checkIdDuplicateFrm.submit();
+		
+	}
 
 
 </script>

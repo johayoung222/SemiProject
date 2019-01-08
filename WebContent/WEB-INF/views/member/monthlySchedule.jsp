@@ -11,8 +11,10 @@
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+
+
 	<div id="sidebar">
 	
 	</div>
@@ -20,24 +22,12 @@
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
-            <span>&lt;</span>
-            <span><%=year %>년</span>
-            <span><%=month %>월</span>
+            <span id="prevMonth">&lt;</span>
+            <span id="cYear"><%=year %></span>년
+            <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-        <script>
-        $("#nextMonth").click(function(){
-        	$.ajax({
-        		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
-        		dataType: "json",
-        		data: {"cYear":<%=year %>, "cMonth":<%=month %>},
-        		success: function(data){
-        			console.log(data);
-        		}
-        	});
-        });
         
-        </script>
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -50,7 +40,6 @@
 			</tr>
 			<script>
 			var html = "";
-			var tr = $("<tr></tr>");
 			var table = $("#month");
 			for(var i=0; i<=34; i++){
 				html = "<td><span></span></td>";
@@ -60,9 +49,41 @@
 				}
 				document.write(html);
 			}
-			
 			</script>
 		</table>
 	</div>
+	<script>
+        $("#nextMonth").click(function(){
+        	$.ajax({
+        		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
+        		type: "get",
+        		dataType: "json",
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1)},
+        		success: function(data){
+        			console.log(data);
+        			var nextYear = data[0];
+        			var nextMonth = data[1];
+        			$("#cYear").text(nextYear);
+        			$("#cMonth").text(nextMonth+1);
+        		}
+        	});
+        });
+        
+        $("#prevMonth").click(function(){
+        	$.ajax({
+        		url: "<%=request.getContextPath() %>/schedule/prevMonth.do",
+        		dataType: "json",
+        		type: "get",
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1)},
+        		success: function(data){
+        			console.log(data);
+        			var prevYear = data[0];
+        			var prevMonth = data[1];
+        			$("#cYear").text(prevYear);
+        			$("#cMonth").text(prevMonth+1);
+        		}
+        	});
+        });
+        </script>
 </body>
 </html>

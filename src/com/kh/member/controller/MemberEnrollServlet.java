@@ -27,8 +27,9 @@ public class MemberEnrollServlet extends HttpServlet {
 		String memberPwd = request.getParameter("memberPwd");
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
+		String memberDate = request.getParameter("memberDate");
+		int ssn =  Integer.parseInt(memberDate.replaceAll("-", ""));
 		String email = request.getParameter("memberEmail");
-		int ssn = Integer.parseInt(request.getParameter("memberDate"));
 		
 
 		Member m = new Member();
@@ -39,11 +40,24 @@ public class MemberEnrollServlet extends HttpServlet {
 		m.setMemberGender(gender);
 		m.setMemberEmail(email);
 		
-		//System.out.println(m);
 		
 		int result = new MemberService().insertMember(m);
 		
 		System.out.println("result="+result);
+		
+		String msg = "";
+		String loc = "/";
+		
+		if(result > 0) {
+			msg = "회원가입 성공!";
+			loc = "/member/login";
+		}else {
+			msg = "회원가입 실패!";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		
 		
 	}
