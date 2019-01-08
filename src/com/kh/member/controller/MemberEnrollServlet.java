@@ -45,21 +45,6 @@ public class MemberEnrollServlet extends HttpServlet {
 		int result = new MemberService().insertMember(m);
 		
 		
-		String msg = "";
-		String loc = "/";
-		
-		if(result > 0) {
-			msg = "회원가입 성공!";
-			loc = "/member/login";
-		}else {
-			msg = "회원가입 실패!";
-		}
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-		
-		
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		String loc = "/";
