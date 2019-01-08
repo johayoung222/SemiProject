@@ -33,7 +33,7 @@
 	<input type="hidden" name="memberId" />
        </form>
      <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post"
-          onsubmit="return validate()" >
+          onsubmit="return validate();" >
 
        <div class="signup_box">
            <span>7's Scheduler</span>
@@ -63,11 +63,11 @@
          <div class="input_login">
             <label for="male" id="man">남자</label>
             <input type="radio" name="gender" id="gender"
-                   value="m" checked>
+                   value="M" checked>
             &nbsp;&nbsp;
             <label for="female">여자</label>
             <input type="radio" name="gender" id="gender"
-                   value="f">
+                   value="F">
          </div>
          <br>
          <div class="login">
@@ -96,8 +96,7 @@
   function checkIdDuplicate(){
 		//아이디중복검사폼을 전송.
 		var memberId = $("#memberId_").val().trim();
-		if(memberId.length < 4 && memberId.length<13){
-			alert("아이디는 4글자 이상  12자 이하 가능합니다.");
+		if(memberId.length < 4){
 			return;
 		}
 		
@@ -110,8 +109,6 @@
 		//폼의 대상을 작성한 popup을 가리키게 한다. 
 		checkIdDuplicateFrm.target = target;
 		checkIdDuplicateFrm.submit();
-		
-		
 		
 	}
 
