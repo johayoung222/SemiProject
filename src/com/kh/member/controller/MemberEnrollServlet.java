@@ -51,7 +51,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		
 		if(result > 0) {
 			msg = "환영합니다."+m.getMemberName()+"님 가입되셨습니다!!";
-			loc = "/member/login";
+			loc = "/";
 		}else {
 			msg = "회원등록에 실패했습니다.";
 		}
