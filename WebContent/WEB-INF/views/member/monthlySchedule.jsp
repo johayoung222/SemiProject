@@ -10,6 +10,7 @@
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
+	int last = (int)request.getAttribute("last");
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	
 	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
@@ -76,9 +77,9 @@ function insertData(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<=<%=map.get(month) %>+1; i++){
+			for(var i=0; i<=<%=last %>+1; i++){
 				html = "<td><span></span></td>";
-				if(i>=start && i<=<%=map.get(month) %>+1){
+				if(i>=start && i<=<%=last %>+1){
 				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
 				if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
 				}

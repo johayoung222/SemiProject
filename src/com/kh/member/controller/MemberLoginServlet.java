@@ -92,6 +92,7 @@ public class MemberLoginServlet extends HttpServlet {
 				c2.setTime(date);
 				map.put(c2.get(Calendar.DATE), s);
 			}
+			System.out.println(map);
 												
 			HttpSession session = request.getSession(true);		
 			
