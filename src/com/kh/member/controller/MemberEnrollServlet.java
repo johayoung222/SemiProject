@@ -45,6 +45,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		int result = new MemberService().insertMember(m);
 		
 		
+
 		String msg = "";
 		String loc = "/";
 		
@@ -58,6 +59,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+
 		
 	}
 
