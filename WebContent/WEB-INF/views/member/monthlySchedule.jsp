@@ -13,7 +13,23 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/custom.css" />
+
+<script>
+function addClickEvent(){
+	var tag = $("#add").find("td");
+	tag.each(function(idx, item){
+		$(item).click(function(){
+			var year = $("#cYear").text();
+			var month = $("#cMonth").text();
+			var day = $(this).text();
+			if(day != ""){
+			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
+			}
+		});
+	});
+}
+</script>
+
 
 
 
@@ -25,7 +41,7 @@
             <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-        
+		        
 		<table id="month">
 			<tr>
 				<th>일</th>
@@ -36,37 +52,40 @@
 				<th>금</th>
 				<th>토</th>
 			</tr>
+		</table>
+		<table id="add">
 			<script>
 			var html = "";
-			var table = $("#month");
-			for(var i=0; i<=34; i++){
+			var start = <%=start %>;
+			for(var i=0; i<=<%=map.get(month) %>+1; i++){
 				html = "<td><span></span></td>";
-				if(i><%=start %>){
-				html = "<td><span>"+(i-<%=start %>)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span>"+(i-<%=start %>)+"</span></td>";
+				if(i>=start && i<=<%=map.get(month) %>+1){
+				html = "<td><span>"+(i-start+1)+"</span></td>";
+				if(i%7 == 0) html = "<tr><td><span>"+(i-start+1)+"</span></td>";
 				}
 				document.write(html);
 			}
+			addClickEvent();
 			</script>
 		</table>
 	</div>
-	
+	<!-- 
 	<div id="chat-body">		
 		<div id="chat-before">
-		<!-- 앞에 초록색 동그라미 이모티콘 추가 -->
+		앞에 초록색 동그라미 이모티콘 추가
 			<strong>채팅</strong>
-			<!-- 뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중 -->
+			뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중
 	
 		</div>
 	
 		<div id="chat-find-friend">
-			<!-- 돋보기 모양 이모티콘 -->
-			<!-- input:text Ajax사용해서 회원이름 검색시 주르륵 나오게 -->
+			돋보기 모양 이모티콘
+			input:text Ajax사용해서 회원이름 검색시 주르륵 나오게
 			친구 찾기
-			<!-- 오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔 -->
+			오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔
 			 
 		</div>	
-	</div>
+	</div> -->
 	<script>
         $("#nextMonth").click(function(){
         	$.ajax({
@@ -78,8 +97,33 @@
         			console.log(data);
         			var nextYear = data[0];
         			var nextMonth = data[1];
+        			var start = data[2];
+        			var last = data[3]+start;
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
+        			
+        			var table = $("#add");
+        			table.html("");
+        			var html = "";
+        			for(var i=0; i<last-1; i++){
+
+        				if(i%7 != 0){
+        					if(i >= start-1){
+        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<td><span></span></td>";
+        					}
+        				}else{
+        					if(i >= start-1){
+        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<tr><td><span></span></td>";
+        					}
+        				}
+        			}
+        			table.append(html);
+        			$("#month").after(table);
+        			addClickEvent();
         		}
         	});
         });
@@ -94,11 +138,39 @@
         			console.log(data);
         			var prevYear = data[0];
         			var prevMonth = data[1];
+        			var start = data[2];
+        			var last = data[3]+start;
         			$("#cYear").text(prevYear);
         			$("#cMonth").text(prevMonth+1);
+        			
+        			var table = $("#add");
+        			table.html("");
+        			var html = "";
+        			for(var i=0; i<last-1; i++){
+
+        				if(i%7 != 0){
+        					if(i >= start-1){
+        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<td><span></span></td>";
+        					}
+        				}else{
+        					if(i >= start-1){
+        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					}else{
+        					html += "<tr><td><span></span></td>";
+        					}
+        				}
+        			}
+        			table.append(html);
+        			$("#month").after(table);
+        			addClickEvent();
         		}
         	});
         });
+        
+        
+        
         </script>
 </body>
 </html>

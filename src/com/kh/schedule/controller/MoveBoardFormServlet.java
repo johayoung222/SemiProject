@@ -1,21 +1,17 @@
 package com.kh.schedule.controller;
 
 import java.io.IOException;
-import java.util.Calendar;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 /**
- * Servlet implementation class NextMonthServlet
+ * Servlet implementation class MoveBoardFormServlet
  */
-@WebServlet("/schedule/nextMonth.do")
-public class NextMonthServlet extends HttpServlet {
+@WebServlet("/schedule/insertSchedule")
+public class MoveBoardFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -23,25 +19,19 @@ public class NextMonthServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int cYear = Integer.parseInt(request.getParameter("cYear"));
-		int cMonth = Integer.parseInt(request.getParameter("cMonth"));
+		//year, month, day, userId 값 받아오기
+		int year = Integer.parseInt(request.getParameter("year"));
+		int month = Integer.parseInt(request.getParameter("month"));
+		int day = Integer.parseInt(request.getParameter("day"));
+		String user = request.getParameter("user");
 		
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.MONTH, cMonth);
-		c.add(Calendar.MONTH, 1);
-		c.set(Calendar.YEAR, cYear);
-		if(cMonth == 11) {
-			c.add(Calendar.YEAR, 1);
-		}
+		//System.out.printf("MBF:%d %d %d %s",year,month,day,user);
 		
-		int start = c.get(Calendar.DAY_OF_WEEK);
-		int last = c.getActualMaximum(Calendar.DATE);
-		int nextYear = c.get(Calendar.YEAR);
-		int nextMonth = c.get(Calendar.MONTH);
-		int[] date = {nextYear, nextMonth, start, last};
-		
-		new Gson().toJson(date,response.getWriter());
-		
+		request.setAttribute("year", year);
+		request.setAttribute("month", month);
+		request.setAttribute("day", day);
+		request.setAttribute("user", user);
+		request.getRequestDispatcher("/WEB-INF/views/schedule/insertForm.jsp").forward(request, response);
 		
 	}
 
