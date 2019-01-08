@@ -12,7 +12,6 @@
     position: absolute;
     top: 120px;
     right: 0px;
-    border: 1px solid black;
 }
 #main{
     width: 250px;
@@ -26,24 +25,25 @@
     font-size: 20px;
     font-weight: bold;
 }
-#month{
+#month, #add{
     width: 100%;
     border-collapse: collapse;
+
 }
-#month tr{
+#month tr, #add tr{
     height: 20px;
 }
-#month th{
+#month th, #add th{
     border-top: 1px solid blue;
 }
-#month td{
+#month td, #add td{
     height: 100px;
     border: 1px solid blue;
     padding: 0;
     margin-top: 0;
     position: relative;
 }
-#month td span{
+#month td span, #add td span{
     position: absolute;
     top: 0px;
 }

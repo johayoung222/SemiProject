@@ -35,9 +35,10 @@ public class PrevMonthServlet extends HttpServlet {
 		}
 		
 		int start = c.get(Calendar.DAY_OF_WEEK);
+		int last = c.getActualMaximum(Calendar.DATE);
 		int prevYear = c.get(Calendar.YEAR);
 		int prevMonth = c.get(Calendar.MONTH);
-		int[] date = {prevYear, prevMonth, start};
+		int[] date = {prevYear, prevMonth, start, last};
 		
 		new Gson().toJson(date,response.getWriter());
 		
