@@ -13,12 +13,14 @@
 <title>아이디 중복검사</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/checkidDuplicate.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
 <script>
 function checkIdDuplicate(){
 	//아이디중복검사폼을 전송.
 	var memberId = $("#memberId").val().trim();
-	if(memberId.length < 4 && memberId.length<13){
+	
+	
+	if( memberId.length < 4 && memberId.length<13){
 		alert("아이디는 4글자 이상 12글자 이하 가능 합니다.");
 		return;
 	}
@@ -29,13 +31,11 @@ function checkIdDuplicate(){
 }
 
 function setMemberId(memberId){
-	//부모창의 frm
+	
 	var frm = opener.document.memberEnrollFrm;
 	frm.memberId.value = memberId;
 	frm.idValid.value = 1;
 	frm.password.focus();
-	
-	//현재창을 제어
 	self.close();
 }
 </script>
