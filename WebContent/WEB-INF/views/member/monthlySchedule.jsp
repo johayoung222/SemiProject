@@ -29,7 +29,7 @@ function addClickEvent(){
 }
 </script>
 
-<script>	
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">

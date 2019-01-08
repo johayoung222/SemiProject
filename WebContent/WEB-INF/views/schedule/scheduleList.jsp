@@ -10,7 +10,8 @@
 	//System.out.println("list@BoardList.jsp="+list);
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String pageBar = (String)request.getAttribute("pageBar");	
+	String pageBar = (String)request.getAttribute("pageBar");
+	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
 <script>
@@ -44,7 +45,7 @@ $(function(){
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 <section id="schedulesearch-container">	
 <h2>스케줄 찾기</h2>	
-		검색 :&nbsp;
+		검색 &nbsp;&nbsp;
 		<select id="searchType">
 			<option value="scheduleTitle">제목</option>
 			<option value="scheduleContent">내용</option>
@@ -52,7 +53,7 @@ $(function(){
 		</select>
 		&nbsp;
 		<div id="search-scheduleTitle">			
-			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
+			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
 					   name="numPerPage" 
 					   value="<%=numPerPage%>"/>
@@ -67,7 +68,7 @@ $(function(){
 			</form>
 		</div>
 		<div id="search-scheduleContent">			
-			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
+			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
 					   name="numPerPage" 
 					   value="<%=numPerPage%>"/>
@@ -82,7 +83,7 @@ $(function(){
 			</form>
 		</div>
 		<div id="search-scheduleIcon">			
-			<form action="<%=request.getContextPath()%>/schedule/searchschedule">
+			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
 					   name="numPerPage" 
 					   value="<%=numPerPage%>"/>

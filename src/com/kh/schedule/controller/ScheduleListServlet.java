@@ -36,7 +36,7 @@ public class ScheduleListServlet extends HttpServlet {
 		try {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
 		} catch(NumberFormatException e) {
-			numPerPage = 7;
+			numPerPage = 15;
 		}
 		
 		//System.out.printf("[cPage=%s, numPerPage=%s]\n", cPage, numPerPage,memberId);				
@@ -49,7 +49,7 @@ public class ScheduleListServlet extends HttpServlet {
 		//System.out.printf("[totalPage=%s]\n",totalPage);
 		
 		String pageBar = "";		
-		int pageBarSize = 7;		
+		int pageBarSize = 15;		
 		int startPage = ((cPage-1)/pageBarSize) * pageBarSize + 1;
 		int endPage = startPage + pageBarSize - 1;
 		//System.out.printf("[start=%s, end=%s]\n", startPage, endPage);

@@ -62,7 +62,6 @@ public class ScheduleDao {
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
 				s.setMemberId(rset.getString("member_id"));				
 				list.add(s);
-				System.out.println(s.toString());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
