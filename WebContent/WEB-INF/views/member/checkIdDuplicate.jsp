@@ -31,8 +31,10 @@ function checkIdDuplicate(){
 }
 
 function setMemberId(memberId){
+
 	
 	var frm = opener.document.memberEnrollFrm;
+
 	frm.memberId.value = memberId;
 	frm.idValid.value = 1;
 	frm.password.focus();
@@ -46,7 +48,7 @@ function setMemberId(memberId){
 	<%if(isUsable){ %>
 		[<%=memberId %>]는 사용가능합니다.
 		<br /><br />
-		<button type="button" onclick="setMemberId('<%=memberId%>');">닫기</button>
+		<button type="button" onclick="setMemberId(<%=memberId%>);">닫기</button>
 	<%} 
 	else {%>
 		[<span id="duplicated"><%=memberId %></span>]는
