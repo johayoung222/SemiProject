@@ -49,31 +49,15 @@ public class MemberEnrollServlet extends HttpServlet {
 		String loc = "/";
 		
 		if(result > 0) {
-			msg = "회원가입 성공!";
+			msg = "환영합니다."+m.getMemberName()+"님 가입되셨습니다!!";
 			loc = "/member/login";
 		}else {
-			msg = "회원가입 실패!";
+			msg = "회원등록에 실패했습니다.";
 		}
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-		
-		
-		String view = "/WEB-INF/views/common/msg.jsp";
-		String msg = "";
-		String loc = "/";
-
-		if(result>0)
-			msg = "환영합니다."+m.getMemberName()+"님 가입되셨습니다!!";
-		else 
-			msg = "회원등록에 실패했습니다.";	
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher(view);
-		reqDispatcher.forward(request, response);
 		
 	}
 
