@@ -8,6 +8,7 @@
 <script src="js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
   <script>
+  
   window.onload =function(){
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=c95231fca9f07b22a6540efdcce37587";
     $.ajax({
@@ -27,7 +28,6 @@
 			html += "나라 : "+resp.sys.country+"<br>";
 			html += "도시 이름 : "+resp.name+"<br>";
 			html += "구름 : "+(resp.clouds.all)+"%<br>";
-			html += "<button>추천 여행지 보기</button>";
 			 
 			
 			myDiv.innerHTML = html;
@@ -56,6 +56,23 @@
 
 </script>
 
+ <script language="javascript">
+  function showPopup() {
+	  var windowW = 800;  // 창의 가로 길이
+      var windowH = 500;  // 창의 세로 길이
+      var left = Math.ceil((window.screen.width - windowW)/2);
+      var top = Math.ceil((window.screen.height - windowH)/2);
+
+
+	  window.open("<%=request.getContextPath() %>/member/recommendation", "a","l top="+top+", left="+left+", height="+windowH+", width="+windowW); 
+	  
+	  
+  }
+  </script>
+  
+
+
+
 </head>
 <body>
 
@@ -72,6 +89,10 @@
 	<div id="myDiv">
 	
 	</div>
+	
+	<input type="button" 
+           value="추천 여행,의상 보기"
+           onclick= "showPopup();"/>
 
 	</div>
 	
