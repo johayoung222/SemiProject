@@ -73,7 +73,7 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
-$("#todolist div").click(function(){
+$("#todolist div#insertBoard").nextAll().click(function(){
 	var target = $(this).children();
 	var boardNo = target.attr("id");
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
