@@ -40,7 +40,7 @@
 	</tr>
 	<tr>
 		<td>
-			<input type="button" value="정보수정" onclick=/>
+			<input type="button" value="내정보" onclick='location.href="<%=request.getContextPath()%>/member/MemberView?memberId=<%=memberLoggedIn.getMemberId()%>";'/>
 			&nbsp;
 			<input type="button" value="로그아웃" onclick="logout();"/>
 		</td>

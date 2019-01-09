@@ -31,8 +31,8 @@
 	<% if(!list.isEmpty()){ 
 		String s = "";	
 		for(int i=0; i<list.size(); i++){ 
-	 		s += "<h4>"+list.get(i).getScheduleTitle()+"</h4>";%>
-	<% } %>
+	 		s += "<div><h4 id='"+list.get(i).getScheduleNo()+"'>"+list.get(i).getScheduleTitle()+"</h4></div>";
+	   } %>
 	<%=s %>
 	<% } %>
 </div>
@@ -73,6 +73,11 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
+$("#todolist div#insertBoard").nextAll().click(function(){
+	var target = $(this).children();
+	var boardNo = target.attr("id");
+	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
+});
 </script>
 </body>
 </html>

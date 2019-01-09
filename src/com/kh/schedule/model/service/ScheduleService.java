@@ -93,6 +93,14 @@ public class ScheduleService {
 		return list;
 	}
 
+	public Schedule selectOneSchedule(int scheduleNo, String memberId) {
+		Connection conn = getConnection();
+		Schedule s = new ScheduleDao().selectOneSchedule(conn, scheduleNo, memberId);
+		close(conn);
+		
+		return s;
+	}
+
 
 	public int insertSchedule(Schedule s) {
 		Connection conn = getConnection();
