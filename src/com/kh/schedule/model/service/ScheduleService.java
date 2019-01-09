@@ -5,7 +5,6 @@ import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
 
-import com.kh.board.model.dao.BoardDao;
 import com.kh.schedule.model.dao.ScheduleDao;
 import com.kh.schedule.model.vo.Schedule;
 
