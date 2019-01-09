@@ -1,6 +1,7 @@
 package com.kh.schedule.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -84,6 +85,13 @@ public class ScheduleService {
 		if(totalContent != 0)close(conn);
 		else rollback(conn);
 		return totalContent;
+	}
+	public List<Schedule> selectScheduleByDay(String memberId, Date date) {
+		Connection conn = getConnection();
+		List<Schedule> list = new ScheduleDao().selectScheduleByDay(conn, memberId, date);
+		close(conn);
+		
+		return list;
 	}
 
 }
