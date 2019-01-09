@@ -8,7 +8,7 @@
 	int month = (int) request.getAttribute("month");
 	int day = (int) request.getAttribute("day");
 	String user = (String) request.getAttribute("user");
-	
+	String writeDay = year+"-"+month+"-"+day;
 %>
 
 <style>
@@ -78,6 +78,9 @@
 				<label for="">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
+				
+				<!-- 글쓴날짜 -->
+				<input type="hidden" name="writeDay" id="writeDay" value="<%=writeDay %>" />
 				
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
 				<label for="scheduleDdayCheck">디데이 설정 여부</label>
