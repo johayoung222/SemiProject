@@ -22,6 +22,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+
 <script>
 function addClickEvent(){
 	insertData();
@@ -49,7 +50,6 @@ function insertData(){
 	}
 }
 </script>
-
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -89,6 +89,23 @@ function insertData(){
 			</script>
 		</table>
 	</div>
+	<!-- 
+	<div id="chat-body">		
+		<div id="chat-before">
+		앞에 초록색 동그라미 이모티콘 추가
+			<strong>채팅</strong>
+			뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중
+	
+		</div>
+	
+		<div id="chat-find-friend">
+			돋보기 모양 이모티콘
+			input:text Ajax사용해서 회원이름 검색시 주르륵 나오게
+			친구 찾기
+			오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔
+			 
+		</div>	
+	</div> -->
 	<script>
         $("#nextMonth").click(function(){
         	$.ajax({

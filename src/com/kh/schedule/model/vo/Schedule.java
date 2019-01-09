@@ -18,6 +18,9 @@ public class Schedule implements Serializable{
 	private Date scheduleStartday;
 	private Date scheduleEndday;
 	private String memberId;
+	private Date scheduleDday;
+	private String scheduleIcon;
+	
 	
 	public Schedule() {}
 
@@ -117,9 +120,36 @@ public class Schedule implements Serializable{
 		this.memberId = memberId;
 	}
 
+	public Date getScheduleDday() {
+		return scheduleDday;
+	}
+
+	public void setScheduleDday(Date scheduleDday) {
+		this.scheduleDday = scheduleDday;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getScheduleRepeatcheck() {
+		return scheduleRepeatcheck;
+	}
+	
+	public String getScheduleIcon() {
+		return scheduleIcon;
+	}
+
+	public void setScheduleIcon(String scheduleIcon) {
+		this.scheduleIcon = scheduleIcon;
+	}
+
+
+
 	public Schedule(int scheduleNo, String scheduleTitle, String scheduleContent, String scheduleOriginalfilename,
 			String scheduleRenamefilename, Date scheduleDate, String scheduleDdaycheck, String scheduleRepeatcheck,
-			int scheduleTimeline, Date scheduleStartday, Date scheduleEndday, String memberId) {
+			int scheduleTimeline, Date scheduleStartday, Date scheduleEndday, String memberId, Date scheduleDday,
+			String scheduleIcon) {
 		super();
 		this.scheduleNo = scheduleNo;
 		this.scheduleTitle = scheduleTitle;
@@ -133,18 +163,18 @@ public class Schedule implements Serializable{
 		this.scheduleStartday = scheduleStartday;
 		this.scheduleEndday = scheduleEndday;
 		this.memberId = memberId;
+		this.scheduleDday = scheduleDday;
+		this.scheduleIcon = scheduleIcon;
 	}
 
 	@Override
 	public String toString() {
-		return scheduleNo + ", " + scheduleTitle + ", "
-				+ scheduleContent + ", " + scheduleOriginalfilename
-				+ ", " + scheduleRenamefilename + ", " + scheduleDate
-				+ ", " + scheduleDdaycheck + ", " + scheduleRepeatcheck
-				+ ", " + scheduleTimeline + ", " + scheduleStartday
-				+ ", " + scheduleEndday + ", " + memberId;
+		return "Schedule [scheduleNo=" + scheduleNo + ", scheduleTitle=" + scheduleTitle + ", scheduleContent="
+				+ scheduleContent + ", scheduleOriginalfilename=" + scheduleOriginalfilename
+				+ ", scheduleRenamefilename=" + scheduleRenamefilename + ", scheduleDate=" + scheduleDate
+				+ ", scheduleDdaycheck=" + scheduleDdaycheck + ", scheduleRepeatcheck=" + scheduleRepeatcheck
+				+ ", scheduleTimeline=" + scheduleTimeline + ", scheduleStartday=" + scheduleStartday
+				+ ", scheduleEndday=" + scheduleEndday + ", memberId=" + memberId + ", scheduleDday=" + scheduleDday
+				+ ", scheduleIcon=" + scheduleIcon + "]";
 	}
-	
-	
-	
 }
