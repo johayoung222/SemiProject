@@ -3,9 +3,12 @@ package com.kh.member.controller;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -83,20 +86,30 @@ public class MemberLoginServlet extends HttpServlet {
 		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
 			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId);
+			List<Schedule> dayList = null;
+			HashMap<Integer,List<Schedule>> map = new HashMap<>();
 			
-			HashMap<Integer,Schedule> map = new HashMap<>();
-			
-			for(Schedule s : list) {
-				Date date = s.getScheduleDate();
-				Calendar c2 = Calendar.getInstance();
-				c2.setTime(date);
-				map.put(c2.get(Calendar.DATE), s);
+			Calendar c2 = Calendar.getInstance();
+			for(int i=1; i<=31; i++) {
+				dayList = new ArrayList<>();
+				for(Schedule s : list) {
+					Date date = s.getScheduleDate();
+					c2.setTime(date);
+					if(i == c2.get(Calendar.DATE)) {
+						dayList.add(s);
+					}
+				}
+				map.put(i, dayList);
 			}
+
+//			Set<Integer> set =  map.keySet();
+//			for(int key : set) {
+//				System.out.println(key+":"+map.get(key));
+//			}
 												
 			HttpSession session = request.getSession(true);		
 			
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
-			request.setAttribute("list", list);
 			request.setAttribute("start", start);
 			request.setAttribute("last", last);
 			request.setAttribute("year", year);

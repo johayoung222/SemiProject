@@ -5,18 +5,14 @@
 				com.kh.schedule.model.vo.*" %>
 <%
 	//전달받은 데이터에서 현재일자를 꺼냄.
-	Map<Integer,Integer> map = (HashMap<Integer,Integer>)request.getAttribute("map");
+	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
-	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
+	int last = (int)request.getAttribute("last");
 	
 	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
-	
-	if(m != null){
-				
-	}
 	
 %>
 
@@ -32,7 +28,7 @@ function addClickEvent(){
 		$(item).click(function(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
-			var day = $(this).text();
+			var day = $(this).children().attr("id");
 			if(day != ""){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
@@ -42,18 +38,15 @@ function addClickEvent(){
 
 function insertData(){
 	var span = $("#add").find("span");
-	console.log(span);
-	<% for(int i=0; i<list.size(); i++){
-		
-	} %>
 	for(var i=0; i< span.length; i++){
-		if(span[i].id == 3) span[i].innerText += "schedule";
+		<% for(int i=1; i<=31; i++){
+			if(!map.get(i).isEmpty()){ %>
+		if(span[i].id == <%=i %>) span[i].innerText = span[i].id+"<%=map.get(i).get(0).getScheduleTitle() %>";
+			<%}
+		} %>
 	}
 }
 </script>
-
-
-
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -79,9 +72,9 @@ function insertData(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<=<%=map.get(month) %>+1; i++){
+			for(var i=0; i<=<%=last %>+1; i++){
 				html = "<td><span></span></td>";
-				if(i>=start && i<=<%=map.get(month) %>+1){
+				if(i>=start && i<=<%=last %>+1){
 				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
 				if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
 				}
@@ -147,6 +140,7 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			insertData();
         			addClickEvent();
         		}
         	});
@@ -174,13 +168,13 @@ function insertData(){
 
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<td><span></span></td>";
         					}
         				}else{
         					if(i >= start-1){
-        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<tr><td><span></span></td>";
         					}
@@ -188,6 +182,7 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			insertData();
         			addClickEvent();
         		}
         	});
