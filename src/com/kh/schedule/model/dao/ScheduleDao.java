@@ -361,7 +361,8 @@ public class ScheduleDao {
 				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
 				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
 				s.setMemberId(rset.getString("MEMBER_ID"));
-				
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 			
@@ -374,6 +375,35 @@ public class ScheduleDao {
 		}
 		
 		return list;
+	}
+
+	public int insertSchedule(Connection conn, Schedule s) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertSchedule"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, s.getScheduleTitle());
+			pstmt.setString(2, s.getScheduleContent());
+			pstmt.setString(3, s.getScheduleOriginalfilename());
+			pstmt.setString(4, s.getScheduleRenamefilename());
+			pstmt.setString(5, s.getScheduleDdaycheck());
+			pstmt.setString(6, s.getScheduleRepeatcheck());
+			pstmt.setInt(7, s.getScheduleTimeline());
+			pstmt.setDate(8, s.getScheduleStartday());
+			pstmt.setDate(9, s.getScheduleEndday());
+			pstmt.setString(10, s.getMemberId());
+			pstmt.setDate(11, s.getScheduleDday());
+			pstmt.setString(12, s.getScheduleIcon());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}		
+		return result;
 	}
 
 }
