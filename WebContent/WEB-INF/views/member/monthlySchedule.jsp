@@ -5,6 +5,7 @@
 				com.kh.schedule.model.vo.*" %>
 <%
 	//전달받은 데이터에서 현재일자를 꺼냄.
+	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
@@ -14,6 +15,8 @@
 	
 	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
 	
+	
+	//schedule data 를 date별로 나누기
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
