@@ -61,6 +61,7 @@
  
  <div class="content">
    <section>
+   	
    <form action="<%=request.getContextPath()%>/member/checkIdDuplicate"
 	  method="post"
 	  name="checkIdDuplicateFrm">
