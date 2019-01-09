@@ -1,9 +1,14 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +20,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
+import com.kh.schedule.model.service.ScheduleService;
+import com.kh.schedule.model.vo.Schedule;
 
 
 /**
@@ -25,7 +32,6 @@ public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");		
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
@@ -66,7 +72,6 @@ public class MemberLoginServlet extends HttpServlet {
 			if(result == MemberService.LOGIN_OK) {
 			
 			//login business logic
-			//test code
 			Calendar c = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
@@ -76,22 +81,43 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			c.set(Calendar.DATE, 1);
 			int start = c.get(Calendar.DAY_OF_WEEK)-1;
+			int last = c.getActualMaximum(Calendar.DATE);
 			
-			HashMap<Integer,Integer> map = new HashMap<>();
-			for(int i=0; i<=11; i++) {
-				c.set(Calendar.MONTH, i);
-				map.put(i, c.getActualMaximum(Calendar.DATE));
-			}
 		
-			Member memberLoggedIn = new MemberService().memberOne(memberId);			
-			HttpSession session = request.getSession(true);				
+			Member memberLoggedIn = new MemberService().memberOne(memberId);
+			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId);
+			List<Schedule> dayList = null;
+			HashMap<Integer,List<Schedule>> map = new HashMap<>();
+			
+			//년월일에 맞게 데이터 삽입해줘야 함
+			Calendar c2 = Calendar.getInstance();
+			for(int i=1; i<=31; i++) {
+				dayList = new ArrayList<>();
+				for(Schedule s : list) {
+					Date date = s.getScheduleDate();
+					c2.setTime(date);
+					if(i == c2.get(Calendar.DATE)) {
+						dayList.add(s);
+					}
+				}
+				map.put(i, dayList);
+			}
+
+//			Set<Integer> set =  map.keySet();
+//			for(int key : set) {
+//				System.out.println(key+":"+map.get(key));
+//			}
 												
+			HttpSession session = request.getSession(true);		
+			
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
 			request.setAttribute("start", start);
+			request.setAttribute("last", last);
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
 			request.setAttribute("map", map);
+			request.setAttribute("list", list);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
 			
 		//2.로그인 실패한 경우

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
-<script src="js/jquery-3.3.1.js"></script>
+<script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
 <script>
   function showPopup(temp) {
@@ -77,7 +77,7 @@
 		<br />
 		<br />
 		<br />
-		<a href="##">년간 달력4</a><br />
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist">스케줄 찾기</a><br />
 		<a href="##">년간 달력5</a><br />
 		<a href="##">년간 달력6</a><br />
 		<a href="##">년간 달력7</a><br />
