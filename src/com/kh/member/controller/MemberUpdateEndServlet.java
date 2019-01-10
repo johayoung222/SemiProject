@@ -29,7 +29,7 @@ public class MemberUpdateEndServlet extends HttpServlet {
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
 		String memberDate = request.getParameter("memberDate");
-		int ssn =  Integer.parseInt(memberDate.replaceAll("-", ""));
+		int ssn =  Integer.parseInt(memberDate.replaceAll("-", " "));
 		String email = request.getParameter("memberEmail");
 		
 		Member m = new Member();

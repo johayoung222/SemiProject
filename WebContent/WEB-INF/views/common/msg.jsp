@@ -7,8 +7,8 @@
 
 %>
 <script>
+location.href = "<%=request.getContextPath()+loc %>";
 alert("<%=msg %>");
-
-<%=script!=null?script:""%>
-location.href = "<%=loc%>";
+<%=script!=null?script:" " %>
+location.href = "<%=request.getContextPath()+loc %>";
 </script>
