@@ -47,7 +47,7 @@ function addClickEvent(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
 			var day = $(this).children().attr("id");
-			if(day != null){
+			if(day != ""){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
@@ -90,7 +90,7 @@ function insertData(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<35; i++){
+			for(var i=0; i<=<%=last %>+1; i++){
 				html = "<td><span></span></td>";
 				if(i>=start && i<=<%=last %>+1){
 				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
