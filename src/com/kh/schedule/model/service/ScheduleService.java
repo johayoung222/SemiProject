@@ -116,4 +116,12 @@ public class ScheduleService {
 		
 		return result;
 	}
+
+	public List<Schedule> daySchedule(String memberId) {
+		Connection conn = getConnection();
+		List<Schedule> list = new ScheduleDao().daySchedule(conn, memberId);
+		close(conn);
+		
+		return list;
+	}
 }

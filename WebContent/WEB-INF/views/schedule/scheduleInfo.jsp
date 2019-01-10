@@ -8,9 +8,14 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/scheduleInfo.css" />
 <div id="scheduleInfo-container">
+	<form class="insertFrm" name="insertform"
+			action="<%=request.getContextPath()%>/schedule/insertScheduleEnd" 
+			method="post"
+			enctype="multipart/form-data">
     <div id="inner-container">
         <label for="title">스케줄 제목</label>
-        <input type="text" id="title">
+        <input type="text" id="title" value="<%=s.getScheduleTitle() %>">
+        
         <div class="func">
             <label for="dday">D-day</label>
             <input type="checkbox" name="dday" id="dday">
@@ -24,16 +29,22 @@
 				<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" />
 				<label for="scheduleRepeatCheck">스케줄 반복여부 설정</label>
         </div>
+        
         <div class="content">
             <label for="content">스케줄 내용</label>
-            <textarea name="content" id="content" cols="70" rows="30"></textarea>
+            <textarea name="content" id="content" cols="70" rows="30"><%=s.getScheduleContent() %></textarea>
         </div>
+        
         <div class="addfile">
-            <label for="file">첨부파일</label>
-            <input type="file" id="file">
-            <div class="filelist"></div>
+            <label for="up_file">파일</label>
+				<input type="file" name="up_file" placeholder="이미지/파일선택" id="file">
+            <div class="filelist">
+            	<span><%=s.getScheduleOriginalfilename() %></span>
+            	<img src="<%=request.getContextPath() %>/upload/schedule/<%=s.getScheduleRenamefilename() %>" width="20px" height="20px"/>
+            </div>
         </div>
     </div>
+    </form>
 </div>
 
 </body>

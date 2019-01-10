@@ -14,9 +14,18 @@
 
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
+<style>
+#back {
+float: right;
+margin-right: 450px;
+}
+</style>
+
 <script>
 
-
+<%-- function back(){
+	location.href = "<%=request.getContextPath() %>/member/login?memberId="+<%=memberLoggedIn.getMemberId()%>+"&memberPwd="+<%=memberLoggedIn.getMemberPwd()%>;
+} --%>
 
 <%--로그인 유효성 검사--%>
 function CheckLogin(){
@@ -31,6 +40,15 @@ function CheckLogin(){
 		return false;
 	}	
 	return true;
+}
+
+function searchIdPwd(){     
+	   var url = "<%=request.getContextPath()%>/member/searchIdPwd";
+	   var title = "searchIdPwd";
+	   var status = "left=300px, top=100px, width=800px, height=300px";
+	   
+	  open(url, title, status);
+   
 }
 
 </script>
@@ -75,16 +93,67 @@ function CheckLogin(){
            <input type="submit" value="FaceBook으로 로그인">
          </div>
          <br>
-         <span>비밀번호를 잊으셨나요?</span>
+         <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
        </div>
      </form>
-     <%} else {%>
-     	
+     <%} else {
+     %>
+     <div class="login_box" id="login_box">
+     
+     </div>
+     <script>
+     var memberId = "<%=memberLoggedIn.getMemberId()%>";
+     	$.ajax({
+			url: "<%=request.getContextPath()%>/schedule/daySchedule.do",
+			type: "get",
+			dataType: "json",
+			data: "memberId="+memberId,
+			success: function (data) {
+				
+				for(var schedule in data){
+					console.log(data); //data는 이미 javascript배열객체
+					//json <----> javascript
+					//	   <--- JSON.stringgify()
+					//	  	---> JSON.parse()
+					var table = $("<table></table>");
+					var html = "<tr><th>타이틀</th></tr>";
+					
+					for(var i in data){
+						var user = data[i];
+						
+						html += "<tr><td>"+user.scheduleTitle+"</td></tr>";
+						
+					}
+					table.append(html);
+					console.log(html);
+					
+					
+					
+					$("#login_box").html(table);
+					
+				}
+				
+				
+				
+			},
+			error: function (jqxhr, textStatus, errorThrown) {
+				console.log("ajax처리실패!");
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+			
+		});
      
      
+     
+     </script>
+     <div>
+     <button id="back" onclick="back();">달력 화면 돌아가기</button>
+     </div>
      <%} %>
      
    </section>
