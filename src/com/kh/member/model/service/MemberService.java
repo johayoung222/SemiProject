@@ -75,4 +75,20 @@ public class MemberService {
 		
 	}
 
+	public int updatePassword(Member m) {
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().updatePassword(conn, m);
+		//dml문 실행시 반드시 트랜잭션처리
+		System.out.println("MemberService UpaeatePassword");
+		if(result > 0)
+			commit(conn);
+		else 
+			rollback(conn);
+		//자원반납
+		close(conn);
+		
+		return result;
+	}
+
 }

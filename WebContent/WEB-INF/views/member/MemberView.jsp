@@ -59,7 +59,7 @@
          </div>
          <div class="input_login">
              <label for="memberName">이름:</label>
-             <input type="text" name="memberName" id="memberName"  value="<%=memberName%>" required  />
+             <input type="text" name="memberName" id="memberName"  value="<%=memberName %>" required  />
          </div>
          <div class="input_login">
            <label for="memberEmail">이 메일:</label>
@@ -128,9 +128,7 @@
      if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "아이디는  숫자 포함 영대소문자, 4~12자 입력할것!"))
          return false;
 
-      if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
-         return false;
-      
+   
       if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,password,"패스워드는 숫자/문자/특수포함8~15자리"))
           
           return false;
@@ -172,7 +170,15 @@
 	  
 	  
   }
- 
+  function updatePassword(){
+	  var memberId_ = document.getElementById('memberId_');
+	  var url = "<%=request.getContextPath()%>/member/updatePassword?memberId=<%=memberId_%>";
+	  var title = "udatePassword";
+	  var status = "left=500px, top=200px, width=500px, height=350px";
+	  open(url, title, status);
+	  
+	  
+  }
 
 
 </script>
