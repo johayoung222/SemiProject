@@ -427,14 +427,15 @@ public class ScheduleDao {
 			pstmt.setString(2, s.getScheduleContent());
 			pstmt.setString(3, s.getScheduleOriginalfilename());
 			pstmt.setString(4, s.getScheduleRenamefilename());
-			pstmt.setString(5, s.getScheduleDdaycheck());
-			pstmt.setString(6, s.getScheduleRepeatcheck());
-			pstmt.setInt(7, s.getScheduleTimeline());
-			pstmt.setDate(8, s.getScheduleStartday());
-			pstmt.setDate(9, s.getScheduleEndday());
-			pstmt.setString(10, s.getMemberId());
-			pstmt.setDate(11, s.getScheduleDday());
-			pstmt.setString(12, s.getScheduleIcon());
+			pstmt.setDate(5, s.getScheduleDate());
+			pstmt.setString(6, s.getScheduleDdaycheck());
+			pstmt.setString(7, s.getScheduleRepeatcheck());
+			pstmt.setInt(8, s.getScheduleTimeline());
+			pstmt.setDate(9, s.getScheduleStartday());
+			pstmt.setDate(10, s.getScheduleEndday());
+			pstmt.setString(11, s.getMemberId());
+			pstmt.setDate(12, s.getScheduleDday());
+			pstmt.setString(13, s.getScheduleIcon());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

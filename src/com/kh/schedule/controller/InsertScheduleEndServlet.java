@@ -94,6 +94,10 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		String scheduleEndDay = multiReq.getParameter("scheduleEndDay");
 		java.sql.Date dateEday = java.sql.Date.valueOf(scheduleEndDay);
 		System.out.println("날짜출력 dateEday 테스트"+dateEday);
+		
+		String writeDay = multiReq.getParameter("writeDay");
+		java.sql.Date dateWriteDay = java.sql.Date.valueOf(writeDay);
+		System.out.println("날짜출력 dateWriteDay 테스트"+dateWriteDay);
 	
 		
 		
@@ -131,6 +135,7 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		s.setScheduleDday(dateDday);
 		s.setScheduleOriginalfilename(scheduleOriginalfilename);
 		s.setScheduleRenamefilename(scheduleRenamefilename);
+		s.setScheduleDate(dateWriteDay);
 		s.setScheduleIcon(iconAlt);
 		
 		

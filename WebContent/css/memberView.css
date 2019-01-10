@@ -12,7 +12,7 @@ section{
   }
 
 /* signup */
-.update_box { width:450px; height:500px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+.update_box { width:450px; height:600px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
 	border-radius:7px; border: 1px solid rgb(248, 248, 248); z-index: 10; }
 
 .update_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
@@ -92,6 +92,9 @@ section{
 /* 아이디 중복 검사 버튼 */
 .input_login #memberId_{
   width: 100; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
+}
+section>h2{
+	text-align: center;
 }
 
 

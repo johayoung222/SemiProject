@@ -10,6 +10,7 @@
 		 String memberName = m.getMemberName();
 		 int memberDate = m.getMemberAge();
 		 String memberemail = m.getMemberEmail();
+		 String gender = m.getMemberGender();
 
 
 
@@ -70,6 +71,24 @@
            <input type="number" name="memberDate" id="memberDate" value="<%=memberDate%>" readonly />
            &nbsp;&nbsp;
          </div>
+       
+         <br />
+         <div class="gender">
+                   <input type="radio" 
+		  				   name="gender" 
+		  				   id="gender0"
+		  				   value="M"
+		  				   <%="M".equals(gender)?"checked":"" %>/>
+		  			<label for="gender0">남</label>
+		  			<input type="radio" 
+		  				   name="gender" 
+		  				   id="gender1"
+		  				   value="F"
+		  				   <%="F".equals(gender)?"checked":"" %>/>
+		  			<label for="gender1">여</label>
+         </div>
+         
+         
          <br>
          <br />
          <br />
@@ -95,32 +114,7 @@
 
 <script>
  
-  
-  function checkIdDuplicate(){
-		//아이디중복검사폼을 전송.
-		var memberId = $("#memberId_").val().trim();
-
-		if(memberId.length == 0 ){
-			 alert("공백은 아이디로 만들수 없습니다");
-			 return false;
-
-		}
-		
-		 
-	
-		
-		//팝업창을 target으로 폼전송
-		var target = "checkIdDuplicate";
-		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-		var popup = open("", target, "left=300px, top=100px, height=50px, width=300px");
-		
-		checkIdDuplicateFrm.memberId.value = memberId;
-		//폼의 대상을 작성한 popup을 가리키게 한다. 
-		checkIdDuplicateFrm.target = target;
-		checkIdDuplicateFrm.submit();
-		
-	}
-  
+ 
  
   function saveMember(){
       //아이디 유효성 검사
@@ -166,26 +160,19 @@
     return true;
   }
 
- function checkPwd(){
-	
-
-	var pw1 = document.getElementById('memberPwd').value;
-	var pw2 = document.getElementById('memberpwdcheck').value;
-	
-	if(pw1 != '' && pw2 !=  ''){
-	if(pw1 == pw2){
-		result ='<div id="result_true">비밀번호가 일치합니다.:)</div>';
-		document.getElementById('checkPwd').innerHTML = result;
-		document.getElementById('checkPwd').style.color = "blue";
-	}else{
-		result ='<div id="result_false">비밀번호가 일치하지 않습니다.:(</div>';
-		 document.getElementById('checkPwd').innerHTML = result;
-		 document.getElementById('checkPwd').style.color = "red";
-		
-	  }
-	} 
-	 
- }
+  function deleteMember(){
+	  
+	  var bool = confirm("정말로 탈퇴하시겠습니까?");
+		if(bool){
+			var frm = document.memberUpdateform;
+			frm.action = "<%=request.getContextPath()%>/member/memberDelete";
+			frm.submit();
+			
+		}
+	  
+	  
+  }
+ 
 
 
 </script>
