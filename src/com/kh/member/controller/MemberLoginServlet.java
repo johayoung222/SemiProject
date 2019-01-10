@@ -87,6 +87,24 @@ public class MemberLoginServlet extends HttpServlet {
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
 			List<Schedule> list = new ScheduleService().selectAllSchedule(memberId);
 			
+			List<Schedule> dayList = null;
+			HashMap<Integer,List<Schedule>> map = new HashMap<>();
+			
+			
+			//년월일에 맞게 데이터 삽입해줘야 함
+			Calendar c2 = Calendar.getInstance();
+			for(int i=1; i<=31; i++) {
+				dayList = new ArrayList<>();
+				for(Schedule s : list) {
+					Date date = s.getScheduleDate();
+					c2.setTime(date);
+					if(i == c2.get(Calendar.DATE)) {
+						dayList.add(s);
+					}
+				}
+				map.put(i, dayList);
+			}
+			
 			
 
 //			Set<Integer> set =  map.keySet();
@@ -103,6 +121,7 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
 			request.setAttribute("list", list);
+			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
 			
 		//2.로그인 실패한 경우
