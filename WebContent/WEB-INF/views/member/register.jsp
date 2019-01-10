@@ -99,11 +99,11 @@
          </div>
          <div class="input_login">
             <label for="male" id="man">남자</label>
-            <input type="radio" name="gender" id="gender"
+            <input type="radio" name="gender" id="gender0"
                    value="M" checked>
             &nbsp;&nbsp;
             <label for="female">여자</label>
-            <input type="radio" name="gender" id="gender"
+            <input type="radio" name="gender" id="gender1"
                    value="F">
          </div>
          <br>
