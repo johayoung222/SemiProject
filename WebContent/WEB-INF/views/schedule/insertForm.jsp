@@ -7,13 +7,16 @@
 	int year = (int) request.getAttribute("year");
 	int month = (int) request.getAttribute("month");
 	int day = (int) request.getAttribute("day");
-	String user = (String) request.getAttribute("user");
+	int time = -1;
+	if(request.getAttribute("time") != null){
+	time = (int)request.getAttribute("time");
+	}
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
 <style>
 .content {
-	padding-left: 140px;
+	margin-left: 200px;
 }
 
 #scheduleDday-container {
@@ -32,7 +35,7 @@
 	<h2><%=year%>년
 		<%=month%>월
 		<%=day%>일
-		<%=user%>님의 일정등록
+		<%=memberLoggedIn.getMemberName() %>님의 일정등록
 	</h2>
 	<section>
 
