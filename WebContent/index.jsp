@@ -14,9 +14,18 @@
 
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
+<style>
+#back {
+float: right;
+margin-right: 450px;
+}
+</style>
+
 <script>
 
-
+<%-- function back(){
+	location.href = "<%=request.getContextPath() %>/member/login?memberId="+<%=memberLoggedIn.getMemberId()%>+"&memberPwd="+<%=memberLoggedIn.getMemberPwd()%>;
+} --%>
 
 <%--로그인 유효성 검사--%>
 function CheckLogin(){
@@ -84,6 +93,7 @@ function CheckLogin(){
      <%} else {
      %>
      <div class="login_box" id="login_box">
+     
      </div>
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
@@ -111,6 +121,8 @@ function CheckLogin(){
 					table.append(html);
 					console.log(html);
 					
+					
+					
 					$("#login_box").html(table);
 					
 				}
@@ -130,6 +142,9 @@ function CheckLogin(){
      
      
      </script>
+     <div>
+     <button id="back" onclick="back();">달력 화면 돌아가기</button>
+     </div>
      <%} %>
      
    </section>
