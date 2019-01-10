@@ -20,6 +20,7 @@ public class Schedule implements Serializable{
 	private String memberId;
 	private Date scheduleDday;
 	private String scheduleIcon;
+	private int theDay;
 	
 	
 	public Schedule() {}
@@ -143,13 +144,19 @@ public class Schedule implements Serializable{
 	public void setScheduleIcon(String scheduleIcon) {
 		this.scheduleIcon = scheduleIcon;
 	}
+	
+	public int getTheDay() {
+		return theDay;
+	}
 
-
+	public void setTheDay(int theDay) {
+		this.theDay = theDay;
+	}
 
 	public Schedule(int scheduleNo, String scheduleTitle, String scheduleContent, String scheduleOriginalfilename,
 			String scheduleRenamefilename, Date scheduleDate, String scheduleDdaycheck, String scheduleRepeatcheck,
 			int scheduleTimeline, Date scheduleStartday, Date scheduleEndday, String memberId, Date scheduleDday,
-			String scheduleIcon) {
+			String scheduleIcon, int theDay) {
 		super();
 		this.scheduleNo = scheduleNo;
 		this.scheduleTitle = scheduleTitle;
@@ -165,6 +172,7 @@ public class Schedule implements Serializable{
 		this.memberId = memberId;
 		this.scheduleDday = scheduleDday;
 		this.scheduleIcon = scheduleIcon;
+		this.theDay = theDay;
 	}
 
 	@Override
@@ -175,6 +183,7 @@ public class Schedule implements Serializable{
 				+ ", scheduleDdaycheck=" + scheduleDdaycheck + ", scheduleRepeatcheck=" + scheduleRepeatcheck
 				+ ", scheduleTimeline=" + scheduleTimeline + ", scheduleStartday=" + scheduleStartday
 				+ ", scheduleEndday=" + scheduleEndday + ", memberId=" + memberId + ", scheduleDday=" + scheduleDday
-				+ ", scheduleIcon=" + scheduleIcon + "]";
+				+ ", scheduleIcon=" + scheduleIcon + ", theDay=" + theDay + "]";
 	}
+	
 }

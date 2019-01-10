@@ -32,7 +32,7 @@ public class MemberDeleteServlet extends HttpServlet {
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
 		
-		String loc = "/";
+		String loc = "";
 
 		if(result>0) {
 			msg = "성공적으로 회원정보를 탈퇴했습니다.";

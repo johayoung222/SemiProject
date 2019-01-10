@@ -32,7 +32,7 @@ public class ScheduleSearchServlet extends HttpServlet {
 		String memberId = memberLoggedIn.getMemberId();
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.printf("[%s : %s]\n", searchType, searchKeyword);
+		System.out.println(searchType);
 		
 		int cPage;
 		try {
@@ -47,16 +47,13 @@ public class ScheduleSearchServlet extends HttpServlet {
 		}catch(NumberFormatException e) {
 			numPerPage = 7;
 		}
-		System.out.printf("[searchType=%s, searchKeyword=%s, cPage=%s, numPerPage=%s]\n",searchType, searchKeyword, cPage, numPerPage);
 				
 		List<Schedule> list = null;
 		switch (searchType) {
 		case "scheduleTitle"	:list = new ScheduleService().selectScheduleByTitle(searchKeyword, cPage, numPerPage, memberId);break;
 		case "scheduleContent"	:list = new ScheduleService().selectScheduleByContent(searchKeyword, cPage, numPerPage, memberId);break;
 		case "scheduleIcon"	:list = new ScheduleService().selectScheduleByIcon(searchKeyword, cPage, numPerPage, memberId);break;
-		}
-		
-		System.out.println("list="+list);
+		}		
 		
 		int totalMember = 0;
 		switch (searchType) {
@@ -65,18 +62,13 @@ public class ScheduleSearchServlet extends HttpServlet {
 		case "scheduleIcon"	:totalMember = new ScheduleService().selectScheduleCountByIcon(searchKeyword, memberId);break;
 		}
 		
-		int totalPage = (int)Math.ceil((double)totalMember/numPerPage);
-		System.out.println("totalMember="+totalMember+", totalPage="+totalPage);
-		
+		int totalPage = (int)Math.ceil((double)totalMember/numPerPage);		
 		
 		int pageBarSize = 7;		
 		int pageStart = ((cPage - 1)/pageBarSize) * pageBarSize +1;
 		int pageEnd = pageStart+pageBarSize-1;		
 		int pageNo = pageStart;
-		
-		//System.out.printf("[totalPage=%s]\n", totalPage);
-		//System.out.printf("[pageStart=%s, pageEnd=%s]\n", pageStart, pageEnd);
-				
+						
 		String pageBar = "";		
 		
 		if(pageNo == 1 ){
@@ -103,8 +95,6 @@ public class ScheduleSearchServlet extends HttpServlet {
 			pageBar += "<a href='"+request.getContextPath()+
 					"/schedule/scheduleSearch?searchType="+searchType+"&searchKeyword="+searchKeyword+"&cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
-		
-		System.out.printf("[pageBar=%s]\n", pageBar);
 
 		request.setAttribute("list", list);
 		request.setAttribute("searchType", searchType);
