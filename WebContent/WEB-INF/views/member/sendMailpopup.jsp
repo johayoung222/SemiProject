@@ -3,6 +3,7 @@
     <%
     	int certifiedNum = (int)request.getAttribute("certified");
     	System.out.println(certifiedNum);
+
     %>
 
 <!DOCTYPE html>
@@ -18,6 +19,8 @@ function check(){
 	console.log(certified);
 	var certifiedNum = <%=certifiedNum%>;
 	console.log(certifiedNum);
+
+	
 	
 	if(certified.length == 0){
 		alert("인증번호를 입력하세요");
@@ -27,6 +30,12 @@ function check(){
 		return false;
 	}else{
 		alert("인증 완료");
+		opener.signupform.target.value = "1";
+		opener.signupform.emailclear.value = "인증완료";
+		opener.signupform.memberEmail.readOnly = "true";
+		opener.signupform.emailclear.disabled="true";
+		
+
 		self.close();
 	}
 } 

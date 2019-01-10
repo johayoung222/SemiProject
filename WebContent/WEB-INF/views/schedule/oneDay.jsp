@@ -22,7 +22,7 @@
 		<input type="hidden" name="year" value="<%=year %>"/>
 		<input type="hidden" name="month" value="<%=month %>"/>
 		<input type="hidden" name="day" value="<%=day %>"/>
-		<input type="hidden" name="user" value="user"/>
+		<input type="hidden" name="time" value="time"/>
 	</form>
 
 <div id="todolist">
@@ -41,30 +41,30 @@
 <div id="timeline">
 	<h2>TimeLine</h2>
 	<div id="scroll-box">
-		<div id="time0">00시</div>
-		<div id="time1">01시</div>
-        <div id="time2">02시</div>
-        <div id="time3">03시</div>
-        <div id="time4">04시</div>
-        <div id="time5">05시</div>
-        <div id="time6">06시</div>
-        <div id="time7">07시</div>
-        <div id="time8">08시</div>
-        <div id="time9">09시</div>
-        <div id="time10">10시</div>
-        <div id="time11">11시</div>
-        <div id="time12">12시</div>
-        <div id="time13">13시</div>
-        <div id="time14">14시</div>
-        <div id="time15">15시</div>
-        <div id="time16">16시</div>
-        <div id="time17">17시</div>
-        <div id="time18">18시</div>
-        <div id="time19">19시</div>
-        <div id="time20">20시</div>
-        <div id="time21">21시</div>
-        <div id="time22">22시</div>
-        <div id="time23">23시</div>
+		<div id="0">00시</div>
+		<div id="1">01시</div>
+        <div id="2">02시</div>
+        <div id="3">03시</div>
+        <div id="4">04시</div>
+        <div id="5">05시</div>
+        <div id="6">06시</div>
+        <div id="7">07시</div>
+        <div id="8">08시</div>
+        <div id="9">09시</div>
+        <div id="10">10시</div>
+        <div id="11">11시</div>
+        <div id="12">12시</div>
+        <div id="13">13시</div>
+        <div id="14">14시</div>
+        <div id="15">15시</div>
+        <div id="16">16시</div>
+        <div id="17">17시</div>
+        <div id="18">18시</div>
+        <div id="19">19시</div>
+        <div id="20">20시</div>
+        <div id="21">21시</div>
+        <div id="22">22시</div>
+        <div id="23">23시</div>
 	</div>
 </div>
 </div>
@@ -77,6 +77,14 @@ $("#todolist div#insertBoard").nextAll().click(function(){
 	var target = $(this).children();
 	var boardNo = target.attr("id");
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
+});
+
+$("#scroll-box div").each(function(idx, item){
+	$(item).click(function(){
+		var time = $(this).attr("id");
+		insertFrm.time.value = time;
+		insertFrm.submit();
+	});
 });
 </script>
 </body>
