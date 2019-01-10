@@ -1,0 +1,104 @@
+section{
+    padding: 0px;
+}
+.updateFrm{
+    margin: 0px 0px 0px 0px;
+   
+  
+  }
+  .logofont{
+    position: relative;
+    top: -17px;
+  }
+
+/* signup */
+.update_box { width:450px; height:600px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+	border-radius:7px; border: 1px solid rgb(248, 248, 248); z-index: 10; }
+
+.update_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
+.update_box .input_login input { width: 60%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;}
+#gender{width:20px;}
+
+.update_box .login input {
+    width: 100%;
+    height: 50px;
+    background-color: rgb(156, 36, 167);
+    color: rgb(248, 248, 248);
+    font-size: 16px;
+    padding: 17px 0 16px;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-seri;
+}
+.update_box .login input:hover{
+	background-color: indigo;
+    color: rgb(248, 248, 248);
+}
+.update_box .update input {
+    width: 100%;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    font-size: 16px;
+    padding: 17px 0 16px;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-seri;
+}
+.update_box .update input:hover{
+	background-color: skyblue;
+    color: rgb(248, 248, 248);
+}
+.update_box .delete input {
+    width: 100%;
+    height: 50px;
+    background-color: #da6d25;
+    color: white;
+    font-size: 16px;
+    padding: 17px 0 16px;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-seri;
+}
+.update_box .delete input:hover{
+	    background-color: #ff8040;
+        color: white;
+	
+}
+
+.update_box span{ font-family: 'Sunflower', sans-serif; }
+.update_box .check { color: #000; font-size: 14px; padding: 9px 0 15px 0; font-family: 'Noto Sans KR', sans-seri;}l
+.update_box .update input { width:100%; height:50px; background-color:rgb(156, 36, 167); color:rgb(248, 248, 248); font-size:16px; 
+          padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
+          
+/* 폼 상단 플젝명 */
+.update_boxspan:first-of-type{font-family: 'Fredericka the Great', cursive;  font-size: 40px; padding: 0 60px;}
+
+.update_boxspan{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
+
+
+
+.update_box .last {float: right; width:60%; margin-top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
+.update_box .last .join {font-size: 30px;}
+.update_box .last .search { float:right;}
+.update_box .last .join a { color:#00a6de;}
+.update_box .last .search a { color:#626262;} 
+.update_box .last { width:100%; margin-top:10px; border-top:1px solid #ebebeb; padding-top:20px; font:bolder; font-size: 30px ;	 font-family: 'Abril Fatface', cursive;}
+.update_box .last .join { float:left;}
+.update_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;} 
+.update_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
+#man{padding-left: 110px;
+}
+/* 아이디 중복 검사 버튼 */
+.input_login #memberId_{
+  width: 100; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;
+}
+section>h2{
+	text-align: center;
+}
+
+
+
+
+
+

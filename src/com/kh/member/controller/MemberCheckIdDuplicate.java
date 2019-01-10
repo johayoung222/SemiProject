@@ -27,13 +27,13 @@ public class MemberCheckIdDuplicate extends HttpServlet {
 		//1.encoding
 				request.setCharacterEncoding("utf-8");
 				
-				//2.parameterHandling
+				
 				String memberId = request.getParameter("memberId");
 				
-				//3.businessLogic
+			
 				Member m = new MemberService().memberOne(memberId);
 				
-				//사용가능여부를 isUsable변수에 담기
+				
 				boolean isUsable = m==null?true:false;
 				
 				//view단 jsp에서 사용할 데이터를 request의 속성값으로 보관

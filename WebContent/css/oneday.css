@@ -1,14 +1,34 @@
 @charset "UTF-8";
+body{
+	text-align: center;
+}
 #oneday-container{
     width: 80%;
     height: 600px;
     display: flex;
     justify-content: space-around;
+    margin: 0 auto;
 }
+/* To do List */
 #todolist{
     border: 1px solid black;
     width: 500px;
     height: 500px;
+    position: relative;
+}
+#todolist h2{
+	display: inline;
+	line-height: 40px;
+}
+#todolist div{
+	border: 1px solid black;
+	padding: 0px;
+}
+#todolist div h4{
+	margin: 10px 0px;
+}
+#todolist div:hover{
+	background-color: coral;
 }
 #timeline{
     border: 1px solid black;
@@ -22,4 +42,30 @@
     margin: 0px;
     border-width: 2px;
     border-color: coral;
+}
+#insertBoard{
+	border: 1px solid black;
+	width: 30px;
+	font-size: 30px;
+	position: absolute;
+	right: 20px;
+	display: inline-block;
+	border-radius: 10px;
+	background-color: lightblue;
+}
+
+/* Timeline */
+#scroll-box{
+	width: 100%;
+	height: 80%;
+	overflow: scroll;
+}
+#scroll-box div{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid black;
+    text-align: left;
+}
+::-webkit-scrollbar { 
+    display: none; 
 }

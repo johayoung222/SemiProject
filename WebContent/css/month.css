@@ -1,11 +1,4 @@
 @charset "UTF-8";
-#sidebar{
-	display: block;
-	width: 250px;
-	height: 600px;
-	background-color: lightblue;
-}
-
 #schedule{
     width: 83%;
     height: 80%;
@@ -46,4 +39,7 @@
 #month td span, #add td span{
     position: absolute;
     top: 0px;
+}
+#prevMonth, #nextMonth{
+	cursor: pointer;
 }

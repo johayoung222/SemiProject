@@ -63,7 +63,7 @@ function searchIdPwd(){
      
      <!-- login form -->
      <form class="loginFrm" name="loginform" action="<%=request.getContextPath()%>/member/login" method="post" onsubmit="return CheckLogin();">
-
+      <%if(memberLoggedIn == null){ %>
        <div class="login_box">
          <div class="input_login">
            <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요." >
@@ -90,6 +90,57 @@ function searchIdPwd(){
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
        </div>
      </form>
+     <%} else {
+     %>
+     <div class="login_box" id="login_box">
+     </div>
+     <script>
+     var memberId = "<%=memberLoggedIn.getMemberId()%>";
+     	$.ajax({
+			url: "<%=request.getContextPath()%>/schedule/daySchedule.do",
+			type: "get",
+			dataType: "json",
+			data: "memberId="+memberId,
+			success: function (data) {
+				
+				for(var schedule in data){
+					console.log(data); //data는 이미 javascript배열객체
+					//json <----> javascript
+					//	   <--- JSON.stringgify()
+					//	  	---> JSON.parse()
+					var table = $("<table></table>");
+					var html = "<tr><th>타이틀</th></tr>";
+					
+					for(var i in data){
+						var user = data[i];
+						
+						html += "<tr><td>"+user.scheduleTitle+"</td></tr>";
+						
+					}
+					table.append(html);
+					console.log(html);
+					
+					$("#login_box").html(table);
+					
+				}
+				
+				
+				
+			},
+			error: function (jqxhr, textStatus, errorThrown) {
+				console.log("ajax처리실패!");
+				console.log(jqxhr);
+				console.log(textStatus);
+				console.log(errorThrown);
+			}
+			
+		});
+     
+     
+     
+     </script>
+     <%} %>
+     
    </section>
  </div>
 
@@ -100,6 +151,7 @@ setInterval(function(){
 } , 3000);
 
 </script>
+
 
 </body>
 </html>

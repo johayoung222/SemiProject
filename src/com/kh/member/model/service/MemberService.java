@@ -47,12 +47,41 @@ public class MemberService {
 
 	}
 
+
 	public Member MemberIdPwd(Member member) {
 		Connection conn = getConnection();
 		Member m = new MemberDao().MemberIdPwd(conn, member);
 		if(m != null) commit(conn);
 		else rollback(conn);
 		return m;
+	}
+
+	public int updateMember(Member m) {
+		
+				Connection conn = getConnection();
+				int result = new MemberDao().updateMember(conn, m);
+				if(result>0)
+					commit(conn);
+				else 
+					rollback(conn);
+				close(conn);
+				return result;
+		
+	}
+
+	public int deleteMember(String memberId) {
+	
+		Connection conn = getConnection();
+		int result = new MemberDao().deleteMember(conn, memberId);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+		
+		
+		
 	}
 
 

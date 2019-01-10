@@ -25,14 +25,12 @@ public class NextMonthServlet extends HttpServlet {
 		
 		int cYear = Integer.parseInt(request.getParameter("cYear"));
 		int cMonth = Integer.parseInt(request.getParameter("cMonth"));
-		
+		System.out.println("cYear"+cYear+"cMonth"+cMonth);
 		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, cYear);
 		c.set(Calendar.MONTH, cMonth);
 		c.add(Calendar.MONTH, 1);
-		c.set(Calendar.YEAR, cYear);
-		if(cMonth == 11) {
-			c.add(Calendar.YEAR, 1);
-		}
+		c.set(Calendar.DATE, 1);
 		
 		int start = c.get(Calendar.DAY_OF_WEEK);
 		int last = c.getActualMaximum(Calendar.DATE);

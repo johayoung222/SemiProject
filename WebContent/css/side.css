@@ -15,9 +15,12 @@ body {
 
 .side{
 	position: absolute;
-	width:130px;
+	width:200px;
 	height:100%;
 	top : 0;
 	left:0;
 	background-color: rgb(206, 219, 186);
+}
+.side a{
+	text-decoration: none;
 }

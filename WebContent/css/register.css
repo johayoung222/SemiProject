@@ -85,3 +85,4 @@ input[type="date"]:valid::before { display: none }
 #result_false{
 	color: red;
 }
+
