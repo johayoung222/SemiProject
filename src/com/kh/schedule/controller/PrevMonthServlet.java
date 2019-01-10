@@ -33,6 +33,7 @@ public class PrevMonthServlet extends HttpServlet {
 		if(cMonth == 0) {
 			c.roll(Calendar.YEAR, -1);
 		}
+		c.set(Calendar.DATE, 1);
 		
 		int start = c.get(Calendar.DAY_OF_WEEK);
 		int last = c.getActualMaximum(Calendar.DATE);

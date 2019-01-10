@@ -36,22 +36,22 @@ public class CheckEmailCertifiedServlet extends HttpServlet {
 		//받는사람(사용자입력)
 		String email = request.getParameter("memberEmail");
 		System.out.println("servlet Email=="+email);
-		System.out.println(email);
+		
 		
 		//보내는 사람
-		String from = "qkrqh0212@gmail.com";
+		String from = "7sscheduler@gmail.com";
 		
 		//제목
 		String subject = "7's Scheduler 인증 확인 메일";
 		
 		//내용(인증번호)
-		int certified = ((int) (Math.random() * 999999)+100000);
+		int certified = ((int) (Math.random() * 899999)+100000);
 		request.setAttribute("certified", certified);
 		String content = "인증번호 : ["+certified+"]";
 
 		Properties p = new Properties(); // 정보를 담을 객체
 
-		p.put("mail.smtp.host","smtp.gmail.com"); // 네이버 SMTP
+		p.put("mail.smtp.host","smtp.gmail.com"); // 구글 SMTP
 		 
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.starttls.enable", "true");
@@ -84,18 +84,9 @@ public class CheckEmailCertifiedServlet extends HttpServlet {
 		    Transport.send(msg); // 전송
 		} catch(Exception e){
 		    e.printStackTrace();
-		    //out.println("<script>alert('Send Mail Failed..');history.back();</script>");
-		    // 오류 발생시 뒤로 돌아가도록
 		    return;
 		}
 		 
-		//PrintWriter out = response.getWriter();
-		// 성공 시
-		//out.println("<script>alert('Send Mail Success!!'); history.back();</script>");//location.href='mailForm.html';
-		
-
-	   
-		
 		request.getRequestDispatcher("/WEB-INF/views/member/sendMailpopup.jsp").forward(request, response);
 	}
 

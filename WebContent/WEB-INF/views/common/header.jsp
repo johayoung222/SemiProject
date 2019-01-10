@@ -47,13 +47,12 @@
 	</tr>
 	</table>	
 	<%}else{ %>
-	
-	
+		
 	
 	<%} %>
     
   </nav>
-
+</body>
 <script>
 $(".logo").click(function(){
 	location.href = "<%=request.getContextPath() %>";

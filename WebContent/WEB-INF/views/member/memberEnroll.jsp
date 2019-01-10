@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-
 <section>
+
 	<form name="regform" action="<%=request.getContextPath() %>/member/memberEnroll" method="POST" onsubmit="return validate()">
 <div class="join_box">
 	<h2>please... input your Information!</h2>
@@ -42,10 +42,7 @@
 			<th>이메일:</th>
 			<td><input type="email" name="email" id="ckemail" placeholder="email을 입력해주세요"></td>
 		</tr>
-		<tr>
-			<th>전화번호:</th>
-			<td><input type="text" name="phone" placeholder="01012345678"/></td>
-		</tr>
+		
 	</table>
 	<br> <br> <br>
 	<div class="join">

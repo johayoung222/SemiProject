@@ -20,6 +20,7 @@
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 
@@ -32,12 +33,19 @@ function addClickEvent(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
 			var day = $(this).children().attr("id");
-			if(day != ""){
+			if(day != null){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
 	});
 }
+
+</script>
+
+	<div id="sidebar">
+	
+	</div>
+
 
 function insertData(){
 	var span = $("#add").find("span");
@@ -75,7 +83,7 @@ function insertData(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<=<%=last %>+1; i++){
+			for(var i=0; i<35; i++){
 				html = "<td><span></span></td>";
 				if(i>=start && i<=<%=last %>+1){
 				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
