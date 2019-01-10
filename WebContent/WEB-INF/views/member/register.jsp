@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
 <!doctype html>
 <html>
 
@@ -28,7 +29,8 @@
   }
   function sendMail(){
 	  var memberEmail = $("#memberEmail").val();
-		//팝업창을 target으로 폼전송
+
+	  //팝업창을 target으로 폼전송
 		var target = "checkEmailCertified";
 		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
 		var popup = open("", target, "left=300px, top=100px, height=135px, width=355px, resizable=no, scrollbar=no");
@@ -38,8 +40,7 @@
 		//console.log(memberEmail);
 		
 		checkEmailCertifiedFrm.memberEmail.value = memberEmail;
-		checkEmailCertifiedFrm.submit();
-		
+		checkEmailCertifiedFrm.submit();		
   }
 
 
@@ -53,11 +54,7 @@
 	  			 name="checkEmailCertifiedFrm">
 			<input type="hidden" name="memberEmail" value=""/>
 	</form>
-<%-- 	<form action="<%=request.getContextPath()%>/sendMail.jsp"
-	  			 method="get"
-	  			 name="checkEmailCertifiedFrm">
-			<input type="hidden" name="memberEmail"/>
-	</form> --%>
+
  
  <div class="content">
    <section>
@@ -94,7 +91,8 @@
          <div class="input_login">
            <input type="email" name="memberEmail" id="memberEmail" placeholder="이메일을 입력하세요">
            &nbsp;&nbsp;
-           <input type="button" id="emailclear" value="인증하기" onclick="sendMail();">
+           <input type="button" name="emailclear" id="emailclear" value="인증하기" onclick="sendMail();">
+           <input type="hidden" name="target" id="result" value="0"/>
          </div>
          <div class="input_login">
            <input type="date" name="memberDate" id="memberDate" data-placeholder="생년월일을 입력하세요" required aria-required="true" >         
@@ -214,7 +212,20 @@
 	} 
 	 
  }
-</script>
+ $("#result").on("change", function(){
+	 console.log("작동중");
+	 $("#memberEmail").attr("readonly" , readonly);
+	 $("#emailclear").attr("disabled" , disabled);
+	 
+ });
+/*  var result = $("#result").val();
+ if(result == 1) {
+	 $("#memberEmail").attr("readonly" , readonly);
+	 $("#emailclear").attr("disabled" , disabled);
+ }
+ */
+ 
+ </script>
 
 
 </body>
