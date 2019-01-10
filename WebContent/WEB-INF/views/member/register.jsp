@@ -24,7 +24,6 @@
 
 <script>
   function validate(){
-	  
 
   }
   function sendMail(){
