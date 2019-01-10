@@ -197,6 +197,7 @@
 				<input type="file" name="up_file" placeholder="이미지/파일선택" >
 				
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
+				<input type="hidden" name="theDay" value="<%=day %>" />
 				
 					<br /><br />
 

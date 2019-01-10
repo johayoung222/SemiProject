@@ -121,6 +121,8 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		String iconAlt = multiReq.getParameter("iconAlt");
 		System.out.println("iconAlt 값 확인 : "+iconAlt);
 		
+		int theDay = Integer.parseInt(multiReq.getParameter("theDay"));
+		
 		Schedule s = new Schedule(); 
 		s.setMemberId(memberId);
 		s.setScheduleTitle(scheduleTitle); 
@@ -137,6 +139,7 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDate(dateWriteDay);
 		s.setScheduleIcon(iconAlt);
+		s.setTheDay(theDay);
 		
 		
 		System.out.printf("[%s]\n", s);

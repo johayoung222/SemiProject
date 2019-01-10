@@ -449,8 +449,8 @@ public class ScheduleDao {
 			pstmt.setString(11, s.getMemberId());
 			pstmt.setDate(12, s.getScheduleDday());
 			pstmt.setString(13, s.getScheduleIcon());
-			//파리미터값으로 작성일 1-31사이 값 가져와서 넣기
-			pstmt.setInt(14, 1);
+			pstmt.setInt(14, s.getTheDay());
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {

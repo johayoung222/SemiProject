@@ -83,9 +83,30 @@ public class MemberLoginServlet extends HttpServlet {
 			int start = c.get(Calendar.DAY_OF_WEEK)-1;
 			int last = c.getActualMaximum(Calendar.DATE);
 			
+			String scMonth = "";
+			String snMonth = "";
+			int cMonth = month + 1;
+			int cYear = year;
+			
+			if(cMonth < 10) {
+				scMonth = "0"+cMonth;
+			}
+			
+			cMonth += 1;
+			if(cMonth == 13) {
+				cYear += 1;
+				cMonth = 1;
+			}
+			if(cMonth < 10) {
+				snMonth = "0"+cMonth;
+			}
+			
+			String first = year+scMonth;
+			String second = cYear+snMonth;
+			System.out.println(first+"/"+second);
 		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
-			List<Schedule> list = new ScheduleService().selectAllSchedule(memberId);
+			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
 			
 			List<Schedule> dayList = null;
 			HashMap<Integer,List<Schedule>> map = new HashMap<>();
