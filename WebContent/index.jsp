@@ -104,6 +104,7 @@ function searchIdPwd(){
      <div class="login_box" id="login_box">
      
      </div>
+     <input type="button" value="달력 ㄱㄱ" style="float:right" />
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
