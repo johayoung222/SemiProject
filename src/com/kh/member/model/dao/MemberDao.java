@@ -112,6 +112,36 @@ public class MemberDao {
 		return m;
 	}
 
+
+	public Member MemberIdPwd(Connection conn, Member member) {
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("test");
+		System.out.println("member="+member);
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberName());
+			pstmt.setString(2, member.getMemberEmail());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+				//컬럼명은 대소문자 구분이 없다.
+				m.setMemberId(rset.getString("member_id"));
+				
+			}			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return m;
+	}
+
 	public int updateMember(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -158,5 +188,6 @@ public class MemberDao {
 		
 		
 	}
+
 
 }

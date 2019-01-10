@@ -19,7 +19,8 @@ section{
 
 .signup_box .input_login { border-bottom: 2px solid #c4c5c4; padding: 20px 0 9px 0; font:bolder;}
 .signup_box .input_login input { width: 100%; color: #828180; font-size: 15px; border:none; font-family: 'Noto Sans KR', sans-seri;}
-#gender{width:20px;}
+#gender0{width:20px;}
+#gender1{width:20px;}
 
 .signup_box .check { color: #000; font-size: 14px; padding: 9px 0 15px 0; font-family: 'Noto Sans KR', sans-seri;}
 

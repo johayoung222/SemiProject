@@ -4,22 +4,20 @@
 
 <!doctype html>
 <html>
-
 <head>
  <meta charset="utf-8">
  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
  <meta name="viewport" content="width=device-width, initial-scale=1">
-
  <!-- 폰트추가(폼상단) -->
  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great%7C Rochester| Alfa+Slab+One| Staatliches| Noto+Sans+KR| Abril+Fatface" rel="stylesheet">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/register.css">
-
  <!-- 파비콘 적용링크 -->
 
  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
  <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
  
  <title>7 Scheduler(signup)</title>
+
 
 
 <script>
@@ -47,6 +45,7 @@
 </script>
 
 
+
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/member/checkEmailCertified"
@@ -60,14 +59,12 @@
    <section>
    	
    <form action="<%=request.getContextPath()%>/member/checkIdDuplicate"
-	  method="post"
-	  name="checkIdDuplicateFrm">
-	<input type="hidden" name="memberId" />
+      method="post"
+      name="checkIdDuplicateFrm">
+    <input type="hidden" name="memberId" />
        </form>
      <form class="singupFrm" name="signupform" action="<%=request.getContextPath() %>/member/memberEnroll" method="post" onsubmit="return saveMember();" >
-
   
-
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
@@ -81,9 +78,9 @@
          </div>
          <div class="input_login">
            <input type="password" name="memberpwdcheck" id="memberpwdcheck" onkeyup="checkPwd()" placeholder="비밀번호를 다시 입력하세요">
-			<br />
-			<br />
-			<div id="checkPwd">동일한 암호를 입력하세요</div>          
+            <br />
+            <br />
+            <div id="checkPwd">동일한 암호를 입력하세요</div>          
          </div>
          <div class="input_login">
              <input type="text" name="memberName" id="memberName" placeholder="이름을 입력하세요(두글자 이상)">
@@ -99,11 +96,11 @@
          </div>
          <div class="input_login">
             <label for="male" id="man">남자</label>
-            <input type="radio" name="gender" id="gender"
+            <input type="radio" name="gender" id="gender0"
                    value="M" checked>
             &nbsp;&nbsp;
             <label for="female">여자</label>
-            <input type="radio" name="gender" id="gender"
+            <input type="radio" name="gender" id="gender1"
                    value="F">
          </div>
          <br>
@@ -118,34 +115,31 @@
      </form>
    </section>
  </div>
-
 <script>
  
   
   function checkIdDuplicate(){
-		//아이디중복검사폼을 전송.
-		var memberId = $("#memberId_").val().trim();
-
-		if(memberId.length == 0 ){
-			 alert("공백은 아이디로 만들수 없습니다");
-			 return false;
-
-		}
-		
-		 
-	
-		
-		//팝업창을 target으로 폼전송
-		var target = "checkIdDuplicate";
-		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-		var popup = open("", target, "left=300px, top=100px, height=50px, width=300px");
-		
-		checkIdDuplicateFrm.memberId.value = memberId;
-		//폼의 대상을 작성한 popup을 가리키게 한다. 
-		checkIdDuplicateFrm.target = target;
-		checkIdDuplicateFrm.submit();
-		
-	}
+        //아이디중복검사폼을 전송.
+        var memberId = $("#memberId_").val().trim();
+        if(memberId.length == 0 ){
+             alert("공백은 아이디로 만들수 없습니다");
+             return false;
+        }
+        
+         
+    
+        
+        //팝업창을 target으로 폼전송
+        var target = "checkIdDuplicate";
+        //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+        var popup = open("", target, "left=300px, top=100px, height=50px, width=300px");
+        
+        checkIdDuplicateFrm.memberId.value = memberId;
+        //폼의 대상을 작성한 popup을 가리키게 한다. 
+        checkIdDuplicateFrm.target = target;
+        checkIdDuplicateFrm.submit();
+        
+    }
   
  
   function saveMember(){
@@ -155,11 +149,8 @@
      var password1 = document.getElementById('memberpwdcheck');
      var memberName = document.getElementById('memberName');
      var email = document.getElementById('memberEmail');
-
-
      if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "아이디는  숫자 포함 영대소문자, 4~12자 입력할것!"))
          return false;
-
       if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
          return false;
       
@@ -167,7 +158,6 @@
           
           return false;
       if(password.value!=password1.value){
-
          alert("비밀번호가 일치하지 않습니다.");
          return false;
       }
@@ -178,7 +168,6 @@
       if(!chk(/^[0-9a-zA-Z]([\-.\w]*[0-9a-zA-Z\-_+])*@([0-9a-zA-Z][\-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$/i,email,"이메일형식을 입력하세요." ))
           return false;
       
-
          function chk(re, e, msg) {
          if (re.test(e.value)) {
          return true;
@@ -187,31 +176,31 @@
          e.value = "";
          e.focus();
          return false;
-
   }
     return true;
   }
-
  function checkPwd(){
-	
-
-	var pw1 = document.getElementById('memberPwd').value;
-	var pw2 = document.getElementById('memberpwdcheck').value;
-	
-	if(pw1 !='' && pw2 != ''){
-	if(pw1 == pw2){
-		result ='<div id="result_true">비밀번호가 일치합니다.:)</div>';
-		document.getElementById('checkPwd').innerHTML = result;
-		document.getElementById('checkPwd').style.color = "blue";
-	}else{
-		result ='<div id="result_false">비밀번호가 일치하지 않습니다.:(</div>';
-		 document.getElementById('checkPwd').innerHTML = result;
-		 document.getElementById('checkPwd').style.color = "red";
-		
-	  }
-	} 
-	 
+    
+    var pw1 = document.getElementById('memberPwd').value;
+    var pw2 = document.getElementById('memberpwdcheck').value;
+    
+    if(pw1 !='' && pw2 != ''){
+    if(pw1 == pw2){
+        result ='<div id="result_true">비밀번호가 일치합니다.:)</div>';
+        document.getElementById('checkPwd').innerHTML = result;
+        document.getElementById('checkPwd').style.color = "blue";
+    }else{
+        result ='<div id="result_false">비밀번호가 일치하지 않습니다.:(</div>';
+         document.getElementById('checkPwd').innerHTML = result;
+         document.getElementById('checkPwd').style.color = "red";
+        
+      }
+    } 
+     
  }
+
+
+
  $("#result").on("change", function(){
 	 console.log("작동중");
 	 $("#memberEmail").attr("readonly" , readonly);
@@ -228,6 +217,6 @@
  </script>
 
 
-</body>
 
+</body>
 </html>
