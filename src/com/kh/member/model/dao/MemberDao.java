@@ -113,12 +113,12 @@ public class MemberDao {
 	}
 
 
-	public Member MemberIdPwd(Connection conn, Member member) {
+	public Member MemberId(Connection conn, Member member) {
 		Member m = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("test");
+		String query = prop.getProperty("searchId");
 		System.out.println("member="+member);
 		try{
 			pstmt = conn.prepareStatement(query);
@@ -189,5 +189,33 @@ public class MemberDao {
 		
 	}
 
+	public Member MemberPwd(Connection conn, Member member) {
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("searchPwd");
+		System.out.println("member="+member);
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberEmail());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+				//컬럼명은 대소문자 구분이 없다.
+				m.setMemberPwd(rset.getString("member_pwd"));
+				
+			}			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return m;
 
+	}
 }

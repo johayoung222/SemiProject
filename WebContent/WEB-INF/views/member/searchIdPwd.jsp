@@ -42,14 +42,30 @@
 	text-align: center;
 }
 #searchId2{
+	text-align: center;
+}
+#searchPwd2{
 	
 	text-align: center;
 	
 }
 </style>
 <script>
-function chk(){
-	console.log("??????");
+function searchid(){
+	 var memberName = document.getElementById('userName_');
+	 var memberEmail = document.getElementById('email_');
+	 
+	 if(memberName.value =="" ){
+		 alert("이름을 입력해주세요 :(");
+		 memberName.focus();
+		 return false;
+	 }
+	 if(memberEmail.value =="" ){
+		 alert("이메일을 입력해주세요 :(");
+		 memberEmail.focus();
+		 return false;
+	 }	 
+	 
 	var param = {
 			"pname":$("#userName_").val(),
 			"pemail":$("#email_").val()
@@ -74,32 +90,60 @@ function chk(){
 	}
 	});
 }
-<%-- $("#searchPwd__").on("click",function(){
-	var param = {
-			"pId":$("#userId_").val(),
+function searchpwd(){
+	var memberId = document.getElementById('userId_');
+	var memberEmail = document.getElementById('email_');
+	
+	 if(memberId.value =="" ){
+		 alert("ID를 입력해주세요.");
+		 memberId.focus();
+		 return false;
+	 }
+	 if(memberEmail.value =="" ){
+		 alert("이메일을 입력해주세요 :(");
+		 memberEmail.focus();
+		 return false;
+	 }	 
+	 
+	
+	var param2 = {
+			"pid":$("#userId_").val(),
 			"pemail":$("#email_").val()
-			
 	}
 	$.ajax({
-		type: post,
-		url:"<%=request.getContextPath()%>/member/searchIdPwdd",
-		data: param,
+		type: "post",
+		url:"<%=request.getContextPath()%>/member/searchPwd",
+		data: param2,
 	success: function(data){
 		console.log(data);
 		var html="<table>";
-		for(var i in data){
-			var search =data[i];
-			/* html +="<tr><td>"++"</td>"; */
-		//	html +="<td>"+param.pemail+"</td></tr>";
+		if(data != null){
+			html +="<tr><td id='searchPwd2'>"+"당신의 비밀번호는 "+data.memberPwd+" 입니다."+"</td></tr>";
+			/* html +="<td>"+param.pemail+"</td></tr>"; */
 		}
 		html+="</table>";
+		
 		$("#table2").html(html);
 	},
 	error:function(){
 		
 	}
 	});
-}); --%>
+	var url = "<%=request.getContextPath()%>/member/updatePwd2";
+	var title = "updatePwd";
+	var status = "left=700px, top=100px, width=350px, height=300px";
+	   
+	  open(url, title, status);
+}
+function chk(re, e, msg) {
+    if (re.test(e.value)) {
+    return true;
+    }
+    alert(msg);
+    e.value = "";
+    e.focus();
+    return false;
+}
 </script>
 </head>
 
@@ -128,7 +172,7 @@ function chk(){
 				</tr>
 				 <tr>
                   	<td colspan="2" id="button1">
-                  		<input type="button" value="아이디 찾기" onclick="chk()" />
+                  		<input type="button" value="아이디 찾기" onclick="searchid()" />
                   		
                   	</td>
                   </tr>
@@ -149,7 +193,7 @@ function chk(){
 					<td><input type="email" name="email" id="email_" placeholder="찾아야한다.." required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
-                  		<input type="button" onclick="return searchPwd__();" value="비밀번호 찾기" />
+                  		<input type="button" onclick="searchpwd();" value="비밀번호 찾기" />
                   		
                   	</td>
                   </tr>

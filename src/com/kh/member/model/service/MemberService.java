@@ -48,9 +48,9 @@ public class MemberService {
 	}
 
 
-	public Member MemberIdPwd(Member member) {
+	public Member MemberId(Member member) {
 		Connection conn = getConnection();
-		Member m = new MemberDao().MemberIdPwd(conn, member);
+		Member m = new MemberDao().MemberId(conn, member);
 		if(m != null) commit(conn);
 		else rollback(conn);
 		return m;
@@ -84,5 +84,12 @@ public class MemberService {
 		
 	}
 
+	public Member MemberPwd(Member member) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().MemberPwd(conn, member);
+		if(m != null) commit(conn);
+		else rollback(conn);
+		return m;
+	}
 
 }

@@ -48,7 +48,7 @@ public class SearchIdServlet extends HttpServlet {
 		member.setMemberName(memberName);
 		member.setMemberEmail(memberEmail);
 
-		Member result = new MemberService().MemberIdPwd(member);
+		Member result = new MemberService().MemberId(member);
 		
 
 		new Gson().toJson(result, response.getWriter());
