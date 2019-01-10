@@ -3,9 +3,12 @@
 <%
     String msg = (String)request.getAttribute("msg");
     String loc = (String)request.getAttribute("loc");
+    String script = (String)request.getAttribute("script");
 
 %>
 <script>
 alert("<%=msg %>");
-location.href = "<%=request.getContextPath()+loc%>";
+
+<%=script!=null?script:""%>
+location.href = "<%=loc%>";
 </script>

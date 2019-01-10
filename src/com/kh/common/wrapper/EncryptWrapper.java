@@ -18,6 +18,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	
 	@Override
 	public String getParameter(String key) {
+		System.out.println("EncryptWrapper 실행");
 		String value = "";
 		
 		if(key != null && 
