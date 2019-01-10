@@ -35,7 +35,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
-		System.out.printf("[%s, %s]\n", memberId, memberPwd);
+		//System.out.printf("[%s, %s]\n", memberId, memberPwd);
 		
 		// return 1 : 로그인성공
 		// return 0 : 패스워드 틀림
@@ -46,7 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		int result = new MemberService().loginCheck(m);
 //		int result = 1;
-		System.out.println("[로그인결과 : "+result+"]");		
+		//System.out.println("[로그인결과 : "+result+"]");		
 		
 		String view = "";		
 		String msg = "";
