@@ -23,14 +23,18 @@ public class MoveBoardFormServlet extends HttpServlet {
 		int year = Integer.parseInt(request.getParameter("year"));
 		int month = Integer.parseInt(request.getParameter("month"));
 		int day = Integer.parseInt(request.getParameter("day"));
-		String user = request.getParameter("user");
+		String test = request.getParameter("time");
+		int time = -1;
+		if(!"time".equals(test)) {
+			time = Integer.parseInt(request.getParameter("time"));
+			request.setAttribute("time", time);
+		}
 		
 		//System.out.printf("MBF:%d %d %d %s",year,month,day,user);
 		
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
-		request.setAttribute("user", user);
 		request.getRequestDispatcher("/WEB-INF/views/schedule/insertForm.jsp").forward(request, response);
 		
 	}
