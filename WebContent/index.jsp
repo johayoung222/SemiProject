@@ -3,6 +3,10 @@
     
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
+<%
+
+%>
+
 <!doctype html>
 <html>
 <head>
@@ -69,10 +73,9 @@ function searchIdPwd(){
               <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
        </div>
      </div>
-     
+     <%if(memberLoggedIn == null){ %>
      <!-- login form -->
      <form class="loginFrm" name="loginform" action="<%=request.getContextPath()%>/member/login" method="post" onsubmit="return CheckLogin();">
-      <%if(memberLoggedIn == null){ %>
        <div class="login_box">
          <div class="input_login">
            <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요." >
@@ -99,8 +102,7 @@ function searchIdPwd(){
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
        </div>
      </form>
-     <%} else {
-     %>
+     <% }else{ %>
      <div class="login_box" id="login_box">
      
      </div>
