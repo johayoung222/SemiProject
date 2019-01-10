@@ -23,7 +23,7 @@ $(function(){
 	$("select#searchType").change(function(){
 		memberId.hide();
 		memberName.hide();
-		memberLoginlog.hide();
+		memberLoginglog.hide();
 		
 		$("#search-"+$(this).val()).css("display","inline-block");
 	});	

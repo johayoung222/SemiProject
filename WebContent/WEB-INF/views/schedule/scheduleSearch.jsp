@@ -42,10 +42,18 @@ $(function(){
 		$("#search-"+$(this).val()).css("display","inline-block");
 	});
 	
-	$("#divicon img").on('click',function(){
-		var clickedIcon = $(this).attr("alt");		
-		$("#iconValue").val(clickedIcon);		
-	});
+
+	
+});
+
+$(".icon").on('click',function(){
+	console.log("ffffffffff");
+	var clickedIcon = $(this).attr("alt");		
+	$("#iconValue").val(clickedIcon);	
+	clickedIcon = "";
+	
+	var id = $("#searchIcon").val();
+	console.log(id);
 	
 });
 
@@ -90,25 +98,25 @@ $(function(){
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
 					   name="searchType"
-					   value="scheduleIcon" />				
+					   id="searchIcon"
+					   value="scheduleIcon" />			
 				<input type="search" 
 					   name="searchKeyword"
 					   id="iconValue"
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
-					   readonly
-					   value="<%="scheduleIcon".equals(searchType)?searchKeyword:""%>"/>
+					   readonly/>					   
 				<div id="divicon">
 				<table id="tableicon">
 				<tr>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"  ></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball.png"  ></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball1.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball2.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball3.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball4.png"></td>
 				</tr>	
 				<tr>				
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball.png"></td>
 				</tr>			
 				</table>					
 				
@@ -121,10 +129,12 @@ $(function(){
 	<table id="tbl-schedulelist">
 	<tr>
 		<th>번호</th>
+		<th>아이콘</th>
 		<th>스케줄 시작일</th>
 		<th>스케줄 종료일</th>
 		<th>제목</th>
 		<th>내용</th>
+		<th>작성자</th>
 	</tr>
 	<!-- 스크립틀릿 처리요망 -->
 	<% if(list == null || list.isEmpty()){ %>
@@ -140,13 +150,15 @@ $(function(){
 			index++;			
 	%>			
 		<tr>					
-			<td><%=(cPage-1)*7+index%></td>				
+			<td><%=(cPage-1)*7+index%></td>	
+			<td><%=s.getScheduleIcon() %></td>				
 			<td><%=s.getScheduleStartday() %></td>
 			<td><%=s.getScheduleEndday() %></td>			
 			<td>
 			<a href="<%=request.getContextPath()%>/schedule/scheduleView?ScheduleNo=<%=s.getScheduleNo()%>">
 			<%=s.getScheduleTitle() %></a></td>
 			<td id="contentWidth"><%=s.getScheduleContent() %></td>
+			<td><%=s.getMemberId() %></td>
 		</tr>
 	<% }
 	} %>		

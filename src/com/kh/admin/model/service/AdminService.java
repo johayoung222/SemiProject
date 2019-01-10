@@ -47,15 +47,15 @@ public class AdminService {
 		return list;
 	}
 
-	public List<Member> selectMemberByMemberLoginlog(String searchKeyword, int cPage, int numPerPage) {
+	public List<Member> selectMemberByMemberLoginlog(int cPage, int numPerPage) {
 		Connection conn = getConnection();
-		List<Member> list= new AdminDao().selectMemberByMemberLoginlog(conn, searchKeyword, cPage, numPerPage);
+		List<Member> list= new AdminDao().selectMemberByMemberLoginlog(conn, cPage, numPerPage);
 		if(list !=null)close(conn);
 		else rollback(conn);
 		return list;
 	}
 
-	public int selectMemberCountByMemberId(String searchKeyword, int cPage, int numPerPage) {
+	public int selectMemberCountByMemberId(String searchKeyword) {
 		Connection conn = getConnection();
 		int totalContent = new AdminDao().selectMemberCountByMemberId(conn, searchKeyword);
 		if(totalContent != 0)close(conn);
@@ -63,7 +63,7 @@ public class AdminService {
 		return totalContent;
 	}
 
-	public int selectMemberCountByMemberName(String searchKeyword, int cPage, int numPerPage) {
+	public int selectMemberCountByMemberName(String searchKeyword) {
 		Connection conn = getConnection();
 		int totalContent = new AdminDao().selectMemberCountByMemberName(conn, searchKeyword);
 		if(totalContent != 0)close(conn);
@@ -71,9 +71,9 @@ public class AdminService {
 		return totalContent;
 	}
 
-	public int selectMemberCountByMemberLoginlog(String searchKeyword, int cPage, int numPerPage) {
+	public int selectMemberCountByMemberLoginlog() {
 		Connection conn = getConnection();
-		int totalContent = new AdminDao().selectMemberCountByMemberLoginlog(conn, searchKeyword);
+		int totalContent = new AdminDao().selectMemberCountByMemberLoginlog(conn);
 		if(totalContent != 0)close(conn);
 		else rollback(conn);
 		return totalContent;

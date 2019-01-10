@@ -163,7 +163,7 @@ public class AdminDao {
 		return list;			
 	}
 
-	public List<Member> selectMemberByMemberLoginlog(Connection conn, String searchKeyword, int cPage, int numPerPage) {
+	public List<Member> selectMemberByMemberLoginlog(Connection conn, int cPage, int numPerPage) {
 		List<Member> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;		
@@ -171,9 +171,8 @@ public class AdminDao {
 		
 		try{
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, searchKeyword);
-			pstmt.setInt(2, (cPage-1)*numPerPage+1);
-			pstmt.setInt(3, cPage*numPerPage);		
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);		
 	
 			rset = pstmt.executeQuery();
 			list = new ArrayList<>();	
@@ -245,7 +244,7 @@ public class AdminDao {
 		return totalContent;
 	}
 
-	public int selectMemberCountByMemberLoginlog(Connection conn, String searchKeyword) {
+	public int selectMemberCountByMemberLoginlog(Connection conn) {
 		PreparedStatement pstmt = null;
 		int totalContent = 0;
 		ResultSet rset = null;
@@ -253,7 +252,6 @@ public class AdminDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(2, searchKeyword);
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {

@@ -42,14 +42,14 @@ public class memberSearchServlet extends HttpServlet {
 		switch (searchType) {
 		case "memberId"	:list = new AdminService().selectMemberByMemberId(searchKeyword, cPage, numPerPage);break;
 		case "memberName"	:list = new AdminService().selectMemberByMemberName(searchKeyword, cPage, numPerPage);break;
-		case "memberLoginlog"	:list = new AdminService().selectMemberByMemberLoginlog(searchKeyword, cPage, numPerPage);break;
+		case "memberLoginlog"	:list = new AdminService().selectMemberByMemberLoginlog(cPage, numPerPage);break;
 		}		
 		
 		int totalMember = 0;
 		switch (searchType) {
-		case "memberId"	:totalMember = new AdminService().selectMemberCountByMemberId(searchKeyword, cPage, numPerPage);break;
-		case "memberName"	:totalMember = new AdminService().selectMemberCountByMemberName(searchKeyword, cPage, numPerPage);break;
-		case "memberLoginlog"	:totalMember = new AdminService().selectMemberCountByMemberLoginlog(searchKeyword, cPage, numPerPage);break;
+		case "memberId"	:totalMember = new AdminService().selectMemberCountByMemberId(searchKeyword);break;
+		case "memberName"	:totalMember = new AdminService().selectMemberCountByMemberName(searchKeyword);break;
+		case "memberLoginlog"	:totalMember = new AdminService().selectMemberCountByMemberLoginlog();break;
 		}
 		
 		int totalPage = (int)Math.ceil((double)totalMember/numPerPage);				
@@ -82,10 +82,8 @@ public class memberSearchServlet extends HttpServlet {
 		} else {
 			pageBar += "<a href='"+request.getContextPath()+
 					"/admin/memberSearch?searchType="+searchType+"&searchKeyword="+searchKeyword+"&cPage="+pageNo+"&numPerPage="+numPerPage+"'>[다음]</a>";
-		}
+		}		
 		
-		System.out.printf("[pageBar=%s]\n", pageBar);
-
 		request.setAttribute("list", list);
 		request.setAttribute("searchType", searchType);
 		request.setAttribute("searchKeyword", searchKeyword);

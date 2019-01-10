@@ -61,6 +61,8 @@ public class ScheduleDao {
                 s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
                 s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
                 s.setMemberId(rset.getString("MEMBER_ID"));
+                s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
                 
                 list.add(s);
             }
@@ -105,7 +107,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -168,7 +172,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -209,7 +215,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -249,7 +257,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -406,6 +416,8 @@ public class ScheduleDao {
 				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
 				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
 				s.setMemberId(rset.getString("MEMBER_ID"));
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 			}
 			
 			
