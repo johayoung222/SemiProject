@@ -9,10 +9,10 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int cPage = (int)request.getAttribute("cPage");
 	int numPerPage = (int)request.getAttribute("numPerPage");
-	String pageBar = (String)request.getAttribute("pageBar");
-	
+	String pageBar = (String)request.getAttribute("pageBar");	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
+
 <script>
 $(function(){
 	var scheduleTitle = $("#search-scheduleTitle");	
@@ -28,13 +28,16 @@ $(function(){
 		$("#search-"+$(this).val()).css("display","inline-block");
 	});
 	
-	$("#divicon img").on('click',function(){
+	$(".icon").on('click',function(){		
 		var clickedIcon = $(this).attr("alt");		
-		$("#iconValue").val(clickedIcon);		
+		$("#iconValue").val(clickedIcon);	
+		clickedIcon = "";				
 	});
-	$("#btn").click(function(){
-		$("tableicon").hide();
+	
+	$("#iconClose").on('click',function(){
+		$("#divicon").hide();
 	});
+	
 	
 });
 
@@ -80,24 +83,30 @@ $(function(){
 					   id="iconValue"
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
-					   readonly/>&nbsp;
-				<div id="divicon">
-				<table id="tableicon">
-				<tr>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"  ></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-				</tr>
-				<tr>				
-					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
-				</tr>
-				</table>					
-				
-				</div>				
+					   readonly/>&nbsp;							
 				<button type="submit" id="btn">검색</button>				
 			</form>
+		<div id="divicon">
+			<table id="tableicon">
+			<tr>
+				<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="icon" alt="baseball.png"  ></td>
+				<td><img src="<%=request.getContextPath() %>/images/birthday.png" class="icon" alt="birthday.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/bowling.png" class="icon" alt="bowling.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/family.png" class="icon" alt="family.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/hospital.png" class="icon" alt="hospital.png"></td>
+			</tr>	
+			<tr>				
+				<td><img src="<%=request.getContextPath() %>/images/like.png" class="icon" alt="like.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/marry.png" class="icon" alt="marry.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/shopping.png" class="icon" alt="shopping.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/soju&beer.png" class="icon" alt="soju&beer.png"></td>
+				<td><img src="<%=request.getContextPath() %>/images/test.png" class="icon" alt="test.png"></td>
+			</tr>
+			<tr>
+				<td colspan=5><button id="iconClose" >닫기</button></td>		
+			</tr>			
+			</table>		
+		</div>		
 		</div>
 </section>
 <section id="schedulelist-container">		

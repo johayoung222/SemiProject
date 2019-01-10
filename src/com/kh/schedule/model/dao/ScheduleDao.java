@@ -82,7 +82,7 @@ public class ScheduleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectScheduleList");
-		
+				
 		try {			
 			pstmt = conn.prepareStatement(query);			
 			int startRnum = (cPage-1)*numPerPage+1;			
