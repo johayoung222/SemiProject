@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -332,5 +333,118 @@ public class ScheduleDao {
 		return totalContent;
 	}
 
+	public List<Schedule> selectScheduleByDay(Connection conn, String memberId, Date date) {
+		List<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectScheduleByDay");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setDate(2, date);
 			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Schedule s = new Schedule();
+				s.setScheduleNo(rset.getInt("SCHEDULE_NO"));
+				s.setScheduleTitle(rset.getString("SCHEDULE_TITLE"));
+				s.setScheduleContent(rset.getString("SCHEDULE_CONTENT"));
+				s.setScheduleOriginalfilename(rset.getString("SCHEDULE_ORIGINAL_FILENAME"));
+				s.setScheduleRenamefilename(rset.getString("SCHEDULE_RENAMED_FILENAME"));
+				s.setScheduleDate(rset.getDate("SCHEDULE_DATE"));
+				s.setScheduleDdaycheck(rset.getString("SCHEDULE_DDAY_CHECK"));
+				s.setScheduleRepeatcheck(rset.getString("SCHEDULE_REPEAT_CHECK"));
+				s.setScheduleTimeline(rset.getInt("SCHEDULE_TIMELINE"));
+				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
+				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
+				s.setMemberId(rset.getString("MEMBER_ID"));
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+				list.add(s);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public Schedule selectOneSchedule(Connection conn, int scheduleNo, String memberId) {
+		Schedule s = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneSchedule");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, scheduleNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				s = new Schedule();
+				s.setScheduleNo(rset.getInt("SCHEDULE_NO"));
+				s.setScheduleTitle(rset.getString("SCHEDULE_TITLE"));
+				s.setScheduleContent(rset.getString("SCHEDULE_CONTENT"));
+				s.setScheduleOriginalfilename(rset.getString("SCHEDULE_ORIGINAL_FILENAME"));
+				s.setScheduleRenamefilename(rset.getString("SCHEDULE_RENAMED_FILENAME"));
+				s.setScheduleDate(rset.getDate("SCHEDULE_DATE"));
+				s.setScheduleDdaycheck(rset.getString("SCHEDULE_DDAY_CHECK"));
+				s.setScheduleRepeatcheck(rset.getString("SCHEDULE_REPEAT_CHECK"));
+				s.setScheduleTimeline(rset.getInt("SCHEDULE_TIMELINE"));
+				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
+				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
+				s.setMemberId(rset.getString("MEMBER_ID"));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return s;
+}
+	public int insertSchedule(Connection conn, Schedule s) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("insertSchedule"); 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, s.getScheduleTitle());
+			pstmt.setString(2, s.getScheduleContent());
+			pstmt.setString(3, s.getScheduleOriginalfilename());
+			pstmt.setString(4, s.getScheduleRenamefilename());
+			pstmt.setDate(5, s.getScheduleDate());
+			pstmt.setString(6, s.getScheduleDdaycheck());
+			pstmt.setString(7, s.getScheduleRepeatcheck());
+			pstmt.setInt(8, s.getScheduleTimeline());
+			pstmt.setDate(9, s.getScheduleStartday());
+			pstmt.setDate(10, s.getScheduleEndday());
+			pstmt.setString(11, s.getMemberId());
+			pstmt.setDate(12, s.getScheduleDday());
+			pstmt.setString(13, s.getScheduleIcon());
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}		
+		return result;
+	}
+
 }

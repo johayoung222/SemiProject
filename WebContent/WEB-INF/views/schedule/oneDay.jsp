@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*,
+				com.kh.schedule.model.vo.*" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
+
 <%
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
+	Member member = (Member)request.getAttribute("member");
+	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday.css" />
@@ -23,6 +28,13 @@
 <div id="todolist">
 	<h2>To do List</h2>
 	<div id="insertBoard">+</div>
+	<% if(!list.isEmpty()){ 
+		String s = "";	
+		for(int i=0; i<list.size(); i++){ 
+	 		s += "<div><h4 id='"+list.get(i).getScheduleNo()+"'>"+list.get(i).getScheduleTitle()+"</h4></div>";
+	   } %>
+	<%=s %>
+	<% } %>
 </div>
 <div id="middleLine"></div>
 
@@ -61,6 +73,11 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
+$("#todolist div#insertBoard").nextAll().click(function(){
+	var target = $(this).children();
+	var boardNo = target.attr("id");
+	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
+});
 </script>
 </body>
 </html>

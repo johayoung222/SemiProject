@@ -5,25 +5,24 @@
 				com.kh.schedule.model.vo.*" %>
 <%
 	//전달받은 데이터에서 현재일자를 꺼냄.
-	Map<Integer,Integer> map = (HashMap<Integer,Integer>)request.getAttribute("map");
+	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
+	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
 	int last = (int)request.getAttribute("last");
-	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	
 	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
 	
-	if(m != null){
-				
-	}
 	
+	//schedule data 를 date별로 나누기
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+
 <script>
 function addClickEvent(){
 	insertData();
@@ -32,7 +31,7 @@ function addClickEvent(){
 		$(item).click(function(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
-			var day = $(this).text();
+			var day = $(this).children().attr("id");
 			if(day != ""){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
@@ -42,16 +41,15 @@ function addClickEvent(){
 
 function insertData(){
 	var span = $("#add").find("span");
-	console.log(span);
-	<% for(int i=0; i<list.size(); i++){
-		
-	} %>
 	for(var i=0; i< span.length; i++){
-		if(span[i].id == 3) span[i].innerText += "schedule";
+		<% for(int i=1; i<=31; i++){
+			if(!map.get(i).isEmpty()){ %>
+		if(span[i].id == <%=i %>) span[i].innerText = span[i].id+"<%=map.get(i).get(0).getScheduleTitle() %>";
+			<%}
+		} %>
 	}
 }
 </script>
-
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -91,6 +89,23 @@ function insertData(){
 			</script>
 		</table>
 	</div>
+	<!-- 
+	<div id="chat-body">		
+		<div id="chat-before">
+		앞에 초록색 동그라미 이모티콘 추가
+			<strong>채팅</strong>
+			뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중
+	
+		</div>
+	
+		<div id="chat-find-friend">
+			돋보기 모양 이모티콘
+			input:text Ajax사용해서 회원이름 검색시 주르륵 나오게
+			친구 찾기
+			오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔
+			 
+		</div>	
+	</div> -->
 	<script>
         $("#nextMonth").click(function(){
         	$.ajax({
@@ -128,6 +143,7 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			insertData();
         			addClickEvent();
         		}
         	});
@@ -155,13 +171,13 @@ function insertData(){
 
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span>"+(i-start+2)+"</span></td>";
+        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<td><span></span></td>";
         					}
         				}else{
         					if(i >= start-1){
-        					html += "<tr><td><span>"+(i-start+2)+"</span></td>";
+        					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
         					html += "<tr><td><span></span></td>";
         					}
@@ -169,6 +185,7 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			insertData();
         			addClickEvent();
         		}
         	});

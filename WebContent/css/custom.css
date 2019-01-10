@@ -1,0 +1,41 @@
+@charset "UTF-8";
+#chat-body{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+#chat-before{
+	right: 40px;
+	bottom: 0px;
+	text-align: left;
+	width: 276px;
+	height: 29px;
+	background: #e9ebee;
+	color: #747475;
+	position: fixed;
+	border-radius: 5px;
+	border: 1px solid;
+}
+
+#chat-before:hover{
+	background: black;
+	color: white;
+}
+
+#chat-find-friend{
+	width: 400px;
+	height: 300px;
+	background: #e9ebee;
+	color: #747475;
+	/* position: absolute; 추후 안줄어들게 수정해야  */            
+	margin: auto;             
+	position: relative;
+    top: 49%;
+    left: 24%;
+    transform: translateX(-50%) translateY(-50%);
+	border: 1px solid;
+	display: inline-block;
+	
+}

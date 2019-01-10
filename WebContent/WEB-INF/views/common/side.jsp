@@ -9,7 +9,24 @@
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
+<script>
+  function showPopup(temp) {
+	  var windowW = 800;  // 창의 가로 길이
+      var windowH = 500;  // 창의 세로 길이
+      var left = Math.ceil((window.screen.width - windowW)/2);
+      var top = Math.ceil((window.screen.height - windowH)/2);
+
+
+	  window.open("<%=request.getContextPath() %>/member/recommendation?temp="+temp, "a","l top="+top+", left="+left+", height="+windowH+", width="+windowW); 
+	  
+	  
+  }
+  </script>
+  
+
+
   <script>
+  
   window.onload =function(){
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=c95231fca9f07b22a6540efdcce37587";
     $.ajax({
@@ -20,7 +37,6 @@
         success: function(resp) {
         	var myDiv = document.getElementById("myDiv"); 
         	var table = $("<table></table>");
-			var imgURL = "http://openweathermap.org/img/w/" + resp.weather[0].icon + ".png ";
 			
 			
 			var html = "<br><br>현재온도 : "+(resp.main.temp- 273.15)+"<br>";
@@ -29,19 +45,14 @@
 			html += "나라 : "+resp.sys.country+"<br>";
 			html += "도시 이름 : "+resp.name+"<br>";
 			html += "구름 : "+(resp.clouds.all)+"%<br>";
-			html += "<button>추천 여행지 보기</button>";
-			 
+			html += "<input type='button' value='추천 여행,의상 보기' onclick= 'showPopup("+(resp.main.temp- 273.15)+");'/>";
 			
 			myDiv.innerHTML = html;
 			
-			
-			
-			
-			
-            console.log(resp);
+            //console.log(resp);
             
             
-            console.log("현재온도 : "+ (resp.main.temp- 273.15) );
+            /* console.log("현재온도 : "+ (resp.main.temp- 273.15) );
             console.log("현재습도 : "+ resp.main.humidity);
             console.log("날씨 : "+ resp.weather[0].main );
             console.log("상세날씨설명 : "+ resp.weather[0].description );
@@ -49,7 +60,7 @@
             console.log("바람   : "+ resp.wind.speed );
             console.log("나라   : "+ resp.sys.country );
             console.log("도시이름  : "+ resp.name );
-            console.log("구름  : "+ (resp.clouds.all) +"%" );                
+            console.log("구름  : "+ (resp.clouds.all) +"%" );   */              
         }
     })
 
@@ -58,9 +69,11 @@
 
 </script>
 
+
+
 </head>
 <body>
-
+	
 	<div class="side">
 		<br />
 		<br />
@@ -74,7 +87,7 @@
 	<div id="myDiv">
 	
 	</div>
-
+	
 	</div>
 	
 	

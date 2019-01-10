@@ -1,11 +1,11 @@
 package com.kh.schedule.model.service;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
 
-import com.kh.member.model.vo.Member;
 import com.kh.schedule.model.dao.ScheduleDao;
 import com.kh.schedule.model.vo.Schedule;
 
@@ -85,5 +85,35 @@ public class ScheduleService {
 		else rollback(conn);
 		return totalContent;
 	}
+	public List<Schedule> selectScheduleByDay(String memberId, Date date) {
+		Connection conn = getConnection();
+		List<Schedule> list = new ScheduleDao().selectScheduleByDay(conn, memberId, date);
+		close(conn);
+		
+		return list;
+	}
 
+	public Schedule selectOneSchedule(int scheduleNo, String memberId) {
+		Connection conn = getConnection();
+		Schedule s = new ScheduleDao().selectOneSchedule(conn, scheduleNo, memberId);
+		close(conn);
+		
+		return s;
+	}
+
+
+	public int insertSchedule(Schedule s) {
+		Connection conn = getConnection();
+		int result  = new ScheduleDao().insertSchedule(conn, s);
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);			
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 }
