@@ -217,9 +217,9 @@ public class MemberDao {
 		}		
 		return m;
 
-<<<<<<< HEAD
+
 	}
-=======
+
 	public int updatePassword(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -245,5 +245,34 @@ public class MemberDao {
 		
 	}
 
->>>>>>> 699bbed93477571f6b93516850b403c602326cef
+	public Member updatePwd(Connection conn, Member member) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("updatePwd");
+		System.out.println("member="+member);
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberPwd());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				m = new Member();
+				//컬럼명은 대소문자 구분이 없다.
+				m.setMemberPwd(rset.getString("member_pwd"));
+				
+			}			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return m;
+	}
+
 }

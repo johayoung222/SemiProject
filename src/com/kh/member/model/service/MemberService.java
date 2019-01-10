@@ -108,5 +108,12 @@ public class MemberService {
 		return result;
 	}
 
+	public Member updatePwd(Member member) {
 
+		Connection conn = getConnection();
+		Member m = new MemberDao().updatePwd(conn, member);
+		if(m != null) commit(conn);
+		else rollback(conn);
+		return m;
+	}
 }

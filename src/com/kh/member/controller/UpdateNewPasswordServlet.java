@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
@@ -29,14 +30,20 @@ public class UpdateNewPasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nowPwd = request.getParameter("nowPwd");
+		String memberName = request.getParameter("MemberName");
 		String updatePwd = request.getParameter("updatePwd");
-		String checkPwd = request.getParameter("checkPwd");
+		
 		
 		Member m = new Member();
-		m.setMemberPwd(nowPwd);
+		m.setMemberName(memberName);
 		m.setMemberPwd(updatePwd);
-		m.setMemberPwd(checkPwd);
+		
+		Member member = new MemberService().updatePwd(m);
+		
+		request.getRequestDispatcher("/WEB-INF/views/member/updatePwd.jsp")
+		   .forward(request, response);
+		
+		
 		
 		
 	}

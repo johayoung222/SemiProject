@@ -21,6 +21,11 @@
  	height:245px;
  }
 </style>
+<script>
+function passwordValidate(){
+	
+}
+</script>
 </head>
 
 <body>
@@ -39,20 +44,17 @@
 					<th class="newPwd">새 비밀번호 변경</th>
 				</tr>
 				<tr>
-					<th>현재 비밀번호</th>
-					<td><input type="password" name="nowPwd" id="nowPwd_" placeholder="" required /></td>
+					<th>아이디</th>
+					<td><input type="text" name="MemberName" id="MemberName_" placeholder="아이디를 입력해주세요." required /></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호</th>
-					<td><input type="password" name="updatePwd" id="updatePwd_" placeholder="" required /></td>
+					<td><input type="password" name="updatePwd" id="updatePwd_" placeholder="변경할 비밀번호를 입력해주세요." required /></td>
 				</tr>
-				<tr>
-					<th>새 비밀번호 확인</th>
-					<td><input type="password" name="checkPwd" id="checkPwd_" placeholder="" required /></td>
-				</tr>
+				
 				 <tr>
                   	<td colspan="2" id="button1">
-                  		<input type="button" value="변경" onclick="return passwordValidate();" />
+                  		<input type="button" value="변경" onclick="passwordValidate();" />
                   		<input type="button" onclick="self.close();" value="취소"  />
                   	</td>
                   </tr>
