@@ -19,10 +19,53 @@
 #scheduleDday-container {
 	display: none;
 }
+#scheduleIcon-container{
+	margin-top:20px;
+}
+
 
 .img{
 	width: 50px;
 	height: 50px;
+	border:1px solid black;
+}
+.selected-icon{
+	width:50px;
+	height:50px;
+	border:1px solid black;
+}
+#selected-icon{
+	display: inline-block;	
+}
+.imgcon{
+	display: inline-block;
+	
+}
+.moreimg{
+	width:50px;
+	height:50px;
+	border:1px solid black;
+	position: relative;
+	top:-20px;
+	text-align: center;
+	font-size: 12px;
+}
+
+/*라벨위치*/
+.licon{
+	position:relative;
+	top: -20px;
+}
+.ltext{
+	position:relative;
+	top: -35px;
+}
+
+#scheduleTitle{
+	width:500px;
+}
+#scheduleContent{
+	width:500px;
 }
 </style>
 
@@ -46,36 +89,46 @@
 			<div class="schedule_box">
 				<span>Scheduler</span> 
 				<br /> 
-				<label for="scheduleTitle">제목</label>
-				<input type="text" name="scheduleTitle" id="scheduleTitle" required="required">
-				<br /><br />
+				<br />
+				<label for="scheduleTitle" class="ltitle">제목</label>
+				<input type="text" name="scheduleTitle" id="scheduleTitle" required="required" >
+				<br />
+				<br />
+				<label for="scheduleStartDay">일시</label>
+				<input type="date" name="scheduleStartDay" id="scheduleStartDay"
+					data-placeholder="스케줄 시작날을 설정하세요." required aria-required="true">
+				&nbsp; - &nbsp;
+				<input type="date" name="scheduleEndDay" id="scheduleEndDay"
+					data-placeholder="스케줄 끝날을 설정하세요." required aria-required="true">
+				<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" />
+				<label for="scheduleRepeatCheck">스케줄 반복여부 설정</label>
 				
 				<div id="scheduleIcon-container">
 				
-					<label for="">아이콘</label>
+					<label for="icon" class="licon">아이콘</label>
 						<!-- input 여기에 넘겨줄 이모티콘의 이미지 이름을 넣는다. ex) img.PNG -->
 						<input type="hidden" id="iconAlt" name="iconAlt" />
 						<div id="selected-icon">
 							<!-- 사용자가 선택한 icon이 이곳에 들어와야 한다. -->
 							<img src="<%=request.getContextPath() %>/images/logo.png" class="selected-icon" alt="logo.png" />
 						</div>
-						<div>
+						<div class="imgcon">
 						<!-- 아무것도 없는 이미지 -->						
 						<img src="<%=request.getContextPath() %>/images/logo.png" class="img" alt="logo.png" />
 						<img src="<%=request.getContextPath() %>/images/flower1.PNG" class="img" alt="flower1.PNG" />
 						<img src="<%=request.getContextPath() %>/images/flower2.PNG" class="img" alt="flower2.PNG" />
 						<img src="<%=request.getContextPath() %>/images/flower3.PNG" class="img" alt="flower3.PNG" />
 						
-						<button>더보기</button>
+						<button class="moreimg">더보기</button>
 						</div>
 					<div><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						
 						
-						<button>저장</button>
-						<button>취소</button>
+						<!-- <button>저장</button>
+						<button>취소</button> -->
 					</div>
 				</div>
-				<label for="">내용</label> 
+				<label for="" class="ltext">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
 				
@@ -83,11 +136,11 @@
 				<input type="hidden" name="writeDay" id="writeDay" value="<%=writeDay %>" />
 				
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
-				<label for="scheduleDdayCheck">디데이 설정 여부</label>
+				<label for="scheduleDdayCheck" class="lcheck">디데이 설정 여부</label>
 				<br /><br />
 				
 			<div id="scheduleDday-container">
-				<label for="scheduleDday">디데이 설정</label>
+				<label for="scheduleDday" class="ldday">디데이 설정</label>
 				<input type="date" name="scheduleDday" id="scheduleDday"
 					data-placeholder="설정할 디데이를 체크해주세요." required aria-required="true">
 					<br /><br />
@@ -96,7 +149,7 @@
 				
 
 
-			<label for="scheduleTimeline">타임라인 배치컬럼</label>
+			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
 			<select name="scheduleTimeline" required="required">
 				<option value="" hidden="hidden">시간을 선택해주세요.</option>
 				<option value="00">00시</option>
@@ -138,7 +191,7 @@
 			
 				<br /><br />
 				<label for="up_file">파일</label>
-				<input type="file" name="up_file" placeholder="이미지/파일선택">
+				<input type="file" name="up_file" placeholder="이미지/파일선택" >
 				
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
 				
