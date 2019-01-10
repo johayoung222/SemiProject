@@ -47,7 +47,7 @@ function addClickEvent(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
 			var day = $(this).children().attr("id");
-			if(day != null){
+			if(day != ""){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
@@ -90,7 +90,7 @@ function insertData(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<35; i++){
+			for(var i=0; i<=<%=last %>+1; i++){
 				html = "<td><span></span></td>";
 				if(i>=start && i<=<%=last %>+1){
 				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
@@ -126,13 +126,14 @@ function insertData(){
         		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
         		type: "get",
         		dataType: "json",
-        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1), "memberId":"<%=m.getMemberId() %>"},
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()), "memberId":"<%=m.getMemberId() %>"},
         		success: function(data){
         			console.log(data);
-        			var nextYear = data[0];
-        			var nextMonth = data[1];
-        			var start = data[2];
-        			var last = data[3]+start;
+        			var nextYear = data[1];
+        			var nextMonth = data[2];
+        			var start = data[3];
+        			var last = data[4]+start;
+        			var dataList = data[5];
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
         			

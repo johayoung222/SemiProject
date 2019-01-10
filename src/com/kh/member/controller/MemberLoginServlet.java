@@ -85,23 +85,9 @@ public class MemberLoginServlet extends HttpServlet {
 			
 		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
-			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId);
-			List<Schedule> dayList = null;
-			HashMap<Integer,List<Schedule>> map = new HashMap<>();
+			List<Schedule> list = new ScheduleService().selectAllSchedule(memberId);
 			
-			//년월일에 맞게 데이터 삽입해줘야 함
-			Calendar c2 = Calendar.getInstance();
-			for(int i=1; i<=31; i++) {
-				dayList = new ArrayList<>();
-				for(Schedule s : list) {
-					Date date = s.getScheduleDate();
-					c2.setTime(date);
-					if(i == c2.get(Calendar.DATE)) {
-						dayList.add(s);
-					}
-				}
-				map.put(i, dayList);
-			}
+			
 
 //			Set<Integer> set =  map.keySet();
 //			for(int key : set) {
@@ -116,7 +102,6 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
-			request.setAttribute("map", map);
 			request.setAttribute("list", list);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
 			
