@@ -26,11 +26,14 @@
   }
   function sendMail(){
 	  var memberEmail = $("#memberEmail").val();
-
+	  if(memberEmail.trim().length == 0){
+		  alert("이메일을 입력하세요.");
+		  return false;
+	  }
 	  //팝업창을 target으로 폼전송
 		var target = "checkEmailCertified";
 		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-		var popup = open("", target, "left=300px, top=100px, height=135px, width=355px, resizable=no, scrollbar=no");
+		var popup = open("", target, "left=300px, top=100px, height=135px, width=470px");
 		//폼의 대상을 작성한 popup을 가리키게 한다. 
 		checkEmailCertifiedFrm.target = target;
 		
@@ -198,20 +201,6 @@
      
  }
 
-
-
- $("#result").on("change", function(){
-	 console.log("작동중");
-	 $("#memberEmail").attr("readonly" , readonly);
-	 $("#emailclear").attr("disabled" , disabled);
-	 
- });
-/*  var result = $("#result").val();
- if(result == 1) {
-	 $("#memberEmail").attr("readonly" , readonly);
-	 $("#emailclear").attr("disabled" , disabled);
- }
- */
  
  </script>
 
