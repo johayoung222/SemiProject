@@ -1,4 +1,4 @@
-package com.kh.schedule.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,21 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.admin.model.service.AdminService;
 import com.kh.member.model.vo.Member;
-import com.kh.schedule.model.service.ScheduleService;
-import com.kh.schedule.model.vo.Schedule;
 
-@WebServlet("/schedule/schedulelist")
-public class ScheduleListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;       
-   
-    public ScheduleListServlet() {
+/**
+ * Servlet implementation class memberListSearchServlet
+ */
+@WebServlet("/admin/memberList")
+public class memberListServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public memberListServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
-		String memberId = memberLoggedIn.getMemberId();
+		System.out.println(memberLoggedIn.getMemberId());
+		System.out.println(memberLoggedIn.toString());
+		if(memberLoggedIn == null || !("admin".equals(memberLoggedIn.getMemberId()))) {
+			request.setAttribute("msg", "잘못된 경로로 접근하셨습니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			return;
+		}
 		
 		int cPage;
 		try {
@@ -37,32 +46,25 @@ public class ScheduleListServlet extends HttpServlet {
 			numPerPage = Integer.parseInt(request.getParameter("numPerPage"));
 		} catch(NumberFormatException e) {
 			numPerPage = 7;
-		}
-		
-		//System.out.printf("[cPage=%s, numPerPage=%s]\n", cPage, numPerPage,memberId);				
-		
-		List<Schedule> list= new ScheduleService().selectScheduleList(cPage, numPerPage, memberId);
-		int totalContent = new ScheduleService().selectScheduleCount(memberId);
-		//System.out.println("ScheduleListServlet : "+list.toString());
-		//System.out.printf("[totalContent=%s]\n", totalContent);				
+		}		
+	
+		List<Member> list= new AdminService().memberList(cPage, numPerPage);
+		int totalContent = new AdminService().memberListCount();
 		
 		int totalPage = (int)Math.ceil((double)totalContent/numPerPage);
-		//System.out.printf("[totalPage=%s]\n",totalPage);
 		
 		String pageBar = "";		
 		int pageBarSize = 7;		
 		int startPage = ((cPage-1)/pageBarSize) * pageBarSize + 1;
-		int endPage = startPage + pageBarSize - 1;
-		//System.out.printf("[start=%s, end=%s]\n", startPage, endPage);
+		int endPage = startPage + pageBarSize - 1;		
+		int pageNo = startPage;		
 		
-		int pageNo = startPage;
-			
 		if(pageNo == 1) {
 			
 		}
 		else {
 			pageBar += "<a href='"+request.getContextPath()+
-								 "/schedule/schedulelist?"+
+								 "/admin/memberList?"+
 								 "cPage="+(pageNo-1)+
 								 "&numPerPage="+numPerPage+"'>[이전]</a>";
 		}
@@ -73,7 +75,7 @@ public class ScheduleListServlet extends HttpServlet {
 			}
 			else {
 				pageBar += "<a href='"+request.getContextPath()+
-						   "/schedule/schedulelist?"+
+						   "/admin/memberList?"+
 						   "cPage="+pageNo+
 						   "&numPerPage="+numPerPage+"'>"+
 						   pageNo+"</a>";
@@ -86,7 +88,7 @@ public class ScheduleListServlet extends HttpServlet {
 		} 
 		else {
 			pageBar += "<a href='"+request.getContextPath()+
-					   "/schedule/schedulelist?"+
+					   "/admin/memberList?"+
 					   "cPage="+pageNo+
 					   "&numPerPage="+numPerPage+"'>[다음]</a>";
 		}
@@ -95,7 +97,7 @@ public class ScheduleListServlet extends HttpServlet {
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("list", list);				
-		request.getRequestDispatcher("/WEB-INF/views/schedule/scheduleList.jsp").forward(request, response);	
+		request.getRequestDispatcher("/WEB-INF/views/admin/memberList.jsp").forward(request, response);	
 		
 	}
 
