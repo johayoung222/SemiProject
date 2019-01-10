@@ -29,7 +29,7 @@ public class MemberViewServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		
 		Member m = new MemberService().memberOne(memberId);
-		System.out.println("member@MemberViewServlet = " + m);
+		
 		
 		//4.view
 		//비정상적인 요청으로 해당회원정보 없을 경우

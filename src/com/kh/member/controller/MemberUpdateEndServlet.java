@@ -47,7 +47,7 @@ public class MemberUpdateEndServlet extends HttpServlet {
 		
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/";
+		String loc = "/scheduler";
 
 		if(result>0)
 			msg = "성공적으로 회원정보를 수정했습니다.";
