@@ -119,10 +119,10 @@ public class ScheduleService {
 
 	public List<Schedule> daySchedule(String memberId) {
 		Connection conn = getConnection();
-//		List<Schedule> list = new ScheduleDao().daySchedule(conn, memberId);
+		List<Schedule> list = new ScheduleDao().daySchedule(conn, memberId);
 		close(conn);
 		
-		return null;
+		return list;
 	}
 	
 	public List<Schedule> selectScheduleByMonth(String memberId, String first, String second) {
