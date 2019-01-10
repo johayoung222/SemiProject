@@ -6,7 +6,6 @@
 <%
 	//전달받은 데이터에서 현재일자를 꺼냄.
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
-	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
 	int day = (int)request.getAttribute("day");
@@ -15,8 +14,24 @@
 	
 	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
 	
-	
 	//schedule data 를 date별로 나누기
+	List<Schedule> dayList = null;
+	HashMap<Integer,List<Schedule>> map = new HashMap<>();
+	
+			
+			//년월일에 맞게 데이터 삽입해줘야 함
+			Calendar c2 = Calendar.getInstance();
+			for(int i=1; i<=31; i++) {
+				dayList = new ArrayList<>();
+				for(Schedule s : list) {
+					Date date = s.getScheduleDate();
+					c2.setTime(date);
+					if(i == c2.get(Calendar.DATE)) {
+						dayList.add(s);
+					}
+				}
+				map.put(i, dayList);
+			}
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -83,7 +98,6 @@ function insertData(){
 				}
 				document.write(html);
 			}
-			insertData();
 			addClickEvent();
 			
 			</script>
@@ -112,13 +126,14 @@ function insertData(){
         		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
         		type: "get",
         		dataType: "json",
-        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1)},
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()), "memberId":"<%=m.getMemberId() %>"},
         		success: function(data){
         			console.log(data);
-        			var nextYear = data[0];
-        			var nextMonth = data[1];
-        			var start = data[2];
-        			var last = data[3]+start;
+        			var nextYear = data[1];
+        			var nextMonth = data[2];
+        			var start = data[3];
+        			var last = data[4]+start;
+        			var dataList = data[5];
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
         			
@@ -143,7 +158,6 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
-        			insertData();
         			addClickEvent();
         		}
         	});
@@ -185,7 +199,6 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
-        			insertData();
         			addClickEvent();
         		}
         	});
