@@ -29,7 +29,7 @@ public class MemberUpdateEndServlet extends HttpServlet {
 		String memberName = request.getParameter("memberName");
 		String gender = request.getParameter("gender");
 		String memberDate = request.getParameter("memberDate");
-		int ssn =  Integer.parseInt(memberDate.replaceAll("-", ""));
+		int ssn =  Integer.parseInt(memberDate.replaceAll("-", " "));
 		String email = request.getParameter("memberEmail");
 		
 		Member m = new Member();
@@ -47,7 +47,7 @@ public class MemberUpdateEndServlet extends HttpServlet {
 		
 		String view = "/WEB-INF/views/common/msg.jsp";
 		String msg = "";
-		String loc = "/scheduler";
+		String loc = "";
 
 		if(result>0)
 			msg = "성공적으로 회원정보를 수정했습니다.";

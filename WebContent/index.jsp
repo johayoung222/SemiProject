@@ -14,9 +14,18 @@
 
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
+<style>
+#back {
+float: right;
+margin-right: 450px;
+}
+</style>
+
 <script>
 
-
+<%-- function back(){
+	location.href = "<%=request.getContextPath() %>/member/login?memberId="+<%=memberLoggedIn.getMemberId()%>+"&memberPwd="+<%=memberLoggedIn.getMemberPwd()%>;
+} --%>
 
 <%--로그인 유효성 검사--%>
 function CheckLogin(){
@@ -93,7 +102,9 @@ function searchIdPwd(){
      <%} else {
      %>
      <div class="login_box" id="login_box">
+     
      </div>
+     <input type="button" value="달력 ㄱㄱ" style="float:right" />
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
@@ -120,6 +131,8 @@ function searchIdPwd(){
 					table.append(html);
 					console.log(html);
 					
+					
+					
 					$("#login_box").html(table);
 					
 				}
@@ -139,6 +152,9 @@ function searchIdPwd(){
      
      
      </script>
+     <div>
+     <button id="back" onclick="back();">달력 화면 돌아가기</button>
+     </div>
      <%} %>
      
    </section>

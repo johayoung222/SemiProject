@@ -217,5 +217,33 @@ public class MemberDao {
 		}		
 		return m;
 
+<<<<<<< HEAD
 	}
+=======
+	public int updatePassword(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updatePassword");
+		System.out.println("MemberDao UpaeatePassword");
+		try {
+			//1.쿼리객체준비끝
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberPwd());
+			pstmt.setString(2, m.getMemberId());
+			
+			//2.실행
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
+
+>>>>>>> 699bbed93477571f6b93516850b403c602326cef
 }

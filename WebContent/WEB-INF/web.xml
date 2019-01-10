@@ -5,11 +5,20 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
+<<<<<<< HEAD
     <servlet-name>SearchPwdServlet</servlet-name>
     <jsp-file>/WEB-INF/views/member/updatePwd.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>SearchPwdServlet</servlet-name>
     <url-pattern>/member/updatePwd2</url-pattern>
+=======
+    <servlet-name>MemberUpdatePasswordServlet</servlet-name>
+    <jsp-file>/WEB-INF/views/member/updatePassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberUpdatePasswordServlet</servlet-name>
+    <url-pattern>/member/updatePassword</url-pattern>
+>>>>>>> 699bbed93477571f6b93516850b403c602326cef
   </servlet-mapping>
 </web-app>
