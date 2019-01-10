@@ -20,6 +20,7 @@
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 
@@ -38,6 +39,13 @@ function addClickEvent(){
 		});
 	});
 }
+
+</script>
+
+	<div id="sidebar">
+	
+	</div>
+
 
 function insertData(){
 	var span = $("#add").find("span");

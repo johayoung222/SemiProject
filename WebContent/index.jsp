@@ -33,6 +33,15 @@ function CheckLogin(){
 	return true;
 }
 
+function searchIdPwd(){     
+	   var url = "<%=request.getContextPath()%>/member/searchIdPwd";
+	   var title = "searchIdPwd";
+	   var status = "left=300px, top=100px, width=800px, height=300px";
+	   
+	  open(url, title, status);
+   
+}
+
 </script>
 </head>
 
@@ -75,7 +84,7 @@ function CheckLogin(){
            <input type="submit" value="FaceBook으로 로그인">
          </div>
          <br>
-         <span>비밀번호를 잊으셨나요?</span>
+         <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
