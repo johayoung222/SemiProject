@@ -86,8 +86,9 @@ public class ScheduleDao {
 			int endRnum = cPage*numPerPage;
 			
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, startRnum);		
-			pstmt.setInt(3, endRnum);			
+			pstmt.setString(2, memberId);
+			pstmt.setInt(3, startRnum);		
+			pstmt.setInt(4, endRnum);			
 			
 			rset = pstmt.executeQuery();			
 			list = new ArrayList<>();			

@@ -33,6 +33,7 @@ $(function(){
 	var scheduleIcon = $("#search-scheduleIcon");
 	
 	
+	
 	$("select#searchType").change(function(){
 		scheduleTitle.hide();
 		scheduleContent.hide();
@@ -43,8 +44,7 @@ $(function(){
 	
 	$("#divicon img").on('click',function(){
 		var clickedIcon = $(this).attr("alt");		
-		$("#text").text($(this).attr("alt"));
-		$("#search-scheduleIcon#searchKeyword").val($(this).attr("alt"));
+		$("#iconValue").val(clickedIcon);		
 	});
 	
 });
@@ -63,9 +63,6 @@ $(function(){
 		<div id="search-scheduleTitle">			
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
-					   name="numPerPage" 
-					   value="<%=numPerPage%>"/>
-				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleTitle" />
 				<input type="search" 
@@ -78,9 +75,6 @@ $(function(){
 		</div>
 		<div id="search-scheduleContent">			
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
-				<input type="hidden" 
-					   name="numPerPage" 
-					   value="<%=numPerPage%>"/>
 				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleContent" />
@@ -95,13 +89,11 @@ $(function(){
 		<div id="search-scheduleIcon">			
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
-					   name="numPerPage" 
-					   value="<%=numPerPage%>"/>
-				<input type="hidden" 
 					   name="searchType"
 					   value="scheduleIcon" />				
 				<input type="search" 
 					   name="searchKeyword"
+					   id="iconValue"
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
 					   readonly
@@ -109,13 +101,15 @@ $(function(){
 				<div id="divicon">
 				<table id="tableicon">
 				<tr>
-					<td><img src="<%=request.getContextPath() %>/images/flower1.PNG" id="icon" alt="christmas"  ></td>
-					<td><img src="<%=request.getContextPath() %>/images/flower2.PNG" id="icon" alt="birthday"></td>
-					<td><img src="<%=request.getContextPath() %>/images/flower3.PNG" id="icon" alt="exhibition"></td>
-					<td><img src="<%=request.getContextPath() %>/images/logo.PNG" id="icon" alt="family"></td>
-					<td><img src="<%=request.getContextPath() %>/images/birthday.PNG" id="icon" alt="hospital"></td>
-				</tr>
-				<div id="text"></div>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"  ></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+				</tr>	
+				<tr>				
+					<td><img src="<%=request.getContextPath() %>/images/baseball.png" id="icon" alt="baseball.png"></td>
+				</tr>			
 				</table>					
 				
 				</div>				
@@ -130,7 +124,7 @@ $(function(){
 		<th>스케줄 시작일</th>
 		<th>스케줄 종료일</th>
 		<th>제목</th>
-		<th>작성일</th>		
+		<th>내용</th>
 	</tr>
 	<!-- 스크립틀릿 처리요망 -->
 	<% if(list == null || list.isEmpty()){ %>
@@ -152,7 +146,7 @@ $(function(){
 			<td>
 			<a href="<%=request.getContextPath()%>/schedule/scheduleView?ScheduleNo=<%=s.getScheduleNo()%>">
 			<%=s.getScheduleTitle() %></a></td>
-			<td><%=s.getScheduleDate() %></td>					
+			<td id="contentWidth"><%=s.getScheduleContent() %></td>
 		</tr>
 	<% }
 	} %>		

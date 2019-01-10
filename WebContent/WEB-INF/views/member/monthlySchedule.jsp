@@ -174,9 +174,15 @@ function insertData(){
         	});
         });
         
+       
         
         
         
         </script>
+         <%if("admin".equals(m.getMemberId())){%>
+		<div id="adminSide">
+			<a href="<%=request.getContextPath()%>/admin/memberList">회원리스트 조회</a>
+		</div>
+		<%}%>
 </body>
 </html>
