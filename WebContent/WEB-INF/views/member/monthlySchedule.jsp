@@ -126,13 +126,14 @@ function insertData(){
         		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
         		type: "get",
         		dataType: "json",
-        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1), "memberId":"<%=m.getMemberId() %>"},
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()), "memberId":"<%=m.getMemberId() %>"},
         		success: function(data){
         			console.log(data);
-        			var nextYear = data[0];
-        			var nextMonth = data[1];
-        			var start = data[2];
-        			var last = data[3]+start;
+        			var nextYear = data[1];
+        			var nextMonth = data[2];
+        			var start = data[3];
+        			var last = data[4]+start;
+        			var dataList = data[5];
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
         			

@@ -33,12 +33,12 @@ public class ScheduleDao {
         }
     }
 
-    public List<Schedule> selectScheduleByMonth(Connection conn, String memberId) {
+    public List<Schedule> selectAllSchedule(Connection conn, String memberId) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         List<Schedule> list = null;
         
-        String query = prop.getProperty("selectScheduleByMonth");
+        String query = prop.getProperty("selectAllSchedule");
         
         try {
             pstmt = conn.prepareStatement(query);
@@ -446,16 +446,20 @@ public class ScheduleDao {
 		return result;
 	}
 
-	public List<Schedule> daySchedule(Connection conn, String memberId) {
+	public List<Schedule> selectScheduleByMonth(Connection conn, String memberId, String first, String second) {
 		List<Schedule> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("daySchedule");
+		String query = prop.getProperty("selectScheduleByMonth");
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			System.out.println("first"+first);
+			System.out.println("second"+second);
 			pstmt.setString(1, memberId);
+			pstmt.setString(2, first);
+			pstmt.setString(3, second);
 			
 			rset = pstmt.executeQuery();
 			
@@ -476,6 +480,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("MEMBER_ID"));
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
 				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+				
 				list.add(s);
 			}
 			
