@@ -9,6 +9,20 @@
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
+<style>
+#friends{
+	position: relative;
+	background:gray;
+	top:-80px;
+	left:200px;
+	width: 300px;
+	height:300px;
+	border: 1px solid red;
+	display: none;
+	
+}
+
+</style>
 <script>
   function showPopup(temp) {
 	  var windowW = 800;  // 창의 가로 길이
@@ -21,6 +35,12 @@
 	  
 	  
   }
+  function addfriend(){
+	$("#friends").css('display','inline-block');	  
+  }
+  
+
+  
   </script>
   
 
@@ -61,11 +81,9 @@
             console.log("나라   : "+ resp.sys.country );
             console.log("도시이름  : "+ resp.name );
             console.log("구름  : "+ (resp.clouds.all) +"%" );   */              
-        }
-    })
-
-
-};
+        	}
+    	})
+	};
 
 </script>
 
@@ -84,9 +102,23 @@
 		<a href="##">년간 달력6</a><br />
 		<a href="##">년간 달력7</a><br />
 		
-	<div id="myDiv">
+		<div id="myDiv">
 	
-	</div>
+		</div>
+		<div id="friend">
+			<p>친구들</p>
+			<button id="addfriend" onclick="addfriend();">친구 +</button><br />
+			<span>친구1</span><br />
+			<span>친구2</span>
+		</div>
+		<div id="friends">
+			<form action="">
+				<select name="" id=""></select>
+				<input type="text" />
+				<input type="submit" />
+				<hr />
+			</form>
+		</div>
 	
 	</div>
 	

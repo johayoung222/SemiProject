@@ -92,7 +92,10 @@
 	
 }
 #scheduleDday-container{
-	position:relative;
+	position:absolute;
+	top:420px;
+	right:650px;
+	
 	
 	
 }
