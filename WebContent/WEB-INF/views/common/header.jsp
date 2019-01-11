@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ page import="com.kh.member.model.vo.*"  %>
 <%
-	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");    
+	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");  
+
 %>
 
 <!doctype html>
@@ -24,7 +25,7 @@
 	top: 5px;			
 }
 </style>
-<body>
+<body oncontextmenu="return false;">
   <nav class="header">
     <div class="logo">
       <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >

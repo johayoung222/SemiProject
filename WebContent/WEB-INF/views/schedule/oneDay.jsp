@@ -16,18 +16,19 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday.css" />
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <h1><%=day %>일</h1>
-<h2><%=year %>년 <%=month %>월 <%=day %>일 user님의 작성</h2>
+<h2><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 작성</h2>
 <div id="oneday-container">
 	<form action="<%=request.getContextPath() %>/schedule/insertSchedule" id="boardInfo" name="insertFrm" method="post">
 		<input type="hidden" name="year" value="<%=year %>"/>
 		<input type="hidden" name="month" value="<%=month %>"/>
 		<input type="hidden" name="day" value="<%=day %>"/>
-		<input type="hidden" name="time" value="time"/>
+		<input type="hidden" name="time" value="100"/>
 	</form>
 
 <div id="todolist">
 	<h2>To do List</h2>
 	<div id="insertBoard">+</div>
+	<div id="right-click">
 	<% if(!list.isEmpty()){ 
 		String s = "";	
 		for(int i=0; i<list.size(); i++){ 
@@ -35,8 +36,47 @@
 	   } %>
 	<%=s %>
 	<% } %>
+	</div>
 </div>
 <div id="middleLine"></div>
+<style>
+#contextMenu{
+	position: absolute;
+	width: 150px;
+    border: 1px solid black;
+    background-color: rgba(211, 211, 211, 0.815);
+    display: none;
+}
+#contextMenu .menu1{
+	height: 25px;
+	border: none;
+}
+#contextMenu div:hover{
+	background-color: #616161d0;
+}
+#right-click{
+	border: none;
+}
+</style>
+<script>
+$("#right-click").contextmenu(function(e) {
+	console.log(e);
+	console.log(e.target);
+	var target = e.target;
+	var pageX = e.originalEvent.pageX;
+	var pageY = e.originalEvent.pageY;
+	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
+	
+	//e를 갖다 써야하는데 함수 스코프를 고려해서 값을 넘겨줘야 함.
+	$("#contextMenu div").each(function(idx,item,target){
+		$(item).click(function(target){
+			$(this).parent()[0].style.display = 'none';
+			console.log(target.id);
+		});
+	});
+});
+
+</script>
 
 <div id="timeline">
 	<h2>TimeLine</h2>
@@ -212,13 +252,16 @@
 	</div>
 </div>
 </div>
+<div id="contextMenu">
+	<div class="menu1">삭제하기</div>
+</div>
 <script>
 $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
 $("#todolist div#insertBoard").nextAll().click(function(){
-	var target = $(this).children();
+	var target = $(this).children().children();
 	var boardNo = target.attr("id");
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
 });
@@ -230,6 +273,8 @@ $("#scroll-box div").each(function(idx, item){
 		insertFrm.submit();
 	});
 });
+
+
 </script>
 </body>
 </html>

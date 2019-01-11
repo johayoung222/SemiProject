@@ -1,8 +1,17 @@
 package com.kh.member.model.service;
 
-import java.sql.Connection;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
-import static com.kh.common.JDBCTemplate.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
@@ -97,6 +106,32 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-	}
+	
+
 
 }
+
+	public int updateMemberLog(String memberId) {
+		Connection conn = getConnection();
+		int log = new MemberDao().updateMemberLog(conn, memberId);
+		
+		if(log > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return log;
+	}
+
+	public List<String> selectById(String srchId) {
+		Connection conn = getConnection();
+		List<String> list = new MemberDao().selectById(conn, srchId);
+		
+		return list;
+	}
+
+
+
+}
+

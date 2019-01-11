@@ -9,6 +9,43 @@
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
+<style>
+#friends{
+	position: relative;
+	background:gray;
+	top:-80px;
+	left:200px;
+	width: 350px;
+	height:300px;
+	border: 1px solid red;
+	display: none;
+	z-index: 2;
+	overflow: scroll;
+	
+}
+ul#autoComplete{
+	min-width: 159px;
+	border: 1px solid gray;
+	display: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul#autoComplete li{
+	padding: 0 10px;
+	list-style: none;
+	cursor: pointer;
+}
+
+ul#autoComplete li.selected{
+	background: lightseagreen;
+	color: white;
+}
+
+span.srchVal{
+	color: red;
+}
+</style>
 <script>
   function showPopup(temp) {
 	  var windowW = 800;  // 창의 가로 길이
@@ -21,6 +58,12 @@
 	  
 	  
   }
+  function addfriend(){
+	$("#friends").css('display','inline-block');	  
+  }
+  
+
+  
   </script>
   
 
@@ -61,11 +104,9 @@
             console.log("나라   : "+ resp.sys.country );
             console.log("도시이름  : "+ resp.name );
             console.log("구름  : "+ (resp.clouds.all) +"%" );   */              
-        }
-    })
-
-
-};
+        	}
+    	})
+	};
 
 </script>
 
@@ -84,12 +125,102 @@
 		<a href="##">년간 달력6</a><br />
 		<a href="##">년간 달력7</a><br />
 		
-	<div id="myDiv">
+		<div id="myDiv">
+	
+		</div>
+		<div id="friend">
+			<p>친구들</p>
+			<button id="addfriend" onclick="addfriend();">친구 +</button><br />
+			<span>친구1</span><br />
+			<span>친구2</span>
+		</div>
+		<div id="friends">
+		<form class="insertFriendFrm" name="insertFriendFrm"
+			action="<%=request.getContextPath()%>/friend/insertFriend" 
+			method="post">
+				<label for="srchId">아이디 : </label>
+				<input type="text"  id="srchId" autocomplete="off" />
+				<button type="submit">친구찾기</button>
+					<ul id="autoComplete">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+						
+				<hr />
+		</form>
+		</div>
 	
 	</div>
 	
-	</div>
 	
+<script>
+
+$("#srchId").on("keyup" , function(e){
+	console.log(e.key);
+	var selected = $(".selected");
+	var li = $("#autoComplete li");
 	
+	if(e.key == "ArrowDown") {
+		if(selected.length == 0) {
+			$("#autoComplete li:first").addClass("selected");
+		} else if(selected.is(li.last())) {
+		} else {
+			selected.removeClass("selected").next().addClass("selected");
+		}
+	} else if(e.key == "ArrowUp") {
+		if(selected.length == 0) {
+		} else if(selected.is(li.first())) {
+			selected.removeClass("selected");
+		} else {
+			selected.removeClass("selected").prev().addClass("selected");
+		}
+	} else if(e.key == "Enter") {
+		$(this).val(selected.text());
+		$("#autoComplete").hide().children().remove();
+	} else {
+		var srchId = $(this).val().trim();
+		
+		if(srchId.length == 0) {
+			return;
+		}
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/friend/autoComplete.do" ,
+			type: "post" ,
+			data: {srchId:srchId} ,
+			success: function(data) {
+				console.log(data);
+				
+				var idArr = data.split(",");
+				var html = "";
+				for(var i = 0;i < idArr.length;i++) {
+					html += "<li>"+idArr[i].replace(srchId,"<span class='srchVal'>"+srchId+"</span>");
+				}
+				
+				if(data.length != 0) {
+					$("#autoComplete").html(html).css("display" , "inline-block");				
+				}
+
+			}
+		});
+	}
+});
+
+$("#autoComplete").on("click" , "li" , function(){
+	$("#srchId").val($(this).text());
+	$("#autoComplete").hide().children().remove();
+});
+
+
+$("#autoComplete").on("mouseenter" , "li" , function() {
+	$(this).siblings().removeClass("selected");
+	$(this).addClass("selected");
+});
+$("#autoComplete").on("mouseleave" , "li" , function() {
+	$(this).removeClass("selected");
+});
+
+</script>	
 </body>
 </html>

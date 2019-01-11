@@ -11,27 +11,12 @@
 	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
 	int last = (int)request.getAttribute("last");
+	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	
-	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
+	Member m = (Member)request.getAttribute("memberLoggedIn");
 	
 	//schedule data 를 date별로 나누기
-	List<Schedule> dayList = null;
-	HashMap<Integer,List<Schedule>> map = new HashMap<>();
-	
-			
-			//년월일에 맞게 데이터 삽입해줘야 함
-			Calendar c2 = Calendar.getInstance();
-			for(int i=1; i<=31; i++) {
-				dayList = new ArrayList<>();
-				for(Schedule s : list) {
-					Date date = s.getScheduleDate();
-					c2.setTime(date);
-					if(i == c2.get(Calendar.DATE)) {
-						dayList.add(s);
-					}
-				}
-				map.put(i, dayList);
-			}
+
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -39,8 +24,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
 
 <script>
+/* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
-	insertData();
 	var tag = $("#add").find("td");
 	tag.each(function(idx, item){
 		$(item).click(function(){
@@ -53,18 +38,18 @@ function addClickEvent(){
 		});
 	});
 }
-
-function insertData(){
-	var span = $("#add").find("span");
-	for(var i=0; i< span.length; i++){
-		<% for(int i=1; i<=31; i++){
-			if(!map.get(i).isEmpty()){ %>
-		if(span[i].id == <%=i %>) span[i].innerText = span[i].id+"<%=map.get(i).get(0).getScheduleTitle() %>";
-			<%}
-		} %>
-	}
-}
 </script>
+<style>
+	table#add tr td:first-of-type{
+       color:red;
+   }
+   /* table#add tr td:last-of-type{
+       color:blue;
+   } */
+   span.sat{
+       color:blue;
+   }
+</style>
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -77,13 +62,13 @@ function insertData(){
 		        
 		<table id="month">
 			<tr>
-				<th>일</th>
+				<th style="color:red;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th>토</th>
+				<th style="color:blue;">토</th>
 			</tr>
 		</table>
 		<table id="add">
@@ -91,12 +76,21 @@ function insertData(){
 			var html = "";
 			var start = <%=start %>;
 			for(var i=0; i<=<%=last %>+1; i++){
-				html = "<td><span></span></td>";
-				if(i>=start && i<=<%=last %>+1){
-				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
-				}
-				document.write(html);
+                html = "<td><span></span></td>";
+                if(i>=start && i<=<%=last %>+1){
+                if(i%7 == 6)html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";
+                else html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                }
+                document.write(html);
+            }
+			var span = $("#add").find("span");
+			for(var i=0; i< span.length; i++){
+				<% for(int i=1; i<=31; i++){
+					if(!map.get(i).isEmpty()){ %>
+				if(span[i].id == <%=i %>) span[i].innerText = span[i].id+"<%=map.get(i).get(0).getScheduleTitle() %>";
+					<%}
+				} %>
 			}
 			addClickEvent();
 			
@@ -121,6 +115,7 @@ function insertData(){
 		</div>	
 	</div> -->
 	<script>
+		/* 다음달로 넘어가는 기능 */
         $("#nextMonth").click(function(){
         	$.ajax({
         		url: "<%=request.getContextPath() %>/schedule/nextMonth.do",
@@ -136,19 +131,29 @@ function insertData(){
         			var dataList = data[5];
         			$("#cYear").text(nextYear);
         			$("#cMonth").text(nextMonth+1);
+        			console.log(data[5][0] == null);
         			
         			var table = $("#add");
         			table.html("");
         			var html = "";
         			for(var i=0; i<last-1; i++){
-
+						
+        				
+        				
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						if(i%7 == 6){
+        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+"</span></td>";
+        						}
+        						else{
+        							html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						}
+		        			
         					}else{
         					html += "<td><span></span></td>";
         					}
         				}else{
+        					
         					if(i >= start-1){
         					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
@@ -158,25 +163,38 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			
+        			var span = $("#add").find("span");
+        			if(dataList != null){
+        			for(var i=0; i< span.length; i++){
+        				for(var j=0; j<dataList.length; j++){
+        					console.log(i,j,dataList[j].scheduleTitle);
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				}
+        			}
+        			}
+        			
         			addClickEvent();
         		}
         	});
         });
-        
+        /* 이전달로 넘어가는 기능 */
         $("#prevMonth").click(function(){
         	$.ajax({
         		url: "<%=request.getContextPath() %>/schedule/prevMonth.do",
         		dataType: "json",
         		type: "get",
-        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()-1)},
+        		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text()), "memberId":"<%=m.getMemberId() %>"},
         		success: function(data){
         			console.log(data);
-        			var prevYear = data[0];
-        			var prevMonth = data[1];
-        			var start = data[2];
-        			var last = data[3]+start;
+        			var prevYear = data[1];
+        			var prevMonth = data[2];
+        			var start = data[3];
+        			var last = data[4]+start;
+        			var dataList = data[5];
         			$("#cYear").text(prevYear);
         			$("#cMonth").text(prevMonth+1);
+        			console.log(data[5][0] == null);
         			
         			var table = $("#add");
         			table.html("");
@@ -185,7 +203,13 @@ function insertData(){
 
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						if(i%7 == 6){
+        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+"</span></td>";
+        						}
+        						else{
+		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        							
+        						}
         					}else{
         					html += "<td><span></span></td>";
         					}
@@ -199,14 +223,19 @@ function insertData(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			var span = $("#add").find("span");
+        			if(dataList != null){
+        			for(var i=0; i< span.length; i++){
+        				for(var j=0; j<dataList.length; j++){
+        					console.log(i,j,dataList[j].scheduleTitle);
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				}
+        			}
+        			}
         			addClickEvent();
         		}
         	});
         });
-        
-       
-        
-        
         
         </script>
          <%if("admin".equals(m.getMemberId())){%>
