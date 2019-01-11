@@ -13,22 +13,23 @@
 			action="<%=request.getContextPath()%>/schedule/updateScheduleEnd" 
 			method="post"
 			enctype="multipart/form-data">
+	<input type="hidden" name="scheduleNo" value="<%=s.getScheduleNo()%>" />		
     <div id="inner-container">
         <label for="title">스케줄 제목:</label>
         <input type="text" id="title" name="title" value="<%=s.getScheduleTitle() %>">
         <div class="func">
             <label for="dday">D-day</label>
-            <input type="checkbox" name="dday" id="dday">
+            <input type="checkbox" name="dday" id="dday" value="<%=s.getScheduleDdaycheck()%>">
             <span></span>
             <br />
             <label for="scheduleStartDay">일시:</label>
 				<input type="date" name="scheduleStartDay" id="scheduleStartDay"
-					data-placeholder="스케줄 시작날을 설정하세요." required aria-required="true">
+					data-placeholder="스케줄 시작날을 설정하세요." required aria-required="true" value="<%=s.getScheduleStartday() %>">
 			
 				<input type="date" name="scheduleEndDay" id="scheduleEndDay"
-					data-placeholder="스케줄 끝날을 설정하세요." required aria-required="true">
+					data-placeholder="스케줄 끝날을 설정하세요." required aria-required="true" value="<%=s.getScheduleEndday()%>">
 				
-				<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" />
+				<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" value="<%=s.getScheduleRepeatcheck()%>" />
 				<label for="scheduleRepeatCheck">스케줄 반복여부 설정</label>
         </div>
         
