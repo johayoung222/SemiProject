@@ -6,6 +6,12 @@ import static com.kh.common.JDBCTemplate.getConnection;
 import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
@@ -116,6 +122,14 @@ public class MemberService {
 		
 		return log;
 	}
+
+	public List<String> selectById(String srchId) {
+		Connection conn = getConnection();
+		List<String> list = new MemberDao().selectById(conn, srchId);
+		
+		return list;
+	}
+
 
 
 }
