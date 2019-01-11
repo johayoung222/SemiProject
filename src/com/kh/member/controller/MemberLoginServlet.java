@@ -159,6 +159,7 @@ public class MemberLoginServlet extends HttpServlet {
 			//속성에 값 보관
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
+			System.out.println(request);
 			
 			RequestDispatcher reqDispatcher = request.getRequestDispatcher(view);
 			reqDispatcher.forward(request, response);

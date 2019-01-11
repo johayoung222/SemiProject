@@ -50,6 +50,8 @@ $(function(){
 	$("#iconClose").on('click',function(){
 		$("#divicon").hide();
 	});
+	
+	$("#scheduleIcon:checked").css("display : inline-block");
 			
 });
 
