@@ -142,14 +142,14 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		s.setTheDay(theDay);
 		
 		
-		System.out.printf("[%s]\n", s);
+//		System.out.printf("[%s]\n", s);
 		// 업무로직
 		int result = new ScheduleService().insertSchedule(s);
 		
 		//4.view단 처리 
 		String view = "/WEB-INF/views/common/msg.jsp"; 
 		String msg = "";
-		String loc = "/";
+		String loc = "";
 		
 		if(result > 0) { 
 			msg = "일정 등록 성공!"; 

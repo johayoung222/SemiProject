@@ -215,4 +215,24 @@ public class MemberDao {
 		
 	}
 
+	public int updateMemberLog(Connection conn, String memberId) {
+		int log = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateMemberLog");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			log = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return log;
+	}
+
 }
