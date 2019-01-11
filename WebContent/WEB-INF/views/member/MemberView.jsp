@@ -63,7 +63,7 @@
          </div>
          <div class="input_login">
            <label for="memberEmail">이 메일:</label>
-           <input type="email" name="memberEmail" id="memberEmail" value="<%=memberemail%>" />
+           <input type="email" name="memberEmail" id="memberEmail" value="<%=memberemail%>" readonly />
            &nbsp;&nbsp;
          </div>
          <div class="input_login">
