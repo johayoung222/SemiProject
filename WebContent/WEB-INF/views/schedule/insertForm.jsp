@@ -202,20 +202,37 @@
 						<input type="hidden" id="iconAlt" name="iconAlt" />
 						<div id="selected-icon">
 							<!-- 사용자가 선택한 icon이 이곳에 들어와야 한다. -->
-							<img src="<%=request.getContextPath() %>/images/logo.png" class="selected-icon" alt="logo.png" />
+							<img src="<%=request.getContextPath() %>/images/none.png" class="selected-icon" alt="none.png" />
 						</div>
 						<div class="imgcon">
 						<!-- 아무것도 없는 이미지 -->						
-						<img src="<%=request.getContextPath() %>/images/logo.png" class="img" alt="logo.png" />
-						<img src="<%=request.getContextPath() %>/images/flower1.PNG" class="img" alt="flower1.PNG" />
-						<img src="<%=request.getContextPath() %>/images/flower2.PNG" class="img" alt="flower2.PNG" />
-						<img src="<%=request.getContextPath() %>/images/flower3.PNG" class="img" alt="flower3.PNG" />
-						
-						<button class="moreimg"><span>더보기</span></button>
+						<img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png" />
+						<img src="<%=request.getContextPath() %>/images/family.png" class="img" alt="family.png" />
+						<img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png" />
+						<img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png" />
+												
+						<a href="#" id="iconOpen">더보기+</a>
 						</div>
-					<div><!-- 더보기 div 버튼 클릭시 나타난다. none -->
-						
-						
+					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
+						<table id="tableicon">
+							<tr>
+								<td><img src="<%=request.getContextPath() %>/images/none.png" class="img" alt="none.png" /></td>
+								<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="img" alt="baseball.png"  ></td>
+								<td><img src="<%=request.getContextPath() %>/images/birthday.png" class="img" alt="birthday.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/bowling.png" class="img" alt="bowling.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/family.png" class="img" alt="family.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/hospital.png" class="img" alt="hospital.png"></td>
+							</tr>	
+							<tr>				
+								<td><img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/marry.png" class="img" alt="marry.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/shopping.png" class="img" alt="shopping.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png"></td>
+								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
+								<td><a href="#" id="iconClose">닫기</a></td>
+							</tr>
+										
+						</table>					
 						<!-- <button>저장</button>
 						<button>취소</button> -->
 					</div>
@@ -337,7 +354,25 @@ $(".img").on("click" , function(){
 	
 });
 
+$("#iconOpen").on('click',function(){
+	$("#divicon").show();
+});
+
+$("#iconClose").on('click',function(){
+	$("#divicon").hide();
+});
+
 
 
 </script>
+<style>
+#divicon{
+	display:none;
+	margin-left: 70px;
+}
+
+	
+}
+
+</style>
 </html>
