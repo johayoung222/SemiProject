@@ -242,8 +242,8 @@
 
 
 			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
-			<select name="scheduleTimeline" required="required">
-				<option value="" hidden="hidden">시간을 선택해주세요.</option>
+			<select name="scheduleTimeline">
+				<option value="100" hidden="hidden">시간을 선택해주세요.</option>
 				<option value="00">00시</option>
 				<option value="01">01시</option>
 				<option value="02">02시</option>
