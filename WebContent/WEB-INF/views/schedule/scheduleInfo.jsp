@@ -20,6 +20,7 @@
         <div class="func">
             <label for="dday">D-day</label>
             <input type="checkbox" name="dday" id="dday" value="<%=s.getScheduleDdaycheck()%>">
+            <input type="date" name="ddaySelect" id="ddaySelect" value="<%=s.getScheduleDdaycheck()%>">
             <span></span>
             <br />
             <label for="scheduleStartDay">일시:</label>
@@ -44,8 +45,8 @@
             <label for="up_file">파일</label>
 				<input type="file" name="up_file" placeholder="이미지/파일선택" id="file">
             <div class="filelist">
+            	<img src="<%=request.getContextPath() %>/images/file.png" width="20px" height="20px"/>
             	<span><%=s.getScheduleOriginalfilename() %></span>
-            	<img src="<%=request.getContextPath() %>/upload/schedule/<%=s.getScheduleRenamefilename() %>" width="20px" height="20px"/>
             </div>
         </div>
         <div class="updateSchedule">
