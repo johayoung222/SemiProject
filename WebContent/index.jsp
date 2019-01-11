@@ -55,6 +55,8 @@ function searchIdPwd(){
    
 }
 
+
+
 </script>
 </head>
 
@@ -93,7 +95,7 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-           <input type="submit" value="FaceBook으로 로그인">
+           <input type="button" value="FaceBook으로 로그인" >
          </div>
          <br>
          <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
