@@ -62,19 +62,22 @@
 $("#right-click").contextmenu(function(e) {
 	console.log(e);
 	console.log(e.target);
-	var target = e.target;
+	thisTarget = e.target;
 	var pageX = e.originalEvent.pageX;
 	var pageY = e.originalEvent.pageY;
 	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
 	
 	//e를 갖다 써야하는데 함수 스코프를 고려해서 값을 넘겨줘야 함.
-	$("#contextMenu div").each(function(idx,item,target){
-		$(item).click(function(target){
+	$("#contextMenu div").each(function(idx,item){
+		$(item).click(function(){
 			$(this).parent()[0].style.display = 'none';
-			console.log(target.id);
+			var value = thisTarget.id;
+			location.href = "<%=request.getContextPath() %>/schedule/deleteScheduleEnd?scheduleNo="+value;
 		});
 	});
 });
+
+
 
 </script>
 

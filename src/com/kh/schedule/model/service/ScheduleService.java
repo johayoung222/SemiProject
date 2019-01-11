@@ -132,4 +132,16 @@ public class ScheduleService {
 		
 		return list;
 	}
+
+	public int deleteSchedule(int scheduleNo) {
+		Connection conn = getConnection();
+		int result = new ScheduleDao().deleteSchedule(conn, scheduleNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 }
