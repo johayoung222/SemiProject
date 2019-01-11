@@ -149,7 +149,7 @@ function searchpwd(){
     //팝업창을 target으로 폼전송
       var target = "checkEmailCertifiedPassword";
       //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-      var popup = open("", target, "left=700px, top=200px, height=135px, width=470px");
+      var popup = open("", target, "left=700px, top=300px, height=135px, width=470px");
       //폼의 대상을 작성한 popup을 가리키게 한다.
       checkEmailCertifiedPasswordFrm.target = target;
       
