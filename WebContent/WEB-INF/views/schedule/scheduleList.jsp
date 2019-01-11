@@ -17,8 +17,7 @@
 $(function(){
 	var scheduleTitle = $("#search-scheduleTitle");	
 	var scheduleContent = $("#search-scheduleContent");
-	var scheduleIcon = $("#search-scheduleIcon");
-	
+	var scheduleIcon = $("#search-scheduleIcon");	
 	
 	$("select#searchType").change(function(){
 		scheduleTitle.hide();
@@ -26,6 +25,12 @@ $(function(){
 		scheduleIcon.hide();
 		
 		$("#search-"+$(this).val()).css("display","inline-block");
+		var check = $("select#searchType option:selected").val();
+		if(check == "scheduleIcon"){
+			$("#divicon").show();
+		}else{
+			$("#divicon").hide();
+		}
 	});
 	
 	$(".icon").on('click',function(){		
@@ -36,10 +41,14 @@ $(function(){
 	
 	$("#iconClose").on('click',function(){
 		$("#divicon").hide();
-	});
+	});	
 	
 	
+			
 });
+
+
+
 
 </script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
@@ -86,6 +95,7 @@ $(function(){
 					   readonly/>&nbsp;							
 				<button type="submit" id="btn">검색</button>				
 			</form>
+		</div>
 		<div id="divicon">
 			<table id="tableicon">
 			<tr>
@@ -107,7 +117,6 @@ $(function(){
 			</tr>			
 			</table>		
 		</div>		
-		</div>
 </section>
 <section id="schedulelist-container">		
 	<table id="tbl-schedulelist">

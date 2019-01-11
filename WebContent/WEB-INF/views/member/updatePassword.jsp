@@ -49,6 +49,7 @@
 						<input type="password" 
 			  				   id="password_check" 
 			  				   required/>
+			   
 					</td>
 			  	</tr>
 			  	<tr>
@@ -57,9 +58,6 @@
 			  				   onclick="return passwordValidate();"
 			  				   value="변경"/>
 			  				   <br />
-			  			
-			  				   
-			  			
 			  			<input type="button"
 			  				   onclick="self.close();"
 			  				   value="취소"/>

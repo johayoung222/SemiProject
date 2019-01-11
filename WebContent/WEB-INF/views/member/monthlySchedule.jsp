@@ -39,6 +39,17 @@ function addClickEvent(){
 	});
 }
 </script>
+<style>
+	table#add tr td:first-of-type{
+       color:red;
+   }
+   /* table#add tr td:last-of-type{
+       color:blue;
+   } */
+   span.sat{
+       color:blue;
+   }
+</style>
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -51,13 +62,13 @@ function addClickEvent(){
 		        
 		<table id="month">
 			<tr>
-				<th>일</th>
+				<th style="color:red;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th>토</th>
+				<th style="color:blue;">토</th>
 			</tr>
 		</table>
 		<table id="add">
@@ -65,13 +76,14 @@ function addClickEvent(){
 			var html = "";
 			var start = <%=start %>;
 			for(var i=0; i<=<%=last %>+1; i++){
-				html = "<td><span></span></td>";
-				if(i>=start && i<=<%=last %>+1){
-				html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
-				if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
-				}
-				document.write(html);
-			}
+                html = "<td><span></span></td>";
+                if(i>=start && i<=<%=last %>+1){
+                if(i%7 == 6)html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";
+                else html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                }
+                document.write(html);
+            }
 			var span = $("#add").find("span");
 			for(var i=0; i< span.length; i++){
 				<% for(int i=1; i<=31; i++){
@@ -125,14 +137,23 @@ function addClickEvent(){
         			table.html("");
         			var html = "";
         			for(var i=0; i<last-1; i++){
-
+						
+        				
+        				
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						if(i%7 == 6){
+        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+"</span></td>";
+        						}
+        						else{
+        							html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						}
+		        			
         					}else{
         					html += "<td><span></span></td>";
         					}
         				}else{
+        					
         					if(i >= start-1){
         					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
         					}else{
@@ -182,7 +203,13 @@ function addClickEvent(){
 
         				if(i%7 != 0){
         					if(i >= start-1){
-        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        						if(i%7 == 6){
+        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+"</span></td>";
+        						}
+        						else{
+		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        							
+        						}
         					}else{
         					html += "<td><span></span></td>";
         					}

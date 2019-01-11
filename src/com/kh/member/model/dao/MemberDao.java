@@ -4,9 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -213,6 +216,59 @@ public class MemberDao {
 		return result;
 		
 		
+	}
+
+	public int updateMemberLog(Connection conn, String memberId) {
+		int log = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateMemberLog");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			log = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return log;
+	}
+
+	public List<String> selectById(Connection conn, String srchId) {
+		List<String> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectById");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+srchId+"%");
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString("member_id"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
 	}
 
 }

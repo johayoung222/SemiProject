@@ -2,8 +2,6 @@ package com.kh.schedule.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,43 +11,32 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.josephoconnell.html.HTMLInputFilter;
+
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.schedule.model.service.ScheduleService;
 import com.kh.schedule.model.vo.Schedule;
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 /**
- * Servlet implementation class InsertScheduleEndServlet
+ * Servlet implementation class ScheduleUpdateServlet
  */
-@WebServlet("/schedule/insertScheduleEnd")
-public class InsertScheduleEndServlet extends HttpServlet {
+@WebServlet("/schedule/updateScheduleEnd")
+public class ScheduleUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    public ScheduleUpdateServlet() {
+        super();
+    }
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public InsertScheduleEndServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("왜안될까? : " + !ServletFileUpload.isMultipartContent(request));
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "일정작성오류!");
+			request.setAttribute("msg", "일정수정 오류!");
 			request.setAttribute("loc", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return;
 		}
-
-		String root = getServletContext().getRealPath("/");
-		String saveDirectory = root + "upload" + File.separator + "schedule";
+		
+		String saveDirectory = "/upload/schedule/update";
 		System.out.printf("[saveDirectory = %s]\n", saveDirectory);
 
 		int maxPostSize = 1024 * 1024 * 10;
@@ -57,9 +44,9 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		MultipartRequest multiReq = new MultipartRequest(request, saveDirectory, maxPostSize, "UTF-8",
 				new MyFileRenamePolicy());
 
-		String scheduleTitle = multiReq.getParameter("scheduleTitle");
-		String scheduleContent = multiReq.getParameter("scheduleContent");
-		String scheduleDdayCheck = multiReq.getParameter("scheduleDdayCheck");
+		String scheduleTitle = multiReq.getParameter("title");
+		String scheduleContent = multiReq.getParameter("content");
+		String scheduleDdayCheck = multiReq.getParameter("dday");
 
 		// System.out.println("값 체크 : "+scheduleTitle +"," +scheduleContent+ ","+scheduleDdayCheck );
 		// 체크했을 경우 on으로 넘어오고 체크되지 않았을 경우에는 null이라고 넘어온다.
@@ -74,13 +61,10 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		java.sql.Date dateDday = null;
 		
 		if (scheduleDdayCheck == "Y") {
-			String scheduleDday = multiReq.getParameter("scheduleDday");
+			String scheduleDday = multiReq.getParameter("ddaySelect");
 			dateDday = java.sql.Date.valueOf(scheduleDday);
 			System.out.println("날짜출력 dateDday 테스트"+dateDday);
-		}
-
-		int scheduleTimeline = Integer.parseInt(multiReq.getParameter("scheduleTimeline"));
-		System.out.println("타임라인 넘어오는 타입확인 : "+scheduleTimeline);
+		}		
 
 		// scheduleContent에 대한 html_filter라이브러리 사용
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
@@ -163,13 +147,8 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		request.getRequestDispatcher(view) .forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

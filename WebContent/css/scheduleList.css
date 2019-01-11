@@ -16,10 +16,12 @@ div#search-scheduleContent, div#search-scheduleIcon{
 div#divicon{	
 	width: 290px;
 	height: 247px;
-	background-color: yellow;	
-	position:absolute;
+	background-color: rgba( 255, 255, 255, 0.1 );	
+	position:relative;
 	margin-top:5px;		
-	
+	margin-left: auto;
+	margin-right: auto;
+	display:none;
 }
 img{
 	width:50px;
