@@ -36,7 +36,7 @@ public class ScheduleDeleteServlet extends HttpServlet {
 		int scheduleNo = Integer.parseInt(request.getParameter("scheduleNo"));
 		String up_file = request.getParameter("up_file");
 		
-		int result = new ScheduleService().deleteSchedule(scheduleNo);
+//		int result = new ScheduleService().deleteSchedule(scheduleNo);
 		
 		
 		
