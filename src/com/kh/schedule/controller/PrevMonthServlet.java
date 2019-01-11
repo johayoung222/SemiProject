@@ -56,7 +56,6 @@ public class PrevMonthServlet extends HttpServlet {
 			cYear -= 1;
 			cMonth = 12;
 		}
-		System.out.println("cMonth:"+cMonth);
 		
 		cMonth -= 1;
 		spMonth = String.valueOf(cMonth);
@@ -65,7 +64,6 @@ public class PrevMonthServlet extends HttpServlet {
 		}
 		String first = cYear+spMonth;
 		
-		System.out.println(scMonth+"<-/->"+spMonth);
 		
 		List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
 		

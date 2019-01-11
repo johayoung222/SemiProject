@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 <%
-
+	
 %>
 
 <!doctype html>
@@ -27,9 +27,9 @@ margin-right: 450px;
 
 <script>
 
-<%-- function back(){
-	location.href = "<%=request.getContextPath() %>/member/login?memberId="+<%=memberLoggedIn.getMemberId()%>+"&memberPwd="+<%=memberLoggedIn.getMemberPwd()%>;
-} --%>
+function back(){
+	backFrm.submit();
+}
 
 <%--로그인 유효성 검사--%>
 function CheckLogin(){
@@ -156,6 +156,10 @@ function searchIdPwd(){
      </script>
      <div>
      <button id="back" onclick="back();">달력 화면 돌아가기</button>
+     <form action="<%=request.getContextPath() %>/member/login" name="backFrm">
+     	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
+     	<input type="hidden" name="memberPwd" value="<%=memberLoggedIn.getMemberPwd() %>"/>
+     </form>
      </div>
      <%} %>
      
