@@ -35,7 +35,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
-		System.out.printf("[%s, %s]\n", memberId, memberPwd);
+		//System.out.printf("[%s, %s]\n", memberId, memberPwd);
 		
 		// return 1 : 로그인성공
 		// return 0 : 패스워드 틀림
@@ -46,7 +46,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		int result = new MemberService().loginCheck(m);
 //		int result = 1;
-		System.out.println("[로그인결과 : "+result+"]");		
+		//System.out.println("[로그인결과 : "+result+"]");		
 		
 		String view = "";		
 		String msg = "";
@@ -83,11 +83,34 @@ public class MemberLoginServlet extends HttpServlet {
 			int start = c.get(Calendar.DAY_OF_WEEK)-1;
 			int last = c.getActualMaximum(Calendar.DATE);
 			
+			String scMonth = "";
+			String snMonth = "";
+			int cMonth = month + 1;
+			int cYear = year;
+			
+			if(cMonth < 10) {
+				scMonth = "0"+cMonth;
+			}
+			
+			cMonth += 1;
+			if(cMonth == 13) {
+				cYear += 1;
+				cMonth = 1;
+			}
+			if(cMonth < 10) {
+				snMonth = "0"+cMonth;
+			}
+			
+			String first = year+scMonth;
+			String second = cYear+snMonth;
+			System.out.println(first+"/"+second);
 		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
-			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId);
+			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
+			
 			List<Schedule> dayList = null;
 			HashMap<Integer,List<Schedule>> map = new HashMap<>();
+			
 			
 			//년월일에 맞게 데이터 삽입해줘야 함
 			Calendar c2 = Calendar.getInstance();
@@ -102,6 +125,8 @@ public class MemberLoginServlet extends HttpServlet {
 				}
 				map.put(i, dayList);
 			}
+			
+			
 
 //			Set<Integer> set =  map.keySet();
 //			for(int key : set) {
@@ -116,8 +141,8 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("year", year);
 			request.setAttribute("month", month);
 			request.setAttribute("day", day);
-			request.setAttribute("map", map);
 			request.setAttribute("list", list);
+			request.setAttribute("map", map);
 			request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
 			
 		//2.로그인 실패한 경우

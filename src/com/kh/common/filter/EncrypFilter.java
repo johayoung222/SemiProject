@@ -22,7 +22,7 @@ import com.kh.common.wrapper.EncryptWrapper;
 /**
  * Servlet Filter implementation class EncrypFilter
  */
-@WebFilter({"/member/memberEnroll","/member/login"})
+@WebFilter({"/member/memberEnroll","/member/login","/member/updatePasswordEnd"})
 public class EncrypFilter implements Filter {
 
     /**

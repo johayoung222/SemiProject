@@ -11,9 +11,9 @@ import com.kh.schedule.model.vo.Schedule;
 
 public class ScheduleService {
 
-    public List<Schedule> selectScheduleByMonth(String memberId) {
+    public List<Schedule> selectAllSchedule(String memberId) {
         Connection conn = getConnection();
-        List<Schedule> list = new ScheduleDao().selectScheduleByMonth(conn, memberId);
+        List<Schedule> list = new ScheduleDao().selectAllSchedule(conn, memberId);
         close(conn);
         
         return list;
@@ -120,6 +120,14 @@ public class ScheduleService {
 	public List<Schedule> daySchedule(String memberId) {
 		Connection conn = getConnection();
 		List<Schedule> list = new ScheduleDao().daySchedule(conn, memberId);
+		close(conn);
+		
+		return list;
+	}
+	
+	public List<Schedule> selectScheduleByMonth(String memberId, String first, String second) {
+		Connection conn = getConnection();
+		List<Schedule> list = new ScheduleDao().selectScheduleByMonth(conn, memberId, first, second);
 		close(conn);
 		
 		return list;

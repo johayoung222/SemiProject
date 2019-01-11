@@ -33,12 +33,12 @@ public class ScheduleDao {
         }
     }
 
-    public List<Schedule> selectScheduleByMonth(Connection conn, String memberId) {
+    public List<Schedule> selectAllSchedule(Connection conn, String memberId) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
         List<Schedule> list = null;
         
-        String query = prop.getProperty("selectScheduleByMonth");
+        String query = prop.getProperty("selectAllSchedule");
         
         try {
             pstmt = conn.prepareStatement(query);
@@ -61,6 +61,8 @@ public class ScheduleDao {
                 s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
                 s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
                 s.setMemberId(rset.getString("MEMBER_ID"));
+                s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
                 
                 list.add(s);
             }
@@ -80,15 +82,16 @@ public class ScheduleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = prop.getProperty("selectScheduleList");
-		
+				
 		try {			
 			pstmt = conn.prepareStatement(query);			
 			int startRnum = (cPage-1)*numPerPage+1;			
 			int endRnum = cPage*numPerPage;
 			
 			pstmt.setString(1, memberId);
-			pstmt.setInt(2, startRnum);		
-			pstmt.setInt(3, endRnum);			
+			pstmt.setString(2, memberId);
+			pstmt.setInt(3, startRnum);		
+			pstmt.setInt(4, endRnum);			
 			
 			rset = pstmt.executeQuery();			
 			list = new ArrayList<>();			
@@ -104,7 +107,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -167,7 +172,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -208,7 +215,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -248,7 +257,9 @@ public class ScheduleDao {
 				s.setScheduleTimeline(rset.getInt("schedule_timeline"));
 				s.setScheduleStartday(rset.getDate("schedule_start_day"));
 				s.setScheduleEndday(rset.getDate("schedule_end_day"));
-				s.setMemberId(rset.getString("member_id"));				
+				s.setMemberId(rset.getString("member_id"));	
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -405,6 +416,8 @@ public class ScheduleDao {
 				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
 				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
 				s.setMemberId(rset.getString("MEMBER_ID"));
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+                s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
 			}
 			
 			
@@ -436,6 +449,8 @@ public class ScheduleDao {
 			pstmt.setString(11, s.getMemberId());
 			pstmt.setDate(12, s.getScheduleDday());
 			pstmt.setString(13, s.getScheduleIcon());
+			pstmt.setInt(14, s.getTheDay());
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -446,6 +461,56 @@ public class ScheduleDao {
 		return result;
 	}
 
+	public List<Schedule> selectScheduleByMonth(Connection conn, String memberId, String first, String second) {
+		List<Schedule> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectScheduleByMonth");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			System.out.println("first"+first);
+			System.out.println("second"+second);
+			pstmt.setString(1, memberId);
+			pstmt.setString(2, first);
+			pstmt.setString(3, second);
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<>();
+			while(rset.next()) {
+				Schedule s = new Schedule();
+				s.setScheduleNo(rset.getInt("SCHEDULE_NO"));
+				s.setScheduleTitle(rset.getString("SCHEDULE_TITLE"));
+				s.setScheduleContent(rset.getString("SCHEDULE_CONTENT"));
+				s.setScheduleOriginalfilename(rset.getString("SCHEDULE_ORIGINAL_FILENAME"));
+				s.setScheduleRenamefilename(rset.getString("SCHEDULE_RENAMED_FILENAME"));
+				s.setScheduleDate(rset.getDate("SCHEDULE_DATE"));
+				s.setScheduleDdaycheck(rset.getString("SCHEDULE_DDAY_CHECK"));
+				s.setScheduleRepeatcheck(rset.getString("SCHEDULE_REPEAT_CHECK"));
+				s.setScheduleTimeline(rset.getInt("SCHEDULE_TIMELINE"));
+				s.setScheduleStartday(rset.getDate("SCHEDULE_START_DAY"));
+				s.setScheduleEndday(rset.getDate("SCHEDULE_END_DAY"));
+				s.setMemberId(rset.getString("MEMBER_ID"));
+				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
+				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+				s.setTheDay(rset.getInt("THEDAY"));
+				
+				list.add(s);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 	public List<Schedule> daySchedule(Connection conn, String memberId) {
 		List<Schedule> list = null;
 		PreparedStatement pstmt = null;

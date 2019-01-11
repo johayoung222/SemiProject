@@ -272,6 +272,9 @@
 			<br /><br />
 				
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
+				<input type="hidden" name="theDay" value="<%=day %>" />
+				
+					<br /><br />
 
 
 					<input type="submit" value="일정 등록" onclick="return validate();" class="submit">

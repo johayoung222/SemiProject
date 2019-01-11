@@ -43,6 +43,7 @@ public class ScheduleListServlet extends HttpServlet {
 		
 		List<Schedule> list= new ScheduleService().selectScheduleList(cPage, numPerPage, memberId);
 		int totalContent = new ScheduleService().selectScheduleCount(memberId);
+		//System.out.println("ScheduleListServlet : "+list.toString());
 		//System.out.printf("[totalContent=%s]\n", totalContent);				
 		
 		int totalPage = (int)Math.ceil((double)totalContent/numPerPage);
