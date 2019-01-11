@@ -38,7 +38,7 @@ public class ScheduleDeleteServlet extends HttpServlet {
 		
 		int result = new ScheduleService().deleteSchedule(scheduleNo);
 		
-		response.sendRedirect(request.getContextPath()+"/member/login");
+		response.sendRedirect(request.getContextPath());
 		
 		
 		

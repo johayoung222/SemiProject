@@ -67,7 +67,6 @@ $("#right-click").contextmenu(function(e) {
 	var pageY = e.originalEvent.pageY;
 	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
 	
-	//e를 갖다 써야하는데 함수 스코프를 고려해서 값을 넘겨줘야 함.
 	$("#contextMenu div").each(function(idx,item){
 		$(item).click(function(){
 			$(this).parent()[0].style.display = 'none';
@@ -77,6 +76,11 @@ $("#right-click").contextmenu(function(e) {
 	});
 });
 
+$(document).on('click',function(){
+	if($("#contextMenu").css("display") == 'block'){
+		$("#contextMenu").css("display","none");
+	}
+});
 
 
 </script>
