@@ -7,6 +7,7 @@
 	int year = (int) request.getAttribute("year");
 	int month = (int) request.getAttribute("month");
 	int day = (int) request.getAttribute("day");
+	int time = (int)request.getAttribute("time");
 	String user = (String) request.getAttribute("user");
 	String writeDay = year+"-"+month+"-"+day;
 %>
@@ -243,7 +244,11 @@
 
 			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
 			<select name="scheduleTimeline">
+			<% if(time == 100){ %>
 				<option value="100" hidden="hidden">시간을 선택해주세요.</option>
+				<%}else{ %>
+				<option value="<%=time %>" selected><%=time %>시</option>
+				<%} %>
 				<option value="00">00시</option>
 				<option value="01">01시</option>
 				<option value="02">02시</option>
