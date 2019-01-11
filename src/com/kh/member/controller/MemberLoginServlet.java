@@ -2,13 +2,10 @@ package com.kh.member.controller;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -102,11 +99,13 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			String first = year+scMonth;
 			String second = cYear+snMonth;
-			System.out.println(first+"/"+second);
 		
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
 			List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
-			
+			int log = new MemberService().updateMemberLog(memberId);
+			if(log == 1) {
+				System.out.println("log up success!!");
+			}
 			List<Schedule> dayList = null;
 			HashMap<Integer,List<Schedule>> map = new HashMap<>();
 			
