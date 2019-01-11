@@ -30,22 +30,7 @@ public class SearchPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-
-		String memberId = request.getParameter("pid");
-		System.out.println("memberId=" + memberId);
-		String memberEmail = request.getParameter("pemail");
-		System.out.println("memberEmail=" + memberEmail);
-	
-		Member member = new Member();
-
-		member.setMemberId(memberId);
-		member.setMemberEmail(memberEmail);
-
-		Member result = new MemberService().MemberPwd(member);
 		
-
-		new Gson().toJson(result, response.getWriter());
 	}
 
 	/**

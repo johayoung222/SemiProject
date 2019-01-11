@@ -189,8 +189,8 @@ public class MemberDao {
 		
 	}
 
-	public Member MemberPwd(Connection conn, Member member) {
-		Member m = null;
+	public int MemberPwd(Connection conn, Member member) {
+		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -203,9 +203,9 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()){
-				m = new Member();
+				member = new Member();
 				//컬럼명은 대소문자 구분이 없다.
-				m.setMemberPwd(rset.getString("member_pwd"));
+				member.setMemberPwd(rset.getString("member_pwd"));
 				
 			}			
 			
@@ -215,7 +215,7 @@ public class MemberDao {
 			close(rset);
 			close(pstmt);
 		}		
-		return m;
+		return result;
 
 
 	}
@@ -224,7 +224,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updatePassword");
-		System.out.println("MemberDao UpaeatePassword");
+		
 		try {
 			//1.쿼리객체준비끝
 			pstmt = conn.prepareStatement(query);
@@ -245,34 +245,29 @@ public class MemberDao {
 		
 	}
 
-	public Member updatePwd(Connection conn, Member member) {
-		
-		Member m = null;
+	public int updatePwd(Connection conn, Member m) {
+		int result = 0;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
 		String query = prop.getProperty("updatePwd");
-		System.out.println("member="+member);
-		try{
+		
+		System.out.println("m111="+m);
+		System.out.println(query);
+		try {
+			//1.쿼리객체준비끝
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getMemberId());
-			pstmt.setString(2, member.getMemberPwd());
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()){
-				m = new Member();
-				//컬럼명은 대소문자 구분이 없다.
-				m.setMemberPwd(rset.getString("member_pwd"));
-				
-			}			
-			
-		}catch(Exception e){
+			pstmt.setString(1, m.getMemberPwd());
+			pstmt.setString(2, m.getMemberId());
+		
+			System.out.println("m333="+m);
+			//2.실행
+			result = pstmt.executeUpdate();
+			System.out.println("result2="+result);
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			close(rset);
+		} finally {
 			close(pstmt);
-		}		
-		return m;
+		}
+		
+		return result;
 	}
-
 }

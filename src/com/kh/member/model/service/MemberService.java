@@ -83,15 +83,6 @@ public class MemberService {
 		
 		
 	}
-
-	public Member MemberPwd(Member member) {
-		Connection conn = getConnection();
-		Member m = new MemberDao().MemberPwd(conn, member);
-		if(m != null) commit(conn);
-		else rollback(conn);
-		return m;
-	}
-
 	public int updatePassword(Member m) {
 		
 		Connection conn = getConnection();
@@ -108,12 +99,4 @@ public class MemberService {
 		return result;
 	}
 
-	public Member updatePwd(Member member) {
-
-		Connection conn = getConnection();
-		Member m = new MemberDao().updatePwd(conn, member);
-		if(m != null) commit(conn);
-		else rollback(conn);
-		return m;
-	}
 }

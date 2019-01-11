@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
@@ -30,18 +31,6 @@ public class UpdateNewPasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memberName = request.getParameter("MemberName");
-		String updatePwd = request.getParameter("updatePwd");
-		
-		
-		Member m = new Member();
-		m.setMemberName(memberName);
-		m.setMemberPwd(updatePwd);
-		
-		Member member = new MemberService().updatePwd(m);
-		
-		request.getRequestDispatcher("/WEB-INF/views/member/updatePwd.jsp")
-		   .forward(request, response);
 		
 		
 		

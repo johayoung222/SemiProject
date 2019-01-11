@@ -36,11 +36,11 @@ public class SearchIdPwdServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String memberName = request.getParameter("pname");
-		System.out.println("memberName="+memberName);
+		
 		String memberEmail = request.getParameter("pemail");
-		System.out.println("memberEmail="+memberEmail);
+		
 		String memberId = request.getParameter("pid");
-		System.out.println("memberId= "+memberId);
+		
 		
 		Member member = new Member();
 		

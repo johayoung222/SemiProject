@@ -90,9 +90,9 @@ function searchid(){
 	}
 	});
 }
-function searchpwd(){
+<%-- function searchpwd(){
 	var memberId = document.getElementById('userId_');
-	var memberEmail = document.getElementById('email_');
+	var memberEmail = document.getElementById('email__');
 	
 	 if(memberId.value =="" ){
 		 alert("ID를 입력해주세요.");
@@ -107,33 +107,56 @@ function searchpwd(){
 	 
 	
 	var param2 = {
-			"pid":$("#userId_").val(),
-			"pemail":$("#email_").val()
+	/* 		"pid":$("#userId_").val(), */
+			"pemail_":$("#email__").val(),
 	}
+	
+
 	$.ajax({
 		type: "post",
-		url:"<%=request.getContextPath()%>/member/searchPwd",
+		url:"<%=request.getContextPath()%>/member/checkEmailCertifiedPassword",
 		data: param2,
 	success: function(data){
-		console.log(data);
-		var html="<table>";
+		console.log(data[0]);
+		
+		var url = "<%=request.getContextPath()%>/member/checkEmailCertifiedPassword2?"+data[0];
+		var title = "checkEmailCertifiedPassword";
+		var status = "left=700px, top=100px, width=350px, height=300px"; 
+		   
+		 open(url, title, status);
+		
+		/* var html="<table>";
 		if(data != null){
 			html +="<tr><td id='searchPwd2'>"+"당신의 비밀번호는 "+data.memberPwd+" 입니다."+"</td></tr>";
-			/* html +="<td>"+param.pemail+"</td></tr>"; */
+			html +="<td>"+param.pemail+"</td></tr>";
 		}
 		html+="</table>";
 		
-		$("#table2").html(html);
+		$("#table2").html(html); */
 	},
 	error:function(){
 		
 	}
 	});
-	var url = "<%=request.getContextPath()%>/member/updatePwd2";
-	var title = "updatePwd";
-	var status = "left=700px, top=100px, width=350px, height=300px";
-	   
-	  open(url, title, status);
+ 	
+} --%>
+function searchpwd(){
+	var memberEmail = $("#email__").val();
+    if(memberEmail.trim().length == 0){
+        alert("이메일을 입력하세요.");
+        return false;
+    }
+    //팝업창을 target으로 폼전송
+      var target = "checkEmailCertifiedPassword";
+      //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+      var popup = open("", target, "left=700px, top=200px, height=135px, width=470px");
+      //폼의 대상을 작성한 popup을 가리키게 한다.
+      checkEmailCertifiedPasswordFrm.target = target;
+      
+      console.log(memberEmail);
+      
+      checkEmailCertifiedPasswordFrm.email.value = memberEmail;
+      checkEmailCertifiedPasswordFrm.submit();
 }
 function chk(re, e, msg) {
     if (re.test(e.value)) {
@@ -178,8 +201,8 @@ function chk(re, e, msg) {
                   </tr>
 			</table>
 			</form>
-			<form action="<%=request.getContextPath()%>/member/searchIdPwd"
-			name="searchIdPwd_" method="post">
+			<form action="<%=request.getContextPath()%>/member/checkEmailCertifiedPassword"
+			name="checkEmailCertifiedPasswordFrm" method="post">
 			<table id="table2" style="float: right">
 			<tr>
 					<th id="searchid">비밀번호 찾기</th>
@@ -190,7 +213,7 @@ function chk(re, e, msg) {
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email_" placeholder="찾아야한다.." required /></td>
+					<td><input type="email" name="email" id="email__" placeholder="찾아야한다.." required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
                   		<input type="button" onclick="searchpwd();" value="비밀번호 찾기" />

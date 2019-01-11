@@ -11,13 +11,21 @@
   <servlet-mapping>
     <servlet-name>SearchPwdServlet</servlet-name>
     <url-pattern>/member/updatePwd2</url-pattern>
-	</servlet-mapping>
-	<servlet>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>MemberUpdatePasswordServlet</servlet-name>
     <jsp-file>/WEB-INF/views/member/updatePassword.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>MemberUpdatePasswordServlet</servlet-name>
     <url-pattern>/member/updatePassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CheckEmailCertifiedPasswordServlet</servlet-name>
+    <jsp-file>/WEB-INF/views/member/sendMailpopupPassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckEmailCertifiedPasswordServlet</servlet-name>
+    <url-pattern>/member/checkEmailCertifiedPassword2</url-pattern>
   </servlet-mapping>
 </web-app>
