@@ -3,7 +3,7 @@
     <%
     	int certifiedNum = (int)request.getAttribute("certified");
     	System.out.println(certifiedNum);
-        
+         
     %>
 
 <!DOCTYPE html>
