@@ -43,12 +43,18 @@ public class EncrypFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		
+		HttpServletRequest req = (HttpServletRequest) request;
+		
+		if(req.getSession(false).getAttribute("memberLoggedIn") == null) {
 		//암호화래퍼객체 생성
-		EncryptWrapper encRequest = new EncryptWrapper((HttpServletRequest)request);
+		EncryptWrapper encRequest = new EncryptWrapper(req);
 		System.out.println("EncryptFilter처리 완료!");
 
-		//ServletRequest - HttpServletRequest - HttpServletRequestWrapper - EncryptWrapper
 		chain.doFilter(encRequest, response);
+		}
+		//ServletRequest - HttpServletRequest - HttpServletRequestWrapper - EncryptWrapper
+		chain.doFilter(request, response);
 		System.out.println("EncryptFilter Chain.doFilter 처리 완료!");
 	}
 

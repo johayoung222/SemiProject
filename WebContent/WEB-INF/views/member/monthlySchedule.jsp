@@ -13,7 +13,7 @@
 	int last = (int)request.getAttribute("last");
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	
-	Member m = (Member)request.getSession(false).getAttribute("memberLoggedIn");
+	Member m = (Member)request.getAttribute("memberLoggedIn");
 	
 	//schedule data 를 date별로 나누기
 
