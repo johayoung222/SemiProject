@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /com/
 <<<<<<< HEAD
 /driver.properties
@@ -20,3 +21,7 @@
 /sql/
 >>>>>>> min
 >>>>>>> 29ddc4f5635bb74186e5a97ea33e66edc3dcec20
+=======
+/sql/
+/com/
+>>>>>>> develop
