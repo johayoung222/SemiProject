@@ -63,6 +63,7 @@ public class ScheduleDao {
                 s.setMemberId(rset.getString("MEMBER_ID"));
                 s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
                 
                 list.add(s);
             }
@@ -110,6 +111,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("member_id"));	
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 		} catch (SQLException e) {
@@ -175,6 +177,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("member_id"));	
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -218,6 +221,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("member_id"));	
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -260,6 +264,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("member_id"));	
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 		}catch(Exception e){
@@ -374,6 +379,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("MEMBER_ID"));
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
 				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+				s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 			
@@ -418,6 +424,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("MEMBER_ID"));
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
                 s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+                s.setTheDay(rset.getInt("THEDAY"));
 			}
 			
 			
@@ -432,7 +439,11 @@ public class ScheduleDao {
 	public int insertSchedule(Connection conn, Schedule s) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = prop.getProperty("insertSchedule"); 
+		String query = prop.getProperty("insertSchedule");
+		System.out.println("DaoInsert s.getScheduleDate() : "+s.getScheduleDate());
+		System.out.println("DaoInsert s.getScheduleStartday() : "+s.getScheduleStartday());
+		System.out.println("DaoInsert s.getScheduleEndday() : "+s.getScheduleEndday());
+		System.out.println("DaoInsert s.getScheduleDday() : "+s.getScheduleDday());
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -539,6 +550,7 @@ public class ScheduleDao {
 				s.setMemberId(rset.getString("MEMBER_ID"));
 				s.setScheduleDday(rset.getDate("SCHEDULE_DDAY"));
 				s.setScheduleIcon(rset.getString("SCHEDULE_ICON"));
+				s.setTheDay(rset.getInt("THEDAY"));
 				list.add(s);
 			}
 			

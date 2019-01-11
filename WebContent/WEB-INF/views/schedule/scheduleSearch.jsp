@@ -38,22 +38,29 @@ $(function(){
 		scheduleIcon.hide();
 		
 		$("#search-"+$(this).val()).css("display","inline-block");
+		
+		var check = $("select#searchType option:selected").val();
+		if(check == "scheduleIcon"){
+			$("#divicon").show();
+		}else{
+			$("#divicon").hide();
+		}
 	});
 	
 	$(".icon").on('click',function(){		
-		var clickedIcon = $(this).attr("alt");	
-		console.log("dddddddd");
+		var clickedIcon = $(this).attr("alt");		
 		$("#iconValue").val(clickedIcon);	
 		clickedIcon = "";				
 	});
 	
 	$("#iconClose").on('click',function(){
 		$("#divicon").hide();
-	});
+	});	
 	
-	$("#scheduleIcon:checked").css("display : inline-block");
+	
 			
 });
+
 
 
 
@@ -108,6 +115,7 @@ $(function(){
 					   readonly/>&nbsp;			
 				<button type="submit" id="btn">검색</button>				
 			</form>
+		</div>
 			<div id="divicon">
 				<table id="tableicon">
 				<tr>
@@ -129,7 +137,6 @@ $(function(){
 				</tr>			
 				</table>		
 			</div>		
-		</div>
 </section>
 <section id="schedulelist-container">		
 	<table id="tbl-schedulelist">
