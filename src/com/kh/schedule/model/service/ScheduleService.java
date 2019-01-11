@@ -132,4 +132,11 @@ public class ScheduleService {
 		
 		return list;
 	}
+
+	public int deleteSchedule(int scheduleNo) {
+		// TODO Auto-generated method stub
+		Connection conn = getConnection();
+		int result  = new ScheduleDao().deleteSchedule(conn, scheduleNo);
+		return result;
+	}
 }
