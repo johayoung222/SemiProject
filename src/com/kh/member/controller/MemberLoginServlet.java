@@ -133,8 +133,10 @@ public class MemberLoginServlet extends HttpServlet {
 //			}
 												
 			HttpSession session = request.getSession(true);		
+			String exPwd = (String)request.getAttribute("exPwd");
 			
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
+			session.setAttribute("exPwd", exPwd);
 			request.setAttribute("memberLoggedIn", memberLoggedIn);
 			request.setAttribute("start", start);
 			request.setAttribute("last", last);
