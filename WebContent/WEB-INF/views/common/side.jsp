@@ -15,13 +15,36 @@
 	background:gray;
 	top:-80px;
 	left:200px;
-	width: 300px;
+	width: 350px;
 	height:300px;
 	border: 1px solid red;
 	display: none;
+	z-index: 2;
+	overflow: scroll;
 	
 }
+ul#autoComplete{
+	min-width: 159px;
+	border: 1px solid gray;
+	display: none;
+	padding: 0;
+	margin: 0;
+}
 
+ul#autoComplete li{
+	padding: 0 10px;
+	list-style: none;
+	cursor: pointer;
+}
+
+ul#autoComplete li.selected{
+	background: lightseagreen;
+	color: white;
+}
+
+span.srchVal{
+	color: red;
+}
 </style>
 <script>
   function showPopup(temp) {
@@ -112,16 +135,92 @@
 			<span>친구2</span>
 		</div>
 		<div id="friends">
-			<form action="">
-				<select name="" id=""></select>
-				<input type="text" />
-				<input type="submit" />
+		<form class="insertFriendFrm" name="insertFriendFrm"
+			action="<%=request.getContextPath()%>/friend/insertFriend" 
+			method="post">
+				<label for="srchId">아이디 : </label>
+				<input type="text"  id="srchId" autocomplete="off" />
+				<button type="submit">친구찾기</button>
+					<ul id="autoComplete">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+						
 				<hr />
-			</form>
+		</form>
 		</div>
 	
 	</div>
 	
 	
+<script>
+
+$("#srchId").on("keyup" , function(e){
+	console.log(e.key);
+	var selected = $(".selected");
+	var li = $("#autoComplete li");
+	
+	if(e.key == "ArrowDown") {
+		if(selected.length == 0) {
+			$("#autoComplete li:first").addClass("selected");
+		} else if(selected.is(li.last())) {
+		} else {
+			selected.removeClass("selected").next().addClass("selected");
+		}
+	} else if(e.key == "ArrowUp") {
+		if(selected.length == 0) {
+		} else if(selected.is(li.first())) {
+			selected.removeClass("selected");
+		} else {
+			selected.removeClass("selected").prev().addClass("selected");
+		}
+	} else if(e.key == "Enter") {
+		$(this).val(selected.text());
+		$("#autoComplete").hide().children().remove();
+	} else {
+		var srchId = $(this).val().trim();
+		
+		if(srchId.length == 0) {
+			return;
+		}
+		
+		$.ajax({
+			url: "<%=request.getContextPath()%>/friend/autoComplete.do" ,
+			type: "post" ,
+			data: {srchId:srchId} ,
+			success: function(data) {
+				console.log(data);
+				
+				var idArr = data.split(",");
+				var html = "";
+				for(var i = 0;i < idArr.length;i++) {
+					html += "<li>"+idArr[i].replace(srchId,"<span class='srchVal'>"+srchId+"</span>");
+				}
+				
+				if(data.length != 0) {
+					$("#autoComplete").html(html).css("display" , "inline-block");				
+				}
+
+			}
+		});
+	}
+});
+
+$("#autoComplete").on("click" , "li" , function(){
+	$("#srchId").val($(this).text());
+	$("#autoComplete").hide().children().remove();
+});
+
+
+$("#autoComplete").on("mouseenter" , "li" , function() {
+	$(this).siblings().removeClass("selected");
+	$(this).addClass("selected");
+});
+$("#autoComplete").on("mouseleave" , "li" , function() {
+	$(this).removeClass("selected");
+});
+
+</script>	
 </body>
 </html>
