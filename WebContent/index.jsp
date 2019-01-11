@@ -3,9 +3,7 @@
     
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-<%
-	
-%>
+
 
 <!doctype html>
 <html>
@@ -22,6 +20,9 @@
 #back {
 float: right;
 margin-right: 450px;
+}
+#login_box{
+	margin-left: 60%;
 }
 </style>
 
@@ -108,7 +109,6 @@ function searchIdPwd(){
      <div class="login_box" id="login_box">
      
      </div>
-     <input type="button" value="달력 ㄱㄱ" style="float:right" />
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
@@ -158,9 +158,12 @@ function searchIdPwd(){
      </script>
      <div>
      <button id="back" onclick="back();">달력 화면 돌아가기</button>
-     <form action="<%=request.getContextPath() %>/member/login" name="backFrm">
+     <form action="<%=request.getContextPath() %>/member/login" name="backFrm" method="post">
      	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
-     	<input type="hidden" name="memberPwd" value="<%=memberLoggedIn.getMemberPwd() %>"/>
+     	<% if(request.getSession().getAttribute("exPwd") != null){
+     		String exPwd = (String)request.getSession().getAttribute("exPwd");%>
+     	<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
+     	<%} %>
      </form>
      </div>
      <%} %>
