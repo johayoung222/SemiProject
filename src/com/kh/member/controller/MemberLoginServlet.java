@@ -27,7 +27,7 @@ import com.kh.schedule.model.vo.Schedule;
 /**
  * Servlet implementation class MemberLoginServlet
  */
-@WebServlet("/member/login")
+@WebServlet(urlPatterns="/member/login", name="MemberLoginServlet")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -73,7 +73,6 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			//login business logic
 			Calendar c = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			int year = c.get(Calendar.YEAR);
 			int month = c.get(Calendar.MONTH);
@@ -136,6 +135,7 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);		
 			
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
+			request.setAttribute("memberLoggedIn", memberLoggedIn);
 			request.setAttribute("start", start);
 			request.setAttribute("last", last);
 			request.setAttribute("year", year);

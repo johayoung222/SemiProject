@@ -7,35 +7,32 @@
 	int year = (int) request.getAttribute("year");
 	int month = (int) request.getAttribute("month");
 	int day = (int) request.getAttribute("day");
-	int time = -1;
-	if(request.getAttribute("time") != null){
-	time = (int)request.getAttribute("time");
-	}
+	String user = (String) request.getAttribute("user");
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
 <style>
 .content {
-	margin-left: 200px;
+	padding-left: 140px;
 }
 
 #scheduleDday-container {
 	display: none;
 }
 #scheduleIcon-container{
-	margin-top:20px;
+	margin-top: 20px;
 }
 
 
 .img{
-	width: 50px;
-	height: 50px;
-	border:1px solid black;
+	width: 60px;
+	height: 60px;
+	border:1px solid #cbcbcb;
 }
 .selected-icon{
-	width:50px;
-	height:50px;
-	border:1px solid black;
+	width:60px;
+	height:60px;
+	border:1px solid #cbcbcb;
 }
 #selected-icon{
 	display: inline-block;	
@@ -45,23 +42,41 @@
 	
 }
 .moreimg{
-	width:50px;
-	height:50px;
-	border:1px solid black;
-	position: relative;
-	top:-20px;
-	text-align: center;
-	font-size: 12px;
+
+	position:relative;
+	display: inline-block;
+    width: 60px;
+    height: 60px;
+	top:-25px;
+    border: 1px solid #cbcbcb;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+}
+.moreimg span{
+	font-weight: bold;
+    color: #999;
 }
 
 /*라벨위치*/
+.ltitle{
+	margin-right:35px;
+}
 .licon{
 	position:relative;
 	top: -20px;
+	margin-right:20px;
 }
 .ltext{
 	position:relative;
 	top: -35px;
+	margin-right:35px;
+}
+.ltime{
+	margin-right:35px;
+}
+.lfile{
+	margin-right:35px;
 }
 
 #scheduleTitle{
@@ -69,6 +84,74 @@
 }
 #scheduleContent{
 	width:500px;
+}
+.content{
+	/*display: inline-block;*/
+	position:relative;
+	left:70px;
+	
+}
+#scheduleDday-container{
+	position:relative;
+	
+	
+}
+/*체크박스 크기설정*/
+#scheduleDdayCheck{
+	position: relative;
+	top:-10px;
+	left:25px;
+	-ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 5px;
+}
+/*파일넣기 버튼(진짜)*/
+.inputfile{
+	cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height:30px;
+    position: absolute;
+    height: 28px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 12px;
+}
+/*파일 넣기 버튼(가짜)*/
+.fakefile{
+	width:100px;
+	height: 30px;
+	color: #222;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding: 3px 6px 2px;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #cbcbcb;
+    line-height: 20px;
+    text-decoration: none!important;
+    -webkit-appearance: none;
+    background: #f8f8f8;
+	border-radius: 2px;
+}
+/*저장버튼*/
+.submit{
+	height:30px;
+	color: #222;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding: 3px 6px 2px;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #cbcbcb;
+    line-height: 20px;
+    text-decoration: none!important;
+    -webkit-appearance: none;
+    background: #f8f8f8;
+    border-radius: 2px;
 }
 </style>
 
@@ -78,7 +161,7 @@
 	<h2><%=year%>년
 		<%=month%>월
 		<%=day%>일
-		<%=memberLoggedIn.getMemberName() %>님의 일정등록
+		<%=user%>님의 일정등록
 	</h2>
 	<section>
 
@@ -94,10 +177,12 @@
 				<br /> 
 				<br />
 				<label for="scheduleTitle" class="ltitle">제목</label>
+
 				<input type="text" name="scheduleTitle" id="scheduleTitle" required="required" >
 				<br />
 				<br />
-				<label for="scheduleStartDay">일시</label>
+				<label for="scheduleStartDay" class="ltime">일시</label>
+
 				<input type="date" name="scheduleStartDay" id="scheduleStartDay"
 					data-placeholder="스케줄 시작날을 설정하세요." required aria-required="true">
 				&nbsp; - &nbsp;
@@ -109,6 +194,7 @@
 				<div id="scheduleIcon-container">
 				
 					<label for="icon" class="licon">아이콘</label>
+
 						<!-- input 여기에 넘겨줄 이모티콘의 이미지 이름을 넣는다. ex) img.PNG -->
 						<input type="hidden" id="iconAlt" name="iconAlt" />
 						<div id="selected-icon">
@@ -122,7 +208,7 @@
 						<img src="<%=request.getContextPath() %>/images/flower2.PNG" class="img" alt="flower2.PNG" />
 						<img src="<%=request.getContextPath() %>/images/flower3.PNG" class="img" alt="flower3.PNG" />
 						
-						<button class="moreimg">더보기</button>
+						<button class="moreimg"><span>더보기</span></button>
 						</div>
 					<div><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						
@@ -134,20 +220,23 @@
 				<label for="" class="ltext">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
-				
+				<label for="up_file" class="lfile">파일</label>
+				<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
+				<input type="button" value="파일 첨부" class="fakefile "/>
+				<br /><br />
 				<!-- 글쓴날짜 -->
 				<input type="hidden" name="writeDay" id="writeDay" value="<%=writeDay %>" />
 				
+				<label for="scheduleDdayCheck" class="lcheck">디데이<br/>&nbsp;&nbsp;설정</label>
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
-				<label for="scheduleDdayCheck" class="lcheck">디데이 설정 여부</label>
-				<br /><br />
-				
 			<div id="scheduleDday-container">
-				<label for="scheduleDday" class="ldday">디데이 설정</label>
+				<!--  <label for="scheduleDday" class="ldday">디데이 설정</label>-->
 				<input type="date" name="scheduleDday" id="scheduleDday"
 					data-placeholder="설정할 디데이를 체크해주세요." required aria-required="true">
 					<br /><br />
 			</div>	
+				<br /><br />
+				
 				
 				
 
@@ -181,27 +270,14 @@
 				<option value="23">23시</option>
 			</select>
 			<br /><br />
-				<label for="scheduleStartDay">일시</label>
-				<input type="date" name="scheduleStartDay" id="scheduleStartDay"
-					data-placeholder="스케줄 시작날을 설정하세요." required aria-required="true">
-				&nbsp; - &nbsp;
-				<input type="date" name="scheduleEndDay" id="scheduleEndDay"
-					data-placeholder="스케줄 끝날을 설정하세요." required aria-required="true">
-				
-				<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" />
-				<label for="scheduleRepeatCheck">스케줄 반복여부 설정</label>
-				<br /><br />
-			
-				<br /><br />
-				<label for="up_file">파일</label>
-				<input type="file" name="up_file" placeholder="이미지/파일선택" >
 				
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
 				<input type="hidden" name="theDay" value="<%=day %>" />
 				
 					<br /><br />
 
-					<input type="submit" value="일정 등록" onclick="return validate();">
+
+					<input type="submit" value="일정 등록" onclick="return validate();" class="submit">
 			</div>
 
 
@@ -254,7 +330,11 @@ $(".img").on("click" , function(){
 	var selectedAlt = $(this).attr("alt");
 	$("#iconAlt").attr("value" , selectedAlt);
 	
+	$(".img").css("");
+	
 });
+
+
 
 </script>
 </html>

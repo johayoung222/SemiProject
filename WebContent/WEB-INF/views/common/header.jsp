@@ -3,6 +3,12 @@
     <%@ page import="com.kh.member.model.vo.*"  %>
 <%
 	Member memberLoggedIn = (Member)session.getAttribute("memberLoggedIn");    
+
+	if(request.getSession(false).getAttribute("memberLoggedIn") == null){
+		memberLoggedIn = null;
+	}else{
+		
+	}
 %>
 
 <!doctype html>

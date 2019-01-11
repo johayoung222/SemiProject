@@ -470,8 +470,6 @@ public class ScheduleDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			System.out.println("first"+first);
-			System.out.println("second"+second);
 			pstmt.setString(1, memberId);
 			pstmt.setString(2, first);
 			pstmt.setString(3, second);
