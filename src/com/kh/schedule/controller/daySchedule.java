@@ -29,15 +29,20 @@ public class daySchedule extends HttpServlet {
 		
 		list = new ScheduleService().daySchedule(memberId);
 		
-<<<<<<< HEAD
+		Schedule emp = new Schedule();
 		
-		System.out.println("당일 스케쥴 = "+list);
+		if(list.size() == 0) {
+			emp.setScheduleTitle("당일 등록된 스케쥴이 없습니다.");
+			list.add(emp);
+			new Gson().toJson(list, response.getWriter());
+		}else {
+			new Gson().toJson(list, response.getWriter());
+			
+		}
 		
 		
-=======
->>>>>>> 314b88d7a4360702d252f5fba29a542ec69e7a55
 		
-		new Gson().toJson(list, response.getWriter());
+		
 	
 	}
 
