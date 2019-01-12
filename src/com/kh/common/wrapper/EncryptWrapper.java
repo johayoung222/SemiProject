@@ -23,9 +23,13 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 		
 		if(key != null && 
 			("memberPwd".equals(key) || "memberPwd_new".equals(key))) {
-			System.out.println("암호화전 : "+super.getParameter(key));
 			
-			value = getSha512(super.getParameter(key));
+			String getKey = super.getParameter(key);
+			System.out.println("암호화전 : "+getKey);
+			
+			if(getKey != null) {
+				value = getSha512(super.getParameter(key));
+			}
 			
 			System.out.println("암호화후 : "+value);
 		}

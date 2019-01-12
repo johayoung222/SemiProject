@@ -16,11 +16,14 @@ div#search-scheduleContent, div#search-scheduleIcon{
 div#divicon{	
 	width: 290px;
 	height: 247px;
-	background-color: yellow;	
-	position:absolute;
-	margin-top:5px;
+	background-color: rgba( 255, 255, 255, 0.1 );	
+	position:relative;
+	margin-top:5px;		
+	margin-left: auto;
+	margin-right: auto;
+	display:none;
 }
-#icon{
+img{
 	width:50px;
 	height:50px;
 }
@@ -28,13 +31,16 @@ div#divicon{
 	border-spacing : 5px;
 }
 
+
 /*게시판*/
 section#schedulelist-container{width:600px; height:400px; margin:0 auto; text-align:center;}
 section#schedulelist-container h2{margin:10px 0;}
-table#tbl-schedulelist{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
+table#tbl-schedulelist{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both;  }
 table#tbl-schedulelist th, table#tbl-schedulelist td {border:1px solid; padding: 5px 0; text-align:center;} 
 
 /*페이지바*/
 div#pageBar{margin-top:10px; width:100%; height:50px; text-align:center; }
 div#pageBar span.cPage{color: #0066ff;}
+
+
 

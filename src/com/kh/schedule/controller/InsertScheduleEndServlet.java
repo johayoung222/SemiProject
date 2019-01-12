@@ -2,7 +2,6 @@ package com.kh.schedule.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,6 +60,11 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		String scheduleContent = multiReq.getParameter("scheduleContent");
 		String scheduleDdayCheck = multiReq.getParameter("scheduleDdayCheck");
 
+		// xss 공격 방어 코드
+		scheduleTitle = new HTMLInputFilter().filter(scheduleTitle);
+		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
+		
+		
 		// System.out.println("값 체크 : "+scheduleTitle +"," +scheduleContent+ ","+scheduleDdayCheck );
 		// 체크했을 경우 on으로 넘어오고 체크되지 않았을 경우에는 null이라고 넘어온다.
 		// 위의 값을 가지고 분기하면 될 듯하다.
@@ -121,6 +125,8 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		String iconAlt = multiReq.getParameter("iconAlt");
 		System.out.println("iconAlt 값 확인 : "+iconAlt);
 		
+		int theDay = Integer.parseInt(multiReq.getParameter("theDay"));
+		
 		Schedule s = new Schedule(); 
 		s.setMemberId(memberId);
 		s.setScheduleTitle(scheduleTitle); 
@@ -137,16 +143,17 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDate(dateWriteDay);
 		s.setScheduleIcon(iconAlt);
+		s.setTheDay(theDay);
 		
 		
-		System.out.printf("[%s]\n", s);
+//		System.out.printf("[%s]\n", s);
 		// 업무로직
 		int result = new ScheduleService().insertSchedule(s);
 		
 		//4.view단 처리 
 		String view = "/WEB-INF/views/common/msg.jsp"; 
 		String msg = "";
-		String loc = "/";
+		String loc = "";
 		
 		if(result > 0) { 
 			msg = "일정 등록 성공!"; 
@@ -166,7 +173,7 @@ public class InsertScheduleEndServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
 		doGet(request, response);
 	}
 

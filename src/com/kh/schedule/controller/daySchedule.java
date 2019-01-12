@@ -29,10 +29,13 @@ public class daySchedule extends HttpServlet {
 		
 		list = new ScheduleService().daySchedule(memberId);
 		
+<<<<<<< HEAD
 		
 		System.out.println("당일 스케쥴 = "+list);
 		
 		
+=======
+>>>>>>> 314b88d7a4360702d252f5fba29a542ec69e7a55
 		
 		new Gson().toJson(list, response.getWriter());
 	

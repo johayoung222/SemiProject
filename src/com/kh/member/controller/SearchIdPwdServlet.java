@@ -36,18 +36,19 @@ public class SearchIdPwdServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String memberName = request.getParameter("pname");
-		System.out.println("memberName="+memberName);
+		
 		String memberEmail = request.getParameter("pemail");
-		System.out.println("memberEmail="+memberEmail);
-//		String memberId = request.getParameter("userId");
-//		System.out.println("memberId= "+memberId);
+		
+		String memberId = request.getParameter("pid");
+		
 		
 		Member member = new Member();
 		
 		member.setMemberName(memberName);
 		member.setMemberEmail(memberEmail);
+		member.setMemberId(memberId);
 		
-		Member result = new MemberService().MemberIdPwd(member);
+		Member result = new MemberService().MemberId(member);
 		
 		String view ="/WEB-INF/views/member/searchIdPwd.jsp";
 		
@@ -55,7 +56,7 @@ public class SearchIdPwdServlet extends HttpServlet {
 		= request.getRequestDispatcher(view);
 		reqDispatcher.forward(request, response);
 		
-		System.out.println("result1="+result);
+		
 		new Gson().toJson(result, response.getWriter());
 	}
 

@@ -31,7 +31,7 @@ public class NextMonthServlet extends HttpServlet {
 		int cYear = Integer.parseInt(request.getParameter("cYear"));
 		int cMonth = Integer.parseInt(request.getParameter("cMonth"));
 		String memberId = request.getParameter("memberId");
-		System.out.println("cYear"+cYear+"cMonth"+cMonth+"memberID"+memberId);
+//		System.out.println("cYear"+cYear+"cMonth"+cMonth+"memberID"+memberId);
 		
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, cYear);
@@ -43,7 +43,7 @@ public class NextMonthServlet extends HttpServlet {
 			cYear += 1;
 			cMonth = 0;
 		}
-		System.out.println(cMonth);
+//		System.out.println(cMonth);
 		
 		String scMonth = "";
 		String snMonth = "";
@@ -65,7 +65,7 @@ public class NextMonthServlet extends HttpServlet {
 			snMonth = "0"+snMonth;
 		}
 		
-		System.out.println(scMonth+"<-/->"+snMonth);
+//		System.out.println(scMonth+"<-/->"+snMonth);
 		
 		
 		String first = cYear+scMonth;
@@ -78,7 +78,6 @@ public class NextMonthServlet extends HttpServlet {
 		int last = c.getActualMaximum(Calendar.DATE);
 		int nextYear = c.get(Calendar.YEAR);
 		int nextMonth = c.get(Calendar.MONTH);
-		int[] date = {nextYear, nextMonth, start, last};
 		Map<Integer, Object> map = new HashMap<>();
 		map.put(1, nextYear);
 		map.put(2, nextMonth);

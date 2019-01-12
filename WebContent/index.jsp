@@ -3,6 +3,8 @@
     
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
+
+
 <!doctype html>
 <html>
 <head>
@@ -19,13 +21,16 @@
 float: right;
 margin-right: 450px;
 }
+#login_box{
+	margin-left: 60%;
+}
 </style>
 
 <script>
 
-<%-- function back(){
-	location.href = "<%=request.getContextPath() %>/member/login?memberId="+<%=memberLoggedIn.getMemberId()%>+"&memberPwd="+<%=memberLoggedIn.getMemberPwd()%>;
-} --%>
+function back(){
+	backFrm.submit();
+}
 
 <%--로그인 유효성 검사--%>
 function CheckLogin(){
@@ -51,6 +56,8 @@ function searchIdPwd(){
    
 }
 
+
+
 </script>
 </head>
 
@@ -69,10 +76,9 @@ function searchIdPwd(){
               <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
        </div>
      </div>
-     
+     <%if(memberLoggedIn == null){ %>
      <!-- login form -->
      <form class="loginFrm" name="loginform" action="<%=request.getContextPath()%>/member/login" method="post" onsubmit="return CheckLogin();">
-      <%if(memberLoggedIn == null){ %>
        <div class="login_box">
          <div class="input_login">
            <input type="text" name="memberId" id="memberId" placeholder="아이디를 입력하세요." >
@@ -90,7 +96,7 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-           <input type="submit" value="FaceBook으로 로그인">
+           <input type="button" value="FaceBook으로 로그인" >
          </div>
          <br>
          <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
@@ -99,12 +105,10 @@ function searchIdPwd(){
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
        </div>
      </form>
-     <%} else {
-     %>
+     <% }else{ %>
      <div class="login_box" id="login_box">
      
      </div>
-     <input type="button" value="달력 ㄱㄱ" style="float:right" />
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
@@ -154,6 +158,13 @@ function searchIdPwd(){
      </script>
      <div>
      <button id="back" onclick="back();">달력 화면 돌아가기</button>
+     <form action="<%=request.getContextPath() %>/member/login" name="backFrm" method="post">
+     	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
+     	<% if(request.getSession().getAttribute("exPwd") != null){
+     		String exPwd = (String)request.getSession().getAttribute("exPwd");%>
+     	<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
+     	<%} %>
+     </form>
      </div>
      <%} %>
      

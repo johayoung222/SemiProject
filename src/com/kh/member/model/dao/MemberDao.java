@@ -4,9 +4,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -113,12 +116,12 @@ public class MemberDao {
 	}
 
 
-	public Member MemberIdPwd(Connection conn, Member member) {
+	public Member MemberId(Connection conn, Member member) {
 		Member m = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("test");
+		String query = prop.getProperty("searchId");
 		System.out.println("member="+member);
 		try{
 			pstmt = conn.prepareStatement(query);
@@ -189,12 +192,42 @@ public class MemberDao {
 		
 	}
 
+	public int MemberPwd(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("searchPwd");
+		System.out.println("member="+member);
+		try{
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMemberId());
+			pstmt.setString(2, member.getMemberEmail());
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				member = new Member();
+				//컬럼명은 대소문자 구분이 없다.
+				member.setMemberPwd(rset.getString("member_pwd"));
+				
+			}			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		return result;
+
+
+	}
 
 	public int updatePassword(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updatePassword");
-		System.out.println("MemberDao UpaeatePassword");
+		
 		try {
 			//1.쿼리객체준비끝
 			pstmt = conn.prepareStatement(query);
@@ -214,5 +247,86 @@ public class MemberDao {
 		
 		
 	}
+
+
+	public int updatePwd(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("updatePwd");
+		
+		System.out.println("m111="+m);
+		System.out.println(query);
+		try {
+			//1.쿼리객체준비끝
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberPwd());
+			pstmt.setString(2, m.getMemberId());
+		
+			System.out.println("m333="+m);
+			//2.실행
+			result = pstmt.executeUpdate();
+			System.out.println("result2="+result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMemberLog(Connection conn, String memberId) {
+		int log = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("updateMemberLog");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			log = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return log;
+	}
+
+	public List<String> selectById(Connection conn, String srchId) {
+		List<String> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectById");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+srchId+"%");
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString("member_id"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return list;
+	}
+
 
 }
