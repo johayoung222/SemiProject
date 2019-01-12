@@ -2,7 +2,6 @@ package com.kh.schedule.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,6 +60,11 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		String scheduleContent = multiReq.getParameter("scheduleContent");
 		String scheduleDdayCheck = multiReq.getParameter("scheduleDdayCheck");
 
+		// xss 공격 방어 코드
+		scheduleTitle = new HTMLInputFilter().filter(scheduleTitle);
+		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
+		
+		
 		// System.out.println("값 체크 : "+scheduleTitle +"," +scheduleContent+ ","+scheduleDdayCheck );
 		// 체크했을 경우 on으로 넘어오고 체크되지 않았을 경우에는 null이라고 넘어온다.
 		// 위의 값을 가지고 분기하면 될 듯하다.

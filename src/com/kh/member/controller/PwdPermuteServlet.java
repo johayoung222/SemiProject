@@ -2,7 +2,6 @@ package com.kh.member.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +13,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class SearchIdPwdServlet
+ * Servlet implementation class PwdPermuteServlet
  */
-@WebServlet("/member/searchIdPwd")
-public class SearchIdPwdServlet extends HttpServlet {
+@WebServlet("/member/pwdPermute")
+public class PwdPermuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdPwdServlet() {
+    public PwdPermuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,32 +31,33 @@ public class SearchIdPwdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		
-		String memberName = request.getParameter("pname");
+		String memberEmail = request.getParameter("memberEmail");
+		System.out.println("pwd memberEmail =="+memberEmail);
+		String new_password = request.getParameter("new_Password");
+		System.out.println("pwd new_password =="+new_password);
 		
-		String memberEmail = request.getParameter("pemail");
+		Member m = new Member();
 		
-		String memberId = request.getParameter("pid");
+		m.setMemberEmail(memberEmail);
+		m.setMemberPwd(new_password);
 		
-		
-		Member member = new Member();
-		
-		member.setMemberName(memberName);
-		member.setMemberEmail(memberEmail);
-		member.setMemberId(memberId);
-		
-		Member result = new MemberService().MemberId(member);
-		
-		String view ="/WEB-INF/views/member/searchIdPwd.jsp";
-		
-		RequestDispatcher reqDispatcher
-		= request.getRequestDispatcher(view);
-		reqDispatcher.forward(request, response);
+		int result = new MemberService().pwdPermute(m);
+		System.out.println("servlet result =="+result);
 		
 		
 		new Gson().toJson(result, response.getWriter());
+		/*String msg = "";
+		String loc = "";
+		
+		if(result > 0) {
+			msg = "패스워드 변결을 성공하였습니다";
+		}else {
+			msg = "패스워드 변경에 실패했습니다.";
+		}*/
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		
 	}
 
 	/**

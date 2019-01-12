@@ -156,8 +156,7 @@
       if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
          return false;
       
-      if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,password,"패스워드는 숫자/문자/특수포함8~15자리"))
-          
+      if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,password,"패스워드는 숫자/문자/특수포함8~15자리")) 
           return false;
       if(password.value!=password1.value){
          alert("비밀번호가 일치하지 않습니다.");

@@ -115,7 +115,6 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		// scheduleDate는 default로 넣을거기때문에 패스
 		s.setScheduleDdaycheck(scheduleDdayCheck);
 		s.setScheduleRepeatcheck(scheduleRepeatCheck);
-		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleStartday(dateSday);
 		s.setScheduleEndday(dateEday);
 		s.setScheduleDday(dateDday);

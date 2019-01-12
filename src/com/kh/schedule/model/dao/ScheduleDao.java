@@ -565,6 +565,26 @@ public class ScheduleDao {
 		return list;
 	}
 
+	public int deleteSchedule(Connection conn, int scheduleNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("deleteSchedule");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, scheduleNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 	
 
 }

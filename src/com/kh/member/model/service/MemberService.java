@@ -57,9 +57,9 @@ public class MemberService {
 	}
 
 
-	public Member MemberIdPwd(Member member) {
+	public Member MemberId(Member member) {
 		Connection conn = getConnection();
-		Member m = new MemberDao().MemberIdPwd(conn, member);
+		Member m = new MemberDao().MemberId(conn, member);
 		if(m != null) commit(conn);
 		else rollback(conn);
 		return m;
@@ -92,8 +92,6 @@ public class MemberService {
 		
 		
 	}
-
-
 	public int updatePassword(Member m) {
 		
 		Connection conn = getConnection();
@@ -108,7 +106,10 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-	}
+	
+
+
+}
 
 	public int updateMemberLog(String memberId) {
 		Connection conn = getConnection();
@@ -130,6 +131,21 @@ public class MemberService {
 		return list;
 	}
 
+	public int pwdPermute(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().pwdPermute(conn, m);
+
+		if(result > 0)
+			commit(conn);
+		else 
+			rollback(conn);
+		//자원반납
+		close(conn);
+		
+		return result;
+	}
+
 
 
 }
+
