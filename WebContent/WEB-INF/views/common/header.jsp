@@ -25,7 +25,7 @@
 	top: 5px;			
 }
 </style>
-<body>
+<body oncontextmenu="return false;">
   <nav class="header">
     <div class="logo">
       <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >

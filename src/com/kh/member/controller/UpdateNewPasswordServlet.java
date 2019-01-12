@@ -1,8 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +12,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class SearchIdPwdServlet
+ * Servlet implementation class UpdateNewPasswordServlet
  */
-@WebServlet("/member/searchIdPwd")
-public class SearchIdPwdServlet extends HttpServlet {
+@WebServlet("/member/updatePwd")
+public class UpdateNewPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchIdPwdServlet() {
+    public UpdateNewPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,31 +31,10 @@ public class SearchIdPwdServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		
-		String memberName = request.getParameter("pname");
-		
-		String memberEmail = request.getParameter("pemail");
-		
-		String memberId = request.getParameter("pid");
 		
 		
-		Member member = new Member();
-		
-		member.setMemberName(memberName);
-		member.setMemberEmail(memberEmail);
-		member.setMemberId(memberId);
-		
-		Member result = new MemberService().MemberId(member);
-		
-		String view ="/WEB-INF/views/member/searchIdPwd.jsp";
-		
-		RequestDispatcher reqDispatcher
-		= request.getRequestDispatcher(view);
-		reqDispatcher.forward(request, response);
 		
 		
-		new Gson().toJson(result, response.getWriter());
 	}
 
 	/**

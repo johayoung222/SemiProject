@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.josephoconnell.html.HTMLInputFilter;
-import com.kh.board.model.service.BoardService;
-import com.kh.board.model.vo.Board;
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.schedule.model.service.ScheduleService;
 import com.kh.schedule.model.vo.Schedule;
@@ -116,7 +114,6 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		// scheduleDate는 default로 넣을거기때문에 패스
 		s.setScheduleDdaycheck(scheduleDdayCheck);
 		s.setScheduleRepeatcheck(scheduleRepeatCheck);
-		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleStartday(dateSday);
 		s.setScheduleEndday(dateEday);
 		s.setScheduleDday(dateDday);

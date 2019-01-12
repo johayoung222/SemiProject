@@ -134,9 +134,14 @@ public class ScheduleService {
 	}
 
 	public int deleteSchedule(int scheduleNo) {
-		// TODO Auto-generated method stub
 		Connection conn = getConnection();
-		int result  = new ScheduleDao().deleteSchedule(conn, scheduleNo);
+		int result = new ScheduleDao().deleteSchedule(conn, scheduleNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		return result;
 	}
 }

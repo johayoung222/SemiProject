@@ -27,7 +27,7 @@ body{
 #todolist div h4{
 	margin: 10px 0px;
 }
-#todolist div:hover{
+#right-click div:hover{
 	background-color: coral;
 }
 #timeline{
