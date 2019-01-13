@@ -231,11 +231,8 @@
 								<td><img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png"></td>
 								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
 								<td><a href="#" id="iconClose">닫기</a></td>
-							</tr>
-										
-						</table>					
-						<!-- <button>저장</button>
-						<button>취소</button> -->
+							</tr>										
+						</table>						
 					</div>
 				</div>
 				<label for="" class="ltext">내용</label> 
