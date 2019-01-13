@@ -40,3 +40,10 @@ body {
     font-family: 'Black Han Sans', sans-serif;
 	
 }
+#pic{
+	text-align:center
+}
+.picture{
+	margin-right:20px;
+	margin-left:20px;
+}
