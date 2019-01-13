@@ -100,14 +100,22 @@ function searchid(){
 	}
 	});
 }
+function chk(re, e, msg) {
+    if (re.test(e.value)) {
+    return true;
+    }
+    alert(msg);
+    e.value = "";
+    e.focus();
+    return false;
+}
 
 function pwdPermute(){
 	var memberEmail = $("#email__").val();
 	var new_Password = $("#new_password").val();
 	var check_Password = $("#check_password").val();
 	
-	//몰겟음
-	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
+	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
         return false;
 	
 	if(new_Password =! check_Password){
@@ -155,17 +163,6 @@ function sendMail(){
       checkEmailCertifiedPasswordFrm.email.value = memberEmail;
       checkEmailCertifiedPasswordFrm.submit();
 }
-
-function chk(re, e, msg) {
-    if (re.test(e.value)) {
-    return true;
-    }
-    alert(msg);
-    e.value = "";
-    e.focus();
-    return false;
-}
-
 </script>
 </head>
 

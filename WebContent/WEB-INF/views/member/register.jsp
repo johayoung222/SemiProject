@@ -158,7 +158,7 @@
          e.value = "";
          e.focus();
          return false;
-  }
+  		}
     return true;
   }
  function checkPwd(){
