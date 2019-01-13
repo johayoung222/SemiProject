@@ -57,7 +57,6 @@ function searchIdPwd(){
 }
 
 
-
 </script>
 </head>
 
@@ -96,7 +95,7 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-           <input type="button" value="FaceBook으로 로그인" >
+          <input type="button" value="FaceBook으로 로그인">
          </div>
          <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
@@ -156,8 +155,8 @@ function searchIdPwd(){
      
      </script>
      <div>
-     <button id="back" onclick="back();">달력 화면 돌아가기</button>
-     <form action="<%=request.getContextPath() %>/member/login" name="backFrm" method="post">
+     <button id="back" onclick="back();">스케줄러 입장!</button>
+     <form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
      	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
      	<% if(request.getSession().getAttribute("exPwd") != null){
      		String exPwd = (String)request.getSession().getAttribute("exPwd");%>

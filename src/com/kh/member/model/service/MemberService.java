@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.member.model.dao.MemberDao;
+import com.kh.member.model.vo.Friend;
+import com.kh.member.model.vo.FriendQueue;
 import com.kh.member.model.vo.Member;
 
 public class MemberService {
@@ -131,6 +133,7 @@ public class MemberService {
 		return list;
 	}
 
+<<<<<<< HEAD
 	public int pwdPermute(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().pwdPermute(conn, m);
@@ -143,6 +146,34 @@ public class MemberService {
 		close(conn);
 		
 		return result;
+=======
+	public int insertFriend(Friend f) {
+        Connection conn = getConnection();
+        int result = new MemberDao().insertFriend(conn, f);
+        
+        if(result > 0) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result;
+	}
+
+	public int insertFriendQueue(FriendQueue fq) {
+        Connection conn = getConnection();
+        int result = new MemberDao().insertFriendQueue(conn, fq);
+        
+        if(result > 0) {
+            commit(conn);
+        }else {
+            rollback(conn);
+        }
+        close(conn);
+        
+        return result;
+>>>>>>> master
 	}
 
 

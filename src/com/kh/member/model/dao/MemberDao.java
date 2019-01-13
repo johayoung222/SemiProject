@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.member.model.vo.Friend;
+import com.kh.member.model.vo.FriendQueue;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -328,6 +331,7 @@ public class MemberDao {
 		return list;
 	}
 
+<<<<<<< HEAD
 	public int pwdPermute(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -352,6 +356,44 @@ public class MemberDao {
 		}
 		
 		return result;
+=======
+	public int insertFriend(Connection conn, Friend f) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        
+        String query = prop.getProperty("insertFriend");
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, f.getMemberId());
+            pstmt.setString(2, f.getFriendId());
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return result;
+	}
+
+	public int insertFriendQueue(Connection conn, FriendQueue fq) {
+        int result = 0;
+        PreparedStatement pstmt = null;
+        
+        String query = prop.getProperty("insertFriendQueue");
+        try {
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, fq.getMemberId());
+            pstmt.setString(2, fq.getFriendId());
+            result = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            close(pstmt);
+        }
+        return result;
+>>>>>>> master
 	}
 
 
