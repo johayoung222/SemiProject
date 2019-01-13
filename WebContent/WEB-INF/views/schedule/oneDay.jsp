@@ -64,6 +64,11 @@
 	border: none;
 	padding: 0px;
 }
+.TimelinePlus{
+	display:none;
+}
+
+
 </style>
 <script>
 $("#right-click").contextmenu(function(e) {
@@ -88,6 +93,7 @@ $(document).on('click',function(){
 });
 
 
+
 </script>
 
 <div id="timeline">
@@ -99,6 +105,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		</div>
 		<div id="1">01시
 			<%for(int i = 0; i<list.size(); i++) {
@@ -106,6 +113,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		</div>
         <div id="2">02시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -113,6 +121,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="3">03시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -120,6 +129,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="4">04시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -127,6 +137,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="5">05시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -134,6 +145,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="6">06시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -141,6 +153,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="7">07시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -148,6 +161,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="8">08시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -155,6 +169,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="9">09시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -162,6 +177,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="10">10시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -169,6 +185,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="11">11시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -176,6 +193,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="12">12시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -183,6 +201,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="13">13시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -190,6 +209,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="14">14시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -197,6 +217,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="15">15시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -204,6 +225,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="16">16시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -211,6 +233,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="17">17시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -218,6 +241,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="18">18시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -225,6 +249,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="19">19시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -232,6 +257,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="20">20시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -239,6 +265,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="21">21시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -246,6 +273,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="22">22시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -253,6 +281,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
         <div id="23">23시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -260,6 +289,7 @@ $(document).on('click',function(){
 				<%=list.get(i).getScheduleTitle() %>	
 			<%}
 			}%>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
         </div>
 	</div>
 </div>
@@ -283,6 +313,12 @@ $("#scroll-box div").each(function(idx, item){
 		var time = $(this).attr("id");
 		insertFrm.time.value = time;
 		insertFrm.submit();
+	});
+	
+	$(item).hover(function(){
+		$(".TimelinePlus").css("display","inline-block");
+	},function(){
+		$(".TimelinePlus").css("display","none");
 	});
 });
 

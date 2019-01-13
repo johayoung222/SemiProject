@@ -31,6 +31,12 @@ public class MoveSchedulerServlet extends HttpServlet {
 		
 		Member m = (Member)request.getSession().getAttribute("memberLoggedIn");
 		
+		if(m == null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/").forward(request, response);
+		}
+		
 		String memberId = m.getMemberId();
 		
 		//login business logic

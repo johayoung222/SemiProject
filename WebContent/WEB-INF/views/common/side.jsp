@@ -129,7 +129,13 @@ span.srchVal{
 		<br />
 		<br />
 		<div id="searchsch">
-		<a href="<%=request.getContextPath()%>/schedule/schedulelist" id="font">스케줄 찾기</a><br />
+		<a href="<%=request.getContextPath()%>/member/mainSchedule" class="font">월간 스케줄</a><hr />
+		
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a><hr />
+		
+		<% if(memberLoggedIn1 != null && "admin".equals(memberLoggedIn1.getMemberId())){%>
+		<a href="<%=request.getContextPath()%>/admin/memberList" class="font">회원리스트</a><br />
+		<% } %>
 		<!-- <a href="##">년간 달력5</a><br />
 		<a href="##">년간 달력6</a><br />
 		<a href="##">년간 달력7</a><br /> -->
