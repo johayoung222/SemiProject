@@ -22,6 +22,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script>
 /* 일일 칸에 클릭 이벤트 */
