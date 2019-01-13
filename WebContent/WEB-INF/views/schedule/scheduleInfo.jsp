@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <%
 	Schedule s = (Schedule)request.getAttribute("schedule");
-	System.out.println("s.getScheduleRepeatcheck() : "+s.getScheduleRepeatcheck());
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/scheduleinfo.css" />

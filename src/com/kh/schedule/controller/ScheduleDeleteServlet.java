@@ -22,7 +22,6 @@ public class ScheduleDeleteServlet extends HttpServlet {
 
 		int scheduleNo = Integer.parseInt(request.getParameter("scheduleNo"));
 		String scheduleRenamefilename = request.getParameter("scheduleRenamefilename");
-		System.out.println("scheduleNo:"+scheduleNo+", scheduleRenamefilename:"+scheduleRenamefilename);
 	
 		int result = new ScheduleService().deleteSchedule(scheduleNo);
 
