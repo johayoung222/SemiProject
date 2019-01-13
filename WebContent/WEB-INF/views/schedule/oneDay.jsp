@@ -13,10 +13,12 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 
 %>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday.css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday1.css" />
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
-<h1><%=day %>일</h1>
-<h2><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 작성</h2>
+<!-- 
+ <h3><%=day %>일</h3>
+ -->
+<h4><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 Schedule</h4>
 <div id="oneday-container">
 	<form action="<%=request.getContextPath() %>/schedule/insertSchedule" id="boardInfo" name="insertFrm" method="post">
 		<input type="hidden" name="year" value="<%=year %>"/>
@@ -85,7 +87,7 @@ $(document).on('click',function(){
 </script>
 
 <div id="timeline">
-	<h2>TimeLine</h2>
+	<h3>TimeLine</h3>
 	<div id="scroll-box">
 		<div id="0">00시 
 			<%for(int i = 0; i<list.size(); i++) {
