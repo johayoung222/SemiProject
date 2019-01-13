@@ -13,10 +13,12 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 
 %>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday.css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday1.css" />
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
-<h1><%=day %>일</h1>
-<h2><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 작성</h2>
+<!-- 
+ <h3><%=day %>일</h3>
+ -->
+<h4><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 Schedule</h4>
 <div id="oneday-container">
 	<form action="<%=request.getContextPath() %>/schedule/insertSchedule" id="boardInfo" name="insertFrm" method="post">
 		<input type="hidden" name="year" value="<%=year %>"/>
@@ -56,18 +58,16 @@
 }
 #right-click{
 	border: none;
+	padding: 0px;
 }
 </style>
 <script>
 $("#right-click").contextmenu(function(e) {
-	console.log(e);
-	console.log(e.target);
 	thisTarget = e.target;
 	var pageX = e.originalEvent.pageX;
 	var pageY = e.originalEvent.pageY;
 	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
 	
-	//e를 갖다 써야하는데 함수 스코프를 고려해서 값을 넘겨줘야 함.
 	$("#contextMenu div").each(function(idx,item){
 		$(item).click(function(){
 			$(this).parent()[0].style.display = 'none';
@@ -77,12 +77,17 @@ $("#right-click").contextmenu(function(e) {
 	});
 });
 
+$(document).on('click',function(){
+	if($("#contextMenu").css("display") == 'block'){
+		$("#contextMenu").css("display","none");
+	}
+});
 
 
 </script>
 
 <div id="timeline">
-	<h2>TimeLine</h2>
+	<h3>TimeLine</h3>
 	<div id="scroll-box">
 		<div id="0">00시 
 			<%for(int i = 0; i<list.size(); i++) {
@@ -263,9 +268,9 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
-$("#todolist div#insertBoard").nextAll().click(function(){
-	var target = $(this).children().children();
-	var boardNo = target.attr("id");
+$("#todolist div#insertBoard").nextAll().click(function(e){
+	var target = e.target;
+	var boardNo = target.id;
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
 });
 

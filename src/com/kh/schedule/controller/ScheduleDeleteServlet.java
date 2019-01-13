@@ -25,6 +25,7 @@ public class ScheduleDeleteServlet extends HttpServlet {
 		System.out.println("scheduleNo:"+scheduleNo+", scheduleRenamefilename:"+scheduleRenamefilename);
 	
 		int result = new ScheduleService().deleteSchedule(scheduleNo);
+
 		//첨부파일 삭제
 		if(result >0 && !"".equals(scheduleRenamefilename)) {
 			String saveDirectory = getServletContext().getRealPath("/upload/schedule");
@@ -53,6 +54,7 @@ public class ScheduleDeleteServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request,response);
 			
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
