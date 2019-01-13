@@ -12,7 +12,7 @@
 	String pageBar = (String)request.getAttribute("pageBar");	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
-<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 
 <script>

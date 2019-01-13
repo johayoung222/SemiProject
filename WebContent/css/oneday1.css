@@ -131,3 +131,9 @@ h2{
 ::-webkit-scrollbar { 
     display: none; 
 }
+#scroll-box .TimelinePlus{
+	display: none;
+}
+#scroll-box .TimelinePlus:hover{
+	display: inline-block;
+}

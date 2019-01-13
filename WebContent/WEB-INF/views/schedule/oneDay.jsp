@@ -314,12 +314,13 @@ $("#scroll-box div").each(function(idx, item){
 		insertFrm.time.value = time;
 		insertFrm.submit();
 	});
-	
+	<%--
 	$(item).hover(function(){
-		$(".TimelinePlus").css("display","inline-block");
+		$(" #scroll-box img").css("display","inline-block");
 	},function(){
-		$(".TimelinePlus").css("display","none");
+		$("#scroll-box img").css("display","none");
 	});
+	--%>
 });
 
 

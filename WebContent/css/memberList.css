@@ -5,7 +5,10 @@
 	margin: 0 0 10px 0;
 	padding-left: 160px;	
 	height:100px;
+	font-family: 'Noto Sans KR', sans-serif;
+	
 }
+
 div#search-memberId{
 	display: inline-block;
 }
@@ -13,14 +16,31 @@ div#search-memberName, div#search-memberLoginlog{
 	display: none;
 }
 
+
 /*게시판*/
 section#memberList-container{width:600px; height:400px; margin:0 auto; text-align:center;}
 section#memberList-container h2{margin:10px 0;}
-table#tbl-memberList{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both;  }
-table#tbl-memberList th, table#tbl-memberList td {border:1px solid; padding: 5px 0; text-align:center;} 
-
+table#tbl-memberList{width:120%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both;  }
+table#tbl-memberList th, table#tbl-memberList td {border:1px solid; padding: 5px 0; text-align:center;
+ } 
+table#tbl-memberList th{
+      font-family: 'Black Han Sans', sans-serif;	
+    background: #40bf83 ;
+     color: black;
+	border:3px solid gray;
+}
+table#tbl-memberList td{
+   font-family: 'Noto Sans KR', sans-serif;
+	color: black;
+	border:3px solid gray;
+	
+}
 /*페이지바*/
-div#pageBar{margin-top:10px; width:100%; height:50px; text-align:center; }
-div#pageBar span.cPage{color: #0066ff;}
+div#pageBar{argin-top:10px; width:100%;
+height:50px; text-align:center; 
+margin: 15px;
+font-family: 'Black Han Sans', sans-serif; }
+div#pageBar span.cPage{olor: #400040; font-family: 'Black Han Sans', sans-serif;
+margin:5px;}
 
 
