@@ -75,7 +75,7 @@ public class MemberLoginServlet extends HttpServlet {
 			
 			popup = new MemberService().checkFriend(memberId);
 			
-			if(popup.isEmpty()) {
+			if(popup != null && popup.isEmpty()) {
 				popupbool = 0;
 			} else {
 				popupbool = 1;
