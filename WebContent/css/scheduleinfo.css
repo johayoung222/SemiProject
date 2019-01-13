@@ -51,7 +51,7 @@ h2{
     margin: 10px;
     display: inline-block;
 }
-.updateSchedule>inputt:hover{
+.updateSchedule>input:hover{
 	 background-color: #131f8c;
     color: rgb(248, 248, 248);
 }
@@ -108,3 +108,19 @@ label{
 	display: inline-block;
 	
 }
+#scheduleRepeatCheck{
+	display: inline-block;
+}
+#scheduleDdayCheck{
+	display: inline-block;
+}
+.side{
+	position: absolute;
+	width:200px;
+	height:140%;
+	top : 0;
+	left:0;
+	background-color: rgb(206, 219, 186);
+	display: inline-block;
+}
+
