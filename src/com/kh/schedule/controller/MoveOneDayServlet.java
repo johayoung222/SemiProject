@@ -42,7 +42,7 @@ public class MoveOneDayServlet extends HttpServlet {
 			return;
 		}
 		
-		System.out.println(year+"년"+month+"월"+day+"일");
+		//System.out.println(year+"년"+month+"월"+day+"일");
 		Calendar c = Calendar.getInstance();
 		c.set(Calendar.YEAR, year);
 		c.set(Calendar.MONTH, month-1);
@@ -50,7 +50,7 @@ public class MoveOneDayServlet extends HttpServlet {
 		Date date = new Date(c.getTime().getTime());
 		String memberId = m.getMemberId();
 		List<Schedule> list = new ScheduleService().selectScheduleByDay(memberId, date);
-		System.out.println(list);
+		//System.out.println(list);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("member", m);

@@ -29,7 +29,7 @@ public class ScheduleUpdateServlet extends HttpServlet {
 
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg", "일정수정 오류!");
-			request.setAttribute("loc", "/");
+			request.setAttribute("loc", "/member/mainSchedule");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			return;
 		}
@@ -46,7 +46,6 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		String scheduleContent = multiReq.getParameter("scheduleContent");
 		String scheduleDdayCheck = multiReq.getParameter("scheduleDdayCheck");
 		int scheduleTimeline = Integer.parseInt(multiReq.getParameter("scheduleTimeline"));
-		System.out.println("scheduleTimeline : "+scheduleTimeline);
 
 		scheduleTitle = new HTMLInputFilter().filter(scheduleTitle);
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
@@ -67,11 +66,11 @@ public class ScheduleUpdateServlet extends HttpServlet {
 
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
 		
-		String repeatCheck = multiReq.getParameter("repeatCheck");		
-		if(repeatCheck == null) {
-			repeatCheck = "N";
+		String scheduleRepeatCheck = multiReq.getParameter("scheduleRepeatCheck");		
+		if(scheduleRepeatCheck == null) {
+			scheduleRepeatCheck = "N";
 		} else {
-			repeatCheck = "Y";
+			scheduleRepeatCheck = "Y";
 		}		
 		
 		String scheduleOriginalfilename = multiReq.getOriginalFileName("up_file");
@@ -86,30 +85,27 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		s.setScheduleOriginalfilename(scheduleOriginalfilename);
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDdaycheck(scheduleDdayCheck);
-		s.setScheduleRepeatcheck(repeatCheck);
+		s.setScheduleRepeatcheck(scheduleRepeatCheck);
 		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleDday(dateDday);
 		s.setScheduleIcon(iconAlt);	
 		
-		/*System.out.println("타이틀 : "+scheduleTitle +", 내용:" +scheduleContent+ ", 디데이체크:"+scheduleDdayCheck );
-		System.out.println("아이콘 : "+iconAlt);
-		System.out.println("반복설정 : "+scheduleRepeatCheck);
-		System.out.println("파일이름 : "+scheduleOriginalfilename + " , "+ scheduleRenamefilename);
-		System.out.println("Servlet Schedule:"+s.toString());
-		*/
+		
+		
 		int result = new ScheduleService().updateSchedule(s);
 		
-		//4.view단 처리 
 		String view = "/WEB-INF/views/common/msg.jsp"; 
 		String msg = "";
 		String loc = "";
 		
 		if(result > 0) { 
 			msg = "일정 수정 성공!";
+			loc = "/member/mainSchedule";
 			
 		} 
 		else{ 
 			msg = "일정 수정 실패!"; 
+			loc = "/schedule/selectOne?scheduleNo="+s.getScheduleNo();
 		}
 		
 		request.setAttribute("msg", msg); 
