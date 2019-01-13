@@ -3,8 +3,6 @@
     
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-
-
 <!doctype html>
 <html>
 <head>

@@ -28,8 +28,10 @@ public class MemberLogoutServlet extends HttpServlet {
 			session.invalidate();
 		}
 		
-		response.sendRedirect(request.getContextPath());
+		boolean history = true;
 		
+		request.setAttribute("history", history);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

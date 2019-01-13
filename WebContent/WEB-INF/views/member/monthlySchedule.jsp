@@ -32,7 +32,7 @@ function addClickEvent(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
 			var day = $(this).children().attr("id");
-			if(day != ""){
+			if(day != null){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
@@ -236,6 +236,9 @@ function addClickEvent(){
         		}
         	});
         });
+        
+        
+        /* 공휴일 뿌리기 */
         
         </script>
          <%if("admin".equals(m.getMemberId())){%>
