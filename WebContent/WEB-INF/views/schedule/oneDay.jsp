@@ -315,8 +315,12 @@ $("#scroll-box div").each(function(idx, item){
 		insertFrm.submit();
 	});
 	
-	$(item).hover(function(){
-		$(".TimelinePlus").css("display","inline-block");
+	
+});
+
+$("#scroll-box > div").each(function(idx, item){
+	$(this).hover(function(){
+		$(this).children().css("display","inline-block");
 	},function(){
 		$(".TimelinePlus").css("display","none");
 	});
