@@ -28,20 +28,18 @@ public class ScheduleDeleteServlet extends HttpServlet {
 
 		//첨부파일 삭제
 		if(result >0 && !"".equals(scheduleRenamefilename)) {
-			String saveDirectory = getServletContext().getRealPath("/upload/schedule");
+			String saveDirectory = getServletContext().getRealPath("/upload/schedule/");
 			File delFile = new File(saveDirectory+scheduleRenamefilename);
 							
 			//파일이동
 			String delDirectory = getServletContext().getRealPath("/deleteFiles/schedule/");
 			File delFile_ = new File(delDirectory+scheduleRenamefilename);
 			delFile.renameTo(delFile_);
-		}
-		
+		}		
 
-		//3.view
 		String view= "/WEB-INF/views/common/msg.jsp";
 		String msg="";
-		String loc="";
+		String loc="/member/mainSchedule";
 
 		
 		if(result >0) {
@@ -54,7 +52,6 @@ public class ScheduleDeleteServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request,response);
 			
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

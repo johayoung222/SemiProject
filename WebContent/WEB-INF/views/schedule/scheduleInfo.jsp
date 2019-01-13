@@ -155,7 +155,6 @@ $(document).ready(function() {
 	var scheduleDdaycheck1 = $("#scheduleDdaycheck1").val();
 	var scheduleDday1 = $("#scheduleDday1").val();
 	var repeatcheck1 = $("#repeatcheck").val();
-	alert(repeatcheck1);
 	
 	if(scheduleDdaycheck1 == 'Y'){
 		$("#scheduleDdayCheck").prop("checked", true);
