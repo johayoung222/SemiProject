@@ -14,7 +14,6 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
-import com.kh.member.model.vo.Member;
 import com.kh.schedule.model.vo.Schedule;
 
 
@@ -440,10 +439,7 @@ public class ScheduleDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("insertSchedule");
-		System.out.println("DaoInsert s.getScheduleDate() : "+s.getScheduleDate());
-		System.out.println("DaoInsert s.getScheduleStartday() : "+s.getScheduleStartday());
-		System.out.println("DaoInsert s.getScheduleEndday() : "+s.getScheduleEndday());
-		System.out.println("DaoInsert s.getScheduleDday() : "+s.getScheduleDday());
+		
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -583,6 +579,34 @@ public class ScheduleDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int updateSchedule(Connection conn, Schedule s) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("upsateSchedule");
+		System.out.println("DAO schedule:"+s.toString());
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, s.getScheduleTitle());
+			pstmt.setString(2, s.getScheduleContent());
+			pstmt.setString(3, s.getScheduleOriginalfilename());
+			pstmt.setString(4, s.getScheduleRenamefilename());
+			pstmt.setString(5, s.getScheduleDdaycheck());
+			pstmt.setString(6, s.getScheduleRepeatcheck());			
+			pstmt.setDate(7, s.getScheduleDday());
+			pstmt.setString(8, s.getScheduleIcon());
+			pstmt.setInt(9, s.getScheduleNo());
+						
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}		
+		return result;	
 	}
 
 	

@@ -197,7 +197,7 @@
 				
 				<div id="scheduleIcon-container">
 				
-					<label for="icon" class="licon">아이콘</label>
+					<label for="icon" class="icon">아이콘</label>
 
 						<!-- input 여기에 넘겨줄 이모티콘의 이미지 이름을 넣는다. ex) img.PNG -->
 						<input type="hidden" id="iconAlt" name="iconAlt" />
@@ -231,11 +231,8 @@
 								<td><img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png"></td>
 								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
 								<td><a href="#" id="iconClose">닫기</a></td>
-							</tr>
-										
-						</table>					
-						<!-- <button>저장</button>
-						<button>취소</button> -->
+							</tr>										
+						</table>						
 					</div>
 				</div>
 				<label for="" class="ltext">내용</label> 

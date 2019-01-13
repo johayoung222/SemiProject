@@ -28,7 +28,7 @@ h2{
     vertical-align: top;
 }
 
-.addfile{
+.schedule_renamedFile{
     width: 600px;
   
 }
@@ -72,4 +72,38 @@ h2{
 }
 label{
 	 font-family: 'Noto Sans KR', sans-seri;
+}
+
+#divicon{
+	display:none;
+	margin-left: 70px;
+}
+.content {
+	padding-left: 140px;
+}
+
+#scheduleDday-container {
+	display: none;
+}
+#scheduleIcon-container{
+	margin-top: 20px;
+}
+
+
+.img{
+	width: 60px;
+	height: 60px;
+	border:1px solid #cbcbcb;
+}
+.selected-icon{
+	width:60px;
+	height:60px;
+	border:1px solid #cbcbcb;
+}
+#selected-icon{
+	display: inline-block;	
+}
+.imgcon{
+	display: inline-block;
+	
 }
