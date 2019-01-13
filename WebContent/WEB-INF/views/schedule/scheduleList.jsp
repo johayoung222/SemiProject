@@ -12,6 +12,8 @@
 	String pageBar = (String)request.getAttribute("pageBar");	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/scheduleList.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 
 <script>
 $(function(){
@@ -123,8 +125,7 @@ $(function(){
 	<tr>
 		<th>번호</th>
 		<th>아이콘</th>
-		<th>스케줄 시작일</th>
-		<th>스케줄 종료일</th>
+		<th>스케줄 날짜</th>
 		<th>제목</th>
 		<th>내용</th>
 		<th>작성자</th>
@@ -145,10 +146,9 @@ $(function(){
 		<tr>					
 			<td><%=(cPage-1)*7+index%></td>	
 			<td><img src="<%=request.getContextPath()%>/images/<%=s.getScheduleIcon()%>"></td>					
-			<td><%=s.getScheduleStartday() %></td>
-			<td><%=s.getScheduleEndday() %></td>			
+			<td><%=s.getScheduleDate() %></td>
 			<td>
-			<a href="<%=request.getContextPath()%>/schedule/scheduleView?ScheduleNo=<%=s.getScheduleNo()%>">
+			<a href="<%=request.getContextPath()%>/schedule/selectOne?scheduleNo=<%=s.getScheduleNo()%>">
 			<%=s.getScheduleTitle() %></a></td>
 			<td id="contentWidth"><%=s.getScheduleContent() %></td>
 			<td><%=s.getMemberId() %></td>

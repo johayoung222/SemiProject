@@ -22,6 +22,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/month.css" />
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script>
 /* 일일 칸에 클릭 이벤트 */
@@ -239,16 +240,8 @@ function addClickEvent(){
         
         
         /* 공휴일 뿌리기 */
-        for(var i=0; i<=31; i++){
-        	var tag = $("#add").find('span');
-        }
-        	console.log(tag);
         
         </script>
-         <%if("admin".equals(m.getMemberId())){%>
-		<div id="adminSide">
-			<a href="<%=request.getContextPath()%>/admin/memberList">회원리스트 조회</a>
-		</div>
-		<%}%>
+        
 </body>
 </html>

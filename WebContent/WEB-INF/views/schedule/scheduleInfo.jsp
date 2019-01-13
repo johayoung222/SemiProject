@@ -5,7 +5,6 @@
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <%
 	Schedule s = (Schedule)request.getAttribute("schedule");
-	System.out.println("s.getScheduleRepeatcheck() : "+s.getScheduleRepeatcheck());
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/scheduleinfo.css" />
@@ -22,11 +21,12 @@
 	    <input type="hidden" id="scheduleIcon1" value="<%=s.getScheduleIcon()%>" />
 	    <div id="updateSchedule_div" class="updateSchedule_div">
 	        
-	        <label for="title">제목</label>
+	        <label for="title">제목:</label>
 	        <input type="text" id="scheduleTitle" name="scheduleTitle" value="<%=s.getScheduleTitle() %>">
 	       
 	        <div id="scheduleIcon-container" class="scheduleIcon-container">				
-				<label for="icon" class="icon">아이콘</label>
+				<label for="icon" class="icon">아이콘:</label>
+				<br />
 				<input type="hidden" id="iconAlt" name="iconAlt" />
 				<div id="selected-icon" class="selected-icon">
 					<img src="<%=request.getContextPath() %>/images/<%=s.getScheduleIcon()%>" class="selected-icon" alt="<%=s.getScheduleIcon()%>" />
@@ -62,10 +62,11 @@
 			
 			<div class="scheduleContent" id="scheduleContent">           
 	            <label for="scheduleContent">스케줄 내용:</label>
+	            <br />
 	            <textarea name="scheduleContent" id="scheduleContent" cols="50" rows="15"><%=s.getScheduleContent() %></textarea>
 	        </div>
 	       
-	     	<label for="scheduleDdayCheck" class="lcheck">디데이<br/>&nbsp;&nbsp;설정</label>
+	     	<label for="scheduleDdayCheck" class="lcheck">디데이 설정</label>
 			<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
 			<div id="scheduleDday-container">
 				<input type="date" name="scheduleDday" id="scheduleDday"
@@ -155,7 +156,6 @@ $(document).ready(function() {
 	var scheduleDdaycheck1 = $("#scheduleDdaycheck1").val();
 	var scheduleDday1 = $("#scheduleDday1").val();
 	var repeatcheck1 = $("#repeatcheck").val();
-	alert(repeatcheck1);
 	
 	if(scheduleDdaycheck1 == 'Y'){
 		$("#scheduleDdayCheck").prop("checked", true);
