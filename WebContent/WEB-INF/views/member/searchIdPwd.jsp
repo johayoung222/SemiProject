@@ -107,13 +107,16 @@ function pwdPermute(){
 	var check_Password = $("#check_password").val();
 	
 	//몰겟음
-	/* if(!chk(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
-        return false; */
+	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
+        return false;
 	
 	if(new_Password =! check_Password){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
+	
+	
+         
 	var param = {
 			"memberEmail":$("#email__").val(),
 			"new_Password":$("#new_password").val()
@@ -131,6 +134,7 @@ function pwdPermute(){
 			$("#hidetable").html(html);
 		}
 	});
+	
 }
 
 function sendMail(){
@@ -161,6 +165,7 @@ function chk(re, e, msg) {
     e.focus();
     return false;
 }
+
 </script>
 </head>
 

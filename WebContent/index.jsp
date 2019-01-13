@@ -98,7 +98,6 @@ function searchIdPwd(){
          <div class="sns">
            <input type="button" value="FaceBook으로 로그인" >
          </div>
-         <br>
          <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
