@@ -128,12 +128,9 @@ h2{
 	border-top: 1px solid black;
     text-align: left;
 }
-::-webkit-scrollbar { 
+:-webkit-scrollbar { 
     display: none; 
 }
-#scroll-box .TimelinePlus{
-	display: none;
-}
-#scroll-box .TimelinePlus:hover{
-	display: inline-block;
+.TimelinePlus{
+	margin-top: 10px;
 }
