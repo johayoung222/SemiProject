@@ -25,7 +25,8 @@ body{
 	padding: 0px;
 }
 #todolist div h4{
-	margin: 10px 0px;
+	margin: 0px;
+	padding: 10px 0;
 }
 #right-click div:hover{
 	background-color: coral;

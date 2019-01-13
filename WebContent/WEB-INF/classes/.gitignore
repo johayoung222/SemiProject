@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 /com/
 <<<<<<< HEAD
 =======
 /driver.properties
 /sql/
 >>>>>>> 314b88d7a4360702d252f5fba29a542ec69e7a55
+=======
+/sql/
+/com/
+>>>>>>> develop

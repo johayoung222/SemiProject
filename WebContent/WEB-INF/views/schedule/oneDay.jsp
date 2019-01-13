@@ -56,18 +56,16 @@
 }
 #right-click{
 	border: none;
+	padding: 0px;
 }
 </style>
 <script>
 $("#right-click").contextmenu(function(e) {
-	console.log(e);
-	console.log(e.target);
 	thisTarget = e.target;
 	var pageX = e.originalEvent.pageX;
 	var pageY = e.originalEvent.pageY;
 	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
 	
-	//e를 갖다 써야하는데 함수 스코프를 고려해서 값을 넘겨줘야 함.
 	$("#contextMenu div").each(function(idx,item){
 		$(item).click(function(){
 			$(this).parent()[0].style.display = 'none';
@@ -77,6 +75,11 @@ $("#right-click").contextmenu(function(e) {
 	});
 });
 
+$(document).on('click',function(){
+	if($("#contextMenu").css("display") == 'block'){
+		$("#contextMenu").css("display","none");
+	}
+});
 
 
 </script>
@@ -263,9 +266,9 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
-$("#todolist div#insertBoard").nextAll().click(function(){
-	var target = $(this).children().children();
-	var boardNo = target.attr("id");
+$("#todolist div#insertBoard").nextAll().click(function(e){
+	var target = e.target;
+	var boardNo = target.id;
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
 });
 
