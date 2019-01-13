@@ -314,6 +314,7 @@ $("#scroll-box div").each(function(idx, item){
 		insertFrm.time.value = time;
 		insertFrm.submit();
 	});
+<<<<<<< HEAD
 	
 	
 });
@@ -321,9 +322,15 @@ $("#scroll-box div").each(function(idx, item){
 $("#scroll-box > div").each(function(idx, item){
 	$(this).hover(function(){
 		$(this).children().css("display","inline-block");
+
+
+	$(item).hover(function(){
+		$(" #scroll-box img").css("display","inline-block");
+
 	},function(){
-		$(".TimelinePlus").css("display","none");
+		$("#scroll-box img").css("display","none");
 	});
+	
 });
 
 

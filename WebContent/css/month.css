@@ -9,6 +9,13 @@
     
     
 }
+#adminSide{
+	font-family: 'Do Hyeon', sans-serif;
+	text-decoration: none;
+	color: black;
+    
+}
+a {text-decoration: none;}
 #main{
     width: 250px;
     height: 40px;

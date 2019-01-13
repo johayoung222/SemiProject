@@ -13,6 +13,8 @@
 	
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/memberList.css" />
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 <script>
 $(function(){
 	var memberId = $("#search-memberId");	
@@ -33,7 +35,7 @@ $(function(){
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 <section id="member-container">	
 <h2>회원 리스트</h2>	
-		검색 &nbsp;&nbsp;
+		검색:&nbsp;&nbsp;
 		<select id="searchType">
 			<option value="memberId">아이디</option>
 			<option value="memberName">이름</option>
