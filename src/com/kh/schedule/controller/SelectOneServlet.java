@@ -25,6 +25,7 @@ public class SelectOneServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		int scheduleNo = Integer.parseInt(request.getParameter("scheduleNo"));
 		
 		HttpSession session = request.getSession(false);

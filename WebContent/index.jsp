@@ -156,8 +156,8 @@ function searchIdPwd(){
      
      </script>
      <div>
-     <button id="back" onclick="back();">달력 화면 돌아가기</button>
-     <form action="<%=request.getContextPath() %>/member/login" name="backFrm" method="post">
+     <button id="back" onclick="back();">스케줄러 입장!</button>
+     <form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
      	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
      	<% if(request.getSession().getAttribute("exPwd") != null){
      		String exPwd = (String)request.getSession().getAttribute("exPwd");%>

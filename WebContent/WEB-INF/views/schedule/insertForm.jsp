@@ -8,7 +8,7 @@
 	int month = (int) request.getAttribute("month");
 	int day = (int) request.getAttribute("day");
 	int time = (int)request.getAttribute("time");
-	String user = (String) request.getAttribute("user");
+	Member user = (Member) request.getAttribute("user");
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
@@ -165,7 +165,7 @@
 	<h2><%=year%>년
 		<%=month%>월
 		<%=day%>일
-		<%=user%>님의 일정등록
+		<%=user.getMemberName() %>님의 일정등록
 	</h2>
 	<section>
 
