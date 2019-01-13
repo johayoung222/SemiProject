@@ -71,12 +71,13 @@ function addClickEvent(){
 				<th style="color:blue;">토</th>
 			</tr>
 		</table>
-		<table id="add">
+		<table id="add" >
+		<!-- onmouseover="this.style.backgroundColor='#9FB6FF'" onmouseout="this.style.backgroundColor=''" -->
 			<script>
 			var html = "";
 			var start = <%=start %>;
 			for(var i=0; i<=<%=last %>+1; i++){
-                html = "<td><span></span></td>";
+                html = "<td ><span></span></td>";
                 if(i>=start && i<=<%=last %>+1){
                 if(i%7 == 6)html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";
                 else html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";

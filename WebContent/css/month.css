@@ -5,6 +5,7 @@
     position: absolute;
     top: 120px;
     right: 0px;
+    
 }
 #main{
     width: 250px;
@@ -25,20 +26,31 @@
 }
 #month tr, #add tr{
     height: 20px;
+   
 }
 #month th, #add th{
-    border-top: 1px solid blue;
+    border-top: 3px solid black;
+    text-decoration: none;
 }
 #month td, #add td{
     height: 100px;
-    border: 1px solid blue;
+    border: 3px solid black;
     padding: 0;
     margin-top: 0;
     position: relative;
+    background-color:white;
+    
 }
+
+#month td, #add td:hover{
+   background-color:rgb(235, 229, 229);
+
+}
+
 #month td span, #add td span{
     position: absolute;
     top: 0px;
+    
 }
 #prevMonth, #nextMonth{
 	cursor: pointer;

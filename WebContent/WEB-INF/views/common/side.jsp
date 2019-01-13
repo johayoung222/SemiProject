@@ -10,6 +10,9 @@
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
 <style>
+.side{
+ width:174px;
+}
 #friends{
 	position: relative;
 	background:gray;
