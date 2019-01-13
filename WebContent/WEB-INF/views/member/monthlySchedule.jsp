@@ -50,7 +50,60 @@ function addClickEvent(){
    span.sat{
        color:blue;
    }
+   	#yearTest{
+   	border: 1px solid red;
+   	width: 100px;
+   	height: 50px;
+   	position: absolute;
+   	left: 150px;
+   }
+   #year-box{
+		background-color: white;
+       width: 85%;
+       height: 600px;
+       position: absolute;
+       left: 220px;
+       top: 100px;
+       display: none;
+       z-index: 100;
+   }
+   .year{
+       width: 24%;
+       height: 180px;
+       border: 1px solid blue;
+       display: inline-block;
+   }
 </style>
+<!-- 년간 달력 테스트 -->
+<div id="yearTest">
+	<h5>연간 달력 보기</h5>
+</div>
+<div id="year-box">
+    <div class="year" id="month_1">1</div>
+    <div class="year" id="month_2">2</div>
+    <div class="year" id="month_3">3</div>
+    <div class="year" id="month_4">4</div>
+    <div class="year" id="month_5">5</div>
+    <div class="year" id="month_6">6</div>
+    <div class="year" id="month_7">7</div>
+    <div class="year" id="month_8">8</div>
+    <div class="year" id="month_9">9</div>
+    <div class="year" id="month_10">10</div>
+    <div class="year" id="month_11">11</div>
+    <div class="year" id="month_12">12</div>
+</div>
+<script>
+/* 년간 달력 스크립트 */
+$("#yearTest").click(function(e){
+    $("#year-box").css("display","block");
+});
+
+$("#year-box div").each(function(idx, item){
+    $(item).click(function(){
+        alert($(this).html());
+    });
+});
+</script>
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -240,6 +293,10 @@ function addClickEvent(){
         
         
         /* 공휴일 뿌리기 */
+        
+        /* 스크롤 이벤트 */
+        $("#add").on('mousemove',function(e){
+        });
         
         </script>
         
