@@ -6,9 +6,11 @@
 	margin: 0 0 10px 0;
 	padding-left: 160px;	
 	height:100px;
+	
 }
 div#search-scheduleTitle {
 	display: inline-block;
+	font-family: 'Black Han Sans', sans-serif;
 }
 div#search-scheduleContent, div#search-scheduleIcon{
 	display: none;
@@ -35,12 +37,38 @@ img{
 /*게시판*/
 section#schedulelist-container{width:600px; height:400px; margin:0 auto; text-align:center;}
 section#schedulelist-container h2{margin:10px 0;}
-table#tbl-schedulelist{width:100%; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both;  }
+table#tbl-schedulelist{width:100%; margin:0 auto; border:3px solid gray; border-collapse:collapse; clear:both;  }
 table#tbl-schedulelist th, table#tbl-schedulelist td {border:1px solid; padding: 5px 0; text-align:center;} 
-
+table#tbl-schedulelist th{
+	background: #40bf83 ;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: black;
+	border:3px solid gray;
+}
+ table#tbl-schedulelist td{
+    font-family: 'Noto Sans KR', sans-serif;
+	color: black;
+	border:3px solid gray;
+ }
+#schedulesearch-container{
+	
+	font-family: 'Black Han Sans', sans-serif;
+}
 /*페이지바*/
-div#pageBar{margin-top:10px; width:100%; height:50px; text-align:center; }
-div#pageBar span.cPage{color: #0066ff;}
+div#pageBar{margin-top:10px; width:100%;
+height:50px; text-align:center; 
+padding: 5px;
+font-family: 'Black Han Sans', sans-serif; }
+div#pageBar span.cPage{color: #400040; font-family: 'Black Han Sans', sans-serif;
+padding: 5px;}
 
-
+.side{
+	position: absolute;
+	width:200px;
+	height:130%;
+	top : 0;
+	left:0;
+	background-color: rgb(206, 219, 186);
+	display: inline-block;
+}
 
