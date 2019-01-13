@@ -67,11 +67,11 @@ public class ScheduleUpdateServlet extends HttpServlet {
 
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
 		
-		String scheduleRepeatCheck = multiReq.getParameter("scheduleRepeatCheck");		
-		if(scheduleRepeatCheck == null) {
-			scheduleRepeatCheck = "N";
+		String repeatCheck = multiReq.getParameter("repeatCheck");		
+		if(repeatCheck == null) {
+			repeatCheck = "N";
 		} else {
-			scheduleRepeatCheck = "Y";
+			repeatCheck = "Y";
 		}		
 		
 		String scheduleOriginalfilename = multiReq.getOriginalFileName("up_file");
@@ -86,7 +86,7 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		s.setScheduleOriginalfilename(scheduleOriginalfilename);
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDdaycheck(scheduleDdayCheck);
-		s.setScheduleRepeatcheck(scheduleRepeatCheck);
+		s.setScheduleRepeatcheck(repeatCheck);
 		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleDday(dateDday);
 		s.setScheduleIcon(iconAlt);	

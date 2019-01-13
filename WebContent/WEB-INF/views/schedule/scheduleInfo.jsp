@@ -5,8 +5,7 @@
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <%
 	Schedule s = (Schedule)request.getAttribute("schedule");
-	String icon = s.getScheduleIcon();
-	System.out.println("s.getScheduleRepeatcheck()"+s.getScheduleRepeatcheck());
+	System.out.println("s.getScheduleRepeatcheck() : "+s.getScheduleRepeatcheck());
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/scheduleinfo.css" />
@@ -17,10 +16,11 @@
 			method="post"
 			enctype="multipart/form-data" >
 		<input type="hidden" name="scheduleNo" id="scheduleNo" value="<%=s.getScheduleNo()%>" />
+	    <input type="hidden" id="scheduleDdaycheck1" value="<%=s.getScheduleDdaycheck()%>" />
+	    <input type="hidden" id="scheduleDday1" value="<%=s.getScheduleDday()%>" />
+	    <input type="hidden" id="repeatcheck" value="<%=s.getScheduleRepeatcheck()%>" />
+	    <input type="hidden" id="scheduleIcon1" value="<%=s.getScheduleIcon()%>" />
 	    <div id="updateSchedule_div" class="updateSchedule_div">
-	        <input type="hidden" id="scheduleDdaycheck1" value="<%=s.getScheduleDdaycheck()%>" />
-	        <input type="hidden" id="scheduleDday1" value="<%=s.getScheduleDday()%>" />
-	        <input type="hidden" id="scheduleRepeatcheck1" value="<%=s.getScheduleRepeatcheck()%>" />
 	        
 	        <label for="title">제목</label>
 	        <input type="text" id="scheduleTitle" name="scheduleTitle" value="<%=s.getScheduleTitle() %>">
@@ -75,7 +75,7 @@
 				
 			<div id="scheduleRepeatCheck">        
 			<label for="scheduleRepeatCheck">스케줄 반복여부 설정</label>
-			<input type="checkbox" id="scheduleRepeatCheck" name="scheduleRepeatCheck" />
+			<input type="checkbox" id="repeatCheck" name="scheduleRepeatCheck"/>
 	        </div>	
 	        
 	        <label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
@@ -151,9 +151,11 @@ document.getElementById('scheduleDday').valueAsDate = new Date();
 
 /* 디데이 체크박스 여부 true / false를 리턴한다. */
 $(document).ready(function() { 
+	var icon  = $("#scheduleIcon1").val();
 	var scheduleDdaycheck1 = $("#scheduleDdaycheck1").val();
 	var scheduleDday1 = $("#scheduleDday1").val();
-	var scheduleRepeatcheck1 =  $("scheduleRepeatcheck1").val();
+	var repeatcheck1 = $("#repeatcheck").val();
+	alert(repeatcheck1);
 	
 	if(scheduleDdaycheck1 == 'Y'){
 		$("#scheduleDdayCheck").prop("checked", true);
@@ -161,8 +163,8 @@ $(document).ready(function() {
 		$("#scheduleDday-container").show();
 	}
 	
-	if(scheduleRepeatcheck1 == 'Y'){
-		$("#scheduleRepeatcheck").prop("checked", true);
+	if(repeatcheck1 == 'Y'){
+		$("#repeatCheck").attr("checked", true);
 	}
 	
 	
@@ -172,7 +174,9 @@ $(document).ready(function() {
 		} else { 
 			$("#scheduleDday-container").hide();
 		} 
-	}); 
+	});
+	
+	$("#iconAlt").val(icon);
 });
 
 
@@ -197,7 +201,7 @@ $(".img").on("click" , function(){
 	$(".selected-icon").attr("src" , selectedSrc);
 	
 	/* 전송할 alt추려내기 */
-	var selectedAlt = $(this).attr("alt");
+	var	selectedAlt = $(this).attr("alt");
 	$("#iconAlt").attr("value" , selectedAlt);
 	
 	$(".img").css("");
