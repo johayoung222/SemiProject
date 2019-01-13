@@ -1,9 +1,12 @@
 @charset "UTF-8";
 .loginFrm{
-  float:right;
+	
+float:right;  
   margin: 0px 0px 0px 0px;
   width:50%;
   margin-top:110px;
+position:relative;
+right:5%;
 
 }
 .logofont{
@@ -13,13 +16,14 @@
 
 .conimg{
   
-  width:45%;
+  width:40%;
   height: 500px;
   position: absolute;
   border: red;
   border-radius: 10px;
-  top:170px;
-  left:70px;
+  float:left;
+  left:7%;
+  margin-top:110px;
   
 }
 

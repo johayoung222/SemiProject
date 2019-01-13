@@ -14,46 +14,6 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 <link href="https://fonts.googleapis.com/css?family=Coiny|Do+Hyeon|Gothic+A1|Nanum+Gothic+Coding|Nanum+Pen+Script|Noto+Sans+KR" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
-<style>
-.side{
- width:174px;
-}
-#friends{
-	position: relative;
-	background:gray;
-	top:-80px;
-	left:200px;
-	width: 350px;
-	height:300px;
-	border: 1px solid red;
-	display: none;
-	z-index: 2;
-	overflow: scroll;
-	
-}
-ul#autoComplete{
-	min-width: 159px;
-	border: 1px solid gray;
-	display: none;
-	padding: 0;
-	margin: 0;
-}
-
-ul#autoComplete li{
-	padding: 0 10px;
-	list-style: none;
-	cursor: pointer;
-}
-
-ul#autoComplete li.selected{
-	background: lightseagreen;
-	color: white;
-}
-
-span.srchVal{
-	color: red;
-}
-</style>
 <script>
   function showPopup(temp) {
 	  var windowW = 800;  // 창의 가로 길이
@@ -68,6 +28,10 @@ span.srchVal{
   }
   function addfriend(){
 	$("#friends").css('display','inline-block');	  
+  }
+  function close(){
+	$("#friends").css('display','none');	  
+	  
   }
   
 
@@ -149,9 +113,9 @@ span.srchVal{
 			action="<%=request.getContextPath()%>/friend/insertFriend" 
 			method="post">
 				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
-				<label for="srchId">아이디 : </label>
+				<label for="srchId" id="font2">아이디 : </label>
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
-				<button type="submit">친구 추가</button>
+				<button type="submit" id="friendadd">친구 추가</button>
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
@@ -159,6 +123,12 @@ span.srchVal{
 					</ul>
 						
 				<hr />
+				<div>
+				<input type="button"
+			  				   onclick="close();"
+			  				   value="취소"/>
+				
+				</div>
 		</form>
 		</div>
 	

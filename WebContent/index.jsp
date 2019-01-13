@@ -64,6 +64,7 @@ function searchIdPwd(){
  
  <div class="content">
    <section>
+   
      <div id="slideshow">
        <div>
          <img src="<%=request.getContextPath() %>/images/flower1.PNG" class="conimg" id="conimg1">
