@@ -56,12 +56,11 @@
 }
 #right-click{
 	border: none;
+	padding: 0px;
 }
 </style>
 <script>
 $("#right-click").contextmenu(function(e) {
-	console.log(e);
-	console.log(e.target);
 	thisTarget = e.target;
 	var pageX = e.originalEvent.pageX;
 	var pageY = e.originalEvent.pageY;
@@ -267,9 +266,9 @@ $("#insertBoard").click(function(){
 	insertFrm.submit();
 });
 
-$("#todolist div#insertBoard").nextAll().click(function(){
-	var target = $(this).children().children();
-	var boardNo = target.attr("id");
+$("#todolist div#insertBoard").nextAll().click(function(e){
+	var target = e.target;
+	var boardNo = target.id;
 	location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+boardNo;
 });
 
