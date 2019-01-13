@@ -58,7 +58,6 @@ public class MoveOneDayServlet extends HttpServlet {
 		request.setAttribute("month", month);
 		request.setAttribute("day", day);
 		request.getRequestDispatcher("/WEB-INF/views/schedule/oneDay.jsp").forward(request, response);
-		
 	}
 
 	/**
