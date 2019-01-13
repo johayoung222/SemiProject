@@ -1,6 +1,10 @@
+<%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");  
 
+%>
     
 <!DOCTYPE html >
 <html>
@@ -141,9 +145,10 @@ span.srchVal{
 		<form class="insertFriendFrm" name="insertFriendFrm"
 			action="<%=request.getContextPath()%>/friend/insertFriend" 
 			method="post">
+				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
 				<label for="srchId">아이디 : </label>
-				<input type="text"  id="srchId" autocomplete="off" />
-				<button type="submit">친구찾기</button>
+				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
+				<button type="submit">친구 추가</button>
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
@@ -203,6 +208,8 @@ $("#srchId").on("keyup" , function(e){
 				
 				if(data.length != 0) {
 					$("#autoComplete").html(html).css("display" , "inline-block");				
+				} else {
+					$("#autoComplete").hide();
 				}
 
 			}

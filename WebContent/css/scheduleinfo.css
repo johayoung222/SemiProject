@@ -28,6 +28,10 @@ h2{
     vertical-align: top;
 }
 
+#content{
+	resize: none;
+}
+
 .addfile{
     width: 600px;
   
