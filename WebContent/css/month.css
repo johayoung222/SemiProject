@@ -41,10 +41,11 @@
     background-color:white;
     
 }
-
-#month td, #add td:hover{
-   background-color:rgb(235, 229, 229);
-
+#add td:hover{
+	background-color: rgb(230, 228, 228);
+}
+#schedule td:hover{
+	background-color:;
 }
 
 #month td span, #add td span{

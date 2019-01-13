@@ -32,7 +32,7 @@ function addClickEvent(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
 			var day = $(this).children().attr("id");
-			if(day != ""){
+			if(day != null){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
@@ -71,13 +71,12 @@ function addClickEvent(){
 				<th style="color:blue;">토</th>
 			</tr>
 		</table>
-		<table id="add" >
-		<!-- onmouseover="this.style.backgroundColor='#9FB6FF'" onmouseout="this.style.backgroundColor=''" -->
+		<table id="add">
 			<script>
 			var html = "";
 			var start = <%=start %>;
 			for(var i=0; i<=<%=last %>+1; i++){
-                html = "<td ><span></span></td>";
+                html = "<td><span></span></td>";
                 if(i>=start && i<=<%=last %>+1){
                 if(i%7 == 6)html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";
                 else html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
@@ -237,6 +236,13 @@ function addClickEvent(){
         		}
         	});
         });
+        
+        
+        /* 공휴일 뿌리기 */
+        for(var i=0; i<=31; i++){
+        	var tag = $("#add").find('span');
+        }
+        	console.log(tag);
         
         </script>
          <%if("admin".equals(m.getMemberId())){%>
