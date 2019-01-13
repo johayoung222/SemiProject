@@ -32,6 +32,10 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
+		List<String> popup = null;
+		System.out.println("memberId = "+memberId);
+		
+		int popupbool;
 		//System.out.printf("[%s, %s]\n", memberId, memberPwd);
 		
 		// return 1 : 로그인성공
@@ -68,7 +72,15 @@ public class MemberLoginServlet extends HttpServlet {
 		//1.로그인 성공한 경우		
 			if(result == MemberService.LOGIN_OK) {
 			
-		
+			
+			popup = new MemberService().checkFriend(memberId);
+			
+			if(popup.isEmpty()) {
+				popupbool = 0;
+			} else {
+				popupbool = 1;
+			}
+			
 			Member memberLoggedIn = new MemberService().memberOne(memberId);
 			
 			int log = new MemberService().updateMemberLog(memberId);
@@ -84,6 +96,10 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);		
 			String exPwd = (String)request.getAttribute("exPwd");
 			
+			
+			session.setAttribute("popup", popup);
+			request.setAttribute("popup", popup);
+			request.setAttribute("popupbool", popupbool);
 			session.setAttribute("memberLoggedIn", memberLoggedIn);	
 			session.setAttribute("exPwd", exPwd);
 			request.setAttribute("memberLoggedIn", memberLoggedIn);

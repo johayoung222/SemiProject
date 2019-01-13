@@ -1,8 +1,40 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
+<%
+	int popupbool;
+	List<String> popup = null;
+	boolean checkrequest = false;
+	if(memberLoggedIn == null) {
+		popupbool = 0;
+		popup = null;
+	} else {
+		try {
+			popup = (List)request.getAttribute("popup");
+			System.out.println("111111111111111111");
+			System.out.println("뜨냐?" + popup);
+			popupbool = (int)request.getAttribute("popupbool");	
+			System.out.println("2222222222222222222");
+			
+			/* 친구요청을 받았는지에 대한 여부조사 */
+			for(int i = 0;i < popup.size();i++) {
+				System.out.println("popup.get("+i+")확인 : "+popup.get(i));
+					checkrequest = true;
+			}
+			System.out.println("333333333333333333");
+			System.out.println("popupsize : "+popup.size());
+			String[] popupArr = popup.toArray(new String[popup.size()]);
+			for(int i = 0;i < popupArr.length;i++) {
+				System.out.println(popupArr[i]);
+			}
+		} catch(NullPointerException e) {
+			popupbool = 0;
+		}
+	}
+	
+%>
 
 
 <!doctype html>
@@ -105,6 +137,29 @@ function searchIdPwd(){
        </div>
      </form>
      <% }else{ %>
+     	<% if(checkrequest == true) { %>
+     	
+     	<form action="<%=request.getContextPath()%>/member/checkFriend"
+      	method="post"
+      	name="checkFriendFrm">
+      	
+      	<input type="hidden" name="memberId" />
+      	<%-- <input type="hidden" id="popup" name="popup" value="<%=popupArr %>" /> --%>
+      	</form>
+     	<script>
+     	function popupOpen(){
+            //팝업창을 target으로 폼전송
+            var target = "checkFriend";
+            //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+            var popup = open("", target, "left=300px, top=100px, height=50px, width=300px , resizable=no, scrollbars=no, status=no;");
+            checkFriendFrm.target = target;
+            checkFriendFrm.submit();
+     	}
+		popupOpen();
+     	</script>
+
+     	<% } %>
+     
      <div class="login_box" id="login_box">
      
      </div>

@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -147,7 +148,7 @@ public class MemberService {
         return result;
 	}
 
-	public int insertFriendQueue(FriendQueue fq) {
+	public int insertFriendQueue(FriendQueue fq) throws SQLIntegrityConstraintViolationException {
         Connection conn = getConnection();
         int result = new MemberDao().insertFriendQueue(conn, fq);
         
@@ -160,6 +161,14 @@ public class MemberService {
         
         return result;
 	}
+
+	public List<String> checkFriend(String memberId) {
+		Connection conn = getConnection();
+		List<String> list = new MemberDao().checkFriend(conn, memberId);
+		
+		return list;
+	}
+
 
 
 
