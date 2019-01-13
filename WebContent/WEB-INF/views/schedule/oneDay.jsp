@@ -14,11 +14,15 @@
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday1.css" />
+<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 <!-- 
  <h3><%=day %>일</h3>
  -->
-<h4><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 Schedule</h4>
+<h1><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 Schedule</h1>
 <div id="oneday-container">
 	<form action="<%=request.getContextPath() %>/schedule/insertSchedule" id="boardInfo" name="insertFrm" method="post">
 		<input type="hidden" name="year" value="<%=year %>"/>
@@ -29,12 +33,12 @@
 
 <div id="todolist">
 	<h2>To do List</h2>
-	<div id="insertBoard">+</div>
+	<div id="insertBoard"><img src="<%=request.getContextPath() %>/images/plus.png" alt=""  /></div>
 	<div id="right-click">
 	<% if(!list.isEmpty()){ 
 		String s = "";	
 		for(int i=0; i<list.size(); i++){ 
-	 		s += "<div><h4 id='"+list.get(i).getScheduleNo()+"'>"+list.get(i).getScheduleTitle()+"</h4></div>";
+	 		s += "<div><h3 id='"+list.get(i).getScheduleNo()+"'>"+list.get(i).getScheduleTitle()+"</h3></div>";
 	   } %>
 	<%=s %>
 	<% } %>
@@ -45,7 +49,7 @@
 #contextMenu{
 	position: absolute;
 	width: 150px;
-    border: 1px solid black;
+    border: 1px solid gray;
     background-color: rgba(211, 211, 211, 0.815);
     display: none;
 }
@@ -54,7 +58,7 @@
 	border: none;
 }
 #contextMenu div:hover{
-	background-color: #616161d0;
+	background-color: indigo;
 }
 #right-click{
 	border: none;

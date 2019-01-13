@@ -35,3 +35,8 @@ body {
  position: relative;
  top: -17px;
 }
+#logged-in td{
+	text-align: center;
+    font-family: 'Black Han Sans', sans-serif;
+	
+}
