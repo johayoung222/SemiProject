@@ -50,7 +50,23 @@ function addClickEvent(){
    span.sat{
        color:blue;
    }
+   #yearTest{
+   	border: 1px solid red;
+   	width: 100px;
+   	height: 100px;
+   	position: absolute;
+   	left: 150px;
+   }
 </style>
+<!-- 년간 달력 테스트 -->
+<div id="yearTest">
+
+</div>
+<script>
+$("#yearTest").click(function(){
+	
+});
+</script>
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -240,6 +256,10 @@ function addClickEvent(){
         
         
         /* 공휴일 뿌리기 */
+        
+        /* 스크롤 이벤트 */
+        $("#add").on('mousemove',function(e){
+        });
         
         </script>
          <%if("admin".equals(m.getMemberId())){%>
