@@ -45,6 +45,8 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		String scheduleTitle = multiReq.getParameter("scheduleTitle");
 		String scheduleContent = multiReq.getParameter("scheduleContent");
 		String scheduleDdayCheck = multiReq.getParameter("scheduleDdayCheck");
+		int scheduleTimeline = Integer.parseInt(multiReq.getParameter("scheduleTimeline"));
+		System.out.println("scheduleTimeline : "+scheduleTimeline);
 
 		scheduleTitle = new HTMLInputFilter().filter(scheduleTitle);
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
@@ -61,7 +63,6 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		if (scheduleDdayCheck == "Y") {
 			String scheduleDday = multiReq.getParameter("scheduleDday");
 			dateDday = java.sql.Date.valueOf(scheduleDday);
-			System.out.println("날짜출력 dateDday 테스트"+dateDday);
 		}
 
 		scheduleContent = new HTMLInputFilter().filter(scheduleContent);
@@ -86,6 +87,7 @@ public class ScheduleUpdateServlet extends HttpServlet {
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDdaycheck(scheduleDdayCheck);
 		s.setScheduleRepeatcheck(scheduleRepeatCheck);
+		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleDday(dateDday);
 		s.setScheduleIcon(iconAlt);	
 		

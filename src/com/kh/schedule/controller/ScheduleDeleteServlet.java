@@ -36,17 +36,12 @@ public class ScheduleDeleteServlet extends HttpServlet {
 			delFile.renameTo(delFile_);
 		}
 		
-<<<<<<< HEAD
+
 		//3.view
 		String view= "/WEB-INF/views/common/msg.jsp";
 		String msg="";
 		String loc="";
-=======
-		
-		response.sendRedirect(request.getContextPath()+"/member/login");
-		
-		
->>>>>>> master
+
 		
 		if(result >0) {
 			msg = "일정 삭제 성공!";

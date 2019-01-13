@@ -197,7 +197,7 @@
 				
 				<div id="scheduleIcon-container">
 				
-					<label for="icon" class="icon">아이콘</label>
+					<label for="icon" class="licon">아이콘</label>
 
 						<!-- input 여기에 넘겨줄 이모티콘의 이미지 이름을 넣는다. ex) img.PNG -->
 						<input type="hidden" id="iconAlt" name="iconAlt" />

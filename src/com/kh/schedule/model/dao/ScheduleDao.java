@@ -585,7 +585,6 @@ public class ScheduleDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("upsateSchedule");
-		System.out.println("DAO schedule:"+s.toString());
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -594,10 +593,11 @@ public class ScheduleDao {
 			pstmt.setString(3, s.getScheduleOriginalfilename());
 			pstmt.setString(4, s.getScheduleRenamefilename());
 			pstmt.setString(5, s.getScheduleDdaycheck());
-			pstmt.setString(6, s.getScheduleRepeatcheck());			
-			pstmt.setDate(7, s.getScheduleDday());
-			pstmt.setString(8, s.getScheduleIcon());
-			pstmt.setInt(9, s.getScheduleNo());
+			pstmt.setString(6, s.getScheduleRepeatcheck());	
+			pstmt.setInt(7, s.getScheduleTimeline());
+			pstmt.setDate(8, s.getScheduleDday());
+			pstmt.setString(9, s.getScheduleIcon());
+			pstmt.setInt(10, s.getScheduleNo());
 						
 			result = pstmt.executeUpdate();
 			
