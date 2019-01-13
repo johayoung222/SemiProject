@@ -148,4 +148,12 @@ public class ScheduleService {
 		return result;
 
 	}
+
+	public int updateSchedule(Schedule s) {
+		Connection conn = getConnection();
+		int result = new ScheduleDao().updateSchedule(conn, s);		
+		if(result > 0) commit(conn);
+		else rollback(conn);		
+		return result;
+	}
 }

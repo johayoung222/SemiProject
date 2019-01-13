@@ -52,7 +52,7 @@
            <input type="password" name="memberpwdcheck" id="memberpwdcheck" onkeyup="checkPwd()" placeholder="비밀번호를 다시 입력하세요">
             <br />
             <br />
-            <div id="checkPwd">동일한 암호를 입력하세요</div>          
+            <div id="checkPwd"></div>          
          </div>
          <div class="input_login">
              <input type="text" name="memberName" id="memberName" placeholder="이름을 입력하세요(두글자 이상)">
@@ -129,9 +129,15 @@
       if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
          return false;
       
+<<<<<<< HEAD
       //비밀번호
       if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,password,"패스워드는 숫자/문자/특수포함8~15자리")) 
           return false;
+=======
+      if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,password,"패스워드는 숫자/문자/특수포함8~15자리"))
+
+    	  return false;
+>>>>>>> master
       if(password.value!=password1.value){
          alert("비밀번호가 일치하지 않습니다.");
          return false;

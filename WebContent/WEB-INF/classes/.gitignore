@@ -1,2 +1,9 @@
 /com/
+<<<<<<< HEAD
+=======
+
+/driver.properties
+/service/
+
+>>>>>>> master
 /sql/

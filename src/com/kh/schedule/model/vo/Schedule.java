@@ -11,7 +11,7 @@ public class Schedule implements Serializable{
 	private String scheduleContent;
 	private String scheduleOriginalfilename;
 	private String scheduleRenamefilename;
-	private Date scheduleDate;
+	private Date scheduleDate;			//선택한 스케줄 날짜
 	private String scheduleDdaycheck;
 	private String scheduleRepeatcheck;
 	private int scheduleTimeline;

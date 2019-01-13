@@ -151,7 +151,7 @@ function searchIdPwd(){
      
      
      </script>
-     <div>
+     <div id="button">
      <button id="back" onclick="back();">스케줄러 입장!</button>
      <form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
      	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
