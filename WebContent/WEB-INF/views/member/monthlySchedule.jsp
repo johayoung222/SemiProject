@@ -240,10 +240,6 @@ function addClickEvent(){
         
         
         /* 공휴일 뿌리기 */
-        for(var i=0; i<=31; i++){
-        	var tag = $("#add").find('span');
-        }
-        	console.log(tag);
         
         </script>
          <%if("admin".equals(m.getMemberId())){%>
