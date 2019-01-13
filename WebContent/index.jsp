@@ -21,9 +21,6 @@
 float: right;
 margin-right: 450px;
 }
-#login_box{
-	margin-left: 60%;
-}
 </style>
 
 <script>
@@ -104,7 +101,7 @@ function searchIdPwd(){
        </div>
      </form>
      <% }else{ %>
-     <div class="login_box" id="login_box">
+     <div class="scheduler_box" id="scheduler_box">
      
      </div>
      <script>
@@ -135,7 +132,7 @@ function searchIdPwd(){
 					
 					
 					
-					$("#login_box").html(table);
+					$("#scheduler_box").html(table);
 					
 				}
 				

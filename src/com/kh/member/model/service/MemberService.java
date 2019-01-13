@@ -133,7 +133,7 @@ public class MemberService {
 		return list;
 	}
 
-<<<<<<< HEAD
+
 	public int pwdPermute(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().pwdPermute(conn, m);
@@ -146,7 +146,7 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-=======
+	}
 	public int insertFriend(Friend f) {
         Connection conn = getConnection();
         int result = new MemberDao().insertFriend(conn, f);
@@ -173,7 +173,7 @@ public class MemberService {
         close(conn);
         
         return result;
->>>>>>> master
+
 	}
 
 

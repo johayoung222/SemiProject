@@ -331,7 +331,6 @@ public class MemberDao {
 		return list;
 	}
 
-<<<<<<< HEAD
 	public int pwdPermute(Connection conn, Member m) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -356,7 +355,7 @@ public class MemberDao {
 		}
 		
 		return result;
-=======
+	}
 	public int insertFriend(Connection conn, Friend f) {
         int result = 0;
         PreparedStatement pstmt = null;
@@ -393,7 +392,7 @@ public class MemberDao {
             close(pstmt);
         }
         return result;
->>>>>>> master
+
 	}
 
 
