@@ -5,6 +5,8 @@
     position: absolute;
     top: 120px;
     right: 0px;
+     font-family: 'Do Hyeon', sans-serif;
+    
     
 }
 #main{
@@ -22,6 +24,7 @@
 #month, #add{
     width: 100%;
     border-collapse: collapse;
+    font-family: 'Do Hyeon', sans-serif;
 
 }
 #month tr, #add tr{
