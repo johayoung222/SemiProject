@@ -3,6 +3,7 @@ package com.kh.member.controller;
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,36 +41,39 @@ public class MemberInsertFriendQueueServlet extends HttpServlet {
 		fq.setFriendId(srchId);
 		
 		String msg = "";
-		String loc = "/";
-		
 		int result = 0;
+		int status = 0;
+		
+		int srchIdCheck = new MemberService().srchIdCheck(srchId);
+		
+		
+		if(srchId == myId) {
+			msg = "본인에게는 친구추가를 할 수 없습니다.";
+			status = 1;
+
+		}
+		
+		if(!(srchIdCheck > 0)) {
+			msg = fq.getFriendId()+"는 존재하지 않는 아이디입니다.";
+			status = 2;
+		}
+			
+				
 		try {
 			result = new MemberService().insertFriendQueue(fq);
 		} catch (SQLIntegrityConstraintViolationException e) {
 			if(result > 0) {
 				msg = fq.getFriendId()+"님께 친구요청에 성공하셨습니다.";
-				loc = "/";
+				status = 3;
 			}else {
 				msg = "같은 사용자에게 친구요청을 하셨습니다.";
+				status = 4;
 			}
 			
-			request.setAttribute("msg", msg);
-			request.setAttribute("loc", loc);
-			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		}
-		
-
-		
-		if(result > 0) {
-			msg = fq.getFriendId()+"님께 친구요청에 성공하셨습니다.";
-			loc = "/";
-		}else {
-			msg = "친구요청에 실패하셨습니다.";
-		}
-		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		request.setAttribute("status", status);
+		request.getRequestDispatcher("/WEB-INF/views/member/checkFriendIdDuplicate.jsp").forward(request, response);
 
 		
 	}

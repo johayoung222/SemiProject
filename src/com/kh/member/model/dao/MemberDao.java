@@ -426,5 +426,60 @@ public class MemberDao {
 		return list;
 	}
 
+	public int deleteFriendQueue(Connection conn, String selectFriend, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("deleteFriendQueue"); 
+
+		try {
+			// System.out.println("MemberDao@selectFriend/memberId : "+selectFriend+"/"+memberId);
+			pstmt = conn.prepareStatement(query);
+		
+			pstmt.setString(1, selectFriend);
+			pstmt.setString(2, memberId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		
+	}
+
+	public int srchIdCheck(Connection conn, String srchId) {
+		int srchIdCheck = -1;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("srchIdCheck");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, srchId);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				srchIdCheck = rset.getInt("cnt");
+			}
+			System.out.println("srchIdCheck@srchIdCheck = "+srchIdCheck);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return srchIdCheck;
+	}
+
 
 }
