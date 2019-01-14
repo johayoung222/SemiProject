@@ -9,8 +9,8 @@
 %>
 <script>
 <% if(history){ %>
-	alert("히스토리 없어져라!!");
 	console.log(history);
+	location.replace('<%=request.getContextPath()+loc %>');
 <% }else{ %>
 location.replace('<%=request.getContextPath()+loc %>');
 alert("<%=msg %>");

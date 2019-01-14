@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
+
 
 /**
  * Servlet implementation class CheckFriendServlet
@@ -30,11 +32,11 @@ public class CheckFriendServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// String[] popupArr = (String[]) request.getAttribute("popupArr");
-		String memberId = (String)request.getAttribute("memberId");
-		
+		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
+		System.out.println("CheckFriendSerlvet@memberId"+memberLoggedIn.getMemberId());
 		
 		// request.setAttribute("popupArr", popupArr);
-		request.setAttribute("memberId", memberId);
+		request.setAttribute("memberId", memberLoggedIn.getMemberId());
 		
 		
 		//checkFriend.jsp
