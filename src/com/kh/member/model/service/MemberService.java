@@ -169,6 +169,26 @@ public class MemberService {
 		return list;
 	}
 
+	public int deleteFriendQueue(String selectFriend, String memberId) {
+		
+		Connection conn = getConnection();
+		int result = new MemberDao().deleteFriendQueue(conn, selectFriend , memberId);
+		if(result>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int srchIdCheck(String srchId) {
+		int srchIdCheck = -1;
+		Connection conn = getConnection();		
+		srchIdCheck = new MemberDao().srchIdCheck(conn, srchId);		
+	
+		return srchIdCheck;		
+	}
+
 
 
 
