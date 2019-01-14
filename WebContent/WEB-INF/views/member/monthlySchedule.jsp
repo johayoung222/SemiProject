@@ -8,7 +8,6 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
-	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
 	int last = (int)request.getAttribute("last");
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
@@ -50,7 +49,55 @@ function addClickEvent(){
    span.sat{
        color:blue;
    }
+   #year-box{
+		background-color: white;
+       width: 86%;
+       height: 600px;
+       position: absolute;
+       left: 220px;
+       top: 100px;
+       display: none;
+       z-index: 100;
+   }
+   .year{
+       width: 24%;
+       height: 180px;
+       display: inline-block;
+       border: .5px solid lightgray;
+   }
+   .year:hover{
+		box-shadow: 1px 1px 5px .5px black;
+   }
+   .year img{
+   		margin: 0;
+   		width: 100%;
+   		height: 100%;
+   		display: inline-block;
+   }
 </style>
+<!-- 년간 달력 테스트 -->
+<div id="year-box">
+    <div class="year" id="month_1"><img src="<%=request.getContextPath() %>/images/year/month1.png" alt="1" /></div>
+    <div class="year" id="month_2"><img src="<%=request.getContextPath() %>/images/year/month2.png" alt="2" /></div>
+    <div class="year" id="month_3"><img src="<%=request.getContextPath() %>/images/year/month3.png" alt="3" /></div>
+    <div class="year" id="month_4"><img src="<%=request.getContextPath() %>/images/year/month4.png" alt="4" /></div>
+    <div class="year" id="month_5"><img src="<%=request.getContextPath() %>/images/year/month5.png" alt="5" /></div>
+    <div class="year" id="month_6"><img src="<%=request.getContextPath() %>/images/year/month6.png" alt="6" /></div>
+    <div class="year" id="month_7"><img src="<%=request.getContextPath() %>/images/year/month7.png" alt="7" /></div>
+    <div class="year" id="month_8"><img src="<%=request.getContextPath() %>/images/year/month8.png" alt="8" /></div>
+    <div class="year" id="month_9"><img src="<%=request.getContextPath() %>/images/year/month9.png" alt="9" /></div>
+    <div class="year" id="month_10"><img src="<%=request.getContextPath() %>/images/year/month10.png" alt="10" /></div>
+    <div class="year" id="month_11"><img src="<%=request.getContextPath() %>/images/year/month11.png" alt="11" /></div>
+    <div class="year" id="month_12"><img src="<%=request.getContextPath() %>/images/year/month12.png" alt="12" /></div>
+</div>
+<script>
+/* 년간 달력 스크립트 */
+$("#year-box div").each(function(idx, item){
+    $(item).click(function(e){
+    	location.href = "<%=request.getContextPath() %>/schedule/monthOfYear?month="+e.target.alt;
+    });
+});
+</script>
 
 	<!-- 스케줄영역 -->
 	<div id="schedule">
@@ -241,6 +288,16 @@ function addClickEvent(){
         
         /* 공휴일 뿌리기 */
         
+        /* 스크롤 이벤트 */
+		$(window).scroll(function(e){
+			var scrollTop = $(this).scrollTop();
+			if(scrollTop > 10){
+				$("#year-box").css("display","block");
+			}else{
+				$("#year-box").css("display","none");
+			}
+			
+		});      
         </script>
         
 </body>

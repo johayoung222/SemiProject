@@ -19,9 +19,7 @@
 <link href="https://fonts.googleapis.com/css?family=Coiny" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
-<!-- 
- <h3><%=day %>일</h3>
- -->
+ 
 <h1><%=year %>년 <%=month %>월 <%=day %>일 <%=member.getMemberName() %>님의 Schedule</h1>
 <div id="oneday-container">
 	<form action="<%=request.getContextPath() %>/schedule/insertSchedule" id="boardInfo" name="insertFrm" method="post">
@@ -58,7 +56,8 @@
 	border: none;
 }
 #contextMenu div:hover{
-	background-color: indigo;
+	background-color: lightgray;
+	cursor: default;
 }
 #right-click{
 	border: none;
@@ -76,6 +75,7 @@ $("#right-click").contextmenu(function(e) {
 	var pageX = e.originalEvent.pageX;
 	var pageY = e.originalEvent.pageY;
 	$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
+	thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
 	
 	$("#contextMenu div").each(function(idx,item){
 		$(item).click(function(){
@@ -89,6 +89,7 @@ $("#right-click").contextmenu(function(e) {
 $(document).on('click',function(){
 	if($("#contextMenu").css("display") == 'block'){
 		$("#contextMenu").css("display","none");
+		thisTarget.style.boxShadow = "none";
 	}
 });
 

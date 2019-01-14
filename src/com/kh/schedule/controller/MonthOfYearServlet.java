@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.schedule.controller;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -18,10 +18,10 @@ import com.kh.schedule.model.service.ScheduleService;
 import com.kh.schedule.model.vo.Schedule;
 
 /**
- * Servlet implementation class MoveSchedulerServlet
+ * Servlet implementation class MonthOfYearServlet
  */
-@WebServlet("/member/mainSchedule")
-public class MoveSchedulerServlet extends HttpServlet {
+@WebServlet("/schedule/monthOfYear")
+public class MonthOfYearServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,8 +39,10 @@ public class MoveSchedulerServlet extends HttpServlet {
 		
 		String memberId = m.getMemberId();
 		
-		//login business logic
+		int selectMonth = Integer.parseInt(request.getParameter("month"));
+		
 		Calendar c = Calendar.getInstance();
+		c.set(Calendar.MONTH, selectMonth-1);
 		
 		int year = c.get(Calendar.YEAR);
 		int month = c.get(Calendar.MONTH);
@@ -72,6 +74,10 @@ public class MoveSchedulerServlet extends HttpServlet {
 		
 		List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
 		
+		if(list == null) {
+			list = new ArrayList<>();
+		}
+		
 		List<Schedule> dayList = null;
 		HashMap<Integer,List<Schedule>> map = new HashMap<>();
 		
@@ -98,8 +104,6 @@ public class MoveSchedulerServlet extends HttpServlet {
 		request.setAttribute("map", map);
 		request.setAttribute("memberLoggedIn", m);
 		request.getRequestDispatcher("/WEB-INF/views/member/monthlySchedule.jsp").forward(request, response);
-		
-		
 		
 	}
 

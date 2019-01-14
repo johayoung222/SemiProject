@@ -10,7 +10,6 @@
 <script>
 <% if(history){ %>
 	alert("히스토리 없어져라!!");
-	location.replace('<%=request.getContextPath() %>');
 	console.log(history);
 <% }else{ %>
 location.replace('<%=request.getContextPath()+loc %>');
