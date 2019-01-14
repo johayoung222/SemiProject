@@ -30,6 +30,8 @@ public class MemberLogoutServlet extends HttpServlet {
 		
 		boolean history = true;
 		
+		request.setAttribute("msg", "로그아웃!");
+		request.setAttribute("loc", "/");
 		request.setAttribute("history", history);
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
