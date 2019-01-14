@@ -212,7 +212,7 @@
 						<img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png" />
 						<img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png" />
 												
-						<a href="#" id="iconOpen">더보기+</a>
+						<a href="#" id="iconOpen">더보기</a>
 						</div>
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						<table id="tableicon">

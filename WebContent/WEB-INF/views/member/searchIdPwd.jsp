@@ -187,11 +187,11 @@ function chk(re, e, msg) {
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="userName" id="userName_" placeholder="찾아야한다.." required /></td>
+					<td><input type="text" name="userName" id="userName_" placeholder="이름을 입력해주세요." required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email_" placeholder="찾아야한다.." required /></td>
+					<td><input type="email" name="email" id="email_" placeholder="이메일을 입력해주세요." required /></td>
 				</tr>
 				 <tr>
                   	<td colspan="2" id="button1">
@@ -209,11 +209,11 @@ function chk(re, e, msg) {
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="userId" id="userId_" placeholder="찾아야한다.." required /></td>
+					<td><input type="text" name="userId" id="userId_" placeholder="아이디를 입력해주세요." required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email__" placeholder="찾아야한다.." required /></td>
+					<td><input type="email" name="email" id="email__" placeholder="이메일을 입력해주세요." required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
                   		<input type="button" onclick="searchpwd();" value="비밀번호 찾기" />

@@ -33,12 +33,12 @@
       <span class="logofont">7' Scheduler
       </span>
     </div>  
-    <div id="pic">
+   <%--  <div id="pic">
     	<img src="<%=request.getContextPath() %>/images/day.png" width="50px" height="50px" >
     	<img src="<%=request.getContextPath() %>/images/month.png" width="50px" height="50px" 
     	class="picture">
     	<img src="<%=request.getContextPath() %>/images/year.png" width="50px" height="50px">
-    </div>
+    </div> --%>
    <%if(memberLoggedIn != null){ %>
   <table id="logged-in" >
 	<tr>

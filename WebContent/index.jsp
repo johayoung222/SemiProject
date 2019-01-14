@@ -157,7 +157,7 @@ function searchIdPwd(){
 
      	<% } %>
      
-     <div class="login_box" id="login_box">
+     <div class="scheduler_box" id="scheduler_box">
      
      </div>
      <script>
