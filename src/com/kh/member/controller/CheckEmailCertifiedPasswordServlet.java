@@ -93,11 +93,9 @@ public class CheckEmailCertifiedPasswordServlet extends HttpServlet {
 		    e.printStackTrace();
 		    return;
 		}
-		System.out.println("servlet1");
+
 		request.getRequestDispatcher("/WEB-INF/views/member/sendMailpopupPassword.jsp").forward(request, response);
-		System.out.println("servlet2");
-	
-	
+
 	}
 
 	/**

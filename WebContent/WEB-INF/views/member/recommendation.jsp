@@ -20,7 +20,7 @@ div.container{
 	height:300px;
     margin: 10px;
     padding: 10px;
-	background:lightgrey;
+
 	text-align:center;
 }
 table {
@@ -35,21 +35,24 @@ span#time{
 	margin: 15px;
     display: block;
 }
+#order-list{
+	
+}
+#rank-list{
+	float:right;
+}
 </style>
 </head>
 <body>
-<h1>온도에 따른 추천 의상, 여행지 </h1>
 
 
 
-<div class="container">
+
+<div class="container2">
 	<h2>추천 의상</h2>
 	<div id="order-list"></div>
-	
-	
 </div>
 <script>
-
 function printTime() {
       var time = document.getElementById("time");            // 출력할 장소 선택
       var now = new Date();                                                  // 현재시간
@@ -59,11 +62,8 @@ function printTime() {
 
       setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
 }
-
-
-
 </script>
-<div class="container">
+<div class="container2">
 	<h2>추천 여행지</h2>
 	<h4 id="time"></h4>
 	<div id="rank-list"></div>
@@ -83,28 +83,29 @@ function printTime() {
 				//	   <--- JSON.stringgify()
 				//	  	---> JSON.parse()
 				var table = $("<table></table>");
-				var html = "<tr><th>온도</th><th>추천내용</th></tr>";
+				var html = "<tr><th>온도</th><th>추천내용</th><th>추천내용</th></tr>";
 				
 				if(<%=temp%> <= 5){
-					html += "<tr><td>~5도C</td>";
+					html += "<tr><td>~5˚C</td>";
 					html += "<td>겨울 옷 (야상, 패딩, 목도리 등등 다)</td></tr>";
 				}else if((<%=temp%> > 5)&&(<%=temp%> <= 9)){
-					html += "<tr><td>6도C~9도C</td>";
-					html += "<td>코트, 가죽자켓</td></tr>";
+					html += "<tr><td>6˚C~9˚C</td>";
+					html += "<td>코트, 가죽자켓</td>";
+					html += "<td><img src='<%=request.getContextPath()%>/images/cloth/4~.png'/></td></tr>";
 				}else if((<%=temp%> > 9)&&(<%=temp%> <= 11)){
-					html += "<tr><td>10도C~11도C</td>";
+					html += "<tr><td>10˚C~11˚C</td>";
 					html += "<td>트렌치코트, 간절기 야상, 여러겹 껴입기</td></tr>";
 				}else if((<%=temp%> > 11)&&(<%=temp%> <= 16)){
-					html += "<tr><td>12도C~16도C</td>";
+					html += "<tr><td>12˚C~16˚C</td>";
 					html += "<td>자켓,셔츠,가디건,간절기 야상</td></tr>";
 				}else if((<%=temp%> > 16)&&(<%=temp%> <= 19)){
-					html += "<tr><td>17도C~19도C</td>";
+					html += "<tr><td>17˚C~19˚C</td>";
 					html += "<td>니트,가디건,후드티,면바지,슬랙스,스키니</td></tr>";
 				}else if((<%=temp%> > 19)&&(<%=temp%> <= 22)){
-					html += "<tr><td>20도C~22도C</td>";
+					html += "<tr><td>20˚C~22˚C</td>";
 					html += "<td>긴팔티, 가디건, 후드티, 면바지, 슬랙스</td></tr>";
 				}else if(<%=temp%> > 22){
-					html += "<tr><td>10도C~11도C</td>";
+					html += "<tr><td>10˚C~11˚C</td>";
 					html += "<td>반팔,얇은셔츠,얇은긴팔,반바지</td></tr>";
 				}
 				
@@ -140,11 +141,11 @@ function printTime() {
 				var html = "<tr><th>온도</th><th>추천내용</th></tr>";
 				
 				if(<%=temp%> <= 10){
-					html += "<tr><td>~5도C</td>";
+					html += "<tr><td>~5˚C</td>";
 					html += "<td>실내에서 노시는게 좋을겁니다^^</td></tr>";
 				}else if(<%=temp%> > 10)
 				{
-					html += "<tr><td>~5도C</td>";
+					html += "<tr><td>~5˚C</td>";
 					html += "<td>밖에서 노시죠^^</td></tr>";
 				}
 				

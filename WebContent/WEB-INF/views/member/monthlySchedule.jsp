@@ -40,7 +40,7 @@ function addClickEvent(){
 }
 </script>
 <style>
-	table#add tr td:first-of-type{
+	table#add tr td:first-of-type span{
        color:red;
    }
    /* table#add tr td:last-of-type{
@@ -52,7 +52,7 @@ function addClickEvent(){
    #year-box{
 		background-color: white;
        width: 100%;
-       height: 100%;
+       height: 95%;
        position: absolute;
        display: none;
        z-index: 100;
@@ -122,12 +122,12 @@ function addClickEvent(){
 			<script>
 			var html = "";
 			var start = <%=start %>;
-			for(var i=0; i<=<%=last %>+1; i++){
+			for(var i=0; i<=<%=last %>+start-1; i++){
                 html = "<td><span></span></td>";
-                if(i>=start && i<=<%=last %>+1){
-                if(i%7 == 6)html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";
-                else html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                if(i>=start && i<=<%=last %>+start+1){
+                html = "<td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
                 if(i%7 == 0) html = "<tr><td><span id='"+(i-start+1)+"'>"+(i-start+1)+"</span></td>";
+                if(i%7 == 6){html = "<td><span id='"+(i-start+1)+"' class='sat'>"+(i-start+1)+"</span></td>";}
                 }
                 document.write(html);
             }
@@ -135,7 +135,9 @@ function addClickEvent(){
 			for(var i=0; i< span.length; i++){
 				<% for(int i=1; i<=31; i++){
 					if(!map.get(i).isEmpty()){ %>
-				if(span[i].id == <%=i %>) span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
+				if(span[i].id == <%=i %>) {
+					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
+				}
 					<%}
 				} %>
 			}
@@ -288,15 +290,26 @@ function addClickEvent(){
         /* 공휴일 뿌리기 */
         
         /* 스크롤 이벤트 */
-		$(window).scroll(function(e){
+		/* $(window).scroll(function(e){
 			var scrollTop = $(this).scrollTop();
-			if(scrollTop >= 0.5){
+			if(scrollTop > 0.5){
 				$("#year-box").css("display","block");
 			}else{
 				$("#year-box").css("display","none");
 			}
 			
-		});      
+		});   */   
+		flag = 0;
+		window.addEventListener('scroll',function(e){
+			console.log("scrolled!!");
+			if(flag == 0){
+				$("#year-box").css("display","block");
+				flag = 1;
+			}else{
+				$("#year-box").css("display","none");
+				flag = 0;
+			}
+		});
         </script>
         
 </body>

@@ -135,6 +135,9 @@ public class ScheduleService {
 
 	public int deleteSchedule(int scheduleNo) {
 		Connection conn = getConnection();
+
+		//int result  = new ScheduleDao().deleteSchedule(conn, scheduleNo);
+
 		int result = new ScheduleDao().deleteSchedule(conn, scheduleNo);
 		
 		if(result > 0) {
@@ -143,6 +146,7 @@ public class ScheduleService {
 			rollback(conn);
 		}
 		return result;
+
 	}
 
 	public int updateSchedule(Schedule s) {

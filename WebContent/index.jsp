@@ -37,6 +37,8 @@
 %>
 
 
+
+
 <!doctype html>
 <html>
 <head>
@@ -51,8 +53,13 @@
 <title>7 Scheduler</title>
 <style>
 
+#back {
+float: right;
+margin-right: 450px;
+}
 #login_box{
 	margin-left: 60%;
+
 }
 </style>
 
@@ -128,7 +135,6 @@ function searchIdPwd(){
          <div class="sns">
           <input type="button" value="FaceBook으로 로그인">
          </div>
-         <br>
          <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
@@ -136,6 +142,9 @@ function searchIdPwd(){
        </div>
      </form>
      <% }else{ %>
+
+     <div class="scheduler_box" id="scheduler_box">
+
      	<% if(checkrequest == true) { %>
      	
      	<form action="<%=request.getContextPath()%>/member/checkFriend"
@@ -154,12 +163,8 @@ function searchIdPwd(){
      	}
 		popupOpen();
      	</script>
-
-     	<% } %>
-     
-     <div class="login_box" id="login_box">
-     
-     </div>
+		
+    	<% } %>
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
@@ -188,7 +193,7 @@ function searchIdPwd(){
 					
 					
 					
-					$("#login_box").html(table);
+					$("#scheduler_box").html(table);
 					
 				}
 				
@@ -203,19 +208,17 @@ function searchIdPwd(){
 			}
 			
 		});
-     
-     
-     
      </script>
+     </div>
      <div id="button">
-     <button id="back" onclick="back();">스케줄러 입장!</button>
-     <form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
-     	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
-     	<% if(request.getSession().getAttribute("exPwd") != null){
-     		String exPwd = (String)request.getSession().getAttribute("exPwd");%>
-     	<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
-     	<%} %>
-     </form>
+     	<button id="back" onclick="back();">스케줄러 입장!</button>
+     	<form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
+     		<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
+     		<% if(request.getSession().getAttribute("exPwd") != null){
+     			String exPwd = (String)request.getSession().getAttribute("exPwd");%>
+     		<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
+     		<%} %>
+     	</form>
      </div>
      <%} %>
      
