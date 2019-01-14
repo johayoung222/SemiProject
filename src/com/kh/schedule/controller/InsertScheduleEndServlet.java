@@ -153,7 +153,7 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		//4.view단 처리 
 		String view = "/WEB-INF/views/common/msg.jsp"; 
 		String msg = "";
-		String loc = "";
+		String loc = "/member/mainSchedule";
 		
 		if(result > 0) { 
 			msg = "일정 등록 성공!"; 

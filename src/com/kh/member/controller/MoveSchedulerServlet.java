@@ -44,7 +44,6 @@ public class MoveSchedulerServlet extends HttpServlet {
 		
 		int year = c.get(Calendar.YEAR);
 		int month = c.get(Calendar.MONTH);
-		int day = c.get(Calendar.DATE);
 		
 		c.set(Calendar.DATE, 1);
 		int start = c.get(Calendar.DAY_OF_WEEK)-1;
@@ -95,7 +94,6 @@ public class MoveSchedulerServlet extends HttpServlet {
 		request.setAttribute("last", last);
 		request.setAttribute("year", year);
 		request.setAttribute("month", month);
-		request.setAttribute("day", day);
 		request.setAttribute("list", list);
 		request.setAttribute("map", map);
 		request.setAttribute("memberLoggedIn", m);

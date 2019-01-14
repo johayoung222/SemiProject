@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -375,7 +376,7 @@ public class MemberDao {
         return result;
 	}
 
-	public int insertFriendQueue(Connection conn, FriendQueue fq) {
+	public int insertFriendQueue(Connection conn, FriendQueue fq) throws SQLIntegrityConstraintViolationException {
         int result = 0;
         PreparedStatement pstmt = null;
         
@@ -386,13 +387,43 @@ public class MemberDao {
             pstmt.setString(2, fq.getFriendId());
             result = pstmt.executeUpdate();
             
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
+        } catch (Exception e) {
+        } finally {
             close(pstmt);
         }
         return result;
 
+	}
+
+	public List<String> checkFriend(Connection conn, String memberId) {
+		List<String> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("checkFriend");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString("member_id"));
+			}
+			System.out.println("이미친"+list);
+/*			if(list.isEmpty()) {
+				System.out.println("이시발"+list);
+			}*/
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 
