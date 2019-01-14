@@ -37,6 +37,8 @@ body {
 }
 #logged-in td{
 	text-align: center;
-    font-family: 'Black Han Sans', sans-serif;
-	
+    font-family: 'Black Han Sans', sans-serif;	
+}
+button{
+	 background: #f8f8f8;
 }

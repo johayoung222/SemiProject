@@ -115,8 +115,8 @@ function pwdPermute(){
 	var new_Password = $("#new_password").val();
 	var check_Password = $("#check_password").val();
 	
-	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
-        return false;
+	/* if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
+        return false; */
 	
 	if(new_Password =! check_Password){
 		alert("비밀번호가 일치하지 않습니다.");
@@ -158,9 +158,9 @@ function sendMail(){
       //폼의 대상을 작성한 popup을 가리키게 한다.
       checkEmailCertifiedPasswordFrm.target = target;
       
-      console.log(memberEmail);
+      //console.log(memberEmail);
       
-      checkEmailCertifiedPasswordFrm.email.value = memberEmail;
+      checkEmailCertifiedPasswordFrm.memberEmail.value = memberEmail;
       checkEmailCertifiedPasswordFrm.submit();
 }
 </script>

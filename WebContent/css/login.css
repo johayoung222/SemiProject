@@ -16,7 +16,7 @@ right:5%;
 
 .conimg{
   
-  width:40%;
+  width:45%;
   height: 500px;
   position: absolute;
   border: red;
@@ -27,16 +27,16 @@ right:5%;
 }
 
 #scheduler_box{
-    width:40%;
-    height:500px;
-    float:right;
-    margin: 0px;
-    margin-top:110px;
-    position:relative;
-    right:5%;
-    border:1px solid red;
-    text-align:center;
-    
+  background-color:rgba(255, 255, 255, 0.993);
+  width:40%;
+  height:458px;
+  float:right;
+  margin: 0px;
+  margin-top:110px;
+  position:relative;
+  right:5%;
+  border-radius: 5px;
+  text-align:center;
 }
 
 
@@ -54,10 +54,10 @@ border-radius:7px; border: 1px solid rgb(248, 248, 248); text-align: center; fon
 .login_box  .login input { width:100%; height:50px; background-color:rgb(156, 36, 167); color:rgb(248, 248, 248); font-size:16px; 
       padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
 .login_box span{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
-.login_box span:last-of-type{font-size: 15px; padding: 0 108px;margin-bottom: 50px;}
+.login_box span:last-of-type{font-size: 15px; padding: 0 108px;}
 .login_box  .sns input {
 width:100%; height:50px; background-color:rgb(40, 77, 170); color:rgb(248, 248, 248); font-size:16px; 
-              padding:3px 17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri; transform: translateY(20px)}
+              padding:3px 17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri; margin-bottom: 10px;}
 
 .login_box .last {float: right; width:100%; margin-top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
 .login_box .last .join {font-size: 30px;}
@@ -70,19 +70,30 @@ width:100%; height:50px; background-color:rgb(40, 77, 170); color:rgb(248, 248, 
 .login_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
 
 
-/*button.css */
+/*button.css*/
+#button{
+	width:40%;
+	position:relative;
+	float:right;
+	margin-top: 568px;
+    margin-right: -35%;
+}
 #button>button{
-    clear: left; 
-	float: right; 
-	width: 30%;
-    height: 30px;
-    background-color: #8080ff;
-    color: rgb(248, 248, 248);
-    font-size: 16px;
-	border-radius: 5px;
-    border: 0;
-    cursor: pointer;
-    font-family: 'Noto Sans KR', sans-seri;
-    margin: 0 auto;
-    display: inline-block;
+
+   float: right;  
+   width: 100%;
+   height: 40px;
+   background-color: #dedee2;
+   color: black;
+   font-size: 24px;
+   border-radius: 5px;
+   border: 0;
+   cursor: pointer;
+   font-family: 'Nanum Pen Script', cursive;
+   margin: 0 auto;
+   display: inline-block;
+}
+#button>button:hover{
+    background-color: #c3c3c3;
+   	color: rgb(248, 248, 248);
 }
