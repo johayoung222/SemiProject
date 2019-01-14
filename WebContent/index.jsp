@@ -164,23 +164,8 @@ function searchIdPwd(){
      	}
 		popupOpen();
      	</script>
-
-     	<% } %>
-     
-     <div class="login_box" id="login_box">
-
-     
-     </div>
-     <div id="button">
-     	<button id="back" onclick="back();">스케줄러 입장!</button>
-     	<form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
-     		<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
-     		<% if(request.getSession().getAttribute("exPwd") != null){
-     			String exPwd = (String)request.getSession().getAttribute("exPwd");%>
-     		<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
-     		<%} %>
-     	</form>
-     </div>
+		
+    	<% } %>
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
      	$.ajax({
@@ -225,6 +210,17 @@ function searchIdPwd(){
 			
 		});
      </script>
+     </div>
+     <div id="button">
+     	<button id="back" onclick="back();">스케줄러 입장!</button>
+     	<form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
+     		<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>
+     		<% if(request.getSession().getAttribute("exPwd") != null){
+     			String exPwd = (String)request.getSession().getAttribute("exPwd");%>
+     		<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
+     		<%} %>
+     	</form>
+     </div>
      <%} %>
      
    </section>
