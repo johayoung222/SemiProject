@@ -94,7 +94,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 		<div id="searchsch">
 		<a href="<%=request.getContextPath()%>/member/mainSchedule" class="font">월간 스케줄</a><hr />
 		
-		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a>
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a><hr />
 		
 		<% if(memberLoggedIn1 != null && "admin".equals(memberLoggedIn1.getMemberId())){%>
 		<a href="<%=request.getContextPath()%>/admin/memberList" class="font">회원리스트</a><br />
@@ -132,10 +132,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 		
 				
 				<div>
-				<input type="button"
-			  				   onclick="close();"
-			  				   id="cancel"
-			  				   value="취소"/>
+				<input type="button" onclick="self.close();" value="취소"/>
 				
 				</div>
 		</form>
