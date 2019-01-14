@@ -56,8 +56,7 @@
 #back {
 float: right;
 margin-right: 450px;
-
-
+}
 #login_box{
 	margin-left: 60%;
 
