@@ -51,7 +51,7 @@ function addClickEvent(){
    }
    #year-box{
 		background-color: white;
-       width: 85%;
+       width: 86%;
        height: 600px;
        position: absolute;
        left: 220px;
@@ -62,8 +62,11 @@ function addClickEvent(){
    .year{
        width: 24%;
        height: 180px;
-       border: 1px solid blue;
        display: inline-block;
+       border: .5px solid lightgray;
+   }
+   .year:hover{
+		box-shadow: 1px 1px 5px .5px black;
    }
    .year img{
    		margin: 0;
