@@ -131,8 +131,8 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 				<hr />
 				<div>
 				<input type="button"
-			  				   onclick="close();"
-			  				   value="취소"/>
+			  		   onclick="close();"
+			  		   value="취소"/>
 				
 				</div>
 		</form>
