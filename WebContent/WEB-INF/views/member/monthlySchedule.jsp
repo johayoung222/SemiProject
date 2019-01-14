@@ -135,7 +135,7 @@ function addClickEvent(){
 			for(var i=0; i< span.length; i++){
 				<% for(int i=1; i<=31; i++){
 					if(!map.get(i).isEmpty()){ %>
-				if(span[i].id == <%=i %>) span[i].innerText = span[i].id+"<%=map.get(i).get(0).getScheduleTitle() %>";
+				if(span[i].id == <%=i %>) span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
 					<%}
 				} %>
 			}
@@ -251,10 +251,10 @@ function addClickEvent(){
         				if(i%7 != 0){
         					if(i >= start-1){
         						if(i%7 == 6){
-        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+"</span></td>";
+        							html += "<td><span id='"+(i-start+2)+"' class='sat'>"+(i-start+2)+" </span></td>";
         						}
         						else{
-		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+" </span></td>";
         							
         						}
         					}else{
@@ -262,7 +262,7 @@ function addClickEvent(){
         					}
         				}else{
         					if(i >= start-1){
-        					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+"</span></td>";
+        					html += "<tr><td><span id='"+(i-start+2)+"'>"+(i-start+2)+" </span></td>";
         					}else{
         					html += "<tr><td><span></span></td>";
         					}
@@ -290,7 +290,7 @@ function addClickEvent(){
         /* 스크롤 이벤트 */
 		$(window).scroll(function(e){
 			var scrollTop = $(this).scrollTop();
-			if(scrollTop > 10){
+			if(scrollTop >= 0.5){
 				$("#year-box").css("display","block");
 			}else{
 				$("#year-box").css("display","none");
