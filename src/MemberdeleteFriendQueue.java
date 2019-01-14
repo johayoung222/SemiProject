@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.vo.Member;
-
+import com.kh.member.model.service.MemberService;
 
 /**
- * Servlet implementation class CheckFriendServlet
+ * Servlet implementation class MemberdeleteFriendQueue
  */
-@WebServlet("/member/checkFriend")
-public class CheckFriendServlet extends HttpServlet {
+@WebServlet("/member/deleteFriendQueue")
+public class MemberdeleteFriendQueue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CheckFriendServlet() {
+    public MemberdeleteFriendQueue() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,19 +28,13 @@ public class CheckFriendServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		// 친구요청을 보낸 사용자의 아이디
+		String selectFriend = (String)request.getParameter("selectFriend");
+		// 본인의 아이디
+		String memberId = (String)request.getParameter("memberId");
+		System.out.println("MemberdeleteFriendQueue@selectFriend/memberId : "+selectFriend+"/"+memberId);
 		
-		// String[] popupArr = (String[]) request.getAttribute("popupArr");
-		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
-		System.out.println("CheckFriendSerlvet@memberId"+memberLoggedIn.getMemberId());
-		
-		// request.setAttribute("popupArr", popupArr);
-		request.setAttribute("memberId", memberLoggedIn.getMemberId());
-		
-		
-		//checkFriend.jsp
-		request.getRequestDispatcher("/WEB-INF/views/member/checkFriend.jsp")
-			   .forward(request, response);
+		// result = new MemberService().
 	}
 
 	/**
