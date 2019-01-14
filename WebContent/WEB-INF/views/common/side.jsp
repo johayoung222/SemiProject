@@ -54,7 +54,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
         	var table = $("<table></table>");
 			
 			
-			html = "<br><br>현재온도 : "+(Math.floor(resp.main.temp- 273.15))+"&#176;"+"<br>";
+			html = "<br><br>현재온도 : "+(Math.floor(resp.main.temp- 273.15))+"&#176;"+"(도)"+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
 			html +=	"도시 이름 : "+resp.name+"<br>";
@@ -119,18 +119,22 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 			method="post">
 				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
 				<label for="srchId" id="font2">아이디 : </label>
+				
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
 				<button type="submit" id="friendadd">친구 추가</button>
+				<hr>
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
 						<li>3</li>
 					</ul>
 						
-				<hr />
+		
+				
 				<div>
 				<input type="button"
 			  				   onclick="close();"
+			  				   id="cancel"
 			  				   value="취소"/>
 				
 				</div>
