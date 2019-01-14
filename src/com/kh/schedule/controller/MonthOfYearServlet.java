@@ -96,6 +96,7 @@ public class MonthOfYearServlet extends HttpServlet {
 			map.put(i, dayList);
 		}
 		
+		System.out.printf("start:%d last:%d year:%d month:%d\n",start,last,year,month);
 		request.setAttribute("start", start);
 		request.setAttribute("last", last);
 		request.setAttribute("year", year);
