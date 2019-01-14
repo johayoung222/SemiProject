@@ -65,9 +65,19 @@
 	padding: 0px;
 }
 .TimelinePlus{
+	position:relative;
 	display:none;
+	z-index:100;
 }
 
+#scroll-box div{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid black;
+    text-align: left;
+    position:relative;
+    z-index:1;
+}
 
 </style>
 <script>
@@ -109,8 +119,8 @@ $(document).on('click',function(){
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		</div>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		<div id="1">01시
 			<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 1){%>
@@ -359,7 +369,6 @@ $("#todolist div#insertBoard").nextAll().click(function(e){
 });
 
 $("#scroll-box div").each(function(idx, item){
-	var timeline = $(this).children('.timeline').val();
 	var scheduleNo = $(this).children('.scheduleNo').val();
 	$(item).click(function(){
 		if(scheduleNo == null){
@@ -371,22 +380,34 @@ $("#scroll-box div").each(function(idx, item){
 		}
 	});
 
-	
-	
 });
 
 $("#scroll-box > div").each(function(idx, item){
 	$(this).hover(function(){
-	   $(this).children().css("display","inline-block");
-	   $(this).children().click(function(){
-		   var time = $(this).attr("id");
-		   	insertFrm.time.value = timeline;
-		  	insertFrm.submit();   
-		   });
+	   $(this).children().css("display","inline-block");	  
+	  
 	   },function(){
 	      $(".TimelinePlus").css("display","none");
-	   });
-	});
+	  });
+});
+
+$(".TimelinePlus").click(function(){
+	$(this).css("background","red");
+	var time = $(this).parents('div').attr("id");
+	alert(time);
+	insertFrm.time.value = time;
+	insertFrm.submit();
+});
+
+$(".timeline").hover(function(){
+	$(this).css("display","inline-block");	  
+	
+	},function(){
+    $(".TimelinePlus").css("display","none");
+});
+
+
+
 
 
 </script>
