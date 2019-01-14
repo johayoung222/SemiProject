@@ -56,8 +56,7 @@
 #back {
 float: right;
 margin-right: 450px;
-
-
+}
 #login_box{
 	margin-left: 60%;
 
@@ -167,10 +166,6 @@ function searchIdPwd(){
 
      	<% } %>
      
-     <div class="login_box" id="login_box">
-
-     
-     </div>
      <div id="button">
      	<button id="back" onclick="back();">스케줄러 입장!</button>
      	<form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
@@ -180,6 +175,7 @@ function searchIdPwd(){
      		<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
      		<%} %>
      	</form>
+     </div>
      </div>
      <script>
      var memberId = "<%=memberLoggedIn.getMemberId()%>";
