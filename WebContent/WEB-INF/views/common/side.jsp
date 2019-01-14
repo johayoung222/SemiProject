@@ -54,8 +54,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
         	var table = $("<table></table>");
 			
 			
-			html = "<br><br>현재온도 : "+(resp.main.temp- 273.15)+"<br>";
-			html += "상세날씨 설명 : "+resp.main.humidity+"<br>";
+			html = "<br><br>현재온도 : "+(Math.floor(resp.main.temp- 273.15))+"&#176;"+"(도)"+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
 			html +=	"도시 이름 : "+resp.name+"<br>";
@@ -95,7 +94,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 		<div id="searchsch">
 		<a href="<%=request.getContextPath()%>/member/mainSchedule" class="font">월간 스케줄</a><hr />
 		
-		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a>
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a><hr />
 		
 		<% if(memberLoggedIn1 != null && "admin".equals(memberLoggedIn1.getMemberId())){%>
 		<a href="<%=request.getContextPath()%>/admin/memberList" class="font">회원리스트</a><br />
@@ -131,7 +130,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 				<hr />
 				<div>
 				<input type="button"
-			  				   onclick="close();"
+			  				   onclick="self.close();"
 			  				   value="취소"/>
 				
 				</div>

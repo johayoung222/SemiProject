@@ -155,7 +155,7 @@ function searchpwd(){
       
       console.log(memberEmail);
       
-      checkEmailCertifiedPasswordFrm.email.value = memberEmail;
+      checkEmailCertifiedPasswordFrm.memberEmail.value = memberEmail;
       checkEmailCertifiedPasswordFrm.submit();
 }
 function chk(re, e, msg) {
