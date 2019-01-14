@@ -134,6 +134,20 @@ public class MemberService {
 		return list;
 	}
 
+
+	public int pwdPermute(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().pwdPermute(conn, m);
+		System.out.println("service result =="+result);
+		if(result > 0)
+			commit(conn);
+		else 
+			rollback(conn);
+		//자원반납
+		close(conn);
+		
+		return result;
+	}
 	public int insertFriend(Friend f) {
         Connection conn = getConnection();
         int result = new MemberDao().insertFriend(conn, f);
@@ -160,6 +174,7 @@ public class MemberService {
         close(conn);
         
         return result;
+
 	}
 
 	public List<String> checkFriend(String memberId) {

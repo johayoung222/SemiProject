@@ -18,36 +18,6 @@
  
  <title>7 Scheduler(signup)</title>
 
-
-
-<script>
-  function validate(){
-
-  }
-  function sendMail(){
-	  var memberEmail = $("#memberEmail").val();
-	  if(memberEmail.trim().length == 0){
-		  alert("이메일을 입력하세요.");
-		  return false;
-	  }
-	  //팝업창을 target으로 폼전송
-		var target = "checkEmailCertified";
-		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-		var popup = open("", target, "left=300px, top=100px, height=135px, width=470px");
-		//폼의 대상을 작성한 popup을 가리키게 한다. 
-		checkEmailCertifiedFrm.target = target;
-		
-		//console.log(memberEmail);
-		
-		checkEmailCertifiedFrm.memberEmail.value = memberEmail;
-		checkEmailCertifiedFrm.submit();		
-  }
-
-
-</script>
-
-
-
 </head>
 <body>
 	<form action="<%=request.getContextPath()%>/member/checkEmailCertified"
@@ -151,24 +121,35 @@
      var password1 = document.getElementById('memberpwdcheck');
      var memberName = document.getElementById('memberName');
      var email = document.getElementById('memberEmail');
+     var result = $("#result").val();
+     
+     //아이디
      if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "아이디는  숫자 포함 영대소문자, 4~12자 입력할것!"))
          return false;
       if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
          return false;
       
-      if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,password,"패스워드는 숫자/문자/특수포함8~15자리"))
+      //비밀번호
+      if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,password,"패스워드는 숫자/문자/특수포함8~15자리")) 
+          return false;
 
-    	  return false;
       if(password.value!=password1.value){
          alert("비밀번호가 일치하지 않습니다.");
          return false;
       }
       
+      //이름
       if(!chk( /^[가-힣]{2,4}$/,memberName,"한글 2글자 이상"))
           return false;
       
+      //이메일
       if(!chk(/^[0-9a-zA-Z]([\-.\w]*[0-9a-zA-Z\-_+])*@([0-9a-zA-Z][\-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9}$/i,email,"이메일형식을 입력하세요." ))
           return false;
+      if(result == 0){
+    	  alert("이메일 인증을 해주세요!");
+    	  return false;
+      }
+      
       
          function chk(re, e, msg) {
          if (re.test(e.value)) {
@@ -178,7 +159,7 @@
          e.value = "";
          e.focus();
          return false;
-  }
+  		}
     return true;
   }
  function checkPwd(){
@@ -199,6 +180,24 @@
       }
     } 
      
+ }
+ function sendMail(){
+	  var memberEmail = $("#memberEmail").val();
+	  if(memberEmail.trim().length == 0){
+		  alert("이메일을 입력하세요.");
+		  return false;
+	  }
+	  //팝업창을 target으로 폼전송
+		var target = "checkEmailCertified";
+		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+		var popup = open("", target, "left=300px, top=100px, height=135px, width=470px");
+		//폼의 대상을 작성한 popup을 가리키게 한다. 
+		checkEmailCertifiedFrm.target = target;
+		
+		//console.log(memberEmail);
+		
+		checkEmailCertifiedFrm.memberEmail.value = memberEmail;
+		checkEmailCertifiedFrm.submit();		
  }
 
  

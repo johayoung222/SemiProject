@@ -20,9 +20,8 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	public String getParameter(String key) {
 		System.out.println("EncryptWrapper 실행");
 		String value = "";
-		
 		if(key != null && 
-			("memberPwd".equals(key) || "memberPwd_new".equals(key))) {
+			("memberPwd".equals(key) || "memberPwd_new".equals(key) || "new_Password".equals(key))) {
 			
 			String getKey = super.getParameter(key);
 			System.out.println("암호화전 : "+getKey);

@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +13,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class UpdateNewPasswordServlet
+ * Servlet implementation class PwdPermuteServlet
  */
-@WebServlet("/member/updatePwd")
-public class UpdateNewPasswordServlet extends HttpServlet {
+@WebServlet("/member/pwdPermute")
+public class PwdPermuteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateNewPasswordServlet() {
+    public PwdPermuteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,9 +31,25 @@ public class UpdateNewPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		String memberEmail = request.getParameter("memberEmail");
+		System.out.println("pwdPermuteServlet memberEmail =="+memberEmail);
+		String new_password = request.getParameter("new_Password");
+		System.out.println("pwdPermuteServlet new_password =="+new_password);
+		
+		Member m = new Member();
+		
+		m.setMemberEmail(memberEmail);
+		m.setMemberPwd(new_password);
+		System.out.println("PwdPermuteservlet m =="+m);
+		
+		int result = new MemberService().pwdPermute(m);
+		System.out.println("PwdPermuteservlet result =="+result);
 		
 		
-		
+		new Gson().toJson(result, response.getWriter());
+
 		
 		
 	}

@@ -45,8 +45,18 @@
 	text-align: center;
 }
 #searchPwd2{
-	
 	text-align: center;
+}
+#permute{
+	text-align: center;
+}
+#hidetable{
+	border: 1px solid black;
+	width: 50%;
+	height: 200px;
+	float: right;
+	display:none;
+	text-align: center;;
 	
 }
 </style>
@@ -90,57 +100,54 @@ function searchid(){
 	}
 	});
 }
-<%-- function searchpwd(){
-	var memberId = document.getElementById('userId_');
-	var memberEmail = document.getElementById('email__');
-	
-	 if(memberId.value =="" ){
-		 alert("ID를 입력해주세요.");
-		 memberId.focus();
-		 return false;
-	 }
-	 if(memberEmail.value =="" ){
-		 alert("이메일을 입력해주세요 :(");
-		 memberEmail.focus();
-		 return false;
-	 }	 
-	 
-	
-	var param2 = {
-	/* 		"pid":$("#userId_").val(), */
-			"pemail_":$("#email__").val(),
-	}
-	
+function chk(re, e, msg) {
+    if (re.test(e.value)) {
+    return true;
+    }
+    alert(msg);
+    e.value = "";
+    e.focus();
+    return false;
+}
 
-	$.ajax({
-		type: "post",
-		url:"<%=request.getContextPath()%>/member/checkEmailCertifiedPassword",
-		data: param2,
-	success: function(data){
-		console.log(data[0]);
-		
-		var url = "<%=request.getContextPath()%>/member/checkEmailCertifiedPassword2?"+data[0];
-		var title = "checkEmailCertifiedPassword";
-		var status = "left=700px, top=100px, width=350px, height=300px"; 
-		   
-		 open(url, title, status);
-		
-		/* var html="<table>";
-		if(data != null){
-			html +="<tr><td id='searchPwd2'>"+"당신의 비밀번호는 "+data.memberPwd+" 입니다."+"</td></tr>";
-			html +="<td>"+param.pemail+"</td></tr>";
-		}
-		html+="</table>";
-		
-		$("#table2").html(html); */
-	},
-	error:function(){
-		
+function pwdPermute(){
+	var memberEmail = $("#email__").val();
+	console.log(memberEmail);
+	var new_Password = $("#new_password").val();
+	console.log(new_Password);
+	var check_Password = $("#check_password").val();
+	console.log(check_Password);
+	
+	/* if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
+        return false; */
+	
+	if(new_Password != check_Password){
+		alert("비밀번호가 일치하지 않습니다.");
+		return false;
 	}
+    
+	var param = {
+			"memberEmail":$("#email__").val(),
+			"new_Password":$("#new_password").val()
+	}
+	console.log(param);
+	$.ajax({
+		type:"post",
+		url:"<%=request.getContextPath()%>/member/pwdPermute",
+		data:param,
+		success:function(data){
+			console.log(data);   
+			var html="<table>";
+				html +="<tr><td>"+"비밀번호가 변경되었습니다."+"</td></tr>";
+				html+="</table>";
+			
+			$("#hidetable").html(html);
+		}
 	});
- 	
-} --%>
-function searchpwd(){
+	
+}
+
+function sendMail(){
 	var memberEmail = $("#email__").val();
     if(memberEmail.trim().length == 0){
         alert("이메일을 입력하세요.");
@@ -153,19 +160,10 @@ function searchpwd(){
       //폼의 대상을 작성한 popup을 가리키게 한다.
       checkEmailCertifiedPasswordFrm.target = target;
       
-      console.log(memberEmail);
+      //console.log(memberEmail);
       
       checkEmailCertifiedPasswordFrm.memberEmail.value = memberEmail;
       checkEmailCertifiedPasswordFrm.submit();
-}
-function chk(re, e, msg) {
-    if (re.test(e.value)) {
-    return true;
-    }
-    alert(msg);
-    e.value = "";
-    e.focus();
-    return false;
 }
 </script>
 </head>
@@ -204,7 +202,7 @@ function chk(re, e, msg) {
 			<form action="<%=request.getContextPath()%>/member/checkEmailCertifiedPassword"
 			name="checkEmailCertifiedPasswordFrm" method="post">
 			<table id="table2" style="float: right">
-			<tr>
+				<tr>
 					<th id="searchid">비밀번호 찾기</th>
 				</tr>
 				<tr>
@@ -216,11 +214,32 @@ function chk(re, e, msg) {
 					<td><input type="email" name="email" id="email__" placeholder="찾아야한다.." required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
-                  		<input type="button" onclick="searchpwd();" value="비밀번호 찾기" />
+                  		<input type="button" onclick="sendMail();" value="비밀번호 찾기" />
                   		
                   	</td>
-                  </tr>
+                 </tr>
 			</table>
+			<form action="<%=request.getContextPath()%>/member/pwdPermute"
+			 name="pwd" method="post">
+				<input type="hidden" name="memberEmail" />
+				<table id="hidetable">
+					<tr>
+					<th id="permute">새 비밀번호 설정</th>
+				</tr>
+				<tr>
+					<th>새 비밀번호</th>
+					<td><input type="password" name="new_password" id="new_password" placeholder="ㅗ" required /></td>
+				</tr>
+				<tr>
+					<th>새 비밀번호 확인</th>
+					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
+				 <tr>
+                  	<td colspan="2" id="button2">
+                  		<input type="button" onclick="pwdPermute();" value="비밀번호 변경" />
+                  	</td>
+                 </tr>
+				</table>
+			</form>
 	
 			<table id="table3">
 				 <tr>
