@@ -13,6 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
   <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
   <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
@@ -32,6 +33,12 @@
       <span class="logofont">7' Scheduler
       </span>
     </div>  
+    <div id="pic">
+    	<img src="<%=request.getContextPath() %>/images/day.png" width="50px" height="50px" >
+    	<img src="<%=request.getContextPath() %>/images/month.png" width="50px" height="50px" 
+    	class="picture">
+    	<img src="<%=request.getContextPath() %>/images/year.png" width="50px" height="50px">
+    </div>
    <%if(memberLoggedIn != null){ %>
   <table id="logged-in" >
 	<tr>

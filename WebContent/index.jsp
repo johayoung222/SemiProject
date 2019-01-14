@@ -45,14 +45,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One%7CStaatliches%7CNoto+Sans+KR%7CAbril+Fatface" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
 <style>
-#back {
-float: right;
-margin-right: 450px;
-}
+
 #login_box{
 	margin-left: 60%;
 }
@@ -96,6 +94,7 @@ function searchIdPwd(){
  
  <div class="content">
    <section>
+   
      <div id="slideshow">
        <div>
          <img src="<%=request.getContextPath() %>/images/flower1.PNG" class="conimg" id="conimg1">
@@ -142,8 +141,6 @@ function searchIdPwd(){
      	<form action="<%=request.getContextPath()%>/member/checkFriend"
       	method="post"
       	name="checkFriendFrm">
-      	
-      	<input type="hidden" name="memberId" />
       	<%-- <input type="hidden" id="popup" name="popup" value="<%=popupArr %>" /> --%>
       	</form>
      	<script>
@@ -151,7 +148,7 @@ function searchIdPwd(){
             //팝업창을 target으로 폼전송
             var target = "checkFriend";
             //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-            var popup = open("", target, "left=300px, top=100px, height=50px, width=300px , resizable=no, scrollbars=no, status=no;");
+            var popup = open("", target, "left=400px, top=300px, height=200px, width=500px , resizable=no, scrollbars=no, status=no;");
             checkFriendFrm.target = target;
             checkFriendFrm.submit();
      	}
@@ -177,8 +174,8 @@ function searchIdPwd(){
 					//json <----> javascript
 					//	   <--- JSON.stringgify()
 					//	  	---> JSON.parse()
-					var table = $("<table></table>");
-					var html = "<tr><th>타이틀</th></tr>";
+					var table = $("<table id='indexTable' ></table>");
+					var html = "<tr><th>Title:</th></tr>";
 					
 					for(var i in data){
 						var user = data[i];
@@ -210,7 +207,7 @@ function searchIdPwd(){
      
      
      </script>
-     <div>
+     <div id="button">
      <button id="back" onclick="back();">스케줄러 입장!</button>
      <form action="<%=request.getContextPath() %>/member/mainSchedule" name="backFrm" method="post">
      	<input type="hidden" name="memberId" value="<%=memberLoggedIn.getMemberId() %>"/>

@@ -32,7 +32,6 @@ public class ScheduleSearchServlet extends HttpServlet {
 		String memberId = memberLoggedIn.getMemberId();
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.println(searchType);
 		
 		int cPage;
 		try {

@@ -9,45 +9,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.kh.schedule.model.service.ScheduleService;
 
-/**
- * Servlet implementation class ScheduleDeleteServlet
- */
 @WebServlet("/schedule/deleteScheduleEnd")
 public class ScheduleDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ScheduleDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//파라미터 핸들링
+
 		int scheduleNo = Integer.parseInt(request.getParameter("scheduleNo"));
-//		String up_file = request.getParameter("up_file");
-		
+		String scheduleRenamefilename = request.getParameter("scheduleRenamefilename");
+	
 		int result = new ScheduleService().deleteSchedule(scheduleNo);
+
+		//첨부파일 삭제
+		if(result >0 && !"".equals(scheduleRenamefilename)) {
+			String saveDirectory = getServletContext().getRealPath("/upload/schedule/");
+			File delFile = new File(saveDirectory+scheduleRenamefilename);
+							
+			//파일이동
+			String delDirectory = getServletContext().getRealPath("/deleteFiles/schedule/");
+			File delFile_ = new File(delDirectory+scheduleRenamefilename);
+			delFile.renameTo(delFile_);
+		}		
+
+		String view= "/WEB-INF/views/common/msg.jsp";
+		String msg="";
+		String loc="/member/mainSchedule";
+
 		
-		response.sendRedirect(request.getContextPath());
+		if(result >0) {
+			msg = "일정 삭제 성공!";
+		}else {
+			msg = "일정 삭제 실패!";
+		}
 		
-		
-		
-		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request,response);
+			
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
