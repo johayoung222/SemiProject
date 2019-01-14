@@ -198,10 +198,11 @@ function validate(){
 $(".img").on("click" , function(){
 	var selectedSrc = $(this).attr("src");
 	console.log(selectedSrc);
+	
 	$(".selected-icon").attr("src" , selectedSrc);
 	
 	/* 전송할 alt추려내기 */
-	var	selectedAlt = $(this).attr("alt");
+	var selectedAlt = $(this).attr("alt");
 	$("#iconAlt").attr("value" , selectedAlt);
 	
 	$(".img").css("");

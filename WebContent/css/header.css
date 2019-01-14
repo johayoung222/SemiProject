@@ -34,9 +34,12 @@ position: relative;
 top: -17px;
 }
 #logged-in td{
-    text-align: center;
-   font-family: 'Black Han Sans', sans-serif;
-    
+	text-align: center;
+    font-family: 'Black Han Sans', sans-serif;	
+}
+button{
+	 background: #f8f8f8;
+
 }
 /* #pic{
     text-align:center

@@ -258,7 +258,6 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updatePwd");
 		
-		System.out.println("m111="+m);
 		System.out.println(query);
 		try {
 			//1.쿼리객체준비끝
@@ -332,6 +331,32 @@ public class MemberDao {
 		return list;
 	}
 
+	public int pwdPermute(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("pwdPermute");
+		
+		try {
+			//1.쿼리객체준비끝
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, m.getMemberPwd());
+			pstmt.setString(2, m.getMemberEmail());
+			System.out.println("dao memberpwd =="+m.getMemberPwd());
+			System.out.println("dao memberEmail =="+m.getMemberEmail());
+			
+			
+			//2.실행
+			System.out.println("dao result =="+result);
+			result = pstmt.executeUpdate();
+			System.out.println("dao result =="+result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	public int insertFriend(Connection conn, Friend f) {
         int result = 0;
         PreparedStatement pstmt = null;
@@ -367,6 +392,7 @@ public class MemberDao {
             close(pstmt);
         }
         return result;
+
 	}
 
 	public List<String> checkFriend(Connection conn, String memberId) {

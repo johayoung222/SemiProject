@@ -11,6 +11,7 @@
 	int day = (int)request.getAttribute("day");
 	Member member = (Member)request.getAttribute("member");
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
+	
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/oneday1.css" />
@@ -64,9 +65,19 @@
 	padding: 0px;
 }
 .TimelinePlus{
+	position:relative;
 	display:none;
+	z-index:100;
 }
 
+#scroll-box div{
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid black;
+    text-align: left;
+    position:relative;
+    z-index:1;
+}
 
 </style>
 <script>
@@ -104,14 +115,18 @@ $(document).on('click',function(){
 			<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 0){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		</div>
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
 		<div id="1">01시
 			<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 1){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -119,7 +134,9 @@ $(document).on('click',function(){
         <div id="2">02시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 2){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -127,7 +144,9 @@ $(document).on('click',function(){
         <div id="3">03시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 3){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -136,6 +155,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 4){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -143,7 +164,9 @@ $(document).on('click',function(){
         <div id="5">05시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 5){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -151,7 +174,9 @@ $(document).on('click',function(){
         <div id="6">06시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 6){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -159,7 +184,9 @@ $(document).on('click',function(){
         <div id="7">07시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 7){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -167,7 +194,9 @@ $(document).on('click',function(){
         <div id="8">08시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 8){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -175,7 +204,9 @@ $(document).on('click',function(){
         <div id="9">09시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 9){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -184,6 +215,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 10){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -191,7 +224,9 @@ $(document).on('click',function(){
         <div id="11">11시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 11){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -199,7 +234,9 @@ $(document).on('click',function(){
         <div id="12">12시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 12){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -208,6 +245,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 13){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -215,7 +254,9 @@ $(document).on('click',function(){
         <div id="14">14시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 14){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -224,6 +265,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 15){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -232,6 +275,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 16){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -239,7 +284,9 @@ $(document).on('click',function(){
         <div id="17">17시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 17){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -248,6 +295,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 18){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -255,7 +304,9 @@ $(document).on('click',function(){
         <div id="19">19시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 19){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -264,6 +315,8 @@ $(document).on('click',function(){
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 20){%>
 				<%=list.get(i).getScheduleTitle() %>	
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -271,7 +324,9 @@ $(document).on('click',function(){
         <div id="21">21시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 21){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -279,7 +334,9 @@ $(document).on('click',function(){
         <div id="22">22시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 22){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -287,7 +344,9 @@ $(document).on('click',function(){
         <div id="23">23시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 23){%>
-				<%=list.get(i).getScheduleTitle() %>	
+				<%=list.get(i).getScheduleTitle() %>
+				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
 			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
@@ -310,23 +369,45 @@ $("#todolist div#insertBoard").nextAll().click(function(e){
 });
 
 $("#scroll-box div").each(function(idx, item){
+	var scheduleNo = $(this).children('.scheduleNo').val();
 	$(item).click(function(){
+		if(scheduleNo == null){
 		var time = $(this).attr("id");
-		insertFrm.time.value = time;
-		insertFrm.submit();
+			insertFrm.time.value = time;
+			insertFrm.submit();
+		}else{
+			location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+scheduleNo;
+		}
 	});
 
-	
-	
 });
 
 $("#scroll-box > div").each(function(idx, item){
-	   $(this).hover(function(){
-	      $(this).children().css("display","inline-block");
+	$(this).hover(function(){
+	   $(this).children().css("display","inline-block");	  
+	  
 	   },function(){
 	      $(".TimelinePlus").css("display","none");
-	   });
-	});
+	  });
+});
+
+$(".TimelinePlus").click(function(){
+	$(this).css("background","red");
+	var time = $(this).parents('div').attr("id");
+	alert(time);
+	insertFrm.time.value = time;
+	insertFrm.submit();
+});
+
+$(".timeline").hover(function(){
+	$(this).css("display","inline-block");	  
+	
+	},function(){
+    $(".TimelinePlus").css("display","none");
+});
+
+
+
 
 
 </script>
