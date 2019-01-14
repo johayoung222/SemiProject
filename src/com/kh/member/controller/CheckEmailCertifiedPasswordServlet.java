@@ -43,7 +43,7 @@ public class CheckEmailCertifiedPasswordServlet extends HttpServlet {
 		
 		String email = request.getParameter("memberEmail");
 		System.out.println("servlet Email=="+email);
-		String to = "soads1@naver.com";
+
 		
 		//보내는 사람
 		String from = "7sscheduler@gmail.com";
@@ -82,7 +82,7 @@ public class CheckEmailCertifiedPasswordServlet extends HttpServlet {
 		    msg.setFrom(fromAddr); // 보내는 사람
 		    System.out.println(fromAddr);
 		     
-		    Address toAddr = new InternetAddress(to);
+		    Address toAddr = new InternetAddress(email);
 		    msg.addRecipient(Message.RecipientType.TO, toAddr); // 받는 사람
 		    System.out.println(toAddr); 
 		    
