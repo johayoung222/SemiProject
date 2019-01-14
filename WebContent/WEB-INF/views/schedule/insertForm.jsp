@@ -327,6 +327,28 @@ $(document).ready(function() {
 			$("#scheduleDday-container").hide();
 		} 
 	}); 
+	
+	/* 지금할일 이미지를 클릭했을때 그 이미지를 사용자가 선택한 icon에 뿌려주고
+	그 icon에대한 값을 attr로 뽑아내서 그 전송할 input에 담아주면 된다. */
+	
+	var selectedSrc = "<%=request.getContextPath()%>/images/none.png";
+	$(".selected-icon").attr("src" , selectedSrc);
+	var selectedAlt = "none.png";
+	$("#iconAlt").attr("value" , selectedAlt);
+	
+	
+	$(".img").on("click" , function(){
+		selectedSrc = $(this).attr("src");
+		console.log(selectedSrc);
+		$(".selected-icon").attr("src" , selectedSrc);
+		
+		/* 전송할 alt추려내기 */
+		selectedAlt = $(this).attr("alt");
+		$("#iconAlt").attr("value" , selectedAlt);
+		
+		$(".img").css("");
+		
+	});
 });
 
 /* 일정 등록 유효성 검사 */
@@ -340,21 +362,7 @@ function validate(){
 
 }
 
-/* 지금할일 이미지를 클릭했을때 그 이미지를 사용자가 선택한 icon에 뿌려주고
-그 icon에대한 값을 attr로 뽑아내서 그 전송할 input에 담아주면 된다. */
 
-$(".img").on("click" , function(){
-	var selectedSrc = $(this).attr("src");
-	console.log(selectedSrc);
-	$(".selected-icon").attr("src" , selectedSrc);
-	
-	/* 전송할 alt추려내기 */
-	var selectedAlt = $(this).attr("alt");
-	$("#iconAlt").attr("value" , selectedAlt);
-	
-	$(".img").css("");
-	
-});
 
 $("#iconOpen").on('click',function(){
 	$("#divicon").show();
