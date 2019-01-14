@@ -138,7 +138,7 @@ public class MemberService {
 	public int pwdPermute(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().pwdPermute(conn, m);
-
+		System.out.println("service result =="+result);
 		if(result > 0)
 			commit(conn);
 		else 

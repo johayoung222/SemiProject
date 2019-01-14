@@ -112,29 +112,31 @@ function chk(re, e, msg) {
 
 function pwdPermute(){
 	var memberEmail = $("#email__").val();
+	console.log(memberEmail);
 	var new_Password = $("#new_password").val();
+	console.log(new_Password);
 	var check_Password = $("#check_password").val();
+	console.log(check_Password);
 	
 	/* if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
         return false; */
 	
-	if(new_Password =! check_Password){
+	if(new_Password != check_Password){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
-	
-	
-         
+    
 	var param = {
 			"memberEmail":$("#email__").val(),
 			"new_Password":$("#new_password").val()
 	}
+	console.log(param);
 	$.ajax({
 		type:"post",
 		url:"<%=request.getContextPath()%>/member/pwdPermute",
 		data:param,
 		success:function(data){
-			console.log(data);
+			console.log(data);   
 			var html="<table>";
 				html +="<tr><td>"+"비밀번호가 변경되었습니다."+"</td></tr>";
 				html+="</table>";

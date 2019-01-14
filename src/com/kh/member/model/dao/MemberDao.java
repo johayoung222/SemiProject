@@ -258,7 +258,6 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updatePwd");
 		
-		System.out.println("m111="+m);
 		System.out.println(query);
 		try {
 			//1.쿼리객체준비끝
@@ -347,6 +346,7 @@ public class MemberDao {
 			
 			
 			//2.실행
+			System.out.println("dao result =="+result);
 			result = pstmt.executeUpdate();
 			System.out.println("dao result =="+result);
 		} catch (SQLException e) {

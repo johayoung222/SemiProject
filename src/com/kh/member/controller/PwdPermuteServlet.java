@@ -34,29 +34,23 @@ public class PwdPermuteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String memberEmail = request.getParameter("memberEmail");
-		System.out.println("pwd memberEmail =="+memberEmail);
+		System.out.println("pwdPermuteServlet memberEmail =="+memberEmail);
 		String new_password = request.getParameter("new_Password");
-		System.out.println("pwd new_password =="+new_password);
+		System.out.println("pwdPermuteServlet new_password =="+new_password);
 		
 		Member m = new Member();
 		
 		m.setMemberEmail(memberEmail);
 		m.setMemberPwd(new_password);
+		System.out.println("PwdPermuteservlet m =="+m);
 		
 		int result = new MemberService().pwdPermute(m);
-		System.out.println("servlet result =="+result);
+		System.out.println("PwdPermuteservlet result =="+result);
 		
 		
 		new Gson().toJson(result, response.getWriter());
-		/*String msg = "";
-		String loc = "";
+
 		
-		if(result > 0) {
-			msg = "패스워드 변결을 성공하였습니다";
-		}else {
-			msg = "패스워드 변경에 실패했습니다.";
-		}*/
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 		
 	}
 
