@@ -16,14 +16,14 @@ import com.kh.member.model.vo.FriendQueue;
 /**
  * Servlet implementation class MemberInsertFriendServlet
  */
-@WebServlet("/friend/insertFriend")
-public class MemberInsertFriendServlet extends HttpServlet {
+@WebServlet("/friend/insertFriendQueue")
+public class MemberInsertFriendQueueServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertFriendServlet() {
+    public MemberInsertFriendQueueServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

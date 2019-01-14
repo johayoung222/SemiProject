@@ -1,39 +1,40 @@
-package com.kh.member.controller;
+
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.kh.member.model.service.MemberService;
 
 /**
- * Servlet implementation class MemberLogoutServlet
+ * Servlet implementation class MemberdeleteFriendQueue
  */
-@WebServlet("/member/logout")
-public class MemberLogoutServlet extends HttpServlet {
+@WebServlet("/member/deleteFriendQueue")
+public class MemberdeleteFriendQueue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public MemberdeleteFriendQueue() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 친구요청을 보낸 사용자의 아이디
+		String selectFriend = (String)request.getParameter("selectFriend");
+		// 본인의 아이디
+		String memberId = (String)request.getParameter("memberId");
+		System.out.println("MemberdeleteFriendQueue@selectFriend/memberId : "+selectFriend+"/"+memberId);
 		
-		HttpSession session = request.getSession(false);
-		
-		if(session != null) {
-//			session.setMaxInactiveInterval(0);
-			session.invalidate();
-		}
-		
-		boolean history = true;
-		
-		request.setAttribute("msg", "로그아웃!");
-		request.setAttribute("loc", "/");
-		request.setAttribute("history", history);
-		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+		// result = new MemberService().
 	}
 
 	/**

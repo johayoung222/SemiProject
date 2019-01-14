@@ -151,8 +151,6 @@ function searchIdPwd(){
      	<form action="<%=request.getContextPath()%>/member/checkFriend"
       	method="post"
       	name="checkFriendFrm">
-      	
-      	<input type="hidden" name="memberId" />
       	<%-- <input type="hidden" id="popup" name="popup" value="<%=popupArr %>" /> --%>
       	</form>
      	<script>
@@ -160,7 +158,7 @@ function searchIdPwd(){
             //팝업창을 target으로 폼전송
             var target = "checkFriend";
             //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
-            var popup = open("", target, "left=300px, top=100px, height=50px, width=300px , resizable=no, scrollbars=no, status=no;");
+            var popup = open("", target, "left=400px, top=300px, height=200px, width=500px , resizable=no, scrollbars=no, status=no;");
             checkFriendFrm.target = target;
             checkFriendFrm.submit();
      	}

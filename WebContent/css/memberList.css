@@ -36,11 +36,23 @@ table#tbl-memberList td{
 	
 }
 /*페이지바*/
-div#pageBar{argin-top:10px; width:100%;
-height:50px; text-align:center; 
-margin: 15px;
-font-family: 'Black Han Sans', sans-serif; }
-div#pageBar span.cPage{olor: #400040; font-family: 'Black Han Sans', sans-serif;
-margin:5px;}
+div#pageBar{
+	argin-top:10px; 
+	width:100%;
+	height:50px; 
+	text-align:center; 
+	margin: 15px;
+	font-family: 'Black Han Sans', sans-serif; 
+	}
+#pageBar a{
+	margin-left: 7px;
+	text-decoration: none;
+	font-size: 20px;
+	color: green;
+}
+div#pageBar span.cPage{
+	font-family: 'Black Han Sans', sans-serif;
+	margin:5px;
+	}
 
 
