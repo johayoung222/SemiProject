@@ -16,7 +16,7 @@ import com.kh.member.model.vo.Member;
 /**
  * Servlet implementation class AjaxCheckFriendServlet
  */
-@WebServlet("/Friend/selectFriendQueue.do")
+@WebServlet("/friend/selectFriendQueue.do")
 public class AjaxCheckFriendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
