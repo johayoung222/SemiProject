@@ -1,15 +1,24 @@
+<%@page import="java.util.List"%>
 <%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");  
+	Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");  
+	List<String> friendList = null;
+	
+	if(memberLoggedIn1 == null) {
+		
+	} else {
+		try {
+			friendList = (List)session.getAttribute("friendList");
+		} catch(NullPointerException e) {
+			
+		}
+	}
+	
+	
 
 %>
-    
-<!DOCTYPE html >
-<html>
-<head>
-<meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Coiny|Do+Hyeon|Gothic+A1|Nanum+Gothic+Coding|Nanum+Pen+Script|Noto+Sans+KR" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
@@ -33,14 +42,6 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 	$("#friends").css('display','none');	  
 	  
   }
-  
-
-  
-  </script>
-  
-
-
-  <script>
   
   window.onload =function(){
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=c95231fca9f07b22a6540efdcce37587";
@@ -81,11 +82,6 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 	};
 
 </script>
-
-
-
-</head>
-<body>
 	
 	<div class="side">
 		<br />
@@ -111,7 +107,15 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 			<p>친구들
 			<button id="addfriend" onclick="addfriend();">+</button></p>
 			<div id="friendspace">
+				<% if(!friendList.isEmpty()) { %>
 				
+					<% for(int i = 0;i < friendList.size();i++) { %>
+					<span><%=friendList.get(i) %></span>
+					<br />
+					<% } 
+				} else {%>
+					<span>친구가 <br />없으십니다.</span>
+				<% } %>
 			</div>
 		</div>
 		<div id="friends">

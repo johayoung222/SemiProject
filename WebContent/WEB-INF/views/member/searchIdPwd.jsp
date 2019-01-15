@@ -60,7 +60,7 @@
 	color: red;
 	
 }
-</style>;l
+</style>
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');

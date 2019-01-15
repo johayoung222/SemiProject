@@ -120,6 +120,20 @@ function addClickEvent(){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
+<<<<<<< HEAD
+=======
+		
+		$(item).contextmenu(function(e){
+			thisTarget = e.target;
+			var flag = $(this).children().attr("id");
+			if(flag != null && flag != ""){
+			var pageX = e.originalEvent.pageX;
+			var pageY = e.originalEvent.pageY;
+			$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
+			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
+			}
+			});
+>>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
 	});
 }
 </script>
@@ -302,8 +316,7 @@ function addClickEvent(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        					console.log(i,j,dataList[j].scheduleTitle);
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
         				}
         			}
         			}
@@ -362,8 +375,7 @@ function addClickEvent(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        					console.log(i,j,dataList[j].scheduleTitle);
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
         				}
         			}
         			}
@@ -398,6 +410,26 @@ function addClickEvent(){
 			}
 		});
         </script>
+<<<<<<< HEAD
+=======
+     <div id="contextMenu">
+		<div class="menu1">일정추가</div>
+	</div>
+	<script>
+	$("#contextMenu div").each(function(idx,item){
+		$(item).click(function(e){
+			var year = $("#cYear").text();
+			var month = $("#cMonth").text();
+			var day = thisTarget.firstChild.id;
+			$(this).parent()[0].style.display = 'none';
+			console.log(year, month, day);
+			if(day != null && day != ""){
+			location.href = "<%=request.getContextPath() %>/schedule/insertSchedule?year="+year+"&month="+month+"&day="+day+"&time=100";
+			}
+		});
+	});
+	</script>
+>>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
         
 </body>
 </html>
