@@ -13,10 +13,8 @@
 	} else {
 		try {
 			popup = (List)request.getAttribute("popup");
-			System.out.println("111111111111111111");
-			System.out.println("뜨냐?" + popup);
+
 			popupbool = (int)request.getAttribute("popupbool");	
-			System.out.println("2222222222222222222");
 			
 			/* 친구요청을 받았는지에 대한 여부조사 */
 			for(int i = 0;i < popup.size();i++) {

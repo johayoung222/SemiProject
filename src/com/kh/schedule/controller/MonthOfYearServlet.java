@@ -58,6 +58,8 @@ public class MonthOfYearServlet extends HttpServlet {
 		
 		if(cMonth < 10) {
 			scMonth = "0"+cMonth;
+		}else {
+			scMonth = String.valueOf(cMonth);
 		}
 		
 		cMonth += 1;
@@ -67,6 +69,8 @@ public class MonthOfYearServlet extends HttpServlet {
 		}
 		if(cMonth < 10) {
 			snMonth = "0"+cMonth;
+		}else {
+			snMonth = String.valueOf(cMonth);
 		}
 		
 		String first = year+scMonth;
