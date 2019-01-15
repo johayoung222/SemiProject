@@ -60,7 +60,7 @@
 	color: red;
 	
 }
-</style>;l
+</style>
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');
@@ -109,7 +109,7 @@ function pwdPermute(){
 	console.log(new_Password);
 	var check_Password = $("#check_password").val();
 	console.log(check_Password);
-	
+	 
 	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
         return false;
 	
@@ -126,7 +126,7 @@ function pwdPermute(){
 	    e.focus();
 	    return false;
 	}
-    
+
 	var param = {
 			"memberEmail":$("#email__").val(),
 			"new_Password":$("#new_password").val()
@@ -145,7 +145,7 @@ function pwdPermute(){
 			$("#hidetable").html(html);
 		}
 	});
-	
+
 	return true;
 	
 }

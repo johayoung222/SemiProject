@@ -45,7 +45,6 @@
  
  <div class="content">
    <section>
-   <h2>내 정보</h2>
    <form class="updateFrm" action="<%=request.getContextPath()%>/member/memberUpdateEnd"
 	  method="post"
 	  name="memberUpdateform"
