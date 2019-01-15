@@ -58,6 +58,7 @@
 	padding-left:99px;
 	padding-top:20px;
 }
+<<<<<<< HEAD
 #newpwd2{
 margin-top:30px;
 margin-bottom:30px;
@@ -75,6 +76,9 @@ margin-left: 20px;
 
 	
 
+=======
+</style>
+>>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');
