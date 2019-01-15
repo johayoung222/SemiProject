@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.schedule.model.vo.*" %>
+<%@ page import="com.kh.schedule.model.vo.*,
+				java.text.SimpleDateFormat" %>
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <%@ include file="/WEB-INF/views/common/side.jsp" %>
 <%
 	Schedule s = (Schedule)request.getAttribute("schedule");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
+	String today = sdf.format(s.getScheduleDate());
 
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/scheduleinfo.css" />
 <div id="scheduleInfo-container">
-	<h3>Scheduler 수정</h3>
+	<h3><%=today %> Schedule 수정</h3>
 	<form class="updateScheduleFrm" name="updateSchedulefrm"
 			action="<%=request.getContextPath()%>/schedule/updateScheduleEnd" 
 			method="post"
@@ -19,6 +22,7 @@
 	    <input type="hidden" id="scheduleDday1" value="<%=s.getScheduleDday()%>" />
 	    <input type="hidden" id="repeatcheck" value="<%=s.getScheduleRepeatcheck()%>" />
 	    <input type="hidden" id="scheduleIcon1" value="<%=s.getScheduleIcon()%>" />
+	    
 	    <div id="updateSchedule_div" class="updateSchedule_div">
 	        
 	        <label for="title">제목:</label>
@@ -215,8 +219,6 @@ $("#iconOpen").on('click',function(){
 $("#iconClose").on('click',function(){
 	$("#divicon").hide();
 });
-
-
 
 </script>
 </body>

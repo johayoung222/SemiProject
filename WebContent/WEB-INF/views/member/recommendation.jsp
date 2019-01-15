@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>온도에 따른 추천 의상, 여행지</title>
+<<<<<<< HEAD
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
+=======
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/recommendation.css" />
+>>>>>>> e84c6c057ef71862d8e4d66006a668389bdd7dfe
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 
 <%
@@ -14,41 +18,9 @@
 	System.out.println("시험하는곳 temp = "+temp);
 %>
 
-<style>
-div.container{
-	float: left;
-	width: 29%;
-	height:300px;
-    margin: 10px;
-    padding: 10px;
 
-	text-align:center;
-}
-table {
-	border:1px solid;
-	margin:auto;
-	border-collapse: collapse;
-}
-td,th {
-	border:1px solid;
-}
-span#time{
-	text-decoration:underline;
-	margin: 15px;
-    display: block;
-}
-#order-list{
-	width:100%;
-}
-#rank-list{
-	width:100%;
-}
-</style>
 </head>
 <body>
-
-
-
 
 <div class="container2">
 	<h2>추천 의상</h2>
@@ -189,9 +161,5 @@ function printTime() {
 	
 	</script>
 	
-	
-	
-
-
 </body>
 </html>

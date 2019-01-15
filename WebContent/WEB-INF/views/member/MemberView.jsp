@@ -13,9 +13,6 @@
 		 String gender = m.getMemberGender();
 
 
-
-
-
 %>
 <!doctype html>
 <html>
@@ -183,9 +180,6 @@
 
 
 </script>
-
-
-
 
 </body>
 

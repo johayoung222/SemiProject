@@ -156,4 +156,17 @@ public class ScheduleService {
 		else rollback(conn);		
 		return result;
 	}
+
+	public int deleteRepeatSchedule(Date start, Date end, String memberId) {
+		Connection conn = getConnection();
+		int result = new ScheduleDao().deleteRepeatSchedule(conn, start, end, memberId);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 }

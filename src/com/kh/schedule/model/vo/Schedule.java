@@ -81,10 +81,6 @@ public class Schedule implements Serializable{
 		this.scheduleDdaycheck = scheduleDdaycheck;
 	}
 
-	public String getScheduleReqeatcheck() {
-		return scheduleRepeatcheck;
-	}
-
 	public void setScheduleRepeatcheck(String scheduleRepeatcheck) {
 		this.scheduleRepeatcheck = scheduleRepeatcheck;
 	}

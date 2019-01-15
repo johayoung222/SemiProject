@@ -4,7 +4,6 @@
 				com.kh.member.model.vo.*,
 				com.kh.schedule.model.vo.*" %>
 <%
-	//전달받은 데이터에서 현재일자를 꺼냄.
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
@@ -13,9 +12,6 @@
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	
 	Member m = (Member)request.getAttribute("memberLoggedIn");
-	
-	//schedule data 를 date별로 나누기
-
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -24,6 +20,7 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script>
+/* 공휴일 추가 함수 */
 function holidays(){
 	$.ajax({
 		url: "<%=request.getContextPath() %>/schedule/holidays.do",
@@ -32,7 +29,6 @@ function holidays(){
 		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
 		success: function(data){
 			console.log(data); //data는 이미 javascript배열객체
-			
 			console.log(JSON.parse(data).response.body.items.item);
 			console.log("type="+(JSON.parse(data).response.body.items.item).length);
 			  
@@ -46,27 +42,19 @@ function holidays(){
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
 					
-					if(compa == "0")
+					if(compa == "0"){
 						copymonth = copymonth.substring(7,8);
-					else
+					}else{
 						copymonth = copymonth.substring(6,8);
-					
+					}
 					var monthResult = ($("#"+copymonth+"").text());
+					$("#"+copymonth+"").css("color","red");
 					
-					
-						$("#"+copymonth+"").css("color","red");
-						
-						var copytext = $("#"+copymonth+"").text();
-						
-						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
-					
+					var copytext = $("#"+copymonth+"").text();
+					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
 				}
-				
-				
 				console.log(copymonth);
-				
 			}else{
-				
 				for(var i in JSON.parse(data).response.body.items.item){
 					var holiday = JSON.parse(data).response.body.items.item[i];
 					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
@@ -76,41 +64,29 @@ function holidays(){
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
 					
-					if(compa == "0")
+					if(compa == "0"){
 						copymonth = copymonth.substring(7,8);
-					else
+					}else{
 						copymonth = copymonth.substring(6,8);
-					
+					}
 					var monthResult = ($("#"+copymonth+"").text());
+					$("#"+copymonth+"").css("color","red");
 					
-					
-						$("#"+copymonth+"").css("color","red");
-						
-						var copytext = $("#"+copymonth+"").text();
-						
-						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
-					
+					var copytext = $("#"+copymonth+"").text();
+					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
 				}
-				
-				
 				console.log(copymonth);
-				
-				
-				
 			}  
-			
-			
-			
-			
-		}
-	});
-}
+		}//success func end
+	});//ajax end
+}//holiday func end
 
 
 /* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
 	var tag = $("#add").find("td");
 	tag.each(function(idx, item){
+		/* 클릭시 일간이동 이벤트 */
 		$(item).click(function(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
@@ -120,19 +96,20 @@ function addClickEvent(){
 			}
 		});
 		
+		/* 우클릭시 contextmenu 생성 */
 		$(item).contextmenu(function(e){
 			thisTarget = e.target;
+			var flag = $(this).children().attr("id");
+			if(flag != null && flag != ""){
 			var pageX = e.originalEvent.pageX;
 			var pageY = e.originalEvent.pageY;
 			$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
 			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
+			}
 			});
-	});
-			
-}
-
-
-
+	});//each func end
+}//addClickEvent func end
+/* contextmenu 해제 이벤트 */
 $(document).on('click',function(){
 	if($("#contextMenu").css("display") == 'block'){
 		$("#contextMenu").css("display","none");
@@ -173,26 +150,7 @@ $(document).on('click',function(){
    		height: 100%;
    		display: inline-block;
    }
-   /* 우클릭메뉴 */
-   #contextMenu{
-	position: absolute;
-	width: 150px;
-    border: 1px solid gray;
-    background-color: rgba(211, 211, 211, 0.815);
-    display: none;
-}
-#contextMenu .menu1{
-	height: 25px;
-	border: none;
-}
-#contextMenu div:hover{
-	background-color: lightgray;
-	cursor: default;
-}
 </style>
-
-
-
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -201,7 +159,7 @@ $(document).on('click',function(){
             <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-		<!-- 년간 달력 테스트 -->
+		<!-- 년간 달력 -->
 		<div id="year-box">
 		    <div class="year" id="month_1"><img src="<%=request.getContextPath() %>/images/year/month1.png" alt="1" /></div>
 		    <div class="year" id="month_2"><img src="<%=request.getContextPath() %>/images/year/month2.png" alt="2" /></div>
@@ -226,13 +184,13 @@ $(document).on('click',function(){
 		</script>
 		<table id="month">
 			<tr>
-				<th style="color:red;border-left:3px solid black;">일</th>
+				<th style="color:red;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th style="color:blue;border-right:3px solid black;">토</th>
+				<th style="color:blue;">토</th>
 			</tr>
 		</table>
 		<table id="add">
@@ -248,6 +206,7 @@ $(document).on('click',function(){
                 }
                 document.write(html);
             }
+			holidays();
 			var span = $("#add").find("span");
 			for(var i=0; i< span.length; i++){
 				<% for(int i=1; i<=31; i++){
@@ -259,7 +218,6 @@ $(document).on('click',function(){
 				} %>
 			}
 			addClickEvent();
-			holidays();
 			
 			</script>
 		</table>
@@ -331,18 +289,16 @@ $(document).on('click',function(){
         			table.append(html);
         			$("#month").after(table);
         			
+        			holidays();
         			var span = $("#add").find("span");
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        					console.log(i,j,dataList[j].scheduleTitle);
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
         				}
         			}
         			}
-        			
         			addClickEvent();
-        			holidays();
         		}
         	});
         });
@@ -376,7 +332,6 @@ $(document).on('click',function(){
         						}
         						else{
 		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+" </span></td>";
-        							
         						}
         					}else{
         					html += "<td><span></span></td>";
@@ -391,44 +346,24 @@ $(document).on('click',function(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			
+        			holidays();
         			var span = $("#add").find("span");
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        					console.log(i,j,dataList[j].scheduleTitle);
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
         				}
         			}
         			}
         			addClickEvent();
-        			holidays();
         		}
         	});
         });
-        
-        
-        /* 공휴일 뿌리기 */
-        
-        /* 스크롤 이벤트 */
-		/* $(window).scroll(function(e){
-			var scrollTop = $(this).scrollTop();
-			if(scrollTop > 0.5){
-				$("#year-box").css("display","block");
-			}else{
-				$("#year-box").css("display","none");
-			}
-			
-		});   */   
-		flag = 0;
-		window.addEventListener('scroll',function(e){
-			console.log("scrolled!!");
-			if(flag == 0){
-				$("#year-box").css("display","block");
-				flag = 1;
-			}else{
-				$("#year-box").css("display","none");
-				flag = 0;
-			}
+		
+        /* 년간 스케줄 */
+		$("#yearSchedule").click(function(){
+			$("#year-box").css("display","block");
 		});
         </script>
      <div id="contextMenu">
@@ -442,7 +377,7 @@ $(document).on('click',function(){
 			var day = thisTarget.firstChild.id;
 			$(this).parent()[0].style.display = 'none';
 			console.log(year, month, day);
-			if(day != null){
+			if(day != null && day != ""){
 			location.href = "<%=request.getContextPath() %>/schedule/insertSchedule?year="+year+"&month="+month+"&day="+day+"&time=100";
 			}
 		});

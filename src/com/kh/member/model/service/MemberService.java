@@ -204,6 +204,37 @@ public class MemberService {
 		return srchIdCheck;		
 	}
 
+	public int insertFriendMy(String memberId, String selectFriend) {
+		int insertFmy = -1;
+		Connection conn = getConnection();
+		insertFmy = new MemberDao().insertFriendMy(conn, memberId , selectFriend);
+		if(insertFmy>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return insertFmy;
+	}
+
+	public int insertFriendSf(String selectFriend, String memberId) {
+		int insertFsf = -1;
+		Connection conn = getConnection();
+		insertFsf = new MemberDao().insertFriendSf(conn, selectFriend , memberId);
+		if(insertFsf>0)
+			commit(conn);
+		else 
+			rollback(conn);
+		close(conn);
+		return insertFsf;
+	}
+
+	public List<String> selectFriendList(String memberId) {
+		Connection conn = getConnection();
+		List<String> list = new MemberDao().selectFriendList(conn, memberId);
+		
+		return list;
+	}
+
 
 
 

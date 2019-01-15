@@ -2,6 +2,7 @@ package com.kh.member.controller;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberdeleteFriendQueue
@@ -35,27 +37,17 @@ public class MemberdeleteFriendQueue extends HttpServlet {
 		// 친구요청을 보낸 사용자의 아이디
 		String selectFriend = (String)request.getParameter("selectFriend");
 		// 본인의 아이디
-		String memberId = (String)request.getParameter("memberId");
+		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
+		String memberId = memberLoggedIn.getMemberId();
 		System.out.println("MemberdeleteFriendQueue@selectFriend/memberId : "+selectFriend+"/"+memberId);
 		
 		int result = new MemberService().deleteFriendQueue(selectFriend , memberId);
 		
-		String view = "/WEB-INF/views/member/checkFriend.jsp";
-		String msg = "";
 		
-		String loc = "";
-
-		if(result>0) {
-			msg = "친구 요청 거절";
-		}
-		else 
-			msg = "친구 요청 거절 실패";	
+		List<String> popup = new MemberService().checkFriend(memberLoggedIn.getMemberId());
 		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
 		
-		RequestDispatcher reqDispatcher = request.getRequestDispatcher(view);
-		reqDispatcher.forward(request, response);
+		new Gson().toJson(popup, response.getWriter());
 	}
 
 	/**

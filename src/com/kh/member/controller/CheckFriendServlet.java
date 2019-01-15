@@ -1,11 +1,14 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.kh.member.model.vo.Member;
 
@@ -35,6 +38,8 @@ public class CheckFriendServlet extends HttpServlet {
 		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
 		System.out.println("CheckFriendSerlvet@memberId"+memberLoggedIn.getMemberId());
 		
+
+		
 		// request.setAttribute("popupArr", popupArr);
 		request.setAttribute("memberId", memberLoggedIn.getMemberId());
 		
@@ -42,6 +47,8 @@ public class CheckFriendServlet extends HttpServlet {
 		//checkFriend.jsp
 		request.getRequestDispatcher("/WEB-INF/views/member/checkFriend.jsp")
 			   .forward(request, response);
+		
+		
 	}
 
 	/**

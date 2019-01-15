@@ -21,6 +21,24 @@ import java.util.Properties;
  *	- static자원 활용법
  */
 public class JDBCTemplate {
+	
+	/*public static Connection getConnection() {
+		Connection conn = null;
+		
+		try {
+			Context ctx = new InitialContext();
+			DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
+			conn = pool.getConnection();
+			conn.setAutoCommit(false);
+			
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}*/
 
 	public static Connection getConnection() {
 		Connection conn = null;
