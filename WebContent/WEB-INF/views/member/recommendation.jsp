@@ -26,6 +26,7 @@ div.container{
 table {
 	border:1px solid;
 	margin:auto;
+	border-collapse: collapse;
 }
 td,th {
 	border:1px solid;
@@ -36,10 +37,10 @@ span#time{
     display: block;
 }
 #order-list{
-	
+	width:100%;
 }
 #rank-list{
-	float:right;
+	width:100%;
 }
 </style>
 </head>
@@ -82,32 +83,49 @@ function printTime() {
 				//json <----> javascript
 				//	   <--- JSON.stringgify()
 				//	  	---> JSON.parse()
-				var table = $("<table></table>");
-				var html = "<tr><th>온도</th><th>추천내용</th><th>추천내용</th></tr>";
+				var table = $("<table id='cloth'></table>");
+				var html = "<tr><th>온도</th><th colspan=2>추천내용</th></tr>";
 				
-				if(<%=temp%> <= 5){
-					html += "<tr><td>~5˚C</td>";
-					html += "<td>겨울 옷 (야상, 패딩, 목도리 등등 다)</td></tr>";
-				}else if((<%=temp%> > 5)&&(<%=temp%> <= 9)){
-					html += "<tr><td>6˚C~9˚C</td>";
-					html += "<td>코트, 가죽자켓</td>";
-					html += "<td><img src='<%=request.getContextPath()%>/images/cloth/4~.png'/></td></tr>";
-				}else if((<%=temp%> > 9)&&(<%=temp%> <= 11)){
-					html += "<tr><td>10˚C~11˚C</td>";
-					html += "<td>트렌치코트, 간절기 야상, 여러겹 껴입기</td></tr>";
-				}else if((<%=temp%> > 11)&&(<%=temp%> <= 16)){
-					html += "<tr><td>12˚C~16˚C</td>";
-					html += "<td>자켓,셔츠,가디건,간절기 야상</td></tr>";
-				}else if((<%=temp%> > 16)&&(<%=temp%> <= 19)){
-					html += "<tr><td>17˚C~19˚C</td>";
-					html += "<td>니트,가디건,후드티,면바지,슬랙스,스키니</td></tr>";
-				}else if((<%=temp%> > 19)&&(<%=temp%> <= 22)){
-					html += "<tr><td>20˚C~22˚C</td>";
-					html += "<td>긴팔티, 가디건, 후드티, 면바지, 슬랙스</td></tr>";
-				}else if(<%=temp%> > 22){
-					html += "<tr><td>10˚C~11˚C</td>";
-					html += "<td>반팔,얇은셔츠,얇은긴팔,반바지</td></tr>";
-				}
+				if(<%=temp%> <= 4){
+                    html += "<tr><td>~4˚C</td>";
+                    html += "<td>겨울 옷 (패딩, 두꺼운코트, 목도리, 기모제품 )</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/4~.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 4)&&(<%=temp%> <= 8)){
+                    html += "<tr><td>5˚C~8˚C</td>";
+                    html += "<td>코트, 가죽자켓, 히트텍, 니트, 레깅스</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/8~5.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 8)&&(<%=temp%> <= 11)){
+                    html += "<tr><td>9˚C~11˚C</td>";
+                    html += "<td>자켓, 트렌치코트, 야상, 니트, 청.면바지</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/11~9.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 11)&&(<%=temp%> <= 16)){
+                    html += "<tr><td>12˚C~16˚C</td>";
+                    html += "<td>자켓, 가디건, 야상, 청.면바지</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/16~12.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 16)&&(<%=temp%> <= 19)){
+                    html += "<tr><td>17˚C~19˚C</td>";
+                    html += "<td>얇은니트, 맨투맨, 가디너, 청바지</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/19~17.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 19)&&(<%=temp%> <= 22)){
+                    html += "<tr><td>20˚C~22˚C</td>";
+                    html += "<td>얇은 가디건, 긴팔, 청.면바지</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/22~10.png'/></td></tr>";
+                    
+                }else if((<%=temp%> > 22)&&(<%=temp%> <= 27)){
+                    html += "<tr><td>23˚C~27˚C</td>";
+                    html += "<td>반팔, 얇은셔츠, 반바지</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/27~23.png'/></td></tr>";
+                    
+                }else if(<%=temp%> >= 28){
+                    html += "<tr><td>28˚C~</td>";
+                    html += "<td>민소매, 반팔, 반바지 , 원피스</td>";
+                    html += "<td><img src='<%=request.getContextPath()%>/images/cloth/~28.png'/></td></tr>";
+                }
 				
 				
 				table.append(html);
