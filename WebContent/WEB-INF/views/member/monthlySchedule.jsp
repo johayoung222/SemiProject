@@ -24,6 +24,89 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script>
+function holidays(){
+	$.ajax({
+		url: "<%=request.getContextPath() %>/schedule/holidays.do",
+		dataType: "json",
+		type: "get",
+		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
+		success: function(data){
+			console.log(data); //data는 이미 javascript배열객체
+			
+			console.log(JSON.parse(data).response.body.items.item);
+			console.log("type="+(JSON.parse(data).response.body.items.item).length);
+			  
+			if(typeof((JSON.parse(data).response.body.items.item).length) == "undefined"){
+				for(var i in JSON.parse(data).response.body.items){
+					var holiday = JSON.parse(data).response.body.items[i];
+					var copymonth = JSON.parse(data).response.body.items[i].locdate+"";
+					
+					console.log(JSON.parse(data).response.body.items[i].locdate);
+					
+					var comp = copymonth.substring(6,8);
+					var compa = comp.substring(0,1);
+					
+					if(compa == "0")
+						copymonth = copymonth.substring(7,8);
+					else
+						copymonth = copymonth.substring(6,8);
+					
+					var monthResult = ($("#"+copymonth+"").text());
+					
+					
+						$("#"+copymonth+"").css("color","red");
+						
+						var copytext = $("#"+copymonth+"").text();
+						
+						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
+					
+				}
+				
+				
+				console.log(copymonth);
+				
+			}else{
+				
+				for(var i in JSON.parse(data).response.body.items.item){
+					var holiday = JSON.parse(data).response.body.items.item[i];
+					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
+					
+					console.log(JSON.parse(data).response.body.items.item[i].locdate);
+					
+					var comp = copymonth.substring(6,8);
+					var compa = comp.substring(0,1);
+					
+					if(compa == "0")
+						copymonth = copymonth.substring(7,8);
+					else
+						copymonth = copymonth.substring(6,8);
+					
+					var monthResult = ($("#"+copymonth+"").text());
+					
+					
+						$("#"+copymonth+"").css("color","red");
+						
+						var copytext = $("#"+copymonth+"").text();
+						
+						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
+					
+				}
+				
+				
+				console.log(copymonth);
+				
+				
+				
+			}  
+			
+			
+			
+			
+		}
+	});
+}
+
+
 /* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
 	var tag = $("#add").find("td");
@@ -142,6 +225,7 @@ function addClickEvent(){
 				} %>
 			}
 			addClickEvent();
+			holidays();
 			
 			</script>
 		</table>
@@ -224,6 +308,7 @@ function addClickEvent(){
         			}
         			
         			addClickEvent();
+        			holidays();
         		}
         	});
         });
@@ -282,6 +367,7 @@ function addClickEvent(){
         			}
         			}
         			addClickEvent();
+        			holidays();
         		}
         	});
         });
