@@ -15,11 +15,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 --><!-- The contents of this file will be loaded for each web application -->
-<<<<<<< HEAD
+
 <Context workDir="C:\Users\dlgus\Desktop\pro\webserver_workspace\03_HelloMVC\WebContent\WEB-INF\jspwork">
-=======
-<Context workDir="C:\workspace\webserver_workspace\SemiProject\WebContent\WEB-INF\jspwork">
->>>>>>> 6954ab0d185fcffeaea6fcc93ee8fff43e9bb5f3
+
 
     <!-- Default set of monitored resources. If one of these changes, the    -->
     <!-- web application will be reloaded.                                   -->
