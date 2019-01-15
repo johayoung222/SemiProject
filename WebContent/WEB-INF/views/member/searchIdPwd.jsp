@@ -38,15 +38,7 @@
 #button2{
 	padding-left: 170px;
 }
-#searchid{
-	text-align: center;
-}
-#searchId2{
-	text-align: center;
-}
-#searchPwd2{
-	text-align: center;
-}
+
 #permute{
 	text-align: center;
 }
@@ -54,11 +46,14 @@
 	border: 1px solid black;
 	width: 50%;
 	height: 200px;
-	float: right;
+	float:right;
 	display:none;
-	text-align: center;;
-	
+	text-align:center;
+	/* position:absolute; */
 }
+#button3{
+padding-left: 170px}
+
 </style>
 <script>
 function searchid(){
@@ -219,6 +214,7 @@ function sendMail(){
                   	</td>
                  </tr>
 			</table>
+			
 			<form action="<%=request.getContextPath()%>/member/pwdPermute"
 			 name="pwd" method="post">
 				<input type="hidden" name="memberEmail" />
@@ -233,8 +229,9 @@ function sendMail(){
 				<tr>
 					<th>새 비밀번호 확인</th>
 					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
+				</tr>
 				 <tr>
-                  	<td colspan="2" id="button2">
+                  	<td colspan="2" id="button3">
                   		<input type="button" onclick="pwdPermute();" value="비밀번호 변경" />
                   	</td>
                  </tr>
