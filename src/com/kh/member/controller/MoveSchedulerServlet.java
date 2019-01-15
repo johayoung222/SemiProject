@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 import com.kh.schedule.model.service.ScheduleService;
 import com.kh.schedule.model.vo.Schedule;
@@ -89,6 +91,13 @@ public class MoveSchedulerServlet extends HttpServlet {
 			}
 			map.put(i, dayList);
 		}
+		
+		/* 친구 조회  */
+		List<String> friendList = new MemberService().selectFriendList(memberId);
+		
+		HttpSession session = request.getSession(true);
+		session.setAttribute("friendList", friendList);
+		request.setAttribute("friendList", friendList);
 		
 		request.setAttribute("start", start);
 		request.setAttribute("last", last);

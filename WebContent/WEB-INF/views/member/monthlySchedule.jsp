@@ -117,6 +117,7 @@ $(document).on('click',function(){
 	}
 });
 </script>
+
 <style>
 	table#add tr td:first-of-type span{
        color:red;
@@ -151,6 +152,7 @@ $(document).on('click',function(){
    		display: inline-block;
    }
 </style>
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -383,6 +385,6 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
-        
+
 </body>
 </html>
