@@ -10,57 +10,7 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
   <title>아이디/비밀번호 찾기</title>
   <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
-<style>
-#table1 {
-	border: 1px solid black;
-	width: 50%;
-	height: 200px;
-	position:absolute;
-}
 
-#table2{
-	border: 1px solid black;
-	width: 50%;
-	height: 200px;
-	
-	/* position: right; */
-}
-#table3{
-	border: 1px solid black;
-	width:100%;
-	height:52px;
-	text-align: center;
-}
-#button1{
-	text-align: center;
-	
-}
-#button2{
-	padding-left: 170px;
-}
-#searchid{
-	text-align: center;
-}
-#searchId2{
-	text-align: center;
-}
-#searchPwd2{
-	text-align: center;
-}
-#permute{
-	text-align: center;
-}
-#hidetable{
-	border: 1px solid red;
-	width: 50%;
-	height: 200px;
-	float: right;
-	display:none;
-	text-align: center;
-	color: red;
-	
-}
-</style>;l
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');

@@ -51,17 +51,7 @@
  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <title>7 Scheduler</title>
-<style>
 
-#back {
-float: right;
-margin-right: 450px;
-}
-#login_box{
-	margin-left: 60%;
-
-}
-</style>
 
 <script>
 

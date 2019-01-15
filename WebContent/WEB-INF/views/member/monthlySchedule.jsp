@@ -140,59 +140,6 @@ $(document).on('click',function(){
 	}
 });
 </script>
-<style>
-	table#add tr td:first-of-type span{
-       color:red;
-   }
-   /* table#add tr td:last-of-type{
-       color:blue;
-   } */
-   span.sat{
-       color:blue;
-   }
-   #year-box{
-		background-color: white;
-       width: 100%;
-       height: 95%;
-       position: absolute;
-       display: none;
-       z-index: 100;
-   }
-   .year{
-       width: 24%;
-       height: 180px;
-       display: inline-block;
-       border: .5px solid lightgray;
-   }
-   .year:hover{
-		box-shadow: 1px 1px 5px .5px black;
-   }
-   .year img{
-   		margin: 0;
-   		width: 100%;
-   		height: 100%;
-   		display: inline-block;
-   }
-   /* 우클릭메뉴 */
-   #contextMenu{
-	position: absolute;
-	width: 150px;
-    border: 1px solid gray;
-    background-color: rgba(211, 211, 211, 0.815);
-    display: none;
-}
-#contextMenu .menu1{
-	height: 25px;
-	border: none;
-}
-#contextMenu div:hover{
-	background-color: lightgray;
-	cursor: default;
-}
-</style>
-
-
-
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
