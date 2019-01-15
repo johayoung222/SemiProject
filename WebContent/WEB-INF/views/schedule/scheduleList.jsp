@@ -49,9 +49,6 @@ $(function(){
 			
 });
 
-
-
-
 </script>
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 <section id="schedulesearch-container">	

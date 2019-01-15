@@ -66,9 +66,7 @@
 			  </table>
 		</form>
 	
-	
 	</div>
-
 
 
 <script>
@@ -103,19 +101,7 @@ function passwordValidate(){
 	
 }
 
-
-
-
-
-
 </script>
-
-
-
-
-
-
-
 
 </body>
 </html>

@@ -18,14 +18,7 @@
   <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
   <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 </head>
-<style>
-#logged-in{
-	width: 250px;
-	position: absolute;
-	right: 0px;
-	top: 5px;			
-}
-</style>
+
 <body oncontextmenu="return false;">
   <nav class="header">
     <div class="logo">
