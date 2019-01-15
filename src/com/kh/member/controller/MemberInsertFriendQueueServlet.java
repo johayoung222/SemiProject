@@ -40,6 +40,8 @@ public class MemberInsertFriendQueueServlet extends HttpServlet {
 		fq.setMemberId(myId);
 		fq.setFriendId(srchId);
 		
+		// System.out.println("체크체크체크 : "+myId + " , "+srchId);
+		
 		String msg = "";
 		int result = 0;
 		int status = 0;
@@ -47,30 +49,41 @@ public class MemberInsertFriendQueueServlet extends HttpServlet {
 		int srchIdCheck = new MemberService().srchIdCheck(srchId);
 		
 		
-		if(srchId == myId) {
+		if(srchId.equals(myId)) {
 			msg = "본인에게는 친구추가를 할 수 없습니다.";
 			status = 1;
+			
+			
 
-		}
-		
-		if(!(srchIdCheck > 0)) {
+		} else if(!(srchIdCheck > 0)) {
 			msg = fq.getFriendId()+"는 존재하지 않는 아이디입니다.";
 			status = 2;
-		}
-			
+		} else {
+			try {
+				result = new MemberService().insertFriendQueue(fq);
+			} catch (SQLIntegrityConstraintViolationException e) {
+				if(result > 0) {
+					msg = fq.getFriendId()+"님께 친구요청에 성공하셨습니다.";
+					status = 3;
+				}else {
+					msg = "이미 친구요청이 진행중입니다.";
+					status = 4;
+				}
 				
-		try {
-			result = new MemberService().insertFriendQueue(fq);
-		} catch (SQLIntegrityConstraintViolationException e) {
+			}
+			// exception 발생 안할시 구문
 			if(result > 0) {
 				msg = fq.getFriendId()+"님께 친구요청에 성공하셨습니다.";
 				status = 3;
 			}else {
-				msg = "같은 사용자에게 친구요청을 하셨습니다.";
+				msg = "이미 친구요청이 진행중입니다.";
 				status = 4;
 			}
 			
 		}
+			
+				
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("status", status);
 		request.getRequestDispatcher("/WEB-INF/views/member/checkFriendIdDuplicate.jsp").forward(request, response);
