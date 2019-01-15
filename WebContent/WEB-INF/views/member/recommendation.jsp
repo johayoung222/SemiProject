@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>온도에 따른 추천 의상, 여행지</title>
-<script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
+ <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
+  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
+  <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 
 <%
 	String temp = request.getParameter("temp");
@@ -37,7 +43,8 @@ span#time{
     display: block;
 }
 #order-list{
-	width:100%;
+	width:80%;
+	margin-left:50px;
 }
 #rank-list{
 	width:100%;
@@ -45,7 +52,13 @@ span#time{
 </style>
 </head>
 <body>
-
+<nav class="header">
+    <div class="logo">
+      <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >
+      <span class="logofont">7' Scheduler
+      </span>
+    </div>
+    </nav>
 
 
 
@@ -65,7 +78,7 @@ function printTime() {
 }
 </script>
 <div class="container2">
-	<h2>추천 여행지</h2>
+	<h2>추천 장소</h2>
 	<h4 id="time"></h4>
 	<div id="rank-list"></div>
 </div>

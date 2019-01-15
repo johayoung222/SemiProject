@@ -55,7 +55,6 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 			
 			
 			html = "<br><br>현재온도 : "+Math.floor((resp.main.temp- 273.15))+"도<br>";
-			html += "상세날씨 설명 : "+resp.main.humidity+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
 			html +=	"도시 이름 : "+resp.name+"<br>";
