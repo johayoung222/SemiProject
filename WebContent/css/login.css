@@ -3,9 +3,9 @@
 float:right;
  margin: 0px 0px 0px 0px;
  width:50%;
- margin-top:110px;
+ margin-top:85px;
 position:relative;
-right:5%;
+right:3%;
 }
 .logofont{
  position: relative;
@@ -46,38 +46,29 @@ width:100%; height:50px; background-color:rgb(40, 77, 170); color:rgb(248, 248, 
 .login_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;}
 .login_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
 #scheduler_box{
-	border:1px solid red;
 	width: 40%;
-	height:400px;
+	height:465px;
 	float:right;
 	margin-top:85px;
 	margin-right: 7%;
-	
+	border-radius: 5px;
+	background-color:rgba(255, 255, 255, 0.993); opacity: 0.8;
 }
-#button{
-	width:40%;
-	height: 30px;
-	float:right;
-	margin-right: 7%;
-	margin-top:400px;
-	position: relative;
-}
+
 #button>button{
-   clear: left;
-   float: right;
-    
-   width: 100%;
+   width: 40%;
    height: 30px;
-   background-color: #15eab5;
+   background-color: #c8c8c8;
    color: rgb(248, 248, 248);
    font-size: 24px;
-    border-radius: 5px;
+   border-radius: 5px;
    border: 0;
    cursor: pointer;
    font-family: 'Nanum Pen Script', cursive;
    margin: 0 auto;
    display: inline-block;
-   transform: translateX(-30%);
+   margin-top: 550px;
+   margin-right: -40%;
 }
 #button>button:hover{
     background-color: #b0f906;
