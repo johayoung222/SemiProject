@@ -107,6 +107,7 @@ function holidays(){
 }
 
 
+
 /* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
 	var tag = $("#add").find("td");
@@ -119,26 +120,8 @@ function addClickEvent(){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
-		
-		$(item).contextmenu(function(e){
-			thisTarget = e.target;
-			var pageX = e.originalEvent.pageX;
-			var pageY = e.originalEvent.pageY;
-			$("#contextMenu").css({"left":pageX, "top":pageY, "display":"block"});
-			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
-			});
 	});
-			
 }
-
-
-
-$(document).on('click',function(){
-	if($("#contextMenu").css("display") == 'block'){
-		$("#contextMenu").css("display","none");
-		thisTarget.style.boxShadow = "none";
-	}
-});
 </script>
 <style>
 	table#add tr td:first-of-type span{
@@ -173,22 +156,6 @@ $(document).on('click',function(){
    		height: 100%;
    		display: inline-block;
    }
-   /* 우클릭메뉴 */
-   #contextMenu{
-	position: absolute;
-	width: 150px;
-    border: 1px solid gray;
-    background-color: rgba(211, 211, 211, 0.815);
-    display: none;
-}
-#contextMenu .menu1{
-	height: 25px;
-	border: none;
-}
-#contextMenu div:hover{
-	background-color: lightgray;
-	cursor: default;
-}
 </style>
 
 
@@ -226,13 +193,13 @@ $(document).on('click',function(){
 		</script>
 		<table id="month">
 			<tr>
-				<th style="color:red;border-left:3px solid black;">일</th>
+				<th style="color:red;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th style="color:blue;border-right:3px solid black;">토</th>
+				<th style="color:blue;">토</th>
 			</tr>
 		</table>
 		<table id="add">
@@ -431,23 +398,6 @@ $(document).on('click',function(){
 			}
 		});
         </script>
-     <div id="contextMenu">
-		<div class="menu1">일정추가</div>
-	</div>
-	<script>
-	$("#contextMenu div").each(function(idx,item){
-		$(item).click(function(e){
-			var year = $("#cYear").text();
-			var month = $("#cMonth").text();
-			var day = thisTarget.firstChild.id;
-			$(this).parent()[0].style.display = 'none';
-			console.log(year, month, day);
-			if(day != null){
-			location.href = "<%=request.getContextPath() %>/schedule/insertSchedule?year="+year+"&month="+month+"&day="+day+"&time=100";
-			}
-		});
-	});
-	</script>
         
 </body>
 </html>
