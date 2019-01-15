@@ -41,7 +41,6 @@ public class SelectOneServlet extends HttpServlet {
 		String memberId = m.getMemberId();
 		
 		Schedule s = new ScheduleService().selectOneSchedule(scheduleNo, memberId);
-		
 		request.setAttribute("schedule", s);
 		request.getRequestDispatcher("/WEB-INF/views/schedule/scheduleInfo.jsp").forward(request, response);
 	}

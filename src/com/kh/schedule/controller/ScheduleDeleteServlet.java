@@ -2,6 +2,7 @@ package com.kh.schedule.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.vo.Member;
 import com.kh.schedule.model.service.ScheduleService;
+import com.kh.schedule.model.vo.Schedule;
 
 @WebServlet("/schedule/deleteScheduleEnd")
 public class ScheduleDeleteServlet extends HttpServlet {
@@ -20,10 +23,32 @@ public class ScheduleDeleteServlet extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		Member m = (Member) request.getSession().getAttribute("memberLoggedIn");
+		
+		if(m == null) {
+			request.setAttribute("msg", "잘못된 접근입니다.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/").forward(request, response);
+		}
+		
+		String memberId = m.getMemberId();
+		
 		int scheduleNo = Integer.parseInt(request.getParameter("scheduleNo"));
 		String scheduleRenamefilename = request.getParameter("scheduleRenamefilename");
+		
+		Schedule s = new ScheduleService().selectOneSchedule(scheduleNo, memberId);
+		Date start = s.getScheduleStartday();
+		Date end = s.getScheduleEndday();
 	
-		int result = new ScheduleService().deleteSchedule(scheduleNo);
+		int result = 0;
+		System.out.println(s.getScheduleStartday());
+		System.out.println(s.getScheduleEndday());
+		System.out.println(memberId);
+		if("N".equals(s.getScheduleRepeatcheck())) {
+			result = new ScheduleService().deleteSchedule(scheduleNo);
+		}else {
+			result = new ScheduleService().deleteRepeatSchedule(start, end, memberId);
+		}
 
 		//첨부파일 삭제
 		if(result >0 && !"".equals(scheduleRenamefilename)) {
