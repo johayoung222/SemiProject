@@ -117,10 +117,7 @@ $(document).on('click',function(){
 	}
 });
 </script>
-<<<<<<< HEAD
 
-=======
->>>>>>> c710fdc3204e414b232eedb02f7d685309c08f80
 <style>
 	table#add tr td:first-of-type span{
        color:red;
@@ -155,12 +152,7 @@ $(document).on('click',function(){
    		display: inline-block;
    }
 </style>
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> c710fdc3204e414b232eedb02f7d685309c08f80
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -376,10 +368,6 @@ $(document).on('click',function(){
 			$("#year-box").css("display","block");
 		});
         </script>
-<<<<<<< HEAD
-
-=======
->>>>>>> c710fdc3204e414b232eedb02f7d685309c08f80
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -397,10 +385,6 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
-<<<<<<< HEAD
 
-=======
->>>>>>> c710fdc3204e414b232eedb02f7d685309c08f80
-        
 </body>
 </html>
