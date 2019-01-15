@@ -1,8 +1,22 @@
+<%@page import="java.util.List"%>
 <%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");  
+	Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");  
+	List<String> friendList = null;
+	
+	if(memberLoggedIn1 == null) {
+		
+	} else {
+		try {
+			friendList = (List)session.getAttribute("friendList");
+		} catch(NullPointerException e) {
+			
+		}
+	}
+	
+	
 
 %>
     
@@ -110,7 +124,15 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 			<p>친구들
 			<button id="addfriend" onclick="addfriend();">+</button></p>
 			<div id="friendspace">
+				<% if(!friendList.isEmpty()) { %>
 				
+					<% for(int i = 0;i < friendList.size();i++) { %>
+					<span><%=friendList.get(i) %></span>
+					<br />
+					<% } 
+				} else {%>
+					<span>친구가 <br />없으십니다.</span>
+				<% } %>
 			</div>
 		</div>
 		<div id="friends">

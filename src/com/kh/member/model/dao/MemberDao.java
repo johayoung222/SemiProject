@@ -386,10 +386,7 @@ public class MemberDao {
 			while(rset.next()) {
 				list.add(rset.getString("member_id"));
 			}
-			System.out.println("이미친"+list);
-/*			if(list.isEmpty()) {
-				System.out.println("이시발"+list);
-			}*/
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -496,6 +493,34 @@ public class MemberDao {
 	        }
 	        return insertFsf;
 	    }
+
+	public List<String> selectFriendList(Connection conn, String memberId) {
+		List<String> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectFriendList");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString("friend_id"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 	
 	

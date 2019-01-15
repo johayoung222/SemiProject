@@ -213,6 +213,13 @@ public class MemberService {
 		return insertFsf;
 	}
 
+	public List<String> selectFriendList(String memberId) {
+		Connection conn = getConnection();
+		List<String> list = new MemberDao().selectFriendList(conn, memberId);
+		
+		return list;
+	}
+
 
 
 
