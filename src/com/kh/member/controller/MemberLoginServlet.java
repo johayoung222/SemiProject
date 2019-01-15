@@ -91,12 +91,7 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);		
 			String exPwd = (String)request.getAttribute("exPwd");
 			
-			/* 친구 조회  */
-			List<String> friendList = new MemberService().selectFriendList(memberId);
-			
-			
-			session.setAttribute("friendList", friendList);
-			request.setAttribute("friendList", friendList);
+
 			session.setAttribute("popup", popup);
 			request.setAttribute("popup", popup);
 			request.setAttribute("popupbool", popupbool);
