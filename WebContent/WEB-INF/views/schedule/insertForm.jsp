@@ -346,7 +346,6 @@ $(document).ready(function() {
 		selectedAlt = $(this).attr("alt");
 		$("#iconAlt").attr("value" , selectedAlt);
 		
-		$(".img").css("");
 		
 	});
 });

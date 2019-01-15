@@ -205,7 +205,6 @@ $(".img").on("click" , function(){
 	var selectedAlt = $(this).attr("alt");
 	$("#iconAlt").attr("value" , selectedAlt);
 	
-	$(".img").css("");
 	
 });
 

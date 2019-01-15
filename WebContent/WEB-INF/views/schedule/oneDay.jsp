@@ -66,18 +66,25 @@
 }
 .TimelinePlus{
 	position:relative;
-	display:none;
+	display:inline-block;
 	z-index:100;
 }
 
 #scroll-box div{
-	width: 100%;
+	width: 87%;
 	height: 50px;
 	border-top: 1px solid black;
     text-align: left;
     position:relative;
     z-index:1;
 }
+
+.TimelinePlus{
+	display:none;
+}
+
+
+
 
 </style>
 <script>
@@ -111,75 +118,70 @@ $(document).on('click',function(){
 <div id="timeline">
 	<h3>TimeLine</h3>
 	<div id="scroll-box">
+		
 		<div id="0">00시 
 			<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 0){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
-			}%>
+			}%>		
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="0" />	
 		</div>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			
 		<div id="1">01시
 			<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 1){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
-				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
+				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="1"/>
 		</div>
         <div id="2">02시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 2){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="2" />
         </div>
         <div id="3">03시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 3){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="3"/>
         </div>
         <div id="4">04시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 4){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="4"/>
         </div>
         <div id="5">05시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 5){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="5"/>
         </div>
         <div id="6">06시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 6){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="6"/>
         </div>
         <div id="7">07시
         	<%for(int i = 0; i<list.size(); i++) {
@@ -189,167 +191,151 @@ $(document).on('click',function(){
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="7"/>
         </div>
         <div id="8">08시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 8){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="8"/>
         </div>
         <div id="9">09시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 9){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="9"/>
         </div>
         <div id="10">10시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 10){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" alt="10" />
         </div>
         <div id="11">11시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 11){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="11"/>
         </div>
         <div id="12">12시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 12){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="12"/>
         </div>
         <div id="13">13시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 13){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="13"/>
         </div>
         <div id="14">14시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 14){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="14"/>
         </div>
         <div id="15">15시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 15){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="15"/>
         </div>
         <div id="16">16시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 16){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="16"/>
         </div>
         <div id="17">17시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 17){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="17"/>
         </div>
         <div id="18">18시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 18){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="18"/>
         </div>
         <div id="19">19시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 19){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="19"/>
         </div>
         <div id="20">20시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 20){%>
 				<%=list.get(i).getScheduleTitle() %>	
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>	
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="20"/>
         </div>
         <div id="21">21시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 21){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="21"/>
         </div>
         <div id="22">22시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 22){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="22"/>
         </div>
         <div id="23">23시
         	<%for(int i = 0; i<list.size(); i++) {
 				if(list.get(i).getScheduleTimeline() == 23){%>
 				<%=list.get(i).getScheduleTitle() %>
-				<input type="hidden" name="timeline" class="timeline" value="<%=list.get(i).getScheduleTimeline() %>" />
 				<input type="hidden" name="scheduleNo" class="scheduleNo" value="<%=list.get(i).getScheduleNo() %>"/>		
 			<%}
 			}%>
-			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right" />
+			<img src="<%=request.getContextPath() %>/images/plus.png" class="TimelinePlus" align="right"  alt="23"/>
         </div>
 	</div>
 </div>
@@ -370,41 +356,33 @@ $("#todolist div#insertBoard").nextAll().click(function(e){
 
 $("#scroll-box div").each(function(idx, item){
 	var scheduleNo = $(this).children('.scheduleNo').val();
+	var time = $(this).attr("id");
+	var time1 = $(".TimelinePlus").attr("alt");
+	
+	$(this).hover(function(){	
+		if(scheduleNo ==null){
+			$(this).children().css("display","inline-block"); 
+		}		
+	},function(){		
+		if(scheduleNo ==null){
+			$(".TimelinePlus").css("display","none");
+		}
+	});
+		
 	$(item).click(function(){
-		if(scheduleNo == null){
-		var time = $(this).attr("id");
+		if(scheduleNo == null){			
 			insertFrm.time.value = time;
 			insertFrm.submit();
 		}else{
 			location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+scheduleNo;
 		}
 	});
-
+		
 });
 
-$("#scroll-box > div").each(function(idx, item){
-	$(this).hover(function(){
-	   $(this).children().css("display","inline-block");	  
-	  
-	   },function(){
-	      $(".TimelinePlus").css("display","none");
-	  });
-});
 
-$(".TimelinePlus").click(function(){
-	$(this).css("background","red");
-	var time = $(this).parents('div').attr("id");
-	alert(time);
-	insertFrm.time.value = time;
-	insertFrm.submit();
-});
 
-$(".timeline").hover(function(){
-	$(this).css("display","inline-block");	  
-	
-	},function(){
-    $(".TimelinePlus").css("display","none");
-});
+
 
 
 

@@ -195,7 +195,7 @@ function searchIdPwd(){
 					//	   <--- JSON.stringgify()
 					//	  	---> JSON.parse()
 					var table = $("<table id='indexTable' ></table>");
-					var html = "<tr><th>Title:</th></tr>";
+					var html = "<tr><th>Schedule</th></tr>";
 					
 					for(var i in data){
 						var user = data[i];
@@ -232,6 +232,7 @@ function searchIdPwd(){
      		<% if(request.getSession().getAttribute("exPwd") != null){
      			String exPwd = (String)request.getSession().getAttribute("exPwd");%>
      		<input type="hidden" name="memberPwd" value="<%=exPwd %>"/>
+     		
      		<%} %>
      	</form>
      </div>

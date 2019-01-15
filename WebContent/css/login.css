@@ -57,6 +57,25 @@ top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
 .login_box .last .join { float:left;}
 .login_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;}
 .login_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
+
+#scheduler_box{
+	width: 40%;
+	height:465px;
+	float:right;
+	margin-top:85px;
+	margin-right: 7%;
+	border-radius: 5px;
+	background-color:rgba(255, 255, 255, 0.993); opacity: 0.8;
+}
+#scheduler_box tr,th{
+	text-align:center;
+}
+
+/*밀줄*/
+#scheduler_box th{
+	border-bottom: 1px solid;
+}
+
 #button>button{
   clear: left;
    float: right;
@@ -75,6 +94,7 @@ top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
   transform: translateX(-30%);
 }
 #button>button:hover{
+<<<<<<< HEAD
    background-color: #b0f906;
   color: rgb(248, 248, 248);
 }
@@ -84,3 +104,14 @@ top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
     font-size: 30px;
 
 }
+=======
+    background-color: #9d9d9d;
+   color: rgb(248, 248, 248);
+}
+#indexTable{
+	 width:100%;
+     font-family: 'Nanum Pen Script', cursive;
+     text-align: center;
+     font-size: 30px;
+}
+>>>>>>> 8b95ef33402c34f05f357fe18956d4f90f21fb02

@@ -16,8 +16,8 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
 <script>
   function showPopup(temp) {
-	  var windowW = 800;  // 창의 가로 길이
-      var windowH = 500;  // 창의 세로 길이
+	  var windowW = 500;  // 창의 가로 길이
+      var windowH = 400;  // 창의 세로 길이
       var left = Math.ceil((window.screen.width - windowW)/2);
       var top = Math.ceil((window.screen.height - windowH)/2);
 
@@ -54,7 +54,8 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
         	var table = $("<table></table>");
 			
 			
-			html = "<br><br>현재온도 : "+(Math.floor(resp.main.temp- 273.15))+"&#176;"+"(도)"+"<br>";
+			html = "<br><br>현재온도 : "+Math.floor((resp.main.temp- 273.15))+"도<br>";
+			html += "상세날씨 설명 : "+resp.main.humidity+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
 			html +=	"도시 이름 : "+resp.name+"<br>";
@@ -115,7 +116,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 		</div>
 		<div id="friends">
 		<form class="insertFriendFrm" name="insertFriendFrm"
-			action="<%=request.getContextPath()%>/friend/insertFriendQueue" 
+			action="<%=request.getContextPath()%>/friend/insertFriend" 
 			method="post">
 				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
 				<label for="srchId" id="font2">아이디 : </label>
@@ -134,6 +135,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 				
 				<div>
 				<input type="button" onclick="self.close();" value="취소"/>
+
 				
 				</div>
 		</form>
