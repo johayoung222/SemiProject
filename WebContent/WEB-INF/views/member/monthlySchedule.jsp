@@ -406,30 +406,10 @@ $(document).on('click',function(){
         		}
         	});
         });
-        
-        
-        /* 공휴일 뿌리기 */
-        
-        /* 스크롤 이벤트 */
-		/* $(window).scroll(function(e){
-			var scrollTop = $(this).scrollTop();
-			if(scrollTop > 0.5){
-				$("#year-box").css("display","block");
-			}else{
-				$("#year-box").css("display","none");
-			}
-			
-		});   */   
-		flag = 0;
-		window.addEventListener('scroll',function(e){
-			console.log("scrolled!!");
-			if(flag == 0){
-				$("#year-box").css("display","block");
-				flag = 1;
-			}else{
-				$("#year-box").css("display","none");
-				flag = 0;
-			}
+		
+        /* 년간 스케줄 */
+		$("#yearSchedule").click(function(){
+			$("#year-box").css("display","block");
 		});
         </script>
      <div id="contextMenu">
