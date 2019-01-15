@@ -12,6 +12,7 @@
 <head>
 <meta charset="UTF-8">
 <title>이메일 인증</title>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/sendMailpopup.css" />
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
 <script>
@@ -41,38 +42,7 @@ function check(){
 	}
 } 
 </script>
-<style>
-#emailcertified-container{
-	border: 1px solid red;
-	width: 340px;
-	height:130px;
-	margin: 0 auto;
-}
-#emailcertified-container label{
-	margin: 0px auto;
-	position: relative;
-	top:50px;
-	left:25px;
-}
-#emailcertified-container #certified{
-	margin: 0 auto;
-	position: relative;
-	top:50px;
-	left:25px;
-}
-#emailcertified-container #check{
-	margin: 0 auto;
-	position: relative;
-	top:52px;
-	background-color: rgba(142, 40, 170, 0.65);
-    color: rgb(248, 248, 248);
-    border: 0;
-    cursor: pointer;
-    border-radius: 3px;
-    left:25px;
-}
 
-</style>
 </head>
 <body>
 	<div id="emailcertified-container">

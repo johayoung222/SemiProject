@@ -94,11 +94,8 @@
 }
 #scheduleDday-container{
 	position:absolute;
-	top:420px;
-	right:650px;
-	
-	
-	
+	top:400px;
+	left: 250px;
 }
 /*체크박스 크기설정*/
 #scheduleDdayCheck{
@@ -248,16 +245,11 @@
 				<label for="scheduleDdayCheck" class="lcheck">디데이<br/>&nbsp;&nbsp;설정</label>
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
 			<div id="scheduleDday-container">
-				<!--  <label for="scheduleDday" class="ldday">디데이 설정</label>-->
 				<input type="date" name="scheduleDday" id="scheduleDday"
 					data-placeholder="설정할 디데이를 체크해주세요." required aria-required="true">
 					<br /><br />
 			</div>	
 				<br /><br />
-				
-				
-				
-
 
 			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
 			<select name="scheduleTimeline">
@@ -336,7 +328,6 @@ $(document).ready(function() {
 	var selectedAlt = "none.png";
 	$("#iconAlt").attr("value" , selectedAlt);
 	
-	
 	$(".img").on("click" , function(){
 		selectedSrc = $(this).attr("src");
 		console.log(selectedSrc);
@@ -361,8 +352,6 @@ function validate(){
 
 }
 
-
-
 $("#iconOpen").on('click',function(){
 	$("#divicon").show();
 });
@@ -370,18 +359,11 @@ $("#iconOpen").on('click',function(){
 $("#iconClose").on('click',function(){
 	$("#divicon").hide();
 });
-
-
-
 </script>
 <style>
 #divicon{
 	display:none;
 	margin-left: 70px;
 }
-
-	
-}
-
 </style>
 </html>

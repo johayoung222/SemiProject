@@ -410,10 +410,7 @@ public class MemberDao {
 			while(rset.next()) {
 				list.add(rset.getString("member_id"));
 			}
-			System.out.println("이미친"+list);
-/*			if(list.isEmpty()) {
-				System.out.println("이시발"+list);
-			}*/
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -478,6 +475,79 @@ public class MemberDao {
 		
 		return srchIdCheck;
 	}
+
+	public int insertFriendMy(Connection conn, String memberId, String selectFriend) {
+	      int insertFmy = 0;
+	        PreparedStatement pstmt = null;
+	        
+	        String query = prop.getProperty("insertFriendMy");
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, memberId);
+	            pstmt.setString(2, selectFriend);
+
+	            
+	            insertFmy = pstmt.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            close(pstmt);
+	        }
+	        return insertFmy;
+	    }
+
+	public int insertFriendSf(Connection conn, String selectFriend, String memberId) {
+	      int insertFsf = 0;
+	        PreparedStatement pstmt = null;
+	        
+	        String query = prop.getProperty("insertFriendSf");
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, selectFriend);
+	            pstmt.setString(2, memberId);
+
+	            
+	            insertFsf = pstmt.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            close(pstmt);
+	        }
+	        return insertFsf;
+	    }
+
+	public List<String> selectFriendList(Connection conn, String memberId) {
+		List<String> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("selectFriendList");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+
+			list = new ArrayList<>();
+			while(rset.next()) {
+				list.add(rset.getString("friend_id"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
+	
+	
 
 
 }

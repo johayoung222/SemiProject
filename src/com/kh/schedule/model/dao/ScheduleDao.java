@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Properties;
 
@@ -447,7 +448,7 @@ public class ScheduleDao {
 			pstmt.setString(2, s.getScheduleContent());
 			pstmt.setString(3, s.getScheduleOriginalfilename());
 			pstmt.setString(4, s.getScheduleRenamefilename());
-			pstmt.setDate(5, s.getScheduleDate());
+			
 			pstmt.setString(6, s.getScheduleDdaycheck());
 			pstmt.setString(7, s.getScheduleRepeatcheck());
 			pstmt.setInt(8, s.getScheduleTimeline());
@@ -458,7 +459,26 @@ public class ScheduleDao {
 			pstmt.setString(13, s.getScheduleIcon());
 			pstmt.setInt(14, s.getTheDay());
 			
-			result = pstmt.executeUpdate();
+			if("N".equals(s.getScheduleRepeatcheck())) {
+				pstmt.setDate(5, s.getScheduleDate());
+				result = pstmt.executeUpdate();
+			}else {
+				Calendar c = Calendar.getInstance();
+				c.setTime(s.getScheduleEndday());
+				long end = c.getTimeInMillis();
+				c.setTime(s.getScheduleDate());
+				long start = c.getTimeInMillis();
+				c.setTimeInMillis(end-start);
+				
+				int last = (int)Math.ceil(((end-start)/1000/60/60/24/30));
+				c.setTime(s.getScheduleDate());
+				for(int i=0; i<last; i++) {
+					Date tdate = new Date(c.getTimeInMillis());
+					pstmt.setDate(5, tdate);
+					result += pstmt.executeUpdate();
+					c.add(Calendar.MONTH, 1);
+				}
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -607,6 +627,28 @@ public class ScheduleDao {
 			close(pstmt);
 		}		
 		return result;	
+	}
+
+	public int deleteRepeatSchedule(Connection conn, Date start, Date end, String memberId) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = prop.getProperty("deleteRepeatSchedule");
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setDate(2, start);
+			pstmt.setDate(3, end);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 	

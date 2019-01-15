@@ -31,7 +31,7 @@ function checkIdDuplicate(){
 }
 
 function setMemberId(memberId){
-	opener.signupform.idValid.value = "1";
+	opener.signupform.idValid.value = 1;
 	opener.signupform.memberId.value = memberId;
 	opener.signupform.memberPwd.focus();
 	self.close();
