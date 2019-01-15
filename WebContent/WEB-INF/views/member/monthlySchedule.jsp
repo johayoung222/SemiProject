@@ -120,8 +120,6 @@ function addClickEvent(){
 			location.href = "<%=request.getContextPath() %>/schedule/oneday?year="+year+"&month="+month+"&day="+day;
 			}
 		});
-<<<<<<< HEAD
-=======
 		
 		$(item).contextmenu(function(e){
 			thisTarget = e.target;
@@ -133,7 +131,6 @@ function addClickEvent(){
 			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
 			}
 			});
->>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
 	});
 }
 </script>
