@@ -121,7 +121,7 @@
 		</div>
 		<div id="friends">
 		<form class="insertFriendFrm" name="insertFriendFrm"
-			action="<%=request.getContextPath()%>/friend/insertFriend" 
+			action="<%=request.getContextPath()%>/friend/insertFriendQueue" 
 			method="post">
 				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
 				<label for="srchId" id="font2">아이디 : </label>
