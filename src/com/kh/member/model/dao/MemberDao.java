@@ -481,5 +481,50 @@ public class MemberDao {
 		return srchIdCheck;
 	}
 
+	public int insertFriendMy(Connection conn, String memberId, String selectFriend) {
+	      int insertFmy = 0;
+	        PreparedStatement pstmt = null;
+	        
+	        String query = prop.getProperty("insertFriendMy");
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, memberId);
+	            pstmt.setString(2, selectFriend);
+
+	            
+	            insertFmy = pstmt.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            close(pstmt);
+	        }
+	        return insertFmy;
+	    }
+
+	public int insertFriendSf(Connection conn, String selectFriend, String memberId) {
+	      int insertFsf = 0;
+	        PreparedStatement pstmt = null;
+	        
+	        String query = prop.getProperty("insertFriendSf");
+	        try {
+	            pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, selectFriend);
+	            pstmt.setString(2, memberId);
+
+	            
+	            insertFsf = pstmt.executeUpdate();
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+	            close(pstmt);
+	        }
+	        return insertFsf;
+	    }
+
+	
+	
+
 
 }
