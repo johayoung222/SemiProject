@@ -80,6 +80,7 @@
 		  				   value="M"
 		  				   <%="M".equals(gender)?"checked":"" %>/>
 		  			<label for="gender0">남</label>
+		  			&nbsp;&nbsp;
 		  			<input type="radio" 
 		  				   name="gender" 
 		  				   id="gender1"

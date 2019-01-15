@@ -87,7 +87,9 @@ section{
 .update_box .last .join { float:left;}
 .update_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;} 
 .update_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
-#man{padding-left: 110px;
+.gender{
+	margin-left:35%;
+	border-bottom: 2px solid #c4c5c4;
 }
 /* 아이디 중복 검사 버튼 */
 .input_login #memberId_{

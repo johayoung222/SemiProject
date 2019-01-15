@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>온도에 따른 추천 의상, 여행지</title>
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 
 <%
@@ -158,12 +159,12 @@ function printTime() {
 				var table = $("<table></table>");
 				var html = "<tr><th>온도</th><th>추천내용</th></tr>";
 				
-				if(<%=temp%> <= 10){
-					html += "<tr><td>~5˚C</td>";
+				if(<%=temp%> <= 4){
+					html += "<tr><td>~4˚C</td>";
 					html += "<td>실내에서 노시는게 좋을겁니다^^</td></tr>";
 				}else if(<%=temp%> > 10)
 				{
-					html += "<tr><td>~5˚C</td>";
+					html += "<tr><td>10˚C</td>";
 					html += "<td>밖에서 노시죠^^</td></tr>";
 				}
 				

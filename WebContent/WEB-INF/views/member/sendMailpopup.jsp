@@ -13,6 +13,7 @@
 <meta charset="UTF-8">
 <title>이메일 인증</title>
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
 <script>
 function check(){
 	var certified = $("#certified").val().trim();

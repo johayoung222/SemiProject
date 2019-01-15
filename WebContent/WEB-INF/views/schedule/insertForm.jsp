@@ -215,7 +215,7 @@
 						<a href="#" id="iconOpen">더보기+</a>
 						</div>
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
-						<table id="tableicon">
+						<table id="tableicon" style="border:1px solid red;">
 							<tr>
 								<td><img src="<%=request.getContextPath() %>/images/none.png" class="img" alt="none.png" /></td>
 								<td><img src="<%=request.getContextPath() %>/images/baseball.png" class="img" alt="baseball.png"  ></td>
