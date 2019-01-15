@@ -107,6 +107,7 @@ function holidays(){
 }
 
 
+
 /* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
 	var tag = $("#add").find("td");
@@ -131,18 +132,9 @@ function addClickEvent(){
 			}
 			});
 	});
-			
 }
-
-
-
-$(document).on('click',function(){
-	if($("#contextMenu").css("display") == 'block'){
-		$("#contextMenu").css("display","none");
-		thisTarget.style.boxShadow = "none";
-	}
-});
 </script>
+<<<<<<< HEAD
 <style>
 	table#add tr td:first-of-type span{
        color:red;
@@ -176,26 +168,12 @@ $(document).on('click',function(){
    		height: 100%;
    		display: inline-block;
    }
-   /* 우클릭메뉴 */
-   #contextMenu{
-	position: absolute;
-	width: 150px;
-    border: 1px solid gray;
-    background-color: rgba(211, 211, 211, 0.815);
-    display: none;
-}
-#contextMenu .menu1{
-	height: 25px;
-	border: none;
-}
-#contextMenu div:hover{
-	background-color: lightgray;
-	cursor: default;
-}
 </style>
 
 
 
+=======
+>>>>>>> 0aab911f99d4f92f5c01dba2047ed799d430495e
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -229,13 +207,13 @@ $(document).on('click',function(){
 		</script>
 		<table id="month">
 			<tr>
-				<th style="color:red;border-left:3px solid black;">일</th>
+				<th style="color:red;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th style="color:blue;border-right:3px solid black;">토</th>
+				<th style="color:blue;">토</th>
 			</tr>
 		</table>
 		<table id="add">
@@ -412,6 +390,8 @@ $(document).on('click',function(){
 			$("#year-box").css("display","block");
 		});
         </script>
+<<<<<<< HEAD
+=======
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -429,6 +409,7 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
+>>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
         
 </body>
 </html>

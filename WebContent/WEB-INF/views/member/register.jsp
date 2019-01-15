@@ -41,7 +41,7 @@
        <div class="signup_box">
            <span>7's Scheduler</span>
          <div class="input_login">
-           <input type="text" name="memberId" id="memberId_" placeholder="ID 입력(영대소문자, 4~12자 입력)">
+           <input type="text" name="memberId" id="memberId_" placeholder="ID 입력(영대소문자, 4~12자 입력)" onkeydown='idkeydown()'>
            &nbsp;&nbsp;
            <input type="button" id="idCheck" value="중복검사" onclick="checkIdDuplicate();"/>
            <input type="hidden" name="idValid" id="idValid"  value="0" />
@@ -99,8 +99,13 @@
              return false;
         }
         
-         
-    
+        var regExp = /^[a-zA-Z0-9]{4,12}$/;
+        var userId = $("#memberId_").val();    
+        if(!regExp.test(userId)){
+            alert("아이디는  영대소문자,숫자, 4~12자 입력할것!");   
+            $("#memberId_").focus();
+            return false;
+        }     
         
         //팝업창을 target으로 폼전송
         var target = "checkIdDuplicate";
@@ -124,12 +129,18 @@
      var email = document.getElementById('memberEmail');
      var result = $("#result").val();
      
-     //아이디
-     if(!chk(/^[a-z][a-z\d]{4,12}$/, memberId, "아이디는  숫자 포함 영대소문자, 4~12자 입력할것!"))
+  	 //아이디
+     if(!chk(/^[a-zA-Z0-9]{4,12}$/, memberId, "아이디는  영대소문자,숫자, 4~12자 입력할것!"))
          return false;
-      if(!chk(/[0-9]/, memberId, "아이디는 꼭 숫자 하나이상포함해주세요."))
-         return false;
-      
+  	 
+   	//아이디 중복검사 여부 체크
+     var idValid = $("#idValid").val();
+     
+     if(idValid ==0){
+    	 alert("아이디 중복검사 해주세요!!");
+    	 return false;
+     }
+     
       //비밀번호
       if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,password,"패스워드는 숫자/문자/특수포함8~15자리")) 
           return false;
@@ -163,6 +174,7 @@
   		}
     return true;
   }
+  
  function checkPwd(){
     
     var pw1 = document.getElementById('memberPwd').value;
@@ -200,7 +212,11 @@
 		checkEmailCertifiedFrm.memberEmail.value = memberEmail;
 		checkEmailCertifiedFrm.submit();		
  }
-
+ 
+ function idkeydown(){
+	 $("#idValid").val(0);
+ }
+ 
  
  </script>
 

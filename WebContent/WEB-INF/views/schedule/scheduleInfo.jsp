@@ -220,8 +220,6 @@ $("#iconClose").on('click',function(){
 	$("#divicon").hide();
 });
 
-
-
 </script>
 </body>
 </html>

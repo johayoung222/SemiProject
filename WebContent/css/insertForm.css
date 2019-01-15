@@ -1,0 +1,150 @@
+@charset "UTF-8";
+.content {
+	padding-left: 140px;
+}
+
+#scheduleDday-container {
+	display: none;
+}
+#scheduleIcon-container{
+	margin-top: 20px;
+}
+
+
+.img{
+	width: 60px;
+	height: 60px;
+	border:1px solid #cbcbcb;
+}
+.selected-icon{
+	width:60px;
+	height:60px;
+	border:1px solid #cbcbcb;
+}
+#selected-icon{
+	display: inline-block;	
+}
+.imgcon{
+	display: inline-block;
+	
+}
+.moreimg{
+
+	position:relative;
+	display: inline-block;
+    width: 60px;
+    height: 60px;
+	top:-25px;
+    border: 1px solid #cbcbcb;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+}
+.moreimg span{
+	font-weight: bold;
+    color: #999;
+}
+
+/*라벨위치*/
+.ltitle{
+	margin-right:35px;
+}
+.licon{
+	position:relative;
+	top: -20px;
+	margin-right:20px;
+}
+.ltext{
+	position:relative;
+	top: -35px;
+	margin-right:35px;
+}
+.ltime{
+	margin-right:35px;
+}
+.lfile{
+	margin-right:35px;
+}
+
+#scheduleTitle{
+	width:500px;
+}
+#scheduleContent{
+	width:500px;
+}
+.content{
+	/*display: inline-block;*/
+	position:relative;
+	left:70px;
+	
+}
+#scheduleDday-container{
+	position:absolute;
+	top:420px;
+	right:650px;
+	
+	
+	
+}
+/*체크박스 크기설정*/
+#scheduleDdayCheck{
+	position: relative;
+	top:-10px;
+	left:25px;
+	-ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  padding: 5px;
+}
+/*파일넣기 버튼(진짜)*/
+.inputfile{
+	cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height:30px;
+    position: absolute;
+    height: 28px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 12px;
+}
+/*파일 넣기 버튼(가짜)*/
+.fakefile{
+	width:100px;
+	height: 30px;
+	color: #222;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding: 3px 6px 2px;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #cbcbcb;
+    line-height: 20px;
+    text-decoration: none!important;
+    -webkit-appearance: none;
+    background: #f8f8f8;
+	border-radius: 2px;
+}
+/*저장버튼*/
+.submit{
+	height:30px;
+	color: #222;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding: 3px 6px 2px;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #cbcbcb;
+    line-height: 20px;
+    text-decoration: none!important;
+    -webkit-appearance: none;
+    background: #f8f8f8;
+    border-radius: 2px;
+}
+
+#divicon{
+	display:none;
+	margin-left: 70px;
+}
