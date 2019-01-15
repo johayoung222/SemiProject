@@ -43,7 +43,7 @@
 	text-align: center;
 }
 #hidetable{
-	border: 1px solid black;
+	border: 1px solid red;
 	width: 50%;
 	height: 200px;
 	float:right;
@@ -55,6 +55,9 @@
 padding-left: 170px}
 
 </style>
+
+	
+
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');
@@ -193,7 +196,7 @@ function sendMail(){
                   	</td>
                   </tr>
 			</table>
-			</form>
+	</form>
 			<form action="<%=request.getContextPath()%>/member/checkEmailCertifiedPassword"
 			name="checkEmailCertifiedPasswordFrm" method="post">
 			<table id="table2" style="float: right">
@@ -246,8 +249,7 @@ function sendMail(){
                   </tr>
 			</table>
 
-		</form>
-
+		
 	</div>
 
 </body>

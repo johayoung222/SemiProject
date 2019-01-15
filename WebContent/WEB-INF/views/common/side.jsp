@@ -123,6 +123,7 @@ Member memberLoggedIn1 = (Member)session.getAttribute("memberLoggedIn");
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
 				<button type="submit" id="friendadd">친구 추가</button>
 				<hr>
+
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
@@ -209,6 +210,21 @@ $("#autoComplete").on("mouseenter" , "li" , function() {
 $("#autoComplete").on("mouseleave" , "li" , function() {
 	$(this).removeClass("selected");
 });
+
+function checkId(){
+	  var srchId = $("#srchId").val();
+	  if(srchId.trim().length == 0){
+		  alert("검색하실 아이디를 선택하거나 입력해주세요.");
+		  return false;
+	  }
+	  //팝업창을 target으로 폼전송
+		var target = "insertFriendFrm";
+		//첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+		var popup = open("", target, "left=300px, top=100px, height=135px, width=470px");
+		//폼의 대상을 작성한 popup을 가리키게 한다. 
+		insertFriendFrm.target = target;
+		insertFriendFrm.submit();		
+}
 
 </script>	
 </body>

@@ -1,12 +1,19 @@
 @charset "UTF-8";
 .loginFrm{
+<<<<<<< HEAD
 
 float:right;
 margin: 0px 0px 0px 0px;
 width:50%;
 margin-top:110px;
+=======
+float:right;
+ margin: 0px 0px 0px 0px;
+ width:50%;
+ margin-top:85px;
+>>>>>>> 4cdbd5c0a02137552b3683201d43850f25d6e7e4
 position:relative;
-right:5%;
+right:3%;
 }
 .logofont{
 position: relative;
@@ -57,7 +64,18 @@ top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
 .login_box .last .join { float:left;}
 .login_box .last .join a { color:rgb(14, 13, 13); border-radius: 20%; font:bolder;}
 .login_box .last .join a:hover { color:rgb(183, 152, 224); border-radius: 20%; font:bolder;}
+#scheduler_box{
+	width: 40%;
+	height:465px;
+	float:right;
+	margin-top:85px;
+	margin-right: 7%;
+	border-radius: 5px;
+	background-color:rgba(255, 255, 255, 0.993); opacity: 0.8;
+}
+
 #button>button{
+<<<<<<< HEAD
   clear: left;
    float: right;
 
@@ -73,6 +91,21 @@ top:30px; border-top:1px solid #ebebeb; padding-top:20px; }
   margin: 0 auto;
   display: inline-block;
   transform: translateX(-30%);
+=======
+   width: 40%;
+   height: 30px;
+   background-color: #c8c8c8;
+   color: rgb(248, 248, 248);
+   font-size: 24px;
+   border-radius: 5px;
+   border: 0;
+   cursor: pointer;
+   font-family: 'Nanum Pen Script', cursive;
+   margin: 0 auto;
+   display: inline-block;
+   margin-top: 550px;
+   margin-right: -40%;
+>>>>>>> 4cdbd5c0a02137552b3683201d43850f25d6e7e4
 }
 #button>button:hover{
    background-color: #b0f906;
