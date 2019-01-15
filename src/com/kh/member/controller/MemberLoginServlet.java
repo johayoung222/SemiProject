@@ -1,10 +1,6 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,8 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
-import com.kh.schedule.model.service.ScheduleService;
-import com.kh.schedule.model.vo.Schedule;
+
 
 
 /**
@@ -96,7 +91,12 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);		
 			String exPwd = (String)request.getAttribute("exPwd");
 			
+			/* 친구 조회  */
+			List<String> friendList = new MemberService().selectFriendList(memberId);
 			
+			
+			session.setAttribute("friendList", friendList);
+			request.setAttribute("friendList", friendList);
 			session.setAttribute("popup", popup);
 			request.setAttribute("popup", popup);
 			request.setAttribute("popupbool", popupbool);
