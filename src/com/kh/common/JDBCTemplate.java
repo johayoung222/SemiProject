@@ -21,26 +21,29 @@ import javax.sql.DataSource;
  *	- static자원 활용법
  */
 public class JDBCTemplate {
-
+	
 	public static Connection getConnection() {
 		Connection conn = null;
 		//컨텍스트 객체 생성
-		
+
 		try {
-			//컨텍스트객체생성: resource를 jndi api를 통해 찾는다.
 			Context ctx = new InitialContext();
-			DataSource pool = (DataSource)ctx.lookup("java:/comp/env/jdbc/myoracle");
+			DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
+
 			conn = pool.getConnection();
 			conn.setAutoCommit(false);
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
+
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return conn;
 	}
+
+
 	/*public static Connection getConnection() {
 		Connection conn = null;
 		try {
@@ -72,8 +75,10 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		return conn;
+<<<<<<< HEAD
 	}
 	*/
+
 	public static void close(Connection conn) {
 		try {
 			if(conn!=null && !conn.isClosed())
