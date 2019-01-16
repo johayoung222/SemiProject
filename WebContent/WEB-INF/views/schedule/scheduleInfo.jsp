@@ -120,28 +120,11 @@
 			</select>
 			<br /><br />          
 			
-	        <div class="schedule_renamedFile">
-<<<<<<< HEAD
-	            <label for="up_file">파일</label>
-					<input type="file" name="up_file" placeholder="이미지/파일선택" id="file" class="inputfile">
-	            <div class="filelist">
-	            <%if(s.getScheduleOriginalfilename() != null){ %>
-	            	<img src="<%=request.getContextPath() %>/images/file.png" width="20px" height="20px"/>
-	            <%} %>
-	            	<span><%=s.getScheduleOriginalfilename()!=null?s.getScheduleOriginalfilename():""%></span>
-	            </div>
-	        </div>	
-	        
-=======
-				<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
+	        	<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
 				<input type="button" value="파일 첨부" class="fakefile "/>
 	            <input type="hidden" id="old_file_name" value="<%=s.getScheduleOriginalfilename() != null ?s.getScheduleOriginalfilename():"파일없음" %>" />
 	    		<input type="text" id="file_name" readonly/>
-	            
-	        </div>		       
->>>>>>> min
-	        
-	      </div>
+	         </div>   	      
    		 <div class="updateSchedule">
 	           <input type="submit" value="일정수정" onclick="return validate();" >
 	           <input type="button" id="delete" value="일정 삭제" onclick="deleteSchedule();">
