@@ -27,18 +27,14 @@ public class ChatListServlet extends HttpServlet {
 		String fromId = request.getParameter("fromId");
 		String toId = request.getParameter("toId");
 		String listType = request.getParameter("listType");
-		System.out.println("ChatListServlet@" + fromId + " , "+toId + " , " + listType);
-		
-		
-		
-		
 		if(fromId == null || fromId.equals("") || toId == null || toId.equals("")) {
+			// fromId / toId 중에 하나라도 비어있다면 공백을 write
 			response.getWriter().write("");
-			System.out.println(1);
 		} else if(listType.equals("ten")) {
+			// ajax의 data로 받아온 listType의 값이 ten이라면 write(getTen메소드를 호출)
 			response.getWriter().write(getTen(fromId , toId));
-			System.out.println(2);
 		} else {
+			// 위의 조건 둘다 아니라면 write(getId메소드를 호출)
 			try {
 				response.getWriter().write(getId(fromId , toId , listType));
 			} catch(Exception e) {
@@ -48,6 +44,7 @@ public class ChatListServlet extends HttpServlet {
 	}
 	
 	public String getTen(String fromId , String toId) {
+		System.out.println("getTen호출");
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		ChatDao chatdao = new ChatDao();
@@ -65,11 +62,11 @@ public class ChatListServlet extends HttpServlet {
 			}
 		}
 		result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");
-		System.out.println("55"+result.toString());
 		return result.toString();
 	}
 	
 	public String getId(String fromId , String toId , String chatId) {
+		System.out.println("getId호출");
 		StringBuffer result = new StringBuffer("");
 		result.append("{\"result\":[");
 		ChatDao chatdao = new ChatDao();
@@ -87,9 +84,7 @@ public class ChatListServlet extends HttpServlet {
 				result.append(",");
 			}
 		}
-		result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");
-		System.out.println("66"+result.toString());
-		
+		result.append("], \"last\":\"" + chatList.get(chatList.size() - 1).getChatNo() + "\"}");	
 		return result.toString();
 	}
 
