@@ -86,13 +86,17 @@ $(function(){
 		</div>
 		<div id="search-scheduleIcon">			
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
+				<input type="hidden" 
+					   name="searchType"
+					   id="scheduleIcon"
+					   value="scheduleIcon" />			
 				<input type="search" 
 					   name="searchKeyword"
 					   id="iconValue"
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
-					   readonly/>&nbsp;							
-				<button type="submit" id="btn">검색</button>				
+					   readonly/>&nbsp;			
+				<button type="submit">검색</button>			
 			</form>
 		</div>
 		<div id="divicon">

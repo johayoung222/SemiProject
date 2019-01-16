@@ -38,8 +38,8 @@ $(function(){
 		scheduleIcon.hide();
 		
 		$("#search-"+$(this).val()).css("display","inline-block");
-		
 		var check = $("select#searchType option:selected").val();
+		
 		if(check == "scheduleIcon"){
 			$("#divicon").show();
 		}else{
@@ -103,7 +103,7 @@ $(function(){
 			<form action="<%=request.getContextPath()%>/schedule/scheduleSearch">
 				<input type="hidden" 
 					   name="searchType"
-					   id="searchIcon"
+					   id="scheduleIcon"
 					   value="scheduleIcon" />			
 				<input type="search" 
 					   name="searchKeyword"
@@ -111,7 +111,7 @@ $(function(){
 					   size="25"
 					   placeholder="검색할 아이콘을 선택하세요."
 					   readonly/>&nbsp;			
-				<button type="submit" id="btn">검색</button>				
+				<button type="submit">검색</button>				
 			</form>
 		</div>
 			<div id="divicon">

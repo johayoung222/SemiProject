@@ -368,6 +368,7 @@ $(document).on('click',function(){
 			$("#year-box").css("display","block");
 		});
         </script>
+
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
