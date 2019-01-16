@@ -21,8 +21,6 @@
 				System.out.println("popup.get("+i+")확인 : "+popup.get(i));
 					checkrequest = true;
 			}
-			System.out.println("333333333333333333");
-			System.out.println("popupsize : "+popup.size());
 			String[] popupArr = popup.toArray(new String[popup.size()]);
 			for(int i = 0;i < popupArr.length;i++) {
 				System.out.println(popupArr[i]);
@@ -121,9 +119,9 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-          <input type="button" value="FaceBook으로 로그인">
+         	<input type="button" value="비밀번호를 잊으셨나요?" onclick="searchIdPwd();" id="search_" />
+         	<!-- <span onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span> -->
          </div>
-         <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>
