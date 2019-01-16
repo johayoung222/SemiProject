@@ -548,6 +548,39 @@ public class MemberDao {
 		return list;
 	}
 
+	public int alreadyCheckFriend(Connection conn, String myId, String srchId) {
+		int alreadyCheckFriend = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("alreadyCheckFriend");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, myId);
+			pstmt.setString(2, srchId);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				alreadyCheckFriend = rset.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return alreadyCheckFriend;
+	}
+
 	
 	
 

@@ -55,7 +55,11 @@ function setMemberId(){
 		<br /><br />
 		<button onclick="setMemberId();">닫기</button>	
 	
-	<%} %>
+	<%} else if(status == 5) {%>
+		<%=msg %>
+		<br /><br />
+		<button onclick="setMemberId();">닫기</button>	
+	<% } %>
 	</div>
 </body>
 </html>

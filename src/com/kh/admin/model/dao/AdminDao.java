@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.member.model.vo.Member;
-import com.kh.schedule.model.dao.ScheduleDao;
-import com.kh.schedule.model.vo.Schedule;
+
 
 public class AdminDao {
 	private Properties prop = new Properties();
