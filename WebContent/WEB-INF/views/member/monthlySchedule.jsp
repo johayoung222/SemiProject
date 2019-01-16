@@ -28,16 +28,11 @@ function holidays(){
 		type: "get",
 		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
 		success: function(data){
-			console.log(data); //data는 이미 javascript배열객체
-			console.log(JSON.parse(data).response.body.items.item);
-			console.log("type="+(JSON.parse(data).response.body.items.item).length);
 			  
 			if(typeof((JSON.parse(data).response.body.items.item).length) == "undefined"){
 				for(var i in JSON.parse(data).response.body.items){
 					var holiday = JSON.parse(data).response.body.items[i];
 					var copymonth = JSON.parse(data).response.body.items[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -53,13 +48,10 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
 				}
-				console.log(copymonth);
 			}else{
 				for(var i in JSON.parse(data).response.body.items.item){
 					var holiday = JSON.parse(data).response.body.items.item[i];
 					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items.item[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -75,7 +67,6 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
 				}
-				console.log(copymonth);
 			}  
 		}//success func end
 	});//ajax end
