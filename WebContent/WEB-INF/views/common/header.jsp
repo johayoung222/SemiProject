@@ -26,7 +26,7 @@
       <span class="logofont">7' Scheduler
       </span>
     </div>  
- 
+
    <%if(memberLoggedIn != null){ %>
   <table id="logged-in" >
 	<tr>

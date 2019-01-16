@@ -36,13 +36,25 @@
 	
 }
 #button2{
-	padding-left: 170px;
+	
+	margin-top: 13px;
+    margin-right: 47px;
+}
+#button3{
+	
+	margin-top: 13px;
+    margin-left: 127px;
+    
 }
 #searchid{
 	text-align: center;
 }
 #searchId2{
 	text-align: center;
+}
+#searchId3{
+	padding-top: 84px;
+    padding-left: 102px;
 }
 #searchPwd2{
 	text-align: center;
@@ -51,14 +63,17 @@
 	text-align: center;
 }
 #hidetable{
-	border: 1px solid red;
+	border: 1px solid black;
 	width: 50%;
 	height: 200px;
 	float: right;
 	display:none;
 	text-align: center;
-	color: red;
+	color: black;
 	
+}
+#newPwd{
+	padding:35px;
 }
 </style>
 <script>
@@ -139,7 +154,7 @@ function pwdPermute(){
 		success:function(data){
 			console.log(data);   
 			var html="<table>";
-				html +="<tr><td>"+"비밀번호가 변경되었습니다."+"</td></tr>";
+				html +="<tr><td id='searchId3'>"+"비밀번호가 변경되었습니다."+"</td></tr>";
 				html+="</table>";
 			
 			$("#hidetable").html(html);
@@ -231,15 +246,15 @@ function sendMail(){
 					<th id="permute">새 비밀번호 설정</th>
 				</tr>
 				<tr>
-					<th>새 비밀번호</th>
+					<th id="newPwd">새 비밀번호</th>
 					<td><input type="password" name="new_password" id="new_password" placeholder="ㅗ" required /></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
 					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
 				 <tr>
-                  	<td colspan="2" id="button2">
-                  		<input type="button" onclick="pwdPermute();" value="비밀번호 변경" />
+                  	<td colspan="2" >
+                  		<input type="button" id="button3" onclick="pwdPermute();" value="비밀번호 변경" />
                   	</td>
                  </tr>
 				</table>

@@ -153,6 +153,7 @@ $(document).on('click',function(){
    }
 </style>
 
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -214,7 +215,8 @@ $(document).on('click',function(){
 				<% for(int i=1; i<=31; i++){
 					if(!map.get(i).isEmpty()){ %>
 				if(span[i].id == <%=i %>) {
-					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
+					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>"+
+					"<% if("Y".equals(map.get(i).get(0).getScheduleDdaycheck())){ %>(D-<%=map.get(i).get(0).getdDay() %>)<% } %>";
 				}
 					<%}
 				} %>
@@ -224,23 +226,6 @@ $(document).on('click',function(){
 			</script>
 		</table>
 	</div>
-	<!-- 
-	<div id="chat-body">		
-		<div id="chat-before">
-		앞에 초록색 동그라미 이모티콘 추가
-			<strong>채팅</strong>
-			뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중
-	
-		</div>
-	
-		<div id="chat-find-friend">
-			돋보기 모양 이모티콘
-			input:text Ajax사용해서 회원이름 검색시 주르륵 나오게
-			친구 찾기
-			오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔
-			 
-		</div>	
-	</div> -->
 	<script>
 		/* 다음달로 넘어가는 기능 */
         $("#nextMonth").click(function(){
@@ -296,7 +281,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}        					
+        				} 
         				}
         			}
         			}
@@ -354,7 +345,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}
+        				} 
         				}
         			}
         			}
@@ -368,6 +365,7 @@ $(document).on('click',function(){
 			$("#year-box").css("display","block");
 		});
         </script>
+
 
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
@@ -386,6 +384,7 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
+
 
 </body>
 </html>

@@ -92,11 +92,6 @@
 	left:70px;
 	
 }
-#scheduleDday-container{
-	position:absolute;
-	top:400px;
-	left: 250px;
-}
 /*체크박스 크기설정*/
 #scheduleDdayCheck{
 	position: relative;
@@ -209,7 +204,9 @@
 						<img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png" />
 						<img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png" />
 												
-						<a href="#" id="iconOpen">더보기+</a>
+
+						<a href="#" id="iconOpen">더보기</a>
+
 						</div>
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						<table id="tableicon" style="border:1px solid red;">
@@ -244,11 +241,6 @@
 				
 				<label for="scheduleDdayCheck" class="lcheck">디데이<br/>&nbsp;&nbsp;설정</label>
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
-			<div id="scheduleDday-container">
-				<input type="date" name="scheduleDday" id="scheduleDday"
-					data-placeholder="설정할 디데이를 체크해주세요." required aria-required="true">
-					<br /><br />
-			</div>	
 				<br /><br />
 
 			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
@@ -306,8 +298,6 @@
 document.getElementById('scheduleStartDay').valueAsDate = new Date();
 /* 스케줄 끝일 */
 document.getElementById('scheduleEndDay').valueAsDate = new Date();
-/* 디데이가 없는 경우 초기값 설정 */
-document.getElementById('scheduleDday').valueAsDate = new Date();
 
 /* 디데이 체크박스 여부 true / false를 리턴한다. */
 $(document).ready(function() { 

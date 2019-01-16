@@ -90,13 +90,13 @@ function searchIdPwd(){
    
      <div id="slideshow">
        <div>
-         <img src="<%=request.getContextPath() %>/images/flower1.PNG" class="conimg" id="conimg1">
+         <img src="<%=request.getContextPath() %>/images/logo.png" class="conimg" id="conimg1">
        </div>
        <div>
-          <img src="<%=request.getContextPath() %>/images/flower2.PNG" class="conimg" id="conimg2">
+          <img src="<%=request.getContextPath() %>/images/month2.png" class="conimg" id="conimg2">
        </div>
        <div>
-              <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
+              <img src="<%=request.getContextPath() %>/images/todolist.png" class="conimg" id="conimg3">
        </div>
      </div>
      <%if(memberLoggedIn == null){ %>

@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>온도에 따른 추천 의상, 여행지</title>
 
@@ -12,15 +14,69 @@
 
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 
+
+ <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Staatliches|Noto+Sans+KR|Abril+Fatface" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
+  <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
+  <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/recommendation.css" />
+<title>온도에 따른 추천 의상, 여행지</title>
+
 <%
 	String temp = request.getParameter("temp");
 	
 	System.out.println("시험하는곳 temp = "+temp);
 %>
 
+<style>
+div.container{
+	float:left;
+	width:29%;
+	height:300px;
+	maring:10px;
+	padding:10px;
+	text-align:center;
+}
+table {
+	border:1px solid;
+	margin:auto;
+	border-collapse: collapse;
+}
+td,th {
+	border:1px solid;
+}
+span#time{
+	text-decoration:underline;
+	margin: 15px;
+    display: block;
+}
+#order-list{
+	width:80%;
+	margin-left:50px;
+}
+#rank-list{
+	width:100%;
+}
+</style>
+</head>
+<body>
+<nav class="header">
+    <div class="logo">
+      <img src="<%=request.getContextPath() %>/images/logo.png" width="50px" height="50px" >
+      <span class="logofont">7' Scheduler
+      </span>
+    </div>
+    </nav>
+
+
 
 </head>
 <body>
+
 
 <div class="container2">
 	<h2>추천 의상</h2>
@@ -38,7 +94,7 @@ function printTime() {
 }
 </script>
 <div class="container2">
-	<h2>추천 여행지</h2>
+	<h2>추천 장소</h2>
 	<h4 id="time"></h4>
 	<div id="rank-list"></div>
 </div>

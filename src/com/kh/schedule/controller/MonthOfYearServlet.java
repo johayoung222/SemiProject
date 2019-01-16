@@ -82,6 +82,19 @@ public class MonthOfYearServlet extends HttpServlet {
 			list = new ArrayList<>();
 		}
 		
+		c = Calendar.getInstance();
+		long time = 0;
+		long cTime = c.getTimeInMillis();
+		for(Schedule s : list) {
+			if("Y".equals(s.getScheduleDdaycheck())) {
+				if(s.getScheduleDday() instanceof Date) {
+					time = s.getScheduleDday().getTime();
+					int dday = (int) (((time-cTime)/1000/60/60/24)+1);
+					s.setdDay(dday);
+				}
+			}
+		}
+		
 		List<Schedule> dayList = null;
 		HashMap<Integer,List<Schedule>> map = new HashMap<>();
 		
@@ -100,7 +113,6 @@ public class MonthOfYearServlet extends HttpServlet {
 			map.put(i, dayList);
 		}
 		
-		System.out.printf("start:%d last:%d year:%d month:%d\n",start,last,year,month);
 		request.setAttribute("start", start);
 		request.setAttribute("last", last);
 		request.setAttribute("year", year);

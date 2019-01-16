@@ -56,7 +56,6 @@
 			
 			
 			html = "<br><br>현재온도 : "+Math.floor((resp.main.temp- 273.15))+"도<br>";
-			html += "상세날씨 설명 : "+resp.main.humidity+"<br>";
 			html += "날씨 : "+resp.weather[0].description+"<br>";
 			html += "나라 : "+resp.sys.country+"<br>";
 			html +=	"도시 이름 : "+resp.name+"<br>";
@@ -89,10 +88,10 @@
 		<br />
 		<br />
 		<div id="searchsch">
-		<a href="#" class="font" id="yearSchedule">년간 스케줄</a><hr />
+		<a href="#" class="font" id="yearSchedule">연간 스케줄</a><hr />
 		<a href="<%=request.getContextPath()%>/member/mainSchedule" class="font">월간 스케줄</a><hr />
 		
-		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a><hr />
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a>
 		
 		<% if(memberLoggedIn1 != null && "admin".equals(memberLoggedIn1.getMemberId())){%>
 		<a href="<%=request.getContextPath()%>/admin/memberList" class="font">회원리스트</a><br />
@@ -125,19 +124,22 @@
 			method="post">
 				<input type="hidden" name="myId" id="myId" value="<%=memberLoggedIn1.getMemberId() %>" />
 				<label for="srchId" id="font2">아이디 : </label>
+				
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
-				<button type="submit" id="friendadd" onclick="checkId();">친구 추가</button>
+				<button type="submit" id="friendadd">친구 추가</button>
+				<hr>
+
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
 						<li>3</li>
 					</ul>
 						
-				<hr />
+		
+				
 				<div>
-				<input type="button"
-			  		   onclick="self.close();"
-			  		   value="취소"/>
+				<input type="button" onclick="self.close();" value="취소"/>
+
 				
 				</div>
 		</form>
