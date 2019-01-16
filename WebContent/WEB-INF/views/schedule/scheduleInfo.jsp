@@ -41,6 +41,7 @@
 				<img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png" />
 				<img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png" />
 				<a href="#" id="iconOpen">더보기+</a>
+				<br />
 				</div>
 			</div>
 			<div id="divicon" class="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
@@ -64,12 +65,14 @@
 				</table>					
 			</div>		
 			
-			<div class="scheduleContent" id="scheduleContent">           
+			<div class="scheduleContent" id="scheduleContent">     
+			<br />      
 	            <label for="scheduleContent">스케줄 내용:</label>
 	            <br />
 	            <textarea name="scheduleContent" id="scheduleContent" cols="50" rows="15"><%=s.getScheduleContent() %></textarea>
 	        </div>
 	       
+	       <br />
 	     	<label for="scheduleDdayCheck" class="lcheck">디데이 설정</label>
 			<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
 			<div id="scheduleDday-container">
@@ -118,6 +121,7 @@
 			<br /><br />          
 			
 	        <div class="schedule_renamedFile">
+<<<<<<< HEAD
 	            <label for="up_file">파일</label>
 					<input type="file" name="up_file" placeholder="이미지/파일선택" id="file" class="inputfile">
 	            <div class="filelist">
@@ -128,6 +132,14 @@
 	            </div>
 	        </div>	
 	        
+=======
+				<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
+				<input type="button" value="파일 첨부" class="fakefile "/>
+	            <input type="hidden" id="old_file_name" value="<%=s.getScheduleOriginalfilename() != null ?s.getScheduleOriginalfilename():"파일없음" %>" />
+	    		<input type="text" id="file_name" readonly/>
+	            
+	        </div>		       
+>>>>>>> min
 	        
 	      </div>
    		 <div class="updateSchedule">
@@ -181,7 +193,27 @@ $(document).ready(function() {
 	});
 	
 	$("#iconAlt").val(icon);
+	
+	var old_file = $("#old_file_name").val();
+	if(old_file != null){
+		$("#file_name").val(old_file);
+	}
+	
+	var fileTarget = $(".inputfile");
+	
+	fileTarget.on('change',function(){//값이 변경되면
+		if(window.FileReader){//modern browser
+			var filename = this.files[0].name;
+		}else { // old IE
+			 var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+			 console.log(filename);
+		}  // 추출한 파일명 삽입
+			//$(".file_name").text(filename);
+			$("#file_name").val(filename);
+
+	});
 });
+
 
 
 /* 일정 등록 유효성 검사 */
