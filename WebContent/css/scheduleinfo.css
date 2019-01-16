@@ -77,7 +77,6 @@ label{
 
 #divicon{
 	display:none;
-	margin-left: 70px;
 }
 .content {
 	padding-left: 140px;
@@ -123,4 +122,39 @@ label{
 	background-color: rgb(206, 219, 186);
 	display: inline-block;
 }
+/*파일넣기 버튼(진짜)*/
+.inputfile{
+	cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height:30px;
+    position: absolute;
+    height: 28px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    font-size: 12px;
+}
+/*파일 넣기 버튼(가짜)*/
+.fakefile{
+	width:100px;
+	height: 30px;
+	color: #222;
+    letter-spacing: 0;
+    vertical-align: middle;
+    padding: 3px 6px 2px;
+    overflow: visible;
+    cursor: pointer;
+    border: 1px solid #cbcbcb;
+    line-height: 20px;
+    text-decoration: none!important;
+    -webkit-appearance: none;
+    background: #f8f8f8;
+	border-radius: 2px;
+}
 
+#file_name{
+	
+	border:0;
+	background: rgb(248, 248, 248);
+}

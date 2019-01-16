@@ -238,6 +238,7 @@
 				<label for="up_file" class="lfile">파일</label>
 				<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
 				<input type="button" value="파일 첨부" class="fakefile "/>
+				<input type="text" id="file_name" readonly/>
 				<br /><br />
 				<!-- 글쓴날짜 -->
 				<input type="hidden" name="writeDay" id="writeDay" value="<%=writeDay %>" />
@@ -336,8 +337,20 @@ $(document).ready(function() {
 		/* 전송할 alt추려내기 */
 		selectedAlt = $(this).attr("alt");
 		$("#iconAlt").attr("value" , selectedAlt);
-		
-		
+	});
+	
+	var fileTarget = $(".inputfile");
+	
+	fileTarget.on('change',function(){//값이 변경되면
+		if(window.FileReader){//modern browser
+			var filename = this.files[0].name;
+		}else { // old IE
+			 var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+			 console.log(filename);
+		}  // 추출한 파일명 삽입
+			//$(".file_name").text(filename);
+			$("#file_name").val(filename);
+
 	});
 });
 
