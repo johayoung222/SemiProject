@@ -104,7 +104,8 @@
 	
 		</div>
 		<div id="friend">
-			<p>친구들
+			<p>친구
+			<button id="friendList" ">∨</button>
 			<button id="addfriend" onclick="addfriend();">+</button></p>
 			<div id="friendspace">
 				<% if(!friendList.isEmpty()) { %>
@@ -149,7 +150,9 @@
 	
 	
 <script>
-
+$("#friendList").on('click',function(){
+	$("#friendspace").slideToggle("fast");
+});
 $("#srchId").on("keyup" , function(e){
 	console.log(e.key);
 	var selected = $(".selected");

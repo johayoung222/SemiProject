@@ -12,144 +12,7 @@
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
-<style>
-.content {
-	padding-left: 140px;
-}
-
-#scheduleDday-container {
-	display: none;
-}
-#scheduleIcon-container{
-	margin-top: 20px;
-}
-
-
-.img{
-	width: 60px;
-	height: 60px;
-	border:1px solid #cbcbcb;
-}
-.selected-icon{
-	width:60px;
-	height:60px;
-	border:1px solid #cbcbcb;
-}
-#selected-icon{
-	display: inline-block;	
-}
-.imgcon{
-	display: inline-block;
-	
-}
-.moreimg{
-
-	position:relative;
-	display: inline-block;
-    width: 60px;
-    height: 60px;
-	top:-25px;
-    border: 1px solid #cbcbcb;
-    background-color: #f9f9f9;
-    text-align: center;
-    cursor: pointer;
-}
-.moreimg span{
-	font-weight: bold;
-    color: #999;
-}
-
-/*라벨위치*/
-.ltitle{
-	margin-right:35px;
-}
-.licon{
-	position:relative;
-	top: -20px;
-	margin-right:20px;
-}
-.ltext{
-	position:relative;
-	top: -35px;
-	margin-right:35px;
-}
-.ltime{
-	margin-right:35px;
-}
-.lfile{
-	margin-right:35px;
-}
-
-#scheduleTitle{
-	width:500px;
-}
-#scheduleContent{
-	width:500px;
-}
-.content{
-	/*display: inline-block;*/
-	position:relative;
-	left:70px;
-	
-}
-/*체크박스 크기설정*/
-#scheduleDdayCheck{
-	position: relative;
-	top:-10px;
-	left:25px;
-	-ms-transform: scale(1.5); /* IE */
-  -moz-transform: scale(1.5); /* FF */
-  -webkit-transform: scale(1.5); /* Safari and Chrome */
-  -o-transform: scale(1.5); /* Opera */
-  padding: 5px;
-}
-/*파일넣기 버튼(진짜)*/
-.inputfile{
-	cursor: pointer;
-    margin: 0;
-    padding: 0;
-    width: 100px;
-    height:30px;
-    position: absolute;
-    height: 28px;
-    filter: alpha(opacity=0);
-    opacity: 0;
-    font-size: 12px;
-}
-/*파일 넣기 버튼(가짜)*/
-.fakefile{
-	width:100px;
-	height: 30px;
-	color: #222;
-    letter-spacing: 0;
-    vertical-align: middle;
-    padding: 3px 6px 2px;
-    overflow: visible;
-    cursor: pointer;
-    border: 1px solid #cbcbcb;
-    line-height: 20px;
-    text-decoration: none!important;
-    -webkit-appearance: none;
-    background: #f8f8f8;
-	border-radius: 2px;
-}
-/*저장버튼*/
-.submit{
-	height:30px;
-	color: #222;
-    letter-spacing: 0;
-    vertical-align: middle;
-    padding: 3px 6px 2px;
-    overflow: visible;
-    cursor: pointer;
-    border: 1px solid #cbcbcb;
-    line-height: 20px;
-    text-decoration: none!important;
-    -webkit-appearance: none;
-    background: #f8f8f8;
-    border-radius: 2px;
-}
-</style>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/insertForm.css">
 
 
 
@@ -206,8 +69,9 @@
 												
 
 						<a href="#" id="iconOpen">더보기</a>
-
+						
 						</div>
+						
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						<table id="tableicon" style="border:1px solid red;">
 							<tr>
@@ -226,9 +90,10 @@
 								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
 								<td><a href="#" id="iconClose">닫기</a></td>
 							</tr>										
-						</table>						
+						</table>
 					</div>
 				</div>
+				<br />				
 				<label for="" class="ltext">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
@@ -280,7 +145,7 @@
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
 				<input type="hidden" name="theDay" value="<%=day %>" />
 				
-					<br /><br />
+					<br />
 
 
 					<input type="submit" value="일정 등록" onclick="return validate();" class="submit">

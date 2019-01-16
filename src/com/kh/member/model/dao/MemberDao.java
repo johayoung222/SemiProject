@@ -340,8 +340,10 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, m.getMemberPwd());
 			pstmt.setString(2, m.getMemberEmail());
+			pstmt.setString(3, m.getMemberId());
 			System.out.println("dao memberpwd =="+m.getMemberPwd());
 			System.out.println("dao memberEmail =="+m.getMemberEmail());
+			System.out.println("dao memberId =="+m.getMemberId());
 			
 			
 			//2.실행
@@ -544,6 +546,40 @@ public class MemberDao {
 		}
 		
 		return list;
+	}
+
+	public int checkInfo(Connection conn, String memberId, String email) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = prop.getProperty("checkInfo");
+		
+		try {
+	
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, email);
+			pstmt.setString(2, memberId);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				result = rset.getInt("cnt");
+			}
+			System.out.println("Dao checkinfo result = "+result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rset.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 	}
 
 }

@@ -234,5 +234,12 @@ public class MemberService {
 		
 		return list;
 	}
+
+	public int checkInfo(String memberId, String email) {
+		int result = 0;
+		Connection conn = getConnection();
+		result = new MemberDao().checkInfo(conn,memberId,email);
+		return result;
+	}
 }
 

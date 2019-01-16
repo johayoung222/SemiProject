@@ -48,8 +48,9 @@ public class CheckEmailCertifiedServlet extends HttpServlet {
 		int certified = ((int) (Math.random() * 899999)+100000);
 		request.setAttribute("certified", certified);
 		String content = "인증번호 : ["+certified+"]";
-
-		Properties p = new Properties(); // 정보를 담을 객체
+		
+		// 정보를 담을 객체
+		Properties p = new Properties();
 
 		p.put("mail.smtp.host","smtp.gmail.com"); // 구글 SMTP
 		 
@@ -69,17 +70,19 @@ public class CheckEmailCertifiedServlet extends HttpServlet {
 		    ses.setDebug(true);
 		     
 		    MimeMessage msg = new MimeMessage(ses); // 메일의 내용을 담을 객체
-		    msg.setSubject(subject); // 제목
+		    // 제목
+		    msg.setSubject(subject);
 		     
+		    // 보내는 사람
 		    Address fromAddr = new InternetAddress(from);
-		    msg.setFrom(fromAddr); // 보내는 사람
-		    System.out.println(fromAddr);
+		    msg.setFrom(fromAddr);
 		     
+		    // 받는 사람
 		    Address toAddr = new InternetAddress(email);
-		    msg.addRecipient(Message.RecipientType.TO, toAddr); // 받는 사람
-		    System.out.println(toAddr); 
+		    msg.addRecipient(Message.RecipientType.TO, toAddr);
 		    
-		    msg.setContent(content, "text/html; charset=UTF-8"); // 내용과 인코딩
+		    // 내용과 인코딩
+		    msg.setContent(content, "text/html; charset=UTF-8");
 		     
 		    Transport.send(msg); // 전송
 		} catch(Exception e){

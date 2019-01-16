@@ -187,13 +187,13 @@ $(document).on('click',function(){
 		</script>
 		<table id="month">
 			<tr>
-				<th style="color:red;">일</th>
+				<th style="color:red;border-left:2px solid black;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th style="color:blue;">토</th>
+				<th style="color:blue;border-right:2px solid black;">토</th>
 			</tr>
 		</table>
 		<table id="add">

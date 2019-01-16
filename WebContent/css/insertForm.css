@@ -1,6 +1,9 @@
-@charset "UTF-8";
+
 .content {
 	padding-left: 140px;
+	position:relative;
+	float: right;
+    left: -25%
 }
 
 #scheduleDday-container {
@@ -72,20 +75,7 @@
 #scheduleContent{
 	width:500px;
 }
-.content{
-	/*display: inline-block;*/
-	position:relative;
-	left:70px;
-	
-}
-#scheduleDday-container{
-	position:absolute;
-	top:420px;
-	right:650px;
-	
-	
-	
-}
+
 /*체크박스 크기설정*/
 #scheduleDdayCheck{
 	position: relative;
@@ -142,9 +132,4 @@
     -webkit-appearance: none;
     background: #f8f8f8;
     border-radius: 2px;
-}
-
-#divicon{
-	display:none;
-	margin-left: 70px;
 }

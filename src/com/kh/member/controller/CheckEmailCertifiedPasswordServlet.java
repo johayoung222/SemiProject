@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.email.SMTPAuthenticatior;
+import com.kh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class CheckEmailCertifiedPasswordServlet
@@ -38,13 +39,16 @@ public class CheckEmailCertifiedPasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-	       
+	     
+		String memberId = request.getParameter("memberId");
 		//받는사람(사용자입력)
-		
 		String email = request.getParameter("memberEmail");
 		System.out.println("servlet Email=="+email);
-
 		
+		
+		int result = new MemberService().checkInfo(memberId,email);
+		
+		if(result > 0) {
 		//보내는 사람
 		String from = "7sscheduler@gmail.com";
 		
@@ -95,8 +99,12 @@ public class CheckEmailCertifiedPasswordServlet extends HttpServlet {
 		}
 
 		request.getRequestDispatcher("/WEB-INF/views/member/sendMailpopupPassword.jsp").forward(request, response);
-
+		}
+		else {
+			request.getRequestDispatcher("/WEB-INF/views/member/failsendMail.jsp").forward(request, response);
+		}
 	}
+		
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
