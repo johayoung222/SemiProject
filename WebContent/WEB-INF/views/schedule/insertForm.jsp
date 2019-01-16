@@ -12,6 +12,7 @@
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
+<<<<<<< HEAD
 <style>
 .content {
 	padding-left: 140px;
@@ -156,6 +157,9 @@
 }
 </style>
 
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/insertForm.css">
+
+
 
 
 <div class="content">
@@ -211,8 +215,9 @@
 												
 
 						<a href="#" id="iconOpen">더보기</a>
-
+						
 						</div>
+						
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						<table id="tableicon" style="border:1px solid red;">
 							<tr>
@@ -231,9 +236,10 @@
 								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
 								<td><a href="#" id="iconClose">닫기</a></td>
 							</tr>										
-						</table>						
+						</table>
 					</div>
 				</div>
+				<br />				
 				<label for="" class="ltext">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
@@ -286,7 +292,7 @@
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
 				<input type="hidden" name="theDay" value="<%=day %>" />
 				
-					<br /><br />
+					<br />
 
 
 					<input type="submit" value="일정 등록" onclick="return validate();" class="submit">

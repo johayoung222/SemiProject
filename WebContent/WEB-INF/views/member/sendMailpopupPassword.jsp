@@ -21,8 +21,6 @@ function check(){
 	var certifiedNum = <%=certifiedNum%>;
 	console.log(certifiedNum);
 
-	
-	
 	if(certified.length == 0){
 		alert("인증번호를 입력하세요");
 		return false;
@@ -30,13 +28,9 @@ function check(){
 		alert("인증번호가 틀렸습니다. 인증번호를 다시입력해주세요.");
 		return false;
 	}else{
-		alert("인증 완료2");
+		alert("인증 완료");
 		opener.$('#table2').css('display', 'none');
 		opener.$('#hidetable').css('display', 'inline-block');
-		
-		
-		
-
 		self.close();
 	}
 } 

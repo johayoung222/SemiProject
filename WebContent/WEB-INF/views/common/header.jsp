@@ -36,9 +36,9 @@
 	</tr>
 	<tr>
 		<td>
-			<input type="button" value="내정보" onclick='location.href="<%=request.getContextPath()%>/member/MemberView?memberId=<%=memberLoggedIn.getMemberId()%>";'/>
+			<input type="button" id="mypage" value="내정보" onclick='location.href="<%=request.getContextPath()%>/member/MemberView?memberId=<%=memberLoggedIn.getMemberId()%>";'/>
 			&nbsp;
-			<input type="button" value="로그아웃" onclick="logout();"/>
+			<input type="button" id="logout" value="로그아웃" onclick="logout();"/>
 		</td>
 	</tr>
 	</table>	

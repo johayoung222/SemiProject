@@ -107,8 +107,9 @@ function searchid(){
 			html +="<tr><td id='searchId2'>"+"당신의 아이디는 "+data.memberId+" 입니다."+"</td></tr>";
 			/* html +="<td>"+param.pemail+"</td></tr>"; */
 		}else{
-			html += "<tr><td id='searchId2'>"+"<bold>"+"이름과 이메일이 일치하지 않습니다."+"</bold>"+"</td></tr>";
-		}
+           html += "<tr><td id='searchId2'>"+"<bold>"+"이름과 이메일이 일치하지 않습니다."+"</bold>"+"</td></tr>";
+        }
+
 		html+="</table>";
 		
 		$("#table1").html(html);
@@ -120,6 +121,8 @@ function searchid(){
 }
 
 function pwdPermute(){
+	var memberId=$("#userId_").val();
+	console.log(memberId);
 	var memberEmail = $("#email__").val();
 	console.log(memberEmail);
 	var new_Password = $("#new_password").val();
@@ -145,6 +148,7 @@ function pwdPermute(){
 	}
 
 	var param = {
+			"memberId":$("#userId_").val(),
 			"memberEmail":$("#email__").val(),
 			"new_Password":$("#new_password").val()
 	}
@@ -154,12 +158,16 @@ function pwdPermute(){
 		url:"<%=request.getContextPath()%>/member/pwdPermute",
 		data:param,
 		success:function(data){
-			console.log(data);   
+			console.log(data); 
+			if(data != 0){
 			var html="<table>";
 				html +="<tr><td id='searchId3'>"+"비밀번호가 변경되었습니다."+"</td></tr>";
 				html+="</table>";
 			
 			$("#hidetable").html(html);
+			}else{
+				alert("hh");
+			}
 		}
 	});
 
@@ -168,8 +176,14 @@ function pwdPermute(){
 }
 
 function sendMail(){
+	var memberId=$("#userId_").val();
 	var memberEmail = $("#email__").val();
-    if(memberEmail.trim().length == 0){
+	
+	if(memberId.trim().length == 0){
+        alert("아이디를 입력하세요.");
+        return false;		
+	}
+	else if(memberEmail.trim().length == 0){
         alert("이메일을 입력하세요.");
         return false;
     }
@@ -183,6 +197,8 @@ function sendMail(){
       //console.log(memberEmail);
       
       checkEmailCertifiedPasswordFrm.memberEmail.value = memberEmail;
+      checkEmailCertifiedPasswordFrm.memberId.value = memberId;
+      
       checkEmailCertifiedPasswordFrm.submit();
 }
 </script>
@@ -205,11 +221,11 @@ function sendMail(){
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="userName" id="userName_" placeholder="찾아야한다.." required /></td>
+					<td><input type="text" name="userName" id="userName_" placeholder="이름을 입력하세요" required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email_" placeholder="찾아야한다.." required /></td>
+					<td><input type="email" name="email" id="email_" placeholder="이메일을 입력하세요" required /></td>
 				</tr>
 				 <tr>
                   	<td colspan="2" id="button1">
@@ -227,11 +243,11 @@ function sendMail(){
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="userId" id="userId_" placeholder="찾아야한다.." required /></td>
+					<td><input type="text" name="userId" id="userId_" placeholder="아이디를 입력하세요" required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email__" placeholder="찾아야한다.." required /></td>
+					<td><input type="email" name="email" id="email__" placeholder="이메일을 입력하세요" required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
                   		<input type="button" onclick="sendMail();" value="비밀번호 찾기" />
@@ -243,17 +259,19 @@ function sendMail(){
 			<form action="<%=request.getContextPath()%>/member/pwdPermute"
 			 name="pwd" method="post">
 				<input type="hidden" name="memberEmail" />
+				<input type="hidden" name="memberId" />
+				
 				<table id="hidetable">
 					<tr>
 					<th id="permute">새 비밀번호 설정</th>
 				</tr>
 				<tr>
 					<th id="newPwd">새 비밀번호</th>
-					<td><input type="password" name="new_password" id="new_password" placeholder="ㅗ" required /></td>
+					<td><input type="password" name="new_password" id="new_password" placeholder="새 비밀번호" required /></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
-					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
+					<td><input type="password" name="check_password" id="check_password" placeholder="새 비밀번호 확인" required /></td>
 				 <tr>
                   	<td colspan="2" >
                   		<input type="button" id="button3" onclick="pwdPermute();" value="비밀번호 변경" />

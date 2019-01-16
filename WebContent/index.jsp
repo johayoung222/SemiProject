@@ -119,7 +119,7 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-         	<input type="button" value="비밀번호를 잊으셨나요?" onclick="searchIdPwd();" id="search_" />
+         	<input type="button" value="아이디 &비밀번호를 잊으셨나요?" onclick="searchIdPwd();" id="search_" />
          	<!-- <span onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span> -->
          </div>
        </div>

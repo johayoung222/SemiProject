@@ -32,7 +32,8 @@ public class PwdPermuteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+		String memberId = request.getParameter("memberId");
+		System.out.println("pwdPermuteServlet memberId =="+memberId);		
 		String memberEmail = request.getParameter("memberEmail");
 		System.out.println("pwdPermuteServlet memberEmail =="+memberEmail);
 		String new_password = request.getParameter("new_Password");
@@ -40,6 +41,7 @@ public class PwdPermuteServlet extends HttpServlet {
 		
 		Member m = new Member();
 		
+		m.setMemberId(memberId);
 		m.setMemberEmail(memberEmail);
 		m.setMemberPwd(new_password);
 		System.out.println("PwdPermuteservlet m =="+m);
