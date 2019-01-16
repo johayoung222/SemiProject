@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,12 +13,8 @@
   <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header.css">
   <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
   <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
-=======
-<meta charset="UTF-8">
-<title>온도에 따른 추천 의상, 여행지</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/recommendation.css" />
-<script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
->>>>>>> 8ddcbfa0204d0142c99eb5dfd3434ac16a5ebd96
+
 
 <%
 	String temp = request.getParameter("temp");

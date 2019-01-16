@@ -370,11 +370,7 @@ $(document).on('click',function(){
 		});
         </script>
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -393,9 +389,6 @@ $(document).on('click',function(){
 	});
 	</script>
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
+
 </body>
 </html>

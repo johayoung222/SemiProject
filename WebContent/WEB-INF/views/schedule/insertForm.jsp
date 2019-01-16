@@ -209,7 +209,7 @@
 						<img src="<%=request.getContextPath() %>/images/like.png" class="img" alt="like.png" />
 						<img src="<%=request.getContextPath() %>/images/soju&beer.png" class="img" alt="soju&beer.png" />
 												
-<<<<<<< HEAD
+
 						<a href="#" id="iconOpen">더보기</a>
 
 						</div>
