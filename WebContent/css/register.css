@@ -12,7 +12,7 @@ section{
   }
 
 /* signup */
-.signup_box { width:450px; height:580px; padding: 30px 30px 30px 50px; margin: 0 auto; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
+.signup_box { width:450px; height:580px; padding: 30px 30px 30px 50px; margin: 30px auto 0px; background-color:rgba(255, 255, 255, 0.993); opacity: 0.8; 
 	border-radius:7px; border: 1px solid rgb(248, 248, 248); z-index: 10; }
 .login_box { width:450px; height:70px; padding: 20px 30px 30px 50px; margin:0 auto ; background-color:rgba(255, 255, 255, 0.993); 
 	border-radius:7px; border: 1px solid rgb(248, 248, 248); text-align: center; font-size: 18px; }
@@ -28,7 +28,7 @@ section{
           padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
           
 /* 폼 상단 플젝명 */
-.signup_box span:first-of-type{font-family: 'Fredericka the Great', cursive;  font-size: 40px; padding: 0 60px;}
+.signup_box span:first-of-type{font-family: 'Anton', sans-serif; font-size: 34px; padding: 0 60px;}
 
 .signup_box span{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
 .signup_box  .sns input {

@@ -74,18 +74,30 @@ public class MoveSchedulerServlet extends HttpServlet {
 		
 		List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
 		
+		c = Calendar.getInstance();
+		long time = 0;
+		long cTime = c.getTimeInMillis();
+		for(Schedule s : list) {
+			if("Y".equals(s.getScheduleDdaycheck())) {
+				if(s.getScheduleDday() instanceof Date) {
+					time = s.getScheduleDday().getTime();
+					int dday = (int) (((time-cTime)/1000/60/60/24)+1);
+					s.setdDay(dday);
+				}
+			}
+		}
+		
 		List<Schedule> dayList = null;
 		HashMap<Integer,List<Schedule>> map = new HashMap<>();
 		
 		
 		//년월일에 맞게 데이터 삽입해줘야 함
-		Calendar c2 = Calendar.getInstance();
 		for(int i=1; i<=31; i++) {
 			dayList = new ArrayList<>();
 			for(Schedule s : list) {
 				Date date = s.getScheduleDate();
-				c2.setTime(date);
-				if(i == c2.get(Calendar.DATE)) {
+				c.setTime(date);
+				if(i == c.get(Calendar.DATE)) {
 					dayList.add(s);
 				}
 			}

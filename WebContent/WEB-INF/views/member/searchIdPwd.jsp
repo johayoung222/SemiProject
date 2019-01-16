@@ -36,13 +36,25 @@
 	
 }
 #button2{
-	padding-left: 170px;
+	
+	margin-top: 13px;
+    margin-right: 47px;
+}
+#button3{
+	
+	margin-top: 13px;
+    margin-left: 127px;
+    
 }
 #searchid{
 	text-align: center;
 }
 #searchId2{
 	text-align: center;
+}
+#searchId3{
+	padding-top: 84px;
+    padding-left: 102px;
 }
 #searchPwd2{
 	text-align: center;
@@ -51,14 +63,17 @@
 	text-align: center;
 }
 #hidetable{
-	border: 1px solid red;
+	border: 1px solid black;
 	width: 50%;
 	height: 200px;
 	float: right;
 	display:none;
 	text-align: center;
-	color: red;
+	color: black;
 	
+}
+#newPwd{
+	padding:35px;
 }
 </style>
 <script>
@@ -91,6 +106,8 @@ function searchid(){
 		if(data != null){
 			html +="<tr><td id='searchId2'>"+"당신의 아이디는 "+data.memberId+" 입니다."+"</td></tr>";
 			/* html +="<td>"+param.pemail+"</td></tr>"; */
+		}else{
+			html += "<tr><td id='searchId2'>"+"<bold>"+"이름과 이메일이 일치하지 않습니다."+"</bold>"+"</td></tr>";
 		}
 		html+="</table>";
 		
@@ -101,15 +118,6 @@ function searchid(){
 	}
 	});
 }
-function chk(re, e, msg) {
-    if (re.test(e.value)) {
-    return true;
-    }
-    alert(msg);
-    e.value = "";
-    e.focus();
-    return false;
-}
 
 function pwdPermute(){
 	var memberEmail = $("#email__").val();
@@ -118,15 +126,24 @@ function pwdPermute(){
 	console.log(new_Password);
 	var check_Password = $("#check_password").val();
 	console.log(check_Password);
-	
-	/* if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리z")) 
-        return false; */
+	 
+	if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
+        return false;
 	
 	if(new_Password != check_Password){
 		alert("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
-    
+	function chk(re, e, msg) {
+	    if (re.test(e)) {
+	    return true;
+	    }
+	    alert(msg);
+	    e.value = "";
+	    e.focus();
+	    return false;
+	}
+
 	var param = {
 			"memberEmail":$("#email__").val(),
 			"new_Password":$("#new_password").val()
@@ -139,12 +156,14 @@ function pwdPermute(){
 		success:function(data){
 			console.log(data);   
 			var html="<table>";
-				html +="<tr><td>"+"비밀번호가 변경되었습니다."+"</td></tr>";
+				html +="<tr><td id='searchId3'>"+"비밀번호가 변경되었습니다."+"</td></tr>";
 				html+="</table>";
 			
 			$("#hidetable").html(html);
 		}
 	});
+
+	return true;
 	
 }
 
@@ -229,15 +248,15 @@ function sendMail(){
 					<th id="permute">새 비밀번호 설정</th>
 				</tr>
 				<tr>
-					<th>새 비밀번호</th>
+					<th id="newPwd">새 비밀번호</th>
 					<td><input type="password" name="new_password" id="new_password" placeholder="ㅗ" required /></td>
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
 					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
 				 <tr>
-                  	<td colspan="2" id="button2">
-                  		<input type="button" onclick="pwdPermute();" value="비밀번호 변경" />
+                  	<td colspan="2" >
+                  		<input type="button" id="button3" onclick="pwdPermute();" value="비밀번호 변경" />
                   	</td>
                  </tr>
 				</table>

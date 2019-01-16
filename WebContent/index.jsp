@@ -21,8 +21,6 @@
 				System.out.println("popup.get("+i+")확인 : "+popup.get(i));
 					checkrequest = true;
 			}
-			System.out.println("333333333333333333");
-			System.out.println("popupsize : "+popup.size());
 			String[] popupArr = popup.toArray(new String[popup.size()]);
 			for(int i = 0;i < popupArr.length;i++) {
 				System.out.println(popupArr[i]);
@@ -92,13 +90,13 @@ function searchIdPwd(){
    
      <div id="slideshow">
        <div>
-         <img src="<%=request.getContextPath() %>/images/flower1.PNG" class="conimg" id="conimg1">
+         <img src="<%=request.getContextPath() %>/images/logo.png" class="conimg" id="conimg1">
        </div>
        <div>
-          <img src="<%=request.getContextPath() %>/images/flower2.PNG" class="conimg" id="conimg2">
+          <img src="<%=request.getContextPath() %>/images/month2.png" class="conimg" id="conimg2">
        </div>
        <div>
-              <img src="<%=request.getContextPath() %>/images/flower3.PNG" class="conimg" id="conimg3">
+              <img src="<%=request.getContextPath() %>/images/todolist.png" class="conimg" id="conimg3">
        </div>
      </div>
      <%if(memberLoggedIn == null){ %>
@@ -121,9 +119,9 @@ function searchIdPwd(){
          <hr>
          <span>또는</span>
          <div class="sns">
-          <input type="button" value="FaceBook으로 로그인">
+         	<input type="button" value="비밀번호를 잊으셨나요?" onclick="searchIdPwd();" id="search_" />
+         	<!-- <span onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span> -->
          </div>
-         <span id="search_" onclick="searchIdPwd();">비밀번호를 잊으셨나요?</span>
        </div>
        <div class="signup_box">
          <span>계정이 없으신가요?<a href="<%=request.getContextPath() %>/member/moveEnroll">회원가입</a></span>

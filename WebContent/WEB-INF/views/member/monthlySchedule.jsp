@@ -28,16 +28,11 @@ function holidays(){
 		type: "get",
 		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
 		success: function(data){
-			console.log(data); //data는 이미 javascript배열객체
-			console.log(JSON.parse(data).response.body.items.item);
-			console.log("type="+(JSON.parse(data).response.body.items.item).length);
 			  
 			if(typeof((JSON.parse(data).response.body.items.item).length) == "undefined"){
 				for(var i in JSON.parse(data).response.body.items){
 					var holiday = JSON.parse(data).response.body.items[i];
 					var copymonth = JSON.parse(data).response.body.items[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -53,13 +48,10 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
 				}
-				console.log(copymonth);
 			}else{
 				for(var i in JSON.parse(data).response.body.items.item){
 					var holiday = JSON.parse(data).response.body.items.item[i];
 					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items.item[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -75,7 +67,6 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
 				}
-				console.log(copymonth);
 			}  
 		}//success func end
 	});//ajax end
@@ -117,6 +108,7 @@ $(document).on('click',function(){
 	}
 });
 </script>
+
 <style>
 	table#add tr td:first-of-type span{
        color:red;
@@ -151,6 +143,8 @@ $(document).on('click',function(){
    		display: inline-block;
    }
 </style>
+
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -212,7 +206,8 @@ $(document).on('click',function(){
 				<% for(int i=1; i<=31; i++){
 					if(!map.get(i).isEmpty()){ %>
 				if(span[i].id == <%=i %>) {
-					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
+					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>"+
+					"<% if("Y".equals(map.get(i).get(0).getScheduleDdaycheck())){ %>(D-<%=map.get(i).get(0).getdDay() %>)<% } %>";
 				}
 					<%}
 				} %>
@@ -222,23 +217,6 @@ $(document).on('click',function(){
 			</script>
 		</table>
 	</div>
-	<!-- 
-	<div id="chat-body">		
-		<div id="chat-before">
-		앞에 초록색 동그라미 이모티콘 추가
-			<strong>채팅</strong>
-			뒤에 버튼 2~3가지 추가 친구 찾기 및 추가 / 새로운 그룹 추가 / 생각중
-	
-		</div>
-	
-		<div id="chat-find-friend">
-			돋보기 모양 이모티콘
-			input:text Ajax사용해서 회원이름 검색시 주르륵 나오게
-			친구 찾기
-			오른쪽에는 +버튼 이미지? 버튼하나만들어서 추가 하게끔
-			 
-		</div>	
-	</div> -->
 	<script>
 		/* 다음달로 넘어가는 기능 */
         $("#nextMonth").click(function(){
@@ -294,7 +272,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}        					
+        				} 
         				}
         			}
         			}
@@ -352,7 +336,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}
+        				} 
         				}
         			}
         			}
@@ -366,6 +356,8 @@ $(document).on('click',function(){
 			$("#year-box").css("display","block");
 		});
         </script>
+
+
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -383,6 +375,7 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
-        
+
+
 </body>
 </html>

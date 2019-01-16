@@ -42,7 +42,6 @@
  
  <div class="content">
    <section>
-   <h2>내 정보</h2>
    <form class="updateFrm" action="<%=request.getContextPath()%>/member/memberUpdateEnd"
 	  method="post"
 	  name="memberUpdateform"
@@ -77,6 +76,7 @@
 		  				   value="M"
 		  				   <%="M".equals(gender)?"checked":"" %>/>
 		  			<label for="gender0">남</label>
+		  			&nbsp;&nbsp;
 		  			<input type="radio" 
 		  				   name="gender" 
 		  				   id="gender1"

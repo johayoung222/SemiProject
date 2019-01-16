@@ -335,7 +335,6 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("pwdPermute");
-		
 		try {
 			//1.쿼리객체준비끝
 			pstmt = conn.prepareStatement(query);
@@ -346,7 +345,6 @@ public class MemberDao {
 			
 			
 			//2.실행
-			System.out.println("dao result =="+result);
 			result = pstmt.executeUpdate();
 			System.out.println("dao result =="+result);
 		} catch (SQLException e) {
@@ -547,9 +545,5 @@ public class MemberDao {
 		
 		return list;
 	}
-
-	
-	
-
 
 }

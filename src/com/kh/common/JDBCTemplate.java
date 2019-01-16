@@ -24,23 +24,31 @@ public class JDBCTemplate {
 	
 	/*public static Connection getConnection() {
 		Connection conn = null;
-		
+		//컨텍스트 객체 생성
+
 		try {
 			Context ctx = new InitialContext();
 			DataSource pool = (DataSource) ctx.lookup("java:comp/env/jdbc/myoracle");
+
 			conn = pool.getConnection();
 			conn.setAutoCommit(false);
 			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
+
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return conn;
 	}*/
 
+
+
+	
+
 	public static Connection getConnection() {
+
 		Connection conn = null;
 		try {
 			Properties prop = new Properties();
@@ -71,8 +79,11 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		return conn;
+
 	}
-	
+
+
+
 	public static void close(Connection conn) {
 		try {
 			if(conn!=null && !conn.isClosed())
