@@ -7,6 +7,7 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
+	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
 	int last = (int)request.getAttribute("last");
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
@@ -98,6 +99,10 @@ function addClickEvent(){
 			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
 			}
 			});
+		
+		if($(this).children().attr("id") == <%=day %>){
+			console.log($(this).css("background","#d4d4d479"));
+		}
 	});//each func end
 }//addClickEvent func end
 /* contextmenu 해제 이벤트 */
