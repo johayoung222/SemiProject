@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.email;
 
 import java.io.IOException;
 import java.io.PrintWriter;

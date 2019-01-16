@@ -28,7 +28,7 @@ section{
           padding:17px 0 16px; border:0; cursor:pointer; font-family: 'Noto Sans KR', sans-seri;}
           
 /* 폼 상단 플젝명 */
-.signup_box span:first-of-type{font-family: 'Fredericka the Great', cursive;  font-size: 40px; padding: 0 60px;}
+.signup_box span:first-of-type{font-family: 'Anton', sans-serif; font-size: 34px; padding: 0 60px;}
 
 .signup_box span{font-family: 'Noto Sans KR', sans-seri;  font-size: 18px; padding: 0 165px;}
 .signup_box  .sns input {

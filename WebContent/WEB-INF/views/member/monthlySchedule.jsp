@@ -153,6 +153,7 @@ $(document).on('click',function(){
    }
 </style>
 
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -365,6 +366,7 @@ $(document).on('click',function(){
 		});
         </script>
 
+
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -382,6 +384,7 @@ $(document).on('click',function(){
 		});
 	});
 	</script>
+
 
 </body>
 </html>

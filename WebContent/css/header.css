@@ -41,12 +41,13 @@ button{
 	 background: #f8f8f8;
 
 }
-#pic{
+/* #pic{
     text-align:center
 }
 .picture{
     margin-right:20px;
     margin-left:20px;
+*/
 }
 #table1 {
 	border: 1px solid black;
@@ -103,3 +104,4 @@ button{
 	right: 0px;
 	top: 5px;			
 }
+
