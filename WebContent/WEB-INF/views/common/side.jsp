@@ -23,6 +23,17 @@
 <link href="https://fonts.googleapis.com/css?family=Coiny|Do+Hyeon|Gothic+A1|Nanum+Gothic+Coding|Nanum+Pen+Script|Noto+Sans+KR" rel="stylesheet">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/side.css" />
+
+<style>
+
+.fnd:hover{
+	background-color: black;
+	color: white;
+}     
+
+
+</style>
+
 <script>
   function showPopup(temp) {
 	  var windowW = 500;  // 창의 가로 길이
@@ -44,6 +55,7 @@
   }
   
   window.onload =function(){
+ 
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=c95231fca9f07b22a6540efdcce37587";
     $.ajax({
         url: apiURI,
@@ -77,7 +89,7 @@
             console.log("도시이름  : "+ resp.name );
             console.log("구름  : "+ (resp.clouds.all) +"%" );   */              
         	}
-    	})
+    	})    	
 	};
 
 </script>
@@ -107,7 +119,7 @@
 				<% if(!friendList.isEmpty()) { %>
 				
 					<% for(int i = 0;i < friendList.size();i++) { %>
-					<span><%=friendList.get(i) %></span>
+					<span class="fnd" id="<%=friendList.get(i)%>"><%=friendList.get(i) %></span>
 					<br />
 					<% } 
 				} else {%>
@@ -115,6 +127,8 @@
 				<% } %>
 			</div>
 		</div>
+		
+		
 		<div id="friends">
 		<form class="insertFriendFrm" name="insertFriendFrm"
 			action="<%=request.getContextPath()%>/friend/insertFriendQueue" 
@@ -136,6 +150,15 @@
 		</form>
 		</div>
 	</div>
+
+     	<form action="<%=request.getContextPath()%>/chat/chatpopup"
+      	method="post"
+      	name="chatFrm">
+      	<input type="hidden" id="fromId" name="fromId" value="<%=memberLoggedIn1.getMemberId()%>" />
+      	<input type="hidden" id="toId" name="toId" />
+      	</form>	
+	
+
 <script>
 
 $("#srchId").on("keyup" , function(e){
@@ -219,7 +242,30 @@ function checkId(){
 		insertFriendFrm.target = target;
 		insertFriendFrm.submit();		
 }
+ 
 
-</script>	
+/* 채팅관련 스크립트 */
+function chatOpen(){
+    //팝업창을 target으로 폼전송
+    var target = "chatpopup";
+    //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
+    var popup = open("", target, "left=400px, top=150px, height=540px, width=500px , resizable=no, scrollbars=no, status=no;");
+    chatFrm.target = target;
+    chatFrm.submit();
+}
+
+var toId;
+$(".fnd").on("click" , function(){
+	
+	toId = $(this).attr("id");
+	$("#toId").attr("value",toId);
+	console.log("#toId value값 확인 : "+$("#toId").val());
+	chatOpen();
+});
+
+
+
+</script>
+
 </body>
 </html>

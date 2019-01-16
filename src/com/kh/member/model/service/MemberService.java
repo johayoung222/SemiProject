@@ -234,5 +234,14 @@ public class MemberService {
 		
 		return list;
 	}
+
+	public int alreadyCheckFriend(String myId, String srchId) {
+		int alreadyCheckFriend = 0;
+		Connection conn = getConnection();
+		alreadyCheckFriend = new MemberDao().alreadyCheckFriend(conn, myId , srchId);
+		return alreadyCheckFriend;
+	}
+
+
 }
 
