@@ -75,13 +75,6 @@ public class InsertScheduleEndServlet extends HttpServlet {
 			scheduleDdayCheck = "Y";
 		}
 		System.out.println("scheduleRepeatCheck 값 출력 테스트 : "+scheduleDdayCheck);
-		java.sql.Date dateDday = null;
-		
-		if (scheduleDdayCheck == "Y") {
-			String scheduleDday = multiReq.getParameter("scheduleDday");
-			dateDday = java.sql.Date.valueOf(scheduleDday);
-			System.out.println("날짜출력 dateDday 테스트"+dateDday);
-		}
 
 		int scheduleTimeline = Integer.parseInt(multiReq.getParameter("scheduleTimeline"));
 		System.out.println("타임라인 넘어오는 타입확인 : "+scheduleTimeline);
@@ -132,13 +125,11 @@ public class InsertScheduleEndServlet extends HttpServlet {
 		s.setScheduleTitle(scheduleTitle); 
 		s.setScheduleContent(scheduleContent);
 		s.setScheduleDdaycheck(scheduleDdayCheck);
-		// scheduleDate는 default로 넣을거기때문에 패스
-		s.setScheduleDdaycheck(scheduleDdayCheck);
 		s.setScheduleRepeatcheck(scheduleRepeatCheck);
 		s.setScheduleTimeline(scheduleTimeline);
 		s.setScheduleStartday(dateSday);
 		s.setScheduleEndday(dateEday);
-		s.setScheduleDday(dateDday);
+		s.setScheduleDday(dateWriteDay);
 		s.setScheduleOriginalfilename(scheduleOriginalfilename);
 		s.setScheduleRenamefilename(scheduleRenamefilename);
 		s.setScheduleDate(dateWriteDay);

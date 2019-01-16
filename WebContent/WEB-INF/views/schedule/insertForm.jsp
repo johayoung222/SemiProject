@@ -92,11 +92,6 @@
 	left:70px;
 	
 }
-#scheduleDday-container{
-	position:absolute;
-	top:400px;
-	left: 250px;
-}
 /*체크박스 크기설정*/
 #scheduleDdayCheck{
 	position: relative;
@@ -244,11 +239,6 @@
 				
 				<label for="scheduleDdayCheck" class="lcheck">디데이<br/>&nbsp;&nbsp;설정</label>
 				<input type="checkbox" id="scheduleDdayCheck" name="scheduleDdayCheck" />
-			<div id="scheduleDday-container">
-				<input type="date" name="scheduleDday" id="scheduleDday"
-					data-placeholder="설정할 디데이를 체크해주세요." required aria-required="true">
-					<br /><br />
-			</div>	
 				<br /><br />
 
 			<label for="scheduleTimeline" class="ltline">타임라인 배치컬럼</label>
@@ -306,8 +296,6 @@
 document.getElementById('scheduleStartDay').valueAsDate = new Date();
 /* 스케줄 끝일 */
 document.getElementById('scheduleEndDay').valueAsDate = new Date();
-/* 디데이가 없는 경우 초기값 설정 */
-document.getElementById('scheduleDday').valueAsDate = new Date();
 
 /* 디데이 체크박스 여부 true / false를 리턴한다. */
 $(document).ready(function() { 

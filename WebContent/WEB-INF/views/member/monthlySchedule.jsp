@@ -212,7 +212,8 @@ $(document).on('click',function(){
 				<% for(int i=1; i<=31; i++){
 					if(!map.get(i).isEmpty()){ %>
 				if(span[i].id == <%=i %>) {
-					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>";
+					span[i].innerText = span[i].id+" <%=map.get(i).get(0).getScheduleTitle() %>"+
+					"<% if("Y".equals(map.get(i).get(0).getScheduleDdaycheck())){ %>(D-<%=map.get(i).get(0).getdDay() %>)<% } %>";
 				}
 					<%}
 				} %>
@@ -294,7 +295,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}        					
+        				} 
         				}
         			}
         			}
@@ -352,7 +359,13 @@ $(document).on('click',function(){
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
         				for(var j=0; j<dataList.length; j++){
-        				if(span[i].id == dataList[j].theDay) span[i].innerText = span[i].id+" "+dataList[j].scheduleTitle;
+        					var title = span[i].id+" "+dataList[j].scheduleTitle;
+        				if(span[i].id == dataList[j].theDay){
+        					span[i].innerText = title;
+        					if(dataList[j].scheduleDdaycheck == "Y"){
+        						span[i].innerText = title+"(D-"+dataList[j].dDay+")";
+        					}
+        				} 
         				}
         			}
         			}
