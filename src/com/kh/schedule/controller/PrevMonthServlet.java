@@ -1,6 +1,7 @@
 package com.kh.schedule.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -64,14 +65,29 @@ public class PrevMonthServlet extends HttpServlet {
 		}
 		String first = cYear+spMonth;
 		
-		
-		List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
-		
 		int start = c.get(Calendar.DAY_OF_WEEK);
 		int last = c.getActualMaximum(Calendar.DATE);
 		int prevYear = c.get(Calendar.YEAR);
 		int prevMonth = c.get(Calendar.MONTH);
+		
+		List<Schedule> list = new ScheduleService().selectScheduleByMonth(memberId, first, second);
 		Map<Integer, Object> map = new HashMap<>();
+		
+		c = Calendar.getInstance();
+		long time = 0;
+		long cTime = c.getTimeInMillis();
+		for(Schedule s : list) {
+			if("Y".equals(s.getScheduleDdaycheck())) {
+				if(s.getScheduleDday() instanceof Date) {
+					System.out.println("Date type ok:"+s.getScheduleDday());
+					time = s.getScheduleDday().getTime();
+					System.out.println(((time-cTime)/1000/60/60/24)+1);
+					int dday = (int) (((time-cTime)/1000/60/60/24)+1);
+					s.setdDay(dday);
+				}
+			}
+		}
+		
 		map.put(1, prevYear);
 		map.put(2, prevMonth);
 		map.put(3, start);
