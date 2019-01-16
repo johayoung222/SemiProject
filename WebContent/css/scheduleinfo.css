@@ -2,11 +2,11 @@
 #scheduleInfo-container{
 	
 	clear: left; 
-	float: right; 
+	 
 	width: 70%;
 	border-right: 1px dotted #ddd;
 	padding: 0;
-	margin: 0 0 30px;
+	margin-left:20%;
     background: rgb(248, 248, 248);
     font-family: 'Noto Sans KR', sans-seri;
 }
@@ -116,8 +116,8 @@ label{
 }
 .side{
 	position: absolute;
-	width:200px;
-	height:140%;
+	width:175px;
+	height:100%;
 	top : 0;
 	left:0;
 	background-color: rgb(206, 219, 186);

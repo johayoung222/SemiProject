@@ -119,7 +119,7 @@
 			
 	        <div class="schedule_renamedFile">
 	            <label for="up_file">파일</label>
-					<input type="file" name="up_file" placeholder="이미지/파일선택" id="file">
+					<input type="file" name="up_file" placeholder="이미지/파일선택" id="file" class="inputfile">
 	            <div class="filelist">
 	            <%if(s.getScheduleOriginalfilename() != null){ %>
 	            	<img src="<%=request.getContextPath() %>/images/file.png" width="20px" height="20px"/>

@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>온도에 따른 추천 의상, 여행지</title>
-<<<<<<< HEAD
+
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/images/logo(favicon).png" type="image/png" sizes="128x128">
-=======
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/recommendation.css" />
->>>>>>> e84c6c057ef71862d8e4d66006a668389bdd7dfe
+
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>
 
 <%
