@@ -80,9 +80,7 @@ public class MoveSchedulerServlet extends HttpServlet {
 		for(Schedule s : list) {
 			if("Y".equals(s.getScheduleDdaycheck())) {
 				if(s.getScheduleDday() instanceof Date) {
-					System.out.println("Date type ok:"+s.getScheduleDday());
 					time = s.getScheduleDday().getTime();
-					System.out.println(((time-cTime)/1000/60/60/24)+1);
 					int dday = (int) (((time-cTime)/1000/60/60/24)+1);
 					s.setdDay(dday);
 				}

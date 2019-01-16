@@ -191,5 +191,4 @@ public class Schedule implements Serializable{
 				+ ", scheduleEndday=" + scheduleEndday + ", memberId=" + memberId + ", scheduleDday=" + scheduleDday
 				+ ", scheduleIcon=" + scheduleIcon + ", theDay=" + theDay + ", dDay=" + dDay + "]";
 	}
-	
 }
