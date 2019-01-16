@@ -106,6 +106,8 @@ function searchid(){
 		if(data != null){
 			html +="<tr><td id='searchId2'>"+"당신의 아이디는 "+data.memberId+" 입니다."+"</td></tr>";
 			/* html +="<td>"+param.pemail+"</td></tr>"; */
+		}else{
+			html += "<tr><td id='searchId2'>"+"<bold>"+"이름과 이메일이 일치하지 않습니다."+"</bold>"+"</td></tr>";
 		}
 		html+="</table>";
 		

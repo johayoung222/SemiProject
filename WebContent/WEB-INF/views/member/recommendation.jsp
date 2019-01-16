@@ -4,8 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-
  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,12 +61,6 @@ span#time{
     </div>
     </nav>
 
-
-
-</head>
-<body>
-
-
 <div class="container2">
 	<h2>추천 의상</h2>
 	<div id="order-list"></div>
@@ -89,7 +81,6 @@ function printTime() {
 	<h4 id="time"></h4>
 	<div id="rank-list"></div>
 </div>
-	   
 	<script>
 	window.onload =function(){
 		$.ajax({

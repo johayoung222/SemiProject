@@ -91,14 +91,11 @@
 		<a href="#" class="font" id="yearSchedule">연간 스케줄</a><hr />
 		<a href="<%=request.getContextPath()%>/member/mainSchedule" class="font">월간 스케줄</a><hr />
 		
-		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a>
+		<a href="<%=request.getContextPath()%>/schedule/schedulelist" class="font">스케줄 찾기</a><hr />
 		
 		<% if(memberLoggedIn1 != null && "admin".equals(memberLoggedIn1.getMemberId())){%>
 		<a href="<%=request.getContextPath()%>/admin/memberList" class="font">회원리스트</a><br />
 		<% } %>
-		<!-- <a href="##">년간 달력5</a><br />
-		<a href="##">년간 달력6</a><br />
-		<a href="##">년간 달력7</a><br /> -->
 		</div>
 		<div id="myDiv">
 	
@@ -126,28 +123,19 @@
 				<label for="srchId" id="font2">아이디 : </label>
 				
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
-				<button type="submit" id="friendadd">친구 추가</button>
+				<button type="submit" id="friendadd" onclick="checkId();">친구 추가</button>
 				<hr>
-
 					<ul id="autoComplete">
 						<li>1</li>
 						<li>2</li>
 						<li>3</li>
 					</ul>
-						
-		
-				
 				<div>
 				<input type="button" onclick="self.close();" value="취소"/>
-
-				
 				</div>
 		</form>
 		</div>
-	
 	</div>
-	
-	
 <script>
 
 $("#srchId").on("keyup" , function(e){

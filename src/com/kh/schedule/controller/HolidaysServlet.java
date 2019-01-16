@@ -45,21 +45,14 @@ public class HolidaysServlet extends HttpServlet {
             	
                 result = result + line + "\n";
             }
-            System.out.println(result);
         }catch(Exception e){
-            System.out.println(e.getMessage());
+        	e.printStackTrace();
         }
-        
-        
         
         response.setContentType("application/json; charset=utf-8");
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(result);
-		System.out.println(jsonStr);
 		response.getWriter().println(jsonStr);
-	
-	
-	
 	}
 
 	/**
