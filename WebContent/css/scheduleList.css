@@ -62,13 +62,4 @@ font-family: 'Black Han Sans', sans-serif; }
 div#pageBar span.cPage{color: #400040; font-family: 'Black Han Sans', sans-serif;
 padding: 5px;}
 
-.side{
-	position: absolute;
-	width:200px;
-	height:130%;
-	top : 0;
-	left:0;
-	background-color: rgb(206, 219, 186);
-	display: inline-block;
-}
 

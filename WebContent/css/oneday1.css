@@ -21,12 +21,13 @@ body{
 /* To do List */
 #todolist{
     border: 1px solid gray;
-    width: 345px;
+    width: 35%;
     height: 480px;
     position: relative;
     border-radius: 10px;
     font-family: 'Coiny', cursive;
     font-family: 'Noto Sans KR', sans-seri;
+    margin-left: 3%;
     
 }
 #todolist h2{
@@ -103,7 +104,7 @@ h2{
 #timeline{
 	border-radius: 5px;
 	border-color: gray;
-	width: 345px;
+	width: 35%;
 }
 #timeline>h3{
   font-family: 'Coiny', cursive;
