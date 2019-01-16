@@ -134,7 +134,7 @@ function addClickEvent(){
 	});
 }
 </script>
-<<<<<<< HEAD
+
 <style>
 	table#add tr td:first-of-type span{
        color:red;
@@ -172,8 +172,7 @@ function addClickEvent(){
 
 
 
-=======
->>>>>>> 0aab911f99d4f92f5c01dba2047ed799d430495e
+
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -390,8 +389,9 @@ function addClickEvent(){
 			$("#year-box").css("display","block");
 		});
         </script>
-<<<<<<< HEAD
-=======
+
+
+
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -409,7 +409,7 @@ function addClickEvent(){
 		});
 	});
 	</script>
->>>>>>> 1d5e02e2d7453dd2ea77cfe1932080c0cb7da8bd
+
         
 </body>
 </html>
