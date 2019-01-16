@@ -122,7 +122,7 @@
 			
 	        	<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
 				<input type="button" value="파일 첨부" class="fakefile "/>
-	            <input type="hidden" id="old_file_name" value="<%=s.getScheduleOriginalfilename() != null ?s.getScheduleOriginalfilename():"파일없음" %>" />
+	            <input type="hidden" id="old_file_name" value="<%=s.getScheduleOriginalfilename() != null ?s.getScheduleOriginalfilename():"파일을 첨부하세요." %>" />
 	    		<input type="text" id="file_name" readonly/>
 	         </div>   	      
    		 <div class="updateSchedule">

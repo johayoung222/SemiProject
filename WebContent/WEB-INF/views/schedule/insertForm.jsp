@@ -149,6 +149,11 @@
     background: #f8f8f8;
     border-radius: 2px;
 }
+
+#file_name{
+	border:0;
+	background: rgb(248, 248, 248);
+}
 </style>
 
 
@@ -330,6 +335,7 @@ $(document).ready(function() {
 	});
 	
 	var fileTarget = $(".inputfile");
+	$("#file_name").val("파일을 첨부하세요.");
 	
 	fileTarget.on('change',function(){//값이 변경되면
 		if(window.FileReader){//modern browser
