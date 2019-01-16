@@ -1,14 +1,14 @@
 package com.kh.common;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  *  Singletone패턴으로 다음 업무를 수행함.
@@ -22,7 +22,7 @@ import javax.sql.DataSource;
  */
 public class JDBCTemplate {
 	
-	public static Connection getConnection() {
+	/*public static Connection getConnection() {
 		Connection conn = null;
 		//컨텍스트 객체 생성
 
@@ -41,10 +41,14 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		return conn;
-	}
+	}*/
 
 
-	/*public static Connection getConnection() {
+
+	
+
+	public static Connection getConnection() {
+
 		Connection conn = null;
 		try {
 			Properties prop = new Properties();
@@ -75,9 +79,10 @@ public class JDBCTemplate {
 			e.printStackTrace();
 		}
 		return conn;
-<<<<<<< HEAD
+
 	}
-	*/
+
+
 
 	public static void close(Connection conn) {
 		try {

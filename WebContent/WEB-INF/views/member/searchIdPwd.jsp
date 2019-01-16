@@ -33,17 +33,34 @@
 }
 #button1{
 	text-align: center;
+<<<<<<< HEAD
 
    	
+=======
+	
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
 }
 #button2{
 	padding-left: 170px;
 }
+<<<<<<< HEAD
 
+=======
+#searchid{
+	text-align: center;
+}
+#searchId2{
+	text-align: center;
+}
+#searchPwd2{
+	text-align: center;
+}
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
 #permute{
 	text-align: center;
 }
 #hidetable{
+<<<<<<< HEAD
 	border: 1px solid black;
 	width: 50%;
 	height: 200px;
@@ -76,6 +93,18 @@ margin-left: 20px;
 
 	
 
+=======
+	border: 1px solid red;
+	width: 50%;
+	height: 200px;
+	float: right;
+	display:none;
+	text-align: center;
+	color: red;
+	
+}
+</style>
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
 <script>
 function searchid(){
 	 var memberName = document.getElementById('userName_');
@@ -104,10 +133,15 @@ function searchid(){
 		console.log(data);
 		var html="<table>";
 		if(data != null){
+<<<<<<< HEAD
 			html +="<tr><td id='searchId2'>"+"당신의 아이디는 "+"<mark>"+"<bold>"+data.memberId+"</bold>"+"</mark>"+" 입니다."+"</td></tr>";
 			/* html +="<td>"+param.pemail+"</td></tr>"; */
 		}else{
 			html += "<tr><td id='searchId3'>"+"이름과 이메일이 일치하는 정보가 없습니다."+"</td><tr>"
+=======
+			html +="<tr><td id='searchId2'>"+"당신의 아이디는 "+data.memberId+" 입니다."+"</td></tr>";
+			/* html +="<td>"+param.pemail+"</td></tr>"; */
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
 		}
 		html+="</table>";
 		
@@ -135,9 +169,10 @@ function pwdPermute(){
 	console.log(new_Password);
 	var check_Password = $("#check_password").val();
 	console.log(check_Password);
-	
+
 	 if(!chk(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/,new_Password,"패스워드는 숫자/문자/특수포함8~15자리")) 
         return false; 
+
 	
 	if(new_Password != check_Password){
 		alert("비밀번호가 일치하지 않습니다.");
@@ -203,16 +238,18 @@ function sendMail(){
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td><input type="text" name="userName" id="userName_" placeholder="이름을 입력해주세요." required /></td>
+
+
+					<td><input type="text" name="userName" id="userName_" placeholder="찾아야한다.." required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email_" placeholder="이메일을 입력해주세요." required /></td>
+					<td><input type="email" name="email" id="email_" placeholder="찾아야한다.." required /></td>
 				</tr>
 				 <tr>
                   	<td colspan="2" id="button1">
-                  
-                  		<input type="button" value="아이디 찾기" id="idbutton" onclick="searchid()" />
+                  		<input type="button" value="아이디 찾기" onclick="searchid()" />
+
                   		
                   	</td>
                   </tr>
@@ -226,14 +263,16 @@ function sendMail(){
 				</tr>
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" name="userId" id="userId_" placeholder="아이디를 입력해주세요." required /></td>
+
+					<td><input type="text" name="userId" id="userId_" placeholder="찾아야한다.." required /></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="email" name="email" id="email__" placeholder="이메일을 입력해주세요." required /></td>
+					<td><input type="email" name="email" id="email__" placeholder="찾아야한다.." required /></td>
 				 <tr>
                   	<td colspan="2" id="button2">
-                  		<input type="button"  id="pwdbutton" onclick="sendMail();" value="비밀번호 찾기" />
+                  		<input type="button" onclick="sendMail();" value="비밀번호 찾기" />
+
                   		
                   	</td>
                  </tr>
@@ -242,21 +281,26 @@ function sendMail(){
 			<form action="<%=request.getContextPath()%>/member/pwdPermute"
 			 name="pwd" method="post">
 				<input type="hidden" name="memberEmail" />
-				<table id="hidetable" style="float:right">
+
+				<table id="hidetable">
+
 					<tr>
 					<th id="permute">새 비밀번호 설정</th>
 				</tr>
 				<tr>
-					<th class="newpwd">새 비밀번호</th>
-					<td><input type="password" name="new_password"  id="newpwd2" placeholder="ㅗ" required /></td>
+
+					<th>새 비밀번호</th>
+					<td><input type="password" name="new_password" id="new_password" placeholder="ㅗ" required /></td>
+
 				</tr>
 				<tr>
 					<th>새 비밀번호 확인</th>
 					<td><input type="password" name="check_password" id="check_password" placeholder="ㅗㅗ" required /></td>
-				</tr>
+
 				 <tr>
-                  	<td colspan="2" id="button3">
-                  		<input type="button" id="pwdbutton2" onclick="pwdPermute();" value="비밀번호 변경" />
+                  	<td colspan="2" id="button2">
+                  		<input type="button" onclick="pwdPermute();" value="비밀번호 변경" />
+
                   	</td>
                  </tr>
 				</table>
@@ -264,8 +308,9 @@ function sendMail(){
 	
 			<table id="table3">
 				 <tr>
-					<td>
-                  		<input type="button" id="cancelbutton" onclick="self.close();" value="취소"  />
+
+                  		<input type="button" onclick="self.close();" value="취소"  />
+
                   	</td>
                   </tr>
 			</table>

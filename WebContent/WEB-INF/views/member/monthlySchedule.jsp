@@ -4,7 +4,6 @@
 				com.kh.member.model.vo.*,
 				com.kh.schedule.model.vo.*" %>
 <%
-	//전달받은 데이터에서 현재일자를 꺼냄.
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
@@ -13,9 +12,6 @@
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
 	
 	Member m = (Member)request.getAttribute("memberLoggedIn");
-	
-	//schedule data 를 date별로 나누기
-
 %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
@@ -24,6 +20,7 @@
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 
 <script>
+/* 공휴일 추가 함수 */
 function holidays(){
 	$.ajax({
 		url: "<%=request.getContextPath() %>/schedule/holidays.do",
@@ -32,7 +29,6 @@ function holidays(){
 		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
 		success: function(data){
 			console.log(data); //data는 이미 javascript배열객체
-			
 			console.log(JSON.parse(data).response.body.items.item);
 			console.log("type="+(JSON.parse(data).response.body.items.item).length);
 			  
@@ -46,27 +42,19 @@ function holidays(){
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
 					
-					if(compa == "0")
+					if(compa == "0"){
 						copymonth = copymonth.substring(7,8);
-					else
+					}else{
 						copymonth = copymonth.substring(6,8);
-					
+					}
 					var monthResult = ($("#"+copymonth+"").text());
+					$("#"+copymonth+"").css("color","red");
 					
-					
-						$("#"+copymonth+"").css("color","red");
-						
-						var copytext = $("#"+copymonth+"").text();
-						
-						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
-					
+					var copytext = $("#"+copymonth+"").text();
+					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
 				}
-				
-				
 				console.log(copymonth);
-				
 			}else{
-				
 				for(var i in JSON.parse(data).response.body.items.item){
 					var holiday = JSON.parse(data).response.body.items.item[i];
 					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
@@ -76,42 +64,29 @@ function holidays(){
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
 					
-					if(compa == "0")
+					if(compa == "0"){
 						copymonth = copymonth.substring(7,8);
-					else
+					}else{
 						copymonth = copymonth.substring(6,8);
-					
+					}
 					var monthResult = ($("#"+copymonth+"").text());
+					$("#"+copymonth+"").css("color","red");
 					
-					
-						$("#"+copymonth+"").css("color","red");
-						
-						var copytext = $("#"+copymonth+"").text();
-						
-						$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
-					
+					var copytext = $("#"+copymonth+"").text();
+					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
 				}
-				
-				
 				console.log(copymonth);
-				
-				
-				
 			}  
-			
-			
-			
-			
-		}
-	});
-}
-
+		}//success func end
+	});//ajax end
+}//holiday func end
 
 
 /* 일일 칸에 클릭 이벤트 */
 function addClickEvent(){
 	var tag = $("#add").find("td");
 	tag.each(function(idx, item){
+		/* 클릭시 일간이동 이벤트 */
 		$(item).click(function(){
 			var year = $("#cYear").text();
 			var month = $("#cMonth").text();
@@ -121,6 +96,7 @@ function addClickEvent(){
 			}
 		});
 		
+		/* 우클릭시 contextmenu 생성 */
 		$(item).contextmenu(function(e){
 			thisTarget = e.target;
 			var flag = $(this).children().attr("id");
@@ -131,8 +107,15 @@ function addClickEvent(){
 			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
 			}
 			});
-	});
-}
+	});//each func end
+}//addClickEvent func end
+/* contextmenu 해제 이벤트 */
+$(document).on('click',function(){
+	if($("#contextMenu").css("display") == 'block'){
+		$("#contextMenu").css("display","none");
+		thisTarget.style.boxShadow = "none";
+	}
+});
 </script>
 
 <style>
@@ -171,8 +154,6 @@ function addClickEvent(){
 </style>
 
 
-
-
 	<!-- 스케줄영역 -->
 	<div id="schedule">
 		<div id="main">
@@ -181,7 +162,7 @@ function addClickEvent(){
             <span id="cMonth"><%=month+1 %></span>월
             <span id="nextMonth">&gt;</span>
         </div>
-		<!-- 년간 달력 테스트 -->
+		<!-- 년간 달력 -->
 		<div id="year-box">
 		    <div class="year" id="month_1"><img src="<%=request.getContextPath() %>/images/year/month1.png" alt="1" /></div>
 		    <div class="year" id="month_2"><img src="<%=request.getContextPath() %>/images/year/month2.png" alt="2" /></div>
@@ -228,6 +209,7 @@ function addClickEvent(){
                 }
                 document.write(html);
             }
+			holidays();
 			var span = $("#add").find("span");
 			for(var i=0; i< span.length; i++){
 				<% for(int i=1; i<=31; i++){
@@ -239,7 +221,6 @@ function addClickEvent(){
 				} %>
 			}
 			addClickEvent();
-			holidays();
 			
 			</script>
 		</table>
@@ -311,6 +292,7 @@ function addClickEvent(){
         			table.append(html);
         			$("#month").after(table);
         			
+        			holidays();
         			var span = $("#add").find("span");
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
@@ -319,9 +301,7 @@ function addClickEvent(){
         				}
         			}
         			}
-        			
         			addClickEvent();
-        			holidays();
         		}
         	});
         });
@@ -355,7 +335,6 @@ function addClickEvent(){
         						}
         						else{
 		        					html += "<td><span id='"+(i-start+2)+"'>"+(i-start+2)+" </span></td>";
-        							
         						}
         					}else{
         					html += "<td><span></span></td>";
@@ -370,6 +349,8 @@ function addClickEvent(){
         			}
         			table.append(html);
         			$("#month").after(table);
+        			
+        			holidays();
         			var span = $("#add").find("span");
         			if(dataList != null){
         			for(var i=0; i< span.length; i++){
@@ -379,7 +360,6 @@ function addClickEvent(){
         			}
         			}
         			addClickEvent();
-        			holidays();
         		}
         	});
         });
@@ -390,8 +370,11 @@ function addClickEvent(){
 		});
         </script>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
      <div id="contextMenu">
 		<div class="menu1">일정추가</div>
 	</div>
@@ -410,6 +393,9 @@ function addClickEvent(){
 	});
 	</script>
 
+<<<<<<< HEAD
         
+=======
+>>>>>>> 9b3b186a1004dca9e8f3b929ba2eacf4521003a1
 </body>
 </html>
