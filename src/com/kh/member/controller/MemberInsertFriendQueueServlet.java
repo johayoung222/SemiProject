@@ -34,30 +34,19 @@ public class MemberInsertFriendQueueServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String srchId = request.getParameter("srchId");
-		String myId = request.getParameter("myId");
-		
+		String myId = request.getParameter("myId");	
 		FriendQueue fq = new FriendQueue();
 		fq.setMemberId(myId);
-		fq.setFriendId(srchId);
-		
-		// System.out.println("체크체크체크 : "+myId + " , "+srchId);
-		
+		fq.setFriendId(srchId);	
 		String msg = "";
 		int result = 0;
 		int status = 0;
-		
 		int srchIdCheck = new MemberService().srchIdCheck(srchId);
-		
 		/* 이미 친구인데 친구요청 막기위한 소스코드 */
 		int alreadyCheckFriend = new MemberService().alreadyCheckFriend(myId , srchId);
-		
-		
 		if(srchId.equals(myId)) {
 			msg = "본인에게는 친구추가를 할 수 없습니다.";
 			status = 1;
-			
-			
-
 		} else if(!(srchIdCheck > 0)) {
 			msg = fq.getFriendId()+"는 존재하지 않는 아이디입니다.";
 			status = 2;

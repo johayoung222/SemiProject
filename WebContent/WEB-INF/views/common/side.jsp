@@ -246,17 +246,14 @@ function checkId(){
 
 /* 채팅관련 스크립트 */
 function chatOpen(){
-    //팝업창을 target으로 폼전송
     var target = "chatpopup";
-    //첫번째 인자 url은 생략, form의 action값이 이를 대신한다.
     var popup = open("", target, "left=400px, top=150px, height=540px, width=500px , resizable=no, scrollbars=no, status=no;");
     chatFrm.target = target;
     chatFrm.submit();
 }
 
 var toId;
-$(".fnd").on("click" , function(){
-	
+$(".fnd").on("click" , function(){	
 	toId = $(this).attr("id");
 	$("#toId").attr("value",toId);
 	console.log("#toId value값 확인 : "+$("#toId").val());

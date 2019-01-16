@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-
 	String msg = (String)request.getAttribute("msg");
 	int status = (int)request.getAttribute("status");
-	System.out.println("33333333"+status+", "+msg);
-	
-	
 	/*
 	status : 1
 	- 본인에게는 친구추가를 할 수 없습니다.
@@ -16,9 +12,9 @@
 	- 입력하신아이디께 친구 요청에 성공하셨습니다.
 	status : 4
 	- 같은 사용자에게 친구요청을 하셨습니다.
+	status : 5
+	- 이미 친구인 사용자입니다.
 	 */
-	 
-
 %>
 <!DOCTYPE html>
 <html>
