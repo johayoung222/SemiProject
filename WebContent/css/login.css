@@ -94,5 +94,7 @@ margin-right: 450px;
 }
 #login_box{
 	margin-left: 60%;
-
+}
+#indexTable tr td:hover{
+	cursor: pointer;
 }

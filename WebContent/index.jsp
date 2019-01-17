@@ -171,20 +171,14 @@ function searchIdPwd(){
 					for(var i in data){
 						var user = data[i];
 						
-						html += "<tr><td>"+user.scheduleTitle+"</td></tr>";
-						
+						html += "<tr><td id="+user.scheduleNo+">"+user.scheduleTitle+"</td></tr>";
 					}
 					table.append(html);
 					console.log(html);
 					
-					
-					
 					$("#scheduler_box").html(table);
-					
+					dayClick();
 				}
-				
-				
-				
 			},
 			error: function (jqxhr, textStatus, errorThrown) {
 				console.log("ajax처리실패!");
@@ -192,8 +186,16 @@ function searchIdPwd(){
 				console.log(textStatus);
 				console.log(errorThrown);
 			}
-			
 		});
+     	
+     	function dayClick(){
+     	$("#indexTable").find("td").each(function(idx,item){
+     		$(item).click(function(e){
+     			var scheduleNo = e.target.id;
+     			location.href = "<%=request.getContextPath() %>/schedule/selectOne?scheduleNo="+scheduleNo;
+     		});
+     	});
+     	}
      </script>
      </div>
      <div id="button">

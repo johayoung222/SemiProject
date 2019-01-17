@@ -117,7 +117,7 @@
 			<button id="friendList" ">∨</button>
 			<button id="addfriend" onclick="addfriend();">+</button></p>
 			<div id="friendspace">
-				<% if(!friendList.isEmpty()) { %>
+				<% if(friendList != null && !friendList.isEmpty()) { %>
 				
 					<% for(int i = 0;i < friendList.size();i++) { %>
 					<span class="fnd" id="<%=friendList.get(i)%>"><%=friendList.get(i) %></span>
