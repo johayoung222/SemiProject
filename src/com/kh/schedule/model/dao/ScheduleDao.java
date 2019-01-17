@@ -470,7 +470,7 @@ public class ScheduleDao {
 				long start = c.getTimeInMillis();
 				c.setTimeInMillis(end-start);
 				
-				int last = (int)Math.ceil(((end-start)/1000/60/60/24/30));
+				int last = (int)Math.ceil(((end-start)/1000/60/60/24/30)+1);
 				c.setTime(s.getScheduleDate());
 				for(int i=0; i<last; i++) {
 					Date tdate = new Date(c.getTimeInMillis());
