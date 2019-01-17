@@ -11,8 +11,6 @@
 	Member user = (Member) request.getAttribute("user");
 	String writeDay = year+"-"+month+"-"+day;
 %>
-
-<<<<<<< HEAD
 <style>
 .content {
 	padding-left: 140px;
@@ -24,8 +22,6 @@
 #scheduleIcon-container{
 	margin-top: 20px;
 }
-
-
 .img{
 	width: 60px;
 	height: 60px;
@@ -44,7 +40,6 @@
 	
 }
 .moreimg{
-
 	position:relative;
 	display: inline-block;
     width: 60px;
