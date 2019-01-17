@@ -12,6 +12,7 @@
 	String writeDay = year+"-"+month+"-"+day;
 %>
 
+<<<<<<< HEAD
 <style>
 .content {
 	padding-left: 140px;
@@ -149,7 +150,15 @@
     background: #f8f8f8;
     border-radius: 2px;
 }
+
+#file_name{
+	border:0;
+	background: rgb(248, 248, 248);
+}
 </style>
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/insertForm.css">
+
 
 
 
@@ -206,8 +215,9 @@
 												
 
 						<a href="#" id="iconOpen">더보기</a>
-
+						
 						</div>
+						
 					<div id="divicon"><!-- 더보기 div 버튼 클릭시 나타난다. none -->
 						<table id="tableicon" style="border:1px solid red;">
 							<tr>
@@ -226,15 +236,17 @@
 								<td><img src="<%=request.getContextPath() %>/images/test.png" class="img" alt="test.png"></td>
 								<td><a href="#" id="iconClose">닫기</a></td>
 							</tr>										
-						</table>						
+						</table>
 					</div>
 				</div>
+				<br />				
 				<label for="" class="ltext">내용</label> 
 				<textarea name="scheduleContent" id="scheduleContent" rows="5" cols="50" placeholder="내용을 작성해주세요." style="resize: none;"></textarea>
 				<br /><br />
 				<label for="up_file" class="lfile">파일</label>
 				<input type="file" name="up_file" placeholder="이미지/파일선택" class="inputfile">
 				<input type="button" value="파일 첨부" class="fakefile "/>
+				<input type="text" id="file_name" readonly/>
 				<br /><br />
 				<!-- 글쓴날짜 -->
 				<input type="hidden" name="writeDay" id="writeDay" value="<%=writeDay %>" />
@@ -280,7 +292,7 @@
 				<input type="hidden" value="<%=memberLoggedIn.getMemberId() %>" name="memberId" />
 				<input type="hidden" name="theDay" value="<%=day %>" />
 				
-					<br /><br />
+					<br />
 
 
 					<input type="submit" value="일정 등록" onclick="return validate();" class="submit">
@@ -326,8 +338,21 @@ $(document).ready(function() {
 		/* 전송할 alt추려내기 */
 		selectedAlt = $(this).attr("alt");
 		$("#iconAlt").attr("value" , selectedAlt);
-		
-		
+	});
+	
+	var fileTarget = $(".inputfile");
+	$("#file_name").val("파일을 첨부하세요.");
+	
+	fileTarget.on('change',function(){//값이 변경되면
+		if(window.FileReader){//modern browser
+			var filename = this.files[0].name;
+		}else { // old IE
+			 var filename = $(this).val().split('/').pop().split('\\').pop(); // 파일명만 추출
+			 console.log(filename);
+		}  // 추출한 파일명 삽입
+			//$(".file_name").text(filename);
+			$("#file_name").val(filename);
+
 	});
 });
 

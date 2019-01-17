@@ -41,14 +41,6 @@ button{
 	 background: #f8f8f8;
 
 }
-/* #pic{
-    text-align:center
-}
-.picture{
-    margin-right:20px;
-    margin-left:20px;
-*/
-}
 #table1 {
 	border: 1px solid black;
 	width: 50%;
@@ -104,4 +96,9 @@ button{
 	right: 0px;
 	top: 5px;			
 }
+/* #mypage, #logout{
+	border: 3px solid rgb(195, 216, 164);
+	background-color: rgb(206, 219, 186);
+    color: white;
+} */
 

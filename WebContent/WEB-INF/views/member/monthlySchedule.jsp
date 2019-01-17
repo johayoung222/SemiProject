@@ -7,6 +7,7 @@
 	List<Schedule> list = (List<Schedule>)request.getAttribute("list");
 	int year = (int)request.getAttribute("year");
 	int month = (int)request.getAttribute("month");
+	int day = (int)request.getAttribute("day");
 	int start = (int)request.getAttribute("start");
 	int last = (int)request.getAttribute("last");
 	Map<Integer,List<Schedule>> map = (HashMap<Integer,List<Schedule>>)request.getAttribute("map");
@@ -28,16 +29,11 @@ function holidays(){
 		type: "get",
 		data: {"cYear":$("#cYear").text(), "cMonth":($("#cMonth").text())},
 		success: function(data){
-			console.log(data); //data는 이미 javascript배열객체
-			console.log(JSON.parse(data).response.body.items.item);
-			console.log("type="+(JSON.parse(data).response.body.items.item).length);
 			  
 			if(typeof((JSON.parse(data).response.body.items.item).length) == "undefined"){
 				for(var i in JSON.parse(data).response.body.items){
 					var holiday = JSON.parse(data).response.body.items[i];
 					var copymonth = JSON.parse(data).response.body.items[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -53,13 +49,10 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items[i].dateName);
 				}
-				console.log(copymonth);
 			}else{
 				for(var i in JSON.parse(data).response.body.items.item){
 					var holiday = JSON.parse(data).response.body.items.item[i];
 					var copymonth = JSON.parse(data).response.body.items.item[i].locdate+"";
-					
-					console.log(JSON.parse(data).response.body.items.item[i].locdate);
 					
 					var comp = copymonth.substring(6,8);
 					var compa = comp.substring(0,1);
@@ -75,7 +68,6 @@ function holidays(){
 					var copytext = $("#"+copymonth+"").text();
 					$("#"+copymonth+"").text(copytext + " " + JSON.parse(data).response.body.items.item[i].dateName);
 				}
-				console.log(copymonth);
 			}  
 		}//success func end
 	});//ajax end
@@ -107,6 +99,10 @@ function addClickEvent(){
 			thisTarget.style.boxShadow = "1px 1px 3px .5px gray";
 			}
 			});
+		
+		if($(this).children().attr("id") == <%=day %>){
+			console.log($(this).css("background","#d4d4d479"));
+		}
 	});//each func end
 }//addClickEvent func end
 /* contextmenu 해제 이벤트 */
@@ -187,13 +183,13 @@ $(document).on('click',function(){
 		</script>
 		<table id="month">
 			<tr>
-				<th style="color:red;">일</th>
+				<th style="color:red;border-left:2px solid black;">일</th>
 				<th>월</th>
 				<th>화</th>
 				<th>수</th>
 				<th>목</th>
 				<th>금</th>
-				<th style="color:blue;">토</th>
+				<th style="color:blue;border-right:2px solid black;">토</th>
 			</tr>
 		</table>
 		<table id="add">

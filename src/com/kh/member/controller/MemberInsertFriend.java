@@ -34,20 +34,17 @@ public class MemberInsertFriend extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("MemberInsertFriend ~");
 		
+		
+		
 		// 친구요청을 보낸 사용자의 아이디
 		String selectFriend = (String)request.getParameter("selectFriend");
 		// 본인의 아이디
 		Member memberLoggedIn = (Member)request.getSession().getAttribute("memberLoggedIn");
 		String memberId = memberLoggedIn.getMemberId();
-		
-		
-		int deleteFQcheck = new MemberService().deleteFriendQueue(selectFriend , memberId);// FQ테이블에서 delete를 잘했는지
-		int insertFmy = new MemberService().insertFriendMy(memberId , selectFriend);	// F테이블에서 memberId를 기준으로 추가
-		int insertFsf = new MemberService().insertFriendSf(selectFriend , memberId);	// F테이블에서 selectFriend를기준으로 추가
-		
+		new MemberService().deleteFriendQueue(selectFriend , memberId); // FQ테이블에서 delete를 잘했는지
+		new MemberService().insertFriendMy(memberId , selectFriend);	// F테이블에서 memberId를 기준으로 추가
+		new MemberService().insertFriendSf(selectFriend , memberId);	// F테이블에서 selectFriend를기준으로 추가
 		List<String> popup = new MemberService().checkFriend(memberLoggedIn.getMemberId());
-		
-		
 		new Gson().toJson(popup, response.getWriter());
 	}
 
