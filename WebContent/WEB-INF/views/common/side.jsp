@@ -126,7 +126,7 @@
 				<label for="srchId" id="font2">아이디 : </label>
 				
 				<input type="text"  name="srchId" id="srchId" autocomplete="off" />
-				<button type="submit" id="friendadd">친구 추가</button>
+				<button type="submit" id="friendadd" onclick="checkId();">친구 추가</button>
 				<hr>
 
 					<ul id="autoComplete">
